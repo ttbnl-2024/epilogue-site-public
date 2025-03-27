@@ -1,0 +1,85 @@
+{% extends "solution.html" %}
+{% load static %}
+
+{% block puzzle-author %}
+Nathaniel Barnett, Nick Poulos, Stephanie Chen, Charles Steinhardt
+{% endblock %}
+
+{% block solution-body-md %}
+
+<style>
+  .weights-table td:nth-child(2) {
+    text-align: right;
+  }
+
+  .extract-table strong {
+    color: red;
+  }
+</style>
+
+This is the metapuzzle for the Hephaestus round. When each feeder is solved, we also receive a number:
+
+<div class="weights-table" markdown="1">
+  | Puzzle        | Weight  |
+  |---------------|---------|
+  | A Few Tips    | 185.997 |
+  | A Safe Car    | 103.403 |
+  | Box Offer     | 27.672  |
+  | Exotic Fen    | 239.109 |
+  | Failsafe      | 6.985   |
+  | Fetched       | 156.239 |
+  | I Feel Ucky   | 259.419 |
+  | Movie Effect  | 180.758 |
+  | Ohh, My Fee   | 229.999 |
+  | Reference Age | 209.113 |
+  | Toys Cafe     | 127.415 |
+  | Transfers     | 156.931 |
+</div>
+
+After solving a few puzzles, we note that all the answers have three particular letters in them: `N`, `P`, and `S`. These letters in common are three of the most important elements to be removed in the steelmaking process: nitrogen, phosphorus, and sulfur.
+
+The number given indicates the change in atomic weight from each original answer.
+We can figure out the weight lost by removing all the impurities, and therefore what we need to add to get to the final product.
+(Helpfully, we don’t have the whole periodic table to search—it is limited to stable metals, so no non-metals like hydrogen or iodine, or solely radioactive elements, like bismuth, americium, or technetium.)
+
+<div class="overflow-container" markdown="1">
+| Puzzle answer | NPS removed | Δ weight | NPS weight | Weight to add | Elements to add | “Alloyed” answer |
+|---------------|-------------|----------|------------|---------------|-----------------|------------------|
+| `SONY PSP`    | OY          | 185.997  | 140.075    | 326.072       | Ag, Er, V       | `VOYAGER`        |
+| `SOUP SPOON`  | OUOO        | 103.403  | 140.075    | 243.478       | K, Tl           | `OUTLOOK`        |
+| `DAMPNESS`    | DAME        | 27.672   | 109.101    | 136.773       | Ti, Y           | `DAYTIME`        |
+| `SPHINGES`    | HIGE        | 239.109  | 109.101    | 348.21        | Er, Ta          | `HERITAGE`       |
+| `SCHNAPPS`    | CHA         | 6.985    | 140.075    | 147.06        | Ce, Li          | `CHALICE`        |
+| `ASPEN`       | AE          | 156.239  | 77.041     | 233.28        | Ba, Mo          | `AMOEBA`         |
+| `INSPECT`     | IECT        | 259.419  | 77.041     | 336.46        | Ir, Nd          | `INDIRECT`       |
+| `MISSPEND`    | MIED        | 180.758  | 109.101    | 289.859       | Ni, Re, Sc      | `REMINISCED`     |
+| `NAPLES`      | ALE         | 229.999  | 77.041     | 307.04        | In, Ir          | `AIRLINE`        |
+| `UNPASSABLE`  | UAABLE      | 209.113  | 109.101    | 318.214       | Nb, K, Re       | `UNBREAKABLE`    |
+| `SPLINT`      | LIT         | 127.415  | 77.041     | 204.456       | Cu, Pr          | `CULPRIT`        |
+| `NOSEPASS`    | OEA         | 156.931  | 141.161    | 298.092       | Nd, Rh, V       | `OVERHAND`       |
+</div>
+
+As clued by "iron out" in the flavortext, each puzzle title has "Fe" (the atomic symbol for iron).
+Each puzzle title is one letter longer than its alloyed answer, indicating that the location of the "Fe" is a position for extraction.
+Sorting by the weight to add,
+
+<div class="extract-table overflow-container" markdown="1">
+| Puzzle            | Weight  | “Alloyed” answer | Extract |
+|-------------------|---------|------------------|---------|
+| Box Of**fe**r     | 136.773 | `DAYTIME`        | `M`     |
+| Failsa**fe**      | 147.06  | `CHALICE`        | `E`     |
+| Toys Ca**fe**     | 204.456 | `CULPRIT`        | `T`     |
+| **Fe**tched       | 233.28  | `AMOEBA`         | `A`     |
+| A Sa**fe** Car    | 243.478 | `OUTLOOK`        | `L`     |
+| Movie Ef**fe**ct  | 289.859 | `REMINISCED`     | `C`     |
+| Trans**fe**rs     | 298.092 | `OVERHAND`       | `A`     |
+| Ohh, My **Fe**e   | 307.04  | `AIRLINE`        | `N`     |
+| Re**fe**rence Age | 318.214 | `UNBREAKABLE`    | `B`     |
+| A **Fe**w Tips    | 326.072 | `VOYAGER`        | `O`     |
+| I **Fe**el Ucky   | 336.46  | `INDIRECT`       | `N`     |
+| Exotic **Fe**n    | 348.21  | `HERITAGE`       | `G`     |
+</div>
+
+Reading down, we get `METAL CAN BONG`. On submitting, we are told that we need something "more refined", and given "Δ = 237.986". Performing the refinement once again by removing N, P, and S; and adding the required lithium (Li), indium (In), and neodymium (Nd); we get the true gift: **`METALLICA BONDING`**.
+
+{% endblock %}

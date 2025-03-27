@@ -1,0 +1,92 @@
+- model: puzzles.Puzzle
+  pk: 746
+  fields:
+    name: Movie Effects
+    slug: movie-effects
+    body_template: movie-effects.html
+    answer: MISSPEND
+    round: 17
+    unlock_global: -1
+    unlock_local: 4
+    order: 9
+    emoji: ":movie_camera:"
+- model: puzzles.PuzzleMessage
+  pk: 567
+  fields:
+    puzzle: 746
+    guess: GIRL SOFTLY TO STOP TO WASTE YOUTH
+    response: Keep going!
+- model: puzzles.CannedHint
+  pk: 1982
+  fields:
+    puzzle: 746
+    description: Getting started
+    order: 0.0
+    keywords: getting started, puzzle fodder
+    content: The images in this puzzle should be "super easy... barely an inconvenience"
+      to figure out
+- model: puzzles.CannedHint
+  pk: 1983
+  fields:
+    puzzle: 746
+    description: getting started (hammer hint)
+    order: 0.1
+    keywords: getting started, puzzle fodder
+    content: The images in this puzzle all relate to the "Pitch Meeting" series on
+      YouTube
+- model: puzzles.CannedHint
+  pk: 1984
+  fields:
+    puzzle: 746
+    description: Solvers have found the Pitch Meeting connection but aren't sure what
+      to do next
+    order: 10.0
+    keywords: image identification
+    content: Each image is a depiction of the thing that Producer Guy says is "Tight"
+      in the Pitch Meeting. The enumeration below the image clues the "tight" thing
+      that the image is describing. The enumerations at the top of the puzzle are
+      the movie titles corresponding to the 28 images (though not in the same order)
+- model: puzzles.CannedHint
+  pk: 1985
+  fields:
+    puzzle: 746
+    description: Solvers need to index
+    order: 20.0
+    keywords: indexing
+    content: Each image has a certain count that can be used to index
+- model: puzzles.CannedHint
+  pk: 1986
+  fields:
+    puzzle: 746
+    description: Solvers need to index (hammer hint)
+    order: 20.1
+    keywords: indexing (hammer hint)
+    content: Each image has a certain count of items. For example the first image
+      has 4 marquees and the second image has 3 ghosts. Index those into the "tight"
+      phrase to extract a letter for each image
+- model: puzzles.CannedHint
+  pk: 1987
+  fields:
+    puzzle: 746
+    description: Solvers need to sort
+    order: 30.0
+    keywords: sorting
+    content: What would the logical sort be for a list of movies?
+- model: puzzles.CannedHint
+  pk: 1988
+  fields:
+    puzzle: 746
+    description: Solvers need to sort (hammer)
+    order: 30.1
+    keywords: sorting (hammer)
+    content: Sort by movie release date
+- model: puzzles.CannedHint
+  pk: 1989
+  fields:
+    puzzle: 746
+    description: Solvers are stuck on the final cluephrase
+    order: 40.0
+    keywords: cluephrase,answer
+    content: "The final cluephrase is a cryptic clue with enumeration (4 6 2 4 2 5\
+      \ 5)\n\nThe (4+6+2 4 = 2 5 5) at the bottom of the puzzle page clues how\
+      \ to break it up into the wordplay (on the left) and define it (on the right)"

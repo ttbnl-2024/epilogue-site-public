@@ -1,0 +1,37 @@
+- model: puzzles.Puzzle
+  pk: 749
+  fields:
+    name: Failsafe
+    slug: failsafe
+    body_template: failsafe.html
+    answer: SCHNAPPS
+    round: 17
+    unlock_global: -1
+    unlock_local: 1
+    order: 5
+    emoji: ":beverage_box:"
+- model: puzzles.CannedHint
+  pk: 1817
+  fields:
+    puzzle: 749
+    description: Stuck on getting started
+    order: 0.0
+    keywords: started, begin, start
+    content: Choose a dial, and start twisting to the combination for a safe
+- model: puzzles.CannedHint
+  pk: 1818
+  fields:
+    puzzle: 749
+    description: Solvers have the dials complete but don't know what to do with them
+    order: 50.0
+    keywords: Ingredients, word list
+    content: You may try to search for a new combination with these words.
+- model: puzzles.CannedHint
+  pk: 1819
+  fields:
+    puzzle: 749
+    description: How to extract answer
+    order: 100.0
+    keywords: extract, answer, extraction
+    content: Your unusual extra information found in each result has two parts, used
+      for ordering and extraction.

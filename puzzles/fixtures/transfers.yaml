@@ -1,0 +1,51 @@
+- model: puzzles.Puzzle
+  pk: 744
+  fields:
+    name: Transfers
+    slug: transfers
+    body_template: transfers.html
+    answer: NOSEPASS
+    round: 17
+    unlock_global: -1
+    unlock_local: 0
+    order: 3
+    emoji: ':yin_yang:'
+
+- model: puzzles.PuzzleMessage
+  pk: 334
+  fields:
+    puzzle: 744
+    guess: CONETRES
+    response: Keep going!
+- model: puzzles.PuzzleMessage
+  pk: 333
+  fields:
+    puzzle: 744
+    guess: DIVECOM
+    response: Keep going!
+
+- model: puzzles.CannedHint
+  pk: 1784
+  fields:
+    puzzle: 744
+    description: Stuck on getting started
+    order: 0.0
+    keywords: match, start, begin
+    content: Did you count how many rows, and how many words?  Start to match, to
+      get to the end!
+- model: puzzles.CannedHint
+  pk: 1785
+  fields:
+    puzzle: 744
+    description: solvers have not found the theme of the grid words
+    order: 50.0
+    keywords: new words, how to fill the grid
+    content: Does the flavortext remind you of a specific list of things?
+- model: puzzles.CannedHint
+  pk: 1786
+  fields:
+    puzzle: 744
+    description: How to extract answer
+    order: 100.0
+    keywords: index, extract, find answer
+    content: Some sized boxes in the grid have something to say.  Do another match!

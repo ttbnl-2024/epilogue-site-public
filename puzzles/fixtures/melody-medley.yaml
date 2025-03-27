@@ -1,0 +1,434 @@
+- model: puzzles.Puzzle
+  pk: 450
+  fields:
+    name: Melody Medley
+    slug: melody-medley
+    body_template: melody-medley.html
+    answer: GLASS FLUTE
+    round: 100
+    unlock_global: -1
+    unlock_local: 0
+    order: 3
+    emoji: ":musical_score:"
+
+- model: puzzles.PuzzleMessage
+  pk: 164
+  fields:
+    puzzle: 450
+    guess: CHOPIN FUNERAL MARCH
+    response: You've identified one of the subanswers!
+- model: puzzles.PuzzleMessage
+  pk: 166
+  fields:
+    puzzle: 450
+    guess: CHOPIN MARCHE FUNEBRE
+    response: You've identified one of the subanswers!
+- model: puzzles.PuzzleMessage
+  pk: 167
+  fields:
+    puzzle: 450
+    guess: CHOPIN MARSZ ZALOBNY
+    response: You've identified one of the subanswers!
+- model: puzzles.PuzzleMessage
+  pk: 165
+  fields:
+    puzzle: 450
+    guess: CHOPIN PIANO SONATA NO 2
+    response: You've identified one of the subanswers!
+- model: puzzles.PuzzleMessage
+  pk: 263
+  fields:
+    puzzle: 450
+    guess: GRANT WOOLARD
+    response: Keep going!
+- model: puzzles.PuzzleMessage
+  pk: 163
+  fields:
+    puzzle: 450
+    guess: MENDELSSOHN FRUHLINGSLIED
+    response: You've identified one of the subanswers!
+- model: puzzles.PuzzleMessage
+  pk: 162
+  fields:
+    puzzle: 450
+    guess: MENDELSSOHN SPRING SONG
+    response: You've identified one of the subanswers!
+- model: puzzles.PuzzleMessage
+  pk: 156
+  fields:
+    puzzle: 450
+    guess: SCHUBERT SYMPHONY NO 8
+    response: You've identified one of the subanswers!
+- model: puzzles.PuzzleMessage
+  pk: 155
+  fields:
+    puzzle: 450
+    guess: SCHUBERT UNFINISHED SYMPHONY
+    response: You've identified one of the subanswers!
+- model: puzzles.PuzzleMessage
+  pk: 161
+  fields:
+    puzzle: 450
+    guess: VERDI LA TRAVIATA
+    response: You've identified one of the subanswers!
+- model: puzzles.PuzzleMessage
+  pk: 159
+  fields:
+    puzzle: 450
+    guess: VIVALDI LA PRIMAVERA
+    response: You've identified one of the subanswers!
+- model: puzzles.PuzzleMessage
+  pk: 160
+  fields:
+    puzzle: 450
+    guess: VIVALDI LA PRIMAVERA 3
+    response: You've identified one of the subanswers!
+- model: puzzles.PuzzleMessage
+  pk: 157
+  fields:
+    puzzle: 450
+    guess: VIVALDI SPRING
+    response: You've identified one of the subanswers!
+- model: puzzles.PuzzleMessage
+  pk: 158
+  fields:
+    puzzle: 450
+    guess: VIVALDI SPRING 3
+    response: You've identified one of the subanswers!
+
+- model: puzzles.CannedHint
+  pk: 2312
+  fields:
+    puzzle: 450
+    description: Solvers *really* don't want to identify classical music.
+    order: 10.1
+    keywords: Identify
+    content: "[Confirm any that they do have, and help out with others. Try not to\
+      \ give them directly\u2014see other hints for how I've phrased some particularly\
+      \ salient works\u2014but if they aren't having fun with it feel free to give\
+      \ a direct name.]"
+- model: puzzles.CannedHint
+  pk: 2313
+  fields:
+    puzzle: 450
+    description: Section A - no blue work (Schubert)
+    order: 21.0
+    keywords: blue, Schubert
+    content: This is / a symphony / of Schubert's that is rather well-known; / but
+      in / particular, / it has a special quality / for which it has been named.
+- model: puzzles.CannedHint
+  pk: 2314
+  fields:
+    puzzle: 450
+    description: Section A - Identified pieces, but haven't extracted.
+    order: 21.1
+    keywords: Unfinished
+    content: Does something sound off about the other pieces in this section?
+- model: puzzles.CannedHint
+  pk: 2315
+  fields:
+    puzzle: 450
+    description: Section A - Solvers have extracted a long string of repeated notes
+      (GGGDGF#F#BBBBB).
+    order: 21.2
+    keywords: Unfinished
+    content: The flavortext specifies that the qualities of the original works are
+      important.
+- model: puzzles.CannedHint
+  pk: 2316
+  fields:
+    puzzle: 450
+    description: Section B - no blue work (Mahler)
+    order: 22.0
+    keywords: blue, Mahler
+    content: "Mahler's symphonies have endured in the repertoire\u2014Bernstein made\
+      \ sure of it. This is an excerpt from one of them, though it's not named as\
+      \ such: Mahler never gave it a number out of superstition."
+- model: puzzles.CannedHint
+  pk: 2317
+  fields:
+    puzzle: 450
+    description: Section B - Solvers have a partial list of identified pieces, or
+      have found a full list but not the connection between them.
+    order: 22.1
+    keywords: Erde, Earth
+    content: Is there a theme you've noticed among the titles of the pieces you've
+      identified? This may help you find others.
+- model: puzzles.CannedHint
+  pk: 2318
+  fields:
+    puzzle: 450
+    description: Section B - Solvers have identified that everything is a location,
+      but not how to extract from these.
+    order: 22.2
+    keywords: Erde, Earth
+    content: Two pieces play simultaneously at any given instant. How might you represent
+      that?
+- model: puzzles.CannedHint
+  pk: 2319
+  fields:
+    puzzle: 450
+    description: Section B - Solvers have drawn out seven distinct shapes. Now what?
+    order: 22.3
+    keywords: Erde, Earth
+    content: "There are some extra notes highlighted in blue at the end, and we still\
+      \ haven't used the C. P. E. Bach work yet. Maybe they can help find an extraction\
+      \ mechanism. But \"FSud\" isn't a composer I know of\u2026 maybe that three-note\
+      \ sequence is something else entirely?"
+- model: puzzles.CannedHint
+  pk: 2320
+  fields:
+    puzzle: 450
+    description: Section B - no blue work (CPE Bach)
+    order: 22.4
+    keywords: blue, Bach
+    content: C. P. E. Bach was about as prolific as his father, but no work of his
+      is more well-known than this one.
+- model: puzzles.CannedHint
+  pk: 2321
+  fields:
+    puzzle: 450
+    description: Section B - A stronger hint.
+    order: 22.5
+    keywords: Solfeggietto
+    content: "Try reading that three-note sequence in solf\xE8ge (fixed-do, as the\
+      \ French or Italians do)."
+- model: puzzles.CannedHint
+  pk: 2322
+  fields:
+    puzzle: 450
+    description: Section B - Understands the ending hints at Solresol, but doesn't
+      understand how it factors in.
+    order: 22.6
+    keywords: Solresol
+    content: "Solresol can be notated with any set of 7 things, not just solf\xE8\
+      ge. More common ones include colors and hand signals, to name a few\u2014but\
+      \ there's also a system hinted at by the marks on that final sequence of blue\
+      \ notes."
+- model: puzzles.CannedHint
+  pk: 2323
+  fields:
+    puzzle: 450
+    description: Section C - no blue work (Stravinsky)
+    order: 23.0
+    keywords: blue, Stravinsky
+    content: Stravinsky's known for playing around with rhythm. There's one piece
+      in particular that acts a bit like the current situation (though certainly more
+      orderly than it is now)...
+- model: puzzles.CannedHint
+  pk: 2324
+  fields:
+    puzzle: 450
+    description: Section C - Doesn't understand how the hint work ties into the puzzle
+    order: 23.1
+    keywords: Rite, Spring
+    content: "The time signatures in this piece sure are wild\u2014almost nobody uses\
+      \ 20/16, for instance. Is it encoding something else?"
+- model: puzzles.CannedHint
+  pk: 2325
+  fields:
+    puzzle: 450
+    description: Section C - Knows the time signature A1Z26 message but doesn't know
+      how to use it.
+    order: 23.2
+    keywords: Crotchets, Jianpu
+    content: There's seven pieces in this section (we're ignoring the Stravinsky for
+      this); obviously this piece's time signatures are unreliable for this segment,
+      so what can we use instead? (Note that one work will work slightly differently
+      from the others.)
+- model: puzzles.CannedHint
+  pk: 2326
+  fields:
+    puzzle: 450
+    description: Section D - no blue work (J. S. Bach)
+    order: 24.0
+    keywords: blue, Bach
+    content: "Bach's repertoire is enormous\u2014a whole eight pieces form the hint\
+      \ for this section! They're all from the same collection, though. Given the\
+      \ other pieces in this section are all from a particular instrument's repertoire,\
+      \ one collection might stand out\u2014its first work is particularly well-known."
+- model: puzzles.CannedHint
+  pk: 2327
+  fields:
+    puzzle: 450
+    description: Section D - Know it's Well-Tempered Clavier, but not what to do with
+      it.
+    order: 24.1
+    keywords: Clavier
+    content: There's another few blue symbols near the start of the section. Together,
+      they indicate a mechanism.
+- model: puzzles.CannedHint
+  pk: 2328
+  fields:
+    puzzle: 450
+    description: Section D - A stronger hint on the mechanism (esp. if they already
+      know about the other blue symbols)
+    order: 24.2
+    keywords: Clavier
+    content: "The key is in the keys, so to speak\u2014or rather, the difference between\
+      \ the keys. Transpositionally speaking, not in terms of flats and sharps. The\
+      \ result should have nine notes."
+- model: puzzles.CannedHint
+  pk: 2329
+  fields:
+    puzzle: 450
+    description: Section D - Has the intervals, though not ordered.
+    order: 24.3
+    keywords: Clavier, Intervals
+    content: "You might note a \"first\" on one of the Bach annotations. Many composers\
+      \ would arrange a collection like this with the Circle of Fifths. Bach, on the\
+      \ other hand\u2026"
+- model: puzzles.CannedHint
+  pk: 2330
+  fields:
+    puzzle: 450
+    description: Section E - no blue work (Gershwin)
+    order: 25.0
+    keywords: blue, Gershwin
+    content: One work of Gershwin's is particularly famous as a portrait of American
+      music of the time. This is a rendition of its coda; you might know it better
+      from its opening.
+- model: puzzles.CannedHint
+  pk: 2331
+  fields:
+    puzzle: 450
+    description: Section E - Sees Rhapsody in Blue. Now what?
+    order: 25.1
+    keywords: Rhapsody, Blue
+    content: "The blue notes in the bassline look interesting. Give those a look\u2026\
+      \ or perhaps not?"
+- model: puzzles.CannedHint
+  pk: 2332
+  fields:
+    puzzle: 450
+    description: Section E - Knows but does not understand the Braille message "OTHER
+      TYPE".
+    order: 25.2
+    keywords: Braille, other
+    content: The puzzle also involves a different type of dot-based tactile script.
+      Maybe one relevant to Rhapsody in Blue's reputation...
+- model: puzzles.CannedHint
+  pk: 2333
+  fields:
+    puzzle: 450
+    description: Section E - Understands it's New York Point, but not how to read
+      it
+    order: 25.3
+    keywords: New York
+    content: The coda of Rhapsody in Blue uses full chords of four notes. Here, only
+      some of the middle notes are transcribed; how could that encode a tactile script?
+- model: puzzles.CannedHint
+  pk: 2334
+  fields:
+    puzzle: 450
+    description: Solvers are attempting to extract English from their subpuzzle answers.
+    order: 60.0
+    keywords: extraction
+    content: You may want to rethink that assumption. :)
+- model: puzzles.CannedHint
+  pk: 2335
+  fields:
+    puzzle: 450
+    description: Solvers haven't identified the M section melodies.
+    order: 70.0
+    keywords: meta, M
+    content: 'The melodies in the M section are all from one body of work; you may
+      recognize the upper melody in Section M2 as particularly famous. You might also
+      reference the header here: why is this work subtitled "A Musical Enigma"? Why
+      is there a dedication "to my friends pictured within"?'
+- model: puzzles.CannedHint
+  pk: 2336
+  fields:
+    puzzle: 450
+    description: Solvers know it's the Enigma Variations, but not which ones.
+    order: 70.1
+    keywords: Enigma
+    content: "There's enough variation in the melodies and rhythms to distinguish\
+      \ between the main themes and the variations. Variation 4, for instance, lacks\
+      \ the rests of the main theme (while the main theme playing in its section keeps\
+      \ the rests and shortens it elsewhere to fit in \xBE time)."
+- model: puzzles.CannedHint
+  pk: 2337
+  fields:
+    puzzle: 450
+    description: Solvers know the melodies are the subpuzzle answers, but not how
+      to use them in the meta.
+    order: 80.0
+    keywords: meta, M, answers
+    content: "For once, it's a mortal inspiring Apollo, and not the other way around.\
+      \ He's even given them an acknowledgement in the endcard, though it seems to\
+      \ be blank right now\u2026"
+- model: puzzles.CannedHint
+  pk: 2338
+  fields:
+    puzzle: 450
+    description: A stronger hint on finding the meta's source material.
+    order: 80.1
+    keywords: meta, M, acknowledgement
+    content: "There's some red notation scattered throughout the work\u2014exactly\
+      \ 12 symbols, in fact, enough to fit the enumeration in the endcard, and the\
+      \ first is a treble clef. Maybe they spell something?"
+- model: puzzles.CannedHint
+  pk: 2339
+  fields:
+    puzzle: 450
+    description: In case of GIANT WOOL-AID.
+    order: 80.2
+    keywords: giant, woolaid
+    content: "The dedication should be filled in with a name. Those down-facing quarter\
+      \ notes don't really look like Is\u2014the way the head is attached makes it\
+      \ resemble a different letter (albeit lowercase)."
+- model: puzzles.CannedHint
+  pk: 2340
+  fields:
+    puzzle: 450
+    description: Found Grant Woolard's Classical Music Mashups, and know M# are arrangements
+      of the Enigma Variations, but not how the answers factor in.
+    order: 90.0
+    keywords: grant, woolard, mashup
+    content: "Does anything sound familiar in the mashups? Keep in mind that they\
+      \ follow the same rules\u2014the tempo, rhythm, and key might be fudged around\
+      \ to fit the context, but the contour is always the same."
+- model: puzzles.CannedHint
+  pk: 2341
+  fields:
+    puzzle: 450
+    description: Solvers understand they're trying to find the answers in the mashups,
+      but either have the wrong instance of that work or are confused about non-uniqueness.
+    order: 90.1
+    keywords: grant, woolard, mashup
+    content: Note that the answers are specifically a section of their larger work.
+      Why?
+- model: puzzles.CannedHint
+  pk: 2342
+  fields:
+    puzzle: 450
+    description: Solvers have found the correct parts of the mashups, have not figured
+      out how they connect to sections M#.
+    order: 90.2
+    keywords: grant, woolard, mashup
+    content: "Can you relate the structure of sections M1-5 to the parts of the mashups\
+      \ you found? If it helps, there's one standard Enigma theme in each section\
+      \ M1-5\u2014a musical question mark, if you will."
+- model: puzzles.CannedHint
+  pk: 2343
+  fields:
+    puzzle: 450
+    description: Have found the correct other melodies and the indices, and are struggling
+      to extract.
+    order: 99.0
+    keywords: extraction
+    content: "The names of pieces can be rather inexact at times\u2014you won't need\
+      \ to extract from those. There's a string that's both more compelling and more\
+      \ consistently spelled. (And even where it's inconsistent, you have a source\
+      \ to draw from now.)"
+- model: puzzles.CannedHint
+  pk: 2344
+  fields:
+    puzzle: 450
+    description: Extracted GFLLAUSTSE (or something reasonably close to this arrangement).
+    order: 99.9
+    keywords: extraction, ordering
+    content: "The new works in each section M1-5 are always played simultaneously\u2014\
+      one on top of the other. Consider a grand staff, and arrange your extraction\
+      \ accordingly\u2014something clearer should pop out."

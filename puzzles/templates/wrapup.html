@@ -1,0 +1,1169 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block top-left-actions %}
+  <a href="{% url 'hunt-stats' %}" class="btn">{% translate "Hunt Stats" %}</a>
+  <a href="{% url 'finishers' %}" class="btn">{% translate "Finishers" %}</a>
+  <a href="{% url 'biggraph' %}" class="btn">{% translate "Big Graph" %}</a>
+{% endblock %}
+
+{% block page-title %}
+  <title>Wrap-Up</title>
+  <script src="{% static "js/moment.min.js" %}"></script>
+  <script src="{% static "js/Chart.min.js" %}"></script>
+  <script>
+    Chart.defaults.global.defaultFontColor = "#ddddd7";
+    Chart.defaults.global.defaultFontFamily = "'Atkinson Hyperlegible Next', sans-serif";
+  </script>
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    aside {
+      display: none;
+    }
+
+    @media screen and (min-width: 961px) {
+      aside {
+        display: block;
+        position: fixed;
+        width: 240px;
+        top: 120px;
+        left: 0;
+      }
+
+      aside div {
+        color: var(--link-text-color);
+        cursor: pointer;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      aside :hover {
+        text-decoration: underline;
+      }
+
+      aside .highlight {
+        font-weight: bold;
+      }
+
+      .content {
+        margin-left: calc(240px - 10vw);
+      }
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (min-width: 640px) {
+      img {
+        max-width: calc(min(100%, 63rem));
+      }
+    }
+
+    figcaption {
+      font-size: smaller;
+      font-style: italic;
+    }
+
+    dt {
+      font-weight: bold;
+    }
+
+    .notable-guess-table td:nth-child(2) {
+      font-family: 'Atkinson Hyperlegible Mono', monospace;
+    }
+  </style>
+
+  <h2>{% translate "Wrap-Up" %}</h2>
+    <main>
+    <h3>{% translate "Overview" %}</h3>
+    <p>
+      Thank you to everyone who participated in our epilogue to the 2024 Mystery Hunt!
+    </p>
+    <p>
+      Congratulations to the <strong>77 teams</strong> that found the perfect gift for Hephaestus! Special congratulations to <strong>௵ TAMIL MAP OF ODYSSEUS' JOURNEY</strong> for being the first to do so in 5 hours and 20 minutes!
+    </p>
+    <p>
+      Out of all teams registered:
+      <ul>
+        <li>155 teams solved at least one puzzle</li>
+        <li>9 teams solved all 13 "main" puzzles
+      </ul>
+    </p>
+    <p>
+      We'd also like to congratulate teams for solving the round-length, standalone puzzle <a href="{% url 'puzzle' 'ripple-effect' %}">Ripple Effect</a>:
+      <ul>
+        <li><strong>௵ TAMIL MAP OF ODYSSEUS' JOURNEY</strong></li>
+        <li><strong>The C@r@line Syzygy</strong></li>
+        <li><strong>Timeless Hellish Enigmas? Mathemagicians Immediately Solving!</strong></li>
+        <li><strong>Extended Coda of /r/PictureGame</strong></li>
+        <li><strong>Vehemence</strong></li>
+        <li><strong>Frumious Bandersnatch</strong></li>
+        <li><strong>Desolate Abyssal Netherworld</strong></li>
+        <li><strong>Literally Ὀδύσσεια</strong></li>
+      </ul>
+    </p>
+    <p>
+      Thanks to <strong>௵ TAMIL MAP OF ODYSSEUS' JOURNEY</strong> for solving the standalone puzzle <a href="{% url 'puzzle' 'melody-medley' %}">Melody Medley</a>!
+    </p>
+    <p>And, shoutout to <strong>Jimothy Gaming</strong> for the last correct answer, solving the meta at <strong>3 minutes</strong> to hunt end!</p>
+
+    <p><strong><em>The rest of this wrap-up contains spoilers for various puzzles.</em></strong></p>
+
+    <h3>Stats</h3>
+    <h4>Team Shoutouts, Stats</h4>
+    {% comment %} Manually computed in Heroku dataclips. {% endcomment %}
+    <p>
+      <ul>
+        <li>First blood: <strong>௵ TAMIL MAP OF ODYSSEUS' JOURNEY</strong>, who got the first solve of the hunt by solving Exotic Fen 10m 5s after the start.</li>
+        <li>Guess accuracy: <strong>DragonEngineer</strong> and <strong>Giant Giraffe Grocery</strong>, who finished the hunt with the lowest number of incorrect guesses, 3.</li>
+        <li>Guess happiness: <strong>HOPE404</strong>, who submitted the most incorrect guesses, 80.</li>
+        <li>Fastest 100%: <strong>Scenic Travelers</strong>, who solved all 13 "main" puzzles in 24h 21m.</li>
+        <li><strong>722</strong> hint requests</li>
+      </ul>
+    </p>
+    <h4>Leaderboard (Top 10)</h4>
+    <p>
+      <canvas id="leaderboardChart"></canvas>
+      {{ team_leaderboard|json_script:"team_leaderboard_data" }}
+      <script>
+        const team_leaderboard = JSON.parse(document.getElementById("team_leaderboard_data").textContent);
+        const colors = [
+          "#007bff", "#fd7e14", "#6610f2", "#28a745", "#dc3545", "#6c757d", "#ffc107", "#7d600f", "#20c997", "#ddddd7"
+        ];
+        new Chart(
+          document.getElementById("leaderboardChart").getContext("2d"),
+          {
+            type: "line",
+            data: {
+              datasets: team_leaderboard.map((t, i) => ({
+                label: t.team_name,
+                data: t.data.map((d) =>
+                  ({
+                    x: d.datetime,
+                    y: d.solve_count,
+                  }),
+                ),
+                borderColor: colors[i],
+                pointBackgroundColor: colors[i],
+                pointStyle: t.data.map((d) => d.is_meta ? 'star' : 'circle'),
+                pointHoverRadius: t.data.map((d) => d.is_meta ? 6 : 4),
+                pointRadius: t.data.map((d) => d.is_meta ? 5 : 3),
+                fill: false,
+                steppedLine: true,
+              })),
+            },
+            options: {
+              responsive: true,
+              scales: {
+                xAxes: [{
+                  type: 'time',
+                  gridLines: {
+                    display: false,
+                  },
+                  time: {
+                    unit: "hour",
+                    displayFormats: {
+                        hour: 'MMM D hA'
+                    },
+                    tooltipFormat: "MMM D LT Z",
+                  }
+                }],
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true,
+                  },
+                  gridLines: {
+                    display: false,
+                  },
+                }]
+              },
+              tooltips: {
+                callbacks: {
+                  label: function(tooltipItem, data) {
+                    let team = team_leaderboard[tooltipItem.datasetIndex].team_name;
+                    let puzzle = team_leaderboard[tooltipItem.datasetIndex].data[tooltipItem.index].tooltip_label;
+                    let label = team + ": " + puzzle;
+                    if (team_leaderboard[tooltipItem.datasetIndex].data[tooltipItem.index].is_meta) {
+                      label += " (META)";
+                    }
+                    return label;
+                  }
+                }
+              }
+            }
+          }
+        );
+      </script>
+    </p>
+
+    <h4>Solves and Guesses per Puzzle</h4>
+    <p>
+      <canvas id="solvesGuessesPerPuzzleChart"></canvas>
+      {{ puzzle_guesses|json_script:"puzzle_guesses_data" }}
+      <script>
+        const puzzle_guesses_data = JSON.parse(document.getElementById("puzzle_guesses_data").textContent);
+        new Chart(
+          document.getElementById("solvesGuessesPerPuzzleChart").getContext("2d"),
+          {
+            type: "bar",
+            data: {
+              datasets: [
+                {
+                  backgroundColor: "#007bff",
+                  data: puzzle_guesses_data.correct,
+                  label: "Solves",
+                },
+                {
+                  backgroundColor: "#fcc173",
+                  data: puzzle_guesses_data.partial,
+                  label: "Partials",
+                },
+                {
+                  backgroundColor: "#fb2323",
+                  data: puzzle_guesses_data.incorrect,
+                  label: "Incorrect Guesses",
+                },
+              ],
+              labels: puzzle_guesses_data.puzzles,
+            },
+            options: {
+              responsive: true,
+              scales: {
+                xAxes: [{
+                  gridLines: {
+                    color: "#494964",
+                  },
+                  stacked: true,
+                }],
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true,
+                  },
+                  gridLines: {
+                    color: "#494964",
+                  },
+                  stacked: true,
+                }]
+              },
+            }
+          }
+        );
+      </script>
+    </p>
+
+    <h4>Fastest Solve per Puzzle</h4>
+    <p>
+      <canvas id="fastestSolveChart"></canvas>
+      {{ fastest_solves|json_script:"fastest_solves_data" }}
+      <script>
+        const fastest_solves = JSON.parse(document.getElementById("fastest_solves_data").textContent);
+        new Chart(
+          document.getElementById("fastestSolveChart").getContext("2d"),
+          {
+            type: "bar",
+            data: {
+              datasets: [{
+                backgroundColor: "#fb2323",
+                label: "Fastest Solve",
+                data: fastest_solves.data,
+              }],
+              labels: fastest_solves.labels,
+            },
+            options: {
+              responsive: true,
+              legend: {
+                display: false,
+              },
+              scales: {
+                xAxes: [{
+                  gridLines: {
+                    color: "#494964",
+                  },
+                }],
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true,
+                  },
+                  gridLines: {
+                    color: "#494964",
+                  },
+                  scaleLabel: {
+                    display: true,
+                    labelString: "Minutes",
+                  },
+                }]
+              },
+              tooltips: {
+                callbacks: {
+                  label: function(tooltipItem, data) {
+                    let label = fastest_solves.tooltips[tooltipItem.index];
+                      label += ': ';
+
+                    let seconds = Math.round(tooltipItem.yLabel * 60);
+                    if (seconds >= 3600) {
+                      label += Math.trunc(seconds / 3600) + "h";
+                    }
+                    seconds %= 3600;
+                    if (seconds >= 60) {
+                      label += Math.trunc(seconds / 60) + "m";
+                    }
+                    seconds %= 60;
+                    label += seconds + "s";
+                    return label;
+                  }
+                }
+              }
+            }
+          }
+        );
+      </script>
+    </p>
+
+    <h4>Hints Over Time</h4>
+    <p>
+      <canvas id="hintsOverTimeChart"></canvas>
+      {{ hint_latencies_per_hour|json_script:"hint_latencies_per_hour_data" }}
+      {{ hints_per_hour|json_script:"hints_per_hour_data" }}
+      <script>
+        const hint_latencies_per_hour = JSON.parse(document.getElementById("hint_latencies_per_hour_data").textContent);
+        const hints_per_hour = JSON.parse(document.getElementById("hints_per_hour_data").textContent);
+        new Chart(
+          document.getElementById("hintsOverTimeChart").getContext("2d"),
+          {
+            type: "line",
+            data: {
+              datasets: [
+                {
+                  label: "Hints requested",
+                  yAxisID: "requests",
+                  data: hints_per_hour,
+                  borderColor: "#fb2323",
+                  pointBackgroundColor: "#fb2323",
+                },
+                {
+                  label: "Hint latency",
+                  yAxisID: "latency",
+                  data: hint_latencies_per_hour,
+                  borderColor: "#fcc173",
+                  pointBackgroundColor: "#fcc173",
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                xAxes: [{
+                  type: 'time',
+                  gridLines: {
+                    display: false,
+                  },
+                  time: {
+                    unit: "hour",
+                    displayFormats: {
+                        hour: 'MMM D hA'
+                    },
+                    tooltipFormat: "MMM D LT Z",
+                  }
+                }],
+                yAxes: [
+                  {
+                    id: "requests",
+                    position: "left",
+                    scaleLabel: {
+                      display: true,
+                      labelString: "Hints",
+                      fontColor: "#fb2323",
+                      fontStyle: 'bold',
+                    },
+                    ticks: {
+                      beginAtZero: true,
+                    },
+                    gridLines: {
+                      color: "#494964",
+                    },
+                  },
+                  {
+                    id: "latency",
+                    position: "right",
+                    scaleLabel: {
+                      display: true,
+                      labelString: "Minutes",
+                      fontColor: "#fcc173",
+                      fontStyle: 'bold',
+                    },
+                    ticks: {
+                      beginAtZero: true,
+                    },
+                    gridLines: {
+                      color: "#494964",
+                    },
+                  },
+                ]
+              },
+            }
+          }
+        );
+      </script>
+    </p>
+
+    <h4>Hints Answered</h4>
+    <p>
+      <canvas id="hintsAnsweredChart"></canvas>
+      <script>
+        const hinterNames = ["Andrey", "Karen", "Ethan", "Adalbert", "Nathaniel", "Stephanie", "Bella", "Jacob", "Sophia", "JJ", "Alina", "Brian", "John", "Linus", "Michael"];
+        const hintCounts = [186, 137, 85, 76, 55, 54, 39, 28, 24, 13, 9, 3, 1, 1, 1];
+        new Chart(
+          document.getElementById("hintsAnsweredChart").getContext("2d"),
+          {
+            type: "doughnut",
+            data: {
+              datasets: [{
+                data: hintCounts,
+                backgroundColor: ["#6f42c1","#ff8200","#007bff","#28a745","#dc3545","#6c757d","#ffc107","#e83e8c","#20c997","#000000","#17a2b8","#bba9c4","#343a40","#7d600f","#6f7a61"],
+                borderWidth: 1,
+              }],
+              labels: hinterNames,
+            },
+            options: {
+              responsive: true,
+            },
+          }
+        );
+      </script>
+    </p>
+
+    </p>
+    <h4>Hints Per Puzzle</h4>
+    <p>
+      <canvas id="hintsPerPuzzleChart"></canvas>
+      {{ hints_per_puzzle|json_script:"hints_per_puzzle_data" }}
+      <script>
+        const hints_per_puzzle = JSON.parse(document.getElementById("hints_per_puzzle_data").textContent);
+        new Chart(
+          document.getElementById("hintsPerPuzzleChart").getContext("2d"),
+          {
+            type: "bar",
+            data: {
+              datasets: [{
+                backgroundColor: "#fb2323",
+                label: "Hints",
+                data: hints_per_puzzle.data,
+              }],
+              labels: hints_per_puzzle.labels,
+            },
+            options: {
+              responsive: true,
+              legend: {
+                display: false,
+              },
+              scales: {
+                xAxes: [{
+                  gridLines: {
+                    color: "#494964",
+                  },
+                }],
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true,
+                  },
+                  gridLines: {
+                    color: "#494964",
+                  },
+                }]
+              },
+            }
+          }
+        );
+      </script>
+    </p>
+
+    <h4>Comparison with other hunts</h4>
+    <p>
+      <canvas id="huntSizeChart"></canvas>
+      <script>
+        new Chart(
+          document.getElementById("huntSizeChart").getContext("2d"),
+          {
+            type: "bubble",
+            data: {
+              datasets: [
+                {
+                  label: "MH24 Epilogue",
+                  data: [{
+                    x: 5.3,
+                    y: 27,
+                    r: Math.pow(13, 0.75),
+                    originalR: 13,
+                  }],
+                  backgroundColor: "#fb232390"
+                },
+                {
+                  label: "Vehemusical 2024",
+                  data: [{
+                    x: 2.2,
+                    y: 142,
+                    r: Math.pow(10, 0.75),
+                    originalR: 10,
+                  }],
+                  backgroundColor: "#e7d10d90"
+                },
+                {
+                    label: "Brown Puzzle Hunt 2024",
+                    data: [{
+                        x: 7.1,
+                        y: 25,
+                        r: Math.pow(39, 0.75),
+                        originalR: 39
+                    }],
+                    backgroundColor: "#31945f90"
+                },
+                {
+                    label: "CCBC 15",
+                    data: [{
+                        x: 31.0,
+                        y: 5,
+                        r: Math.pow(74, 0.75),
+                        originalR: 74
+                    }],
+                    backgroundColor: "#e8c3b990"
+                },
+                {
+                    label: "ECPH 1 - Exploring the Countryside",
+                    data: [{
+                        x: 10.9,
+                        y: 8,
+                        r: Math.pow(26, 0.75),
+                        originalR: 26
+                    }],
+                    backgroundColor: "#32a5e390"
+                },
+                {
+                    label: "ECPH 2 - Enchanted Castle",
+                    data: [{
+                        x: 23.1,
+                        y: 6,
+                        r: Math.pow(45, 0.75),
+                        originalR: 45
+                    }],
+                    backgroundColor: "#ab79c890"
+                },
+                {
+                    label: "GPH 20/20",
+                    data: [{
+                        x: 25.0,
+                        y: 5,
+                        r: Math.pow(43, 0.75),
+                        originalR: 43
+                    }],
+                    backgroundColor: "#cf48db90"
+                },
+                {
+                    label: "GPH 2024",
+                    data: [{
+                        x: 11.4,
+                        y: 41,
+                        r: Math.pow(279, 0.75),
+                        originalR: 279
+                    }],
+                    backgroundColor: "#6aadd490"
+                },
+                {
+                    label: "Grand Hunt 2024",
+                    data: [{
+                        x: 7.2,
+                        y: 39,
+                        r: Math.pow(35, 0.75),
+                        originalR: 35
+                    }],
+                    backgroundColor: "#f54f5290"
+                },
+                {
+                    label: "Huntinality III",
+                    data: [{
+                        x: 7.0,
+                        y: 46,
+                        r: Math.pow(36, 0.75),
+                        originalR: 36
+                    }],
+                    backgroundColor: "#93f03b90"
+                },
+                {
+                    label: "Just Puzzle Hunt",
+                    data: [{
+                        x: 21.6,
+                        y: 12,
+                        r: Math.pow(53, 0.75),
+                        originalR: 53
+                    }],
+                    backgroundColor: "#275be890"
+                },
+                {
+                    label: "Magic Hunt",
+                    data: [{
+                        x: 4.8,
+                        y: 27,
+                        r: Math.pow(19, 0.75),
+                        originalR: 19
+                    }],
+                    backgroundColor: "#b91d4790"
+                },
+                {
+                    label: "Puzzle and Key Universe 3",
+                    data: [{
+                        x: 25.4,
+                        y: 5,
+                        r: Math.pow(41, 0.75),
+                        originalR: 41
+                    }],
+                    backgroundColor: "#90f0b590"
+                },
+                {
+                    label: "Puzzle Rojak 2",
+                    data: [{
+                        x: 9.1,
+                        y: 32,
+                        r: Math.pow(43, 0.75),
+                        originalR: 43
+                    }],
+                    backgroundColor: "#ffec2190"
+                },
+                {
+                    label: "Shardhunt",
+                    data: [{
+                        x: 8.6,
+                        y: 19,
+                        r: Math.pow(30, 0.75),
+                        originalR: 30
+                    }],
+                    backgroundColor: "#ffa32f90"
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              scales: {
+                xAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: "Fastest Finish in Hours",
+                    fontStyle: "bold",
+                  },
+                  gridLines: {
+                    color: "#494964",
+                  },
+              }],
+                yAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: "Finishers in First 2 Days",
+                    fontStyle: "bold",
+                  },
+                  ticks: {
+                    beginAtZero: true
+                  },
+                  gridLines: {
+                    color: "#494964",
+                  },
+                }],
+
+              },
+              tooltips: {
+                callbacks: {
+                    title: function(context, data) {
+                        return data.datasets[context[0].datasetIndex].label;
+                    },
+                    beforeLabel: function(context, data) {
+                        return `Fastest finish: ${data.datasets[context.datasetIndex].data[0].x} hours`;
+                    },
+                    label: function(context, data) {
+                        return `Finishers in first 2 days: ${data.datasets[context.datasetIndex].data[0].y}`;
+                    },
+                    afterLabel: function(context, data) {
+                        return `Number of puzzles: ${data.datasets[context.datasetIndex].data[0].originalR}`;
+                    }
+                }
+              }
+            }
+          }
+        );
+      </script>
+      *Note that Brown Puzzle Hunt 2024 ran for 31 hours; and Vehemusical ran for 48 hours.<br/>
+      **The puzzle count of GPH 2024 does not include the custom puzzles.<br/>
+    </p>
+
+    <h4>Worldwide Web Traffic</h4>
+    <p>
+      Data collected using "Web Traffic Requests by Country" through Cloudflare.
+      <canvas id="webTrafficChart"></canvas>
+      <script>
+        const requests = [341628, 42125, 26480, 21493, 14212, 13200, 12252, 71870];
+        const locations = ["United States", "China", "Singapore", "Canada", "Hong Kong", "United Kingdom", "Australia", "Others"];
+        new Chart(
+          document.getElementById("webTrafficChart").getContext("2d"),
+          {
+            type: "doughnut",
+            data: {
+              datasets: [{
+                data: requests,
+                backgroundColor: ["#6f42c1","#ff8200","#007bff","#28a745","#dc3545","#6c757d","#ffc107","#e83e8c"],
+                borderWidth: 1,
+              }],
+              labels: locations,
+            },
+            options: {
+              responsive: true,
+            },
+          }
+        );
+      </script>
+      Thanks to all the non-native English speakers for working through our cryptics!
+    </p>
+
+    <h3>Writing</h3>
+    <p>
+      Throughout the year, we were sad about losing some really good puzzles due to author time, lack of “fit”, topic overload, not passing testing, or otherwise.
+      The Editor-in-Chief group was already floating a potential "epilogue" round as early as June 2023, when we cut the Hephaestus round.
+      Discussions broadened to the rest of the team around December 2023, <em>while we were still writing MH24</em>!
+      After recovering from writing and running Mystery Hunt and letting the tech team get enough time and energy to archive the existing site, we were ready.
+    </p>
+    <p>
+      We polled for initial interest in mid-July of 2024. We used a cut round for the theme, so we didn’t have any theme proposals or voting, and dove right into writing puzzles by mid-August. Feeder puzzles were slowly revived or written, tested, and finalized over the next few months, with the last feeder passing testing in early December.
+    </p>
+    <p>
+      Where did the actual puzzles come from? Many were dropped at various points over MH24 writing:
+    </p>
+    <ul>
+      <li>
+        <strong><a href="{% url 'puzzle' 'hephaestus' %}">Hephaestus</a></strong>: This passed meta testing for MH24, but early on in the writing process, we decided to withhold all answer assignments for this round in case we struggled to write enough puzzles or the hunt ended up on the longer side. It was a tough decision to pick this meta as the one to drop, as it got high "fun" ratings, but ultimately, this was one of the larger rounds by number of puzzles. We could get more “bang for our buck” from cutting only one meta.
+      </li>
+      <li><strong><a href="{% url 'puzzle' 'box-offer' %}">Box Offer</a></strong>: This was a meta idea that was cut fairly early (see the Author’s Notes in the solution), and was rephrased to be a feeder.</li>
+      <li><strong><a href="{% url 'puzzle' 'reference-age' %}">Reference Age</a></strong>: A more difficult version of this puzzle was originally in a late round in MH24 and was cut mid-hunt as it became clear the hunt was running much longer than intended. You can see the original version of the puzzle <a href="https://docs.google.com/document/d/1KtrVoy0fwhby3frj2UT-4dOU6j27J5BMBWDJeQ9v6IA/edit?tab=t.0">here.</a></li>
+      <li><strong><a href="{% url 'puzzle' 'a-safe-car' %}">A Safe Car</a></strong>: This puzzle was partially written but never made it to testing, as it was deemed too difficult and too mechanically close to another puzzle that passed. The original vision involved getting the limerick lines individually and assembling them yourself!</li>
+      <li><strong><a href="{% url 'puzzle' 'ohh-my-fee' %}">Ohh, My Fee!</a></strong>: This puzzle was originally pitched for MH24, but we had too many cryptics. As you can tell from this hunt, we had no restriction on the number of puzzles that used cryptic clues.</li>
+      <li><strong><a href="{% url 'puzzle' 'transfers' %}">Transfers</a></strong>: This puzzle was also originally pitched for MH24, but we had too many video game based puzzles already.</li>
+      <li><strong><a href="{% url 'puzzle' 'fetched' %}">Fetched</a></strong>: This was pitched as a backup puzzle for MH24, resolving to <span class="monospace">MAKE IT SEW</span> -- but we had another Star Trek puzzle.</li>
+      <li><strong><a href="{% url 'puzzle' 'a-few-tips' %}">A Few Tips</a></strong>, <strong><a href="{% url 'puzzle' 'toys-cafe' %}">Toys' Cafe</a></strong>: These were also pitched for MH24, but we never got around to drafting them before running out of answers.</li>
+    </ul>
+    <p>A couple were proposed for an old TTBNL hunt that was never finished:</p>
+    <ul>
+      <li><strong><a href="{% url 'puzzle' 'exotic-fen' %}">Exotic Fen</a></strong>: A version of the puzzle had been shown to a few people outside TTBNL, so we didn’t consider it for MH24.</li>
+      <li><strong><a href="{% url 'puzzle' 'i-feel-ucky' %}">I Feel Ucky</a></strong>: Also proposed for the old hunt, then revived here.</li>
+    </ul>
+
+    <p>The other puzzles (<strong><a href="{% url 'puzzle' 'movie-effects' %}">Movie Effects</a></strong> and <strong><a href="{% url 'puzzle' 'failsafe' %}">Failsafe</a></strong>) were new ideas for this hunt.</p>
+
+    <p>The standalone puzzles were all casualties of MH24 testing and editing. These puzzles couldn’t really be “reshaped” to fit into a hunt smaller than Mystery Hunt, but we still thought they were cool! So, we decided to release them separately to be able to share them with the community.</p>
+
+    <ul>
+      <li><strong><a href="{% url 'puzzle' 'ripple-effect' %}">Ripple Effect</a></strong>: This was successfully testsolved, twice! Unfortunately, it ended up not being viable for how it was going to be presented in the hunt, and was cut.</li>
+      <li><strong><a href="{% url 'puzzle' 'mark-of-the-demon' %}">Mark of the Demon</a></strong>: This puzzle unfortunately wasn’t successfully testsolved for either the original hunt or the epilogue. Because of the heavy usage of live actors, it wasn’t viable to rewrite in a reasonable timeframe. We’ve added an additional author’s note to the <a href="{% url 'solution' 'mark-of-the-demon' %}#authors-notes">puzzle solution</a> talking about the original vision behind it.</li>
+      <li><strong><a href="{% url 'puzzle' 'melody-medley' %}">Melody Medley</a></strong>: This was also written and successfully testsolved once, but also ended up not being viable for the hunt as a whole. The author has written a <blog href="https://bzollern.github.io/2025/03/17/Music-for-the-Royal-Fireworks.html">blog post</a> about the puzzle's vision and construction.</li>
+    </ul>
+
+    <p>After we recovered from the 2025 Mystery Hunt in early February, we began planning out our schedule and tech work. Once we locked in our hunt date for mid-March, Ethan began writing the website around February 11. The website was added to the Puzzle Hunt Calendar around February 22. Most tech work was done by March 4, with small touch-ups and tweaks in the last few days.</p>
+
+    <h3>Art and Design</h3>
+    <p><em>by Frankie Rady</em>
+    <p>
+      We knew initially that this round was going to have an industrial theme, so I took inspiration from the Precisionism art movement, a Modernist art style with heavy focus on industrialism and urban landscapes.
+    </p>
+
+    <figure>
+      <img src="{% static 'images/wrapup/moodboard.png' %}"/>
+      <figcaption>Part of the image board I made while brainstorming ideas</figcaption>
+    </figure>
+
+    <p>
+      The image on the right was the direct inspiration for the color palette of our epilogue round, which I had decided to place inside of a foundry.
+    </p>
+
+    <figure>
+      <img src="{% static 'images/wrapup/palette.png' %}"/>
+    </figure>
+
+    <p>
+      Initially, I had planned to have an anvil in the middle of the image representing the meta with various geometric sculptures surrounding it. Struggling to come up with designs for the sculptures, I noticed that Michael Andersen had made a suggestion to have little fire sprites based off of Calcifer from the film Howl’s Moving Castle. The more I thought about this, the more I fell in love with the idea.
+    </p>
+
+    <figure>
+      <img src="{% static 'images/wrapup/calcifer.png' %}"/>
+      <figcaption>"Colorful Calcifer sprites! (that is probably not on theme, I just love Calcifer)" -Michael</figcaption>
+    </figure>
+
+    <p>
+      I knew we couldn’t have an exact match of Calcifer due to copyright reason, so I did my own twist on Calficer.
+      I made a quick sketch at work while on my lunch break and I knew right then and there how I was going to design the round art.
+    </p>
+
+    <figure>
+      <img src="{% static 'images/wrapup/calcifer-sketch.png' %}"/>
+      <figcaption>My initial sketch with some work in progress shots of a fire sprite</figcaption>
+    </figure>
+
+    <figure>
+      <img src="{% static 'images/wrapup/progress.png' %}"/>
+      <figcaption>Progress shots from initial sketches to background to icon placement</figcaption>
+    </figure>
+
+    <figure>
+      <img src="{% static 'images/wrapup/fire-wave.png' %}"/>
+      <figcaption>Thanks for playing!</figcaption>
+    </figure>
+
+    <h3>Tech</h3>
+    <p>
+      This was my (Ethan’s) “revenge” on the tech issues that plagued MH24. We’d already traced down the problem to something to do with asynchronicity in Python, which, among other things, is used for websockets (which then enable notifications and solve sounds). I made the decision far in advance to support only synchronous features and banned any puzzles that would require websocket interactivity. I’m very happy to say that the tech for this hunt was a success – no downtime, and no major tech issues or bugs!
+    </p>
+    <p>
+      For writing and testing, we used the <a href="https://github.com/ttbnl-2024/puzzup-public-squash">Puzzup</a> instance that I’d left running from writing MH24. The epilogue hunt site was based on <a href="https://github.com/galacticpuzzlehunt/gph-site/commit/3283528053f61adfbc2176b005b74f6ac88e212b">gph-site</a>, and hosted on <a href="https://www.heroku.com/">Heroku</a>.
+    </p>
+    <p>These are the services we used, and some stats:</p>
+
+    <ul>
+      <li>
+        <strong>Compute</strong>: A varying amount of 1X standard dynos ($25/month
+        each).
+        <ul>
+          <li>
+            We started with 15 for the first hour to handle the beginning-of-hunt
+            surge, then progressively went down, eventually landing on 2.
+          </li>
+          <li>
+            Requests-per-second maxed out at ~5 in the first hour or so, then never
+            exceeded 1 RPS. We were almost certainly overprovisioned for the entire
+            hunt.
+          </li>
+          <li>
+            We also had 1 worker dyno that managed Discord messages and emails using
+            a task queue, since we didn’t want to block client requests on pinging
+            an external service.
+          </li>
+          <li>After the hunt ended, we switched to Basic dynos. </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Database</strong>: Essential 2
+        <a href="https://elements.heroku.com/addons/heroku-postgresql">
+          Postgres add-on</a> ($20/month)
+        <ul>
+          <li>
+            We chose this tier not for database size, but for the number of
+            connections (40).
+          </li>
+          <li>
+            We used a
+            <a href="https://github.com/heroku/heroku-buildpack-pgbouncer">pgbouncer buildpack</a>
+            on the web dynos to cut down on connections, and didn’t notice it go
+            above 20 (so Essential 1 likely would have worked). Upgrading the
+            database mid-hunt would have taken a few minutes of downtime, so we
+            decided to play it safe with a higher tier.
+          </li>
+          <li>After hunt, we switched to the Essential 0 tier ($5/month). </li>
+          <li>
+            The database was around 13 MB (and even for MH24, the raw dump was only
+            ~250 MB).
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Key-Value Store</strong>: Premium 1
+        <a href="https://elements.heroku.com/addons/heroku-redis">Key-Value Store add-on</a>
+        ($30/month)
+        <ul>
+          <li>
+            The key-value store was used for the task queue and for
+            <a href="https://docs.djangoproject.com/en/5.1/topics/cache/">Django’s cache</a>.
+            We used Premium 1 to support the number of connections required.
+          </li>
+          <li>
+            Once we reduced dynos and didn’t need as many connections, we went down
+            to Mini ($3/month).
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Logging, Monitoring</strong>:
+        <a href="https://sentry.io/for/education/">Sentry education plan</a> (free),
+        <a href="https://elements.heroku.com/addons/papertrail">Papertrail</a>
+        (Choklad, free)
+        <ul>
+          <li>
+            We’d used Sentry for MH24, but it mostly told us that everything was
+            broken all the time. It was useful here as well to check on a couple
+            errors during development and initial deployments, as well as some bugs
+            with the posthunt state.
+          </li>
+          <li>
+            Heroku’s terminal logging is bad, so we arbitrarily chose Papertrail as
+            a free log aggregator. We didn’t use it much, but it was good to poke at
+            during specific events (puzzle release, hint release) to make sure
+            requests were flowing.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Email</strong>: <a href="https://postmarkapp.com/">Postmark</a>
+        (Basic, $15/mo)
+        <ul>
+          <li>
+            A puzzle hunt sends emails for registration, password resets, and hint
+            responses (“transactional”); and errata and announcements (“broadcast” /
+            bulk). For MH24, we used
+            <a href="https://mailchimp.com/features/transactional-email-infrastructure/">Mailchimp/Mandrill</a>
+            but had some issues with deliverability and pricing.
+          </li>
+          <li>
+            We know some hunts have used
+            <a href="https://aws.amazon.com/ses/">Amazon SES</a>, but we didn’t
+            trust it with bulk email ratelimits. I’ve personally found AWS to be
+            complicated in general, and prefer avoiding it where possible.
+          </li>
+          <li>
+            Postmark was appealing because it supported
+            <a href="https://postmarkapp.com/message-streams#difference-between-transactional-and-broadcast">broadcast streams</a>,
+            default way to spread bulk email over a period of time. We didn’t
+            have to implement that logic ourselves, and could just send a small
+            number of bulk requests.
+          </li>
+          <li>
+            By the end of the hunt, we’d sent around 3k emails (~1.2k transactional,
+            and ~1.7k broadcasts).
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>DNS, Caching</strong>: Squarespace (registrar, $12/yr), Cloudflare
+        (DNS + caching, free)
+        <ul>
+          <li>
+            We were using Google Domains for MH24 before it got rolled into
+            Squarespace, and didn’t feel the need to migrate. We also used
+            Squarespace to route email to a shared GMail inbox.
+          </li>
+          <li>
+            We used Cloudflare’s nameservers and proxied traffic through them. We
+            cached static resources with a Cloudflare
+            <a href="https://developers.cloudflare.com/cache/how-to/cache-rules/">Cache Rule</a>, and used
+            <a href="https://whitenoise.readthedocs.io/en/stable/index.html">Whitenoise</a>
+            to help serve them. While we didn’t anticipate network bandwidth to be
+            an issue, a large part of the hunt site is static assets, such as images
+            – and caching helps save a lot of bandwidth for these.
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>I didn’t load-test the hunt site, but also didn’t anticipate our load being high based on registrations and hunt format.</p>
+
+    <p>
+      In total, I spent ~$100 to run the hunt and keep it up for a short time post-hunt. (Compared to ECPH, our increased costs came mostly from Redis and email.) I'll soon migrate the hunt to be fully static and hosted on GitHub pages, reducing costs to just the domain name.
+    </p>
+
+    <p>
+      On the development side, I’ve open-sourced the website’s code at [[ TODO ]].
+      There's still a few changes that I need to make to fully static-fy the site, but those will be eventually published as well (unlock simulator, partial messages, etc.).
+      I made an explicit point of requiring little software to run besides Python, including <strong>not requiring Docker for development</strong> (or NodeJS). Some of our design decisions that other hunt tech teams may be interested in include:
+    </p>
+
+    <ul>
+      <li><a href="https://docs.astral.sh/uv/">uv</a> as a Python project management tool</li>
+      <li><a href="https://huey.readthedocs.io/en/latest/">Huey</a> versus e.g. Celery to support a local task queue without Redis and still support Redis in production</li>
+      <li><a href="https://www.sqlite.org/">SQLite</a> locally, and being OK with database differences between development and production. gph-site doesn't do anything particularly fancy, but a few of the caveats include:
+        <ul>
+          <li>Some unsupported features (e.g. DISTINCT ON isn't in SQLite3)</li>
+          <li>Much more difficult to load production data into a local database</li>
+        </ul>
+      </li>
+      <li>Rewriting the Discord integration to be fully synchronous</li>
+    </ul>
+
+    <h3>What's Next</h3>
+    <p>
+      We’re not sure if we (TTBNL) will be writing another hunt – we don’t have enough rejected ideas to make an epilogue to the epilogue. Keep your eyes out, though!
+    </p>
+    <p>In the meantime, this spring has a lot of hunts going on! Check out the <a href="https://puzzlehuntcalendar.com/">Puzzle Hunt Calendar</a> for upcoming hunts, including:</p>
+    <ul>
+      <li>March 28: <a href="https://2025.teammatehunt.com/">Teammate Hunt 2025: Matt & Emma's Deep-space Disaster</a></li>
+      <li>April 12: <a href="https://puzzlehunt.club.cc.cmu.edu/">CMU Spring 2025 Puzzlehunt</a></li>
+      <li>April 19: <a href="https://www.brownpuzzlehunt.com/">Brown Puzzlehunt</a></li>
+      <li>April 25: <a href="https://huntingale.nightmeow.site/">Huntingale</a></li>
+    </ul>
+
+    <h3>Credits</h3>
+    <dl>
+      <dt>Chief Editor</dt>
+      <dd>Bella (Songshan) Guo</dd>
+      <dt>Chief Editors in Training</dt>
+      <dd>Daniel Kramarsky, Nathaniel Barnett</dd>
+      <dt>Cat-Herders</dt>
+      <dd>Bella (Songshan) Guo, Ethan Ordentlich</dd>
+      <dt>Puzzle Authors</dt>
+      <dd>Barney Rafter, Bella (Songshan) Guo, Brent Barron, Charles Steinhardt, Daniel Kramarsky, Frankie Rady, Haley Moore, Jacob N Scott, Jayden Yamada, Jeremiahs Johnson, John Bromels, Linus Hamilton, Michael Andersen, Nathaniel Barnett, Nick Poulos, Paul Melamud, Stephanie Chen, Summer Barron, The Dan Miller, Todd Becker, Wesley "Adalbert Zollern" Zhang</dd>
+      <dt>Tech</dt>
+      <dd>Ethan Ordentlich</dd>
+      <dt>Factcheckers</dt>
+      <dd>Ethan Ordentlich, Jayden Yamada, Nathaniel Barnett, Sophia Caspe, Timwi</dd>
+      <dt>Testsolvers</dt>
+      <dd>Alina Khankin, Andrey Gorlin, Jennifer Kidder, Jeremiahs Johnson, Joseph Lubars, Logan Pribyl, NYWanderer, Sophia Caspe, Thomas Snyder, Tony Martin, Ursula Gartz, and most puzzle authors</dd>
+      <dt>Art</dt>
+      <dd>Frankie Rady</dd>
+      <dt>Story</dt>
+      <dd>Nick Poulos</dd>
+    </dl>
+
+    <img src="{% static 'images/fire_vibin.png' %}"/>
+
+    <h3>Fun Stuff</h3>
+
+    <h4>A Few Tips</h4>
+    <p>
+      Thanks for everyone that submitted an instructional video!
+      <a href="https://drive.google.com/drive/folders/1Bf2H8g9y6CZ5A38rJOj9i9lLc-Iw0VVo">Here</a>'s a few of our favorite submissions. (If you want to have anything removed from here, or to add your submission, please email us.)
+    </p>
+
+    <h4>Notable Guesses</h4>
+    <p>Here are incorrect guesses throughout the hunt that we found funny or otherwise interesting:</p>
+
+    <div class="overflow-container">
+    <table class="notable-guess-table">
+      <thead>
+        <tr>
+          <th>Puzzle</th>
+          <th>Guess</th>
+          <th>Team(s)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>A Few Tips</td>
+          <td>NAH WERE GONNA DO THE META THANKS THOUGH</td>
+          <td>௵ TAMIL MAP OF ODYSSEUS' JOURNEY (shortly after getting the instruction)</td>
+        </tr>
+        <tr>
+          <td>A Few Tips</td>
+          <td>SURE HOPE YALL WONT TEAR APART MY SOLUTION AND GIVE IT A 110 SCORE LIKE THAT ONE PUZZLE LAST GPH</td>
+          <td>The G@l@is Symmetry</td>
+        </tr>
+        <tr>
+          <td>A Safe Car</td>
+          <td>THE CLUEPHRASE THIS PUZZLE IS USING IS QUITE STRANGE AND CONFUSING WE CANT EVEN SOLVE ONE BEFORE THE HUNT IS DONE WHAT KIND OF ANSWERS ARE YOU CHOOSING</td>
+          <td>Isotopes Puzzles United</td>
+        </tr>
+        <tr>
+          <td>Box Offer</td>
+          <td>AT LONG LAST THIS EXTRACTED INTO SOMETHING THAT CONTAINS THE LETTERS P AND S</td>
+          <td>Epic Cycle of /r/GreekMythology</td>
+        </tr>
+        <tr>
+          <td>Box Offer</td>
+          <td>A NEW HOPE DIAMOND</td>
+          <td>(multiple)</td>
+        </tr>
+        <tr>
+          <td>Box Offer</td>
+          <td>STILL DRY</td>
+          <td>Les Gaulois</td>
+        </tr>
+        <tr>
+          <td>Fetched</td>
+          <td>STOP TRYING TO MAKE FETCHED HAPPEN</td>
+          <td>Desolate Abyssal Netherworld</td>
+        </tr>
+        <tr>
+          <td>Hephaestus</td>
+          <td>METAL CAN DONG</td>
+          <td>(multiple)</td>
+        </tr>
+        <tr>
+          <td>Ripple Effect</td>
+          <td>WAHH I DONT WANNA GO THRU THE FOB ONE</td>
+          <td>Frumious Bandersnatch</td>
+        </tr>
+        <tr>
+          <td>Ripple Effect</td>
+          <td>THE SONG CAME OUT IN NINETEEN EIGHTY NINE LIKE THE WORD VALUE PLUS NINETEEN HUNDRED</td>
+          <td>Frumious Bandersnatch</td>
+        </tr>
+        <tr>
+          <td>Transfers</td>
+          <td>WAIT ONE MORE HOUR PLEASE</td>
+          <td>Isotopes Puzzles United (submitted 1 minute before hunt end)</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h4>Q&amp;A</h4>
+
+    <p>A lot of the questions were answered in sections above! Here's a few more. (Questions have been edited for clarity.)</p>
+
+    <p><strong>I had a rough time with the later puzzles. Are there other easier puzzle websites that I could do to practice?</strong></p>
+    <p>
+      "Easier" is definitely a spectrum, and how hard someone finds a puzzle will vary a lot from puzzler to puzzler. Some hunts that were written for beginners include:
+
+      <ul>
+        <li><a href="https://puzzledpint.org/">Puzzled Pints</a></li>
+        <li><a href="https://dp.puzzlehunt.net/">DP Puzzle Hunt</a></li>
+        <li><a href="https://curiouscookoff.com/">Colby's Curious Cookoff</a></li>
+        <li><a href="https://2023.grandhuntdigital.com/">Grand Hunt Digital (2023)</a></li>
+      </ul>
+
+      You can also find a list of past hunts on <a href="https://www.puzzles.wiki/wiki/List_of_Puzzle_Hunts_by_Date">Puzzle Wiki</a>.
+    </p>
+
+    <p><strong>How were the Toys' Cafe graphs generated?</strong></p>
+
+    <p>
+      I used the Python library <a href="https://networkx.org/">networkx</a>'s kamada_kawai_layout (except for tic-tac-toe where I used the bfs_layout).
+      Since the layout functions have randomness, I tried each graph several times and picked my favorite.
+    </p>
+
+    <p><strong>For the authors of Ripple Effect, what were your favorite things you got to shoehorn in?</strong></p>
+
+    <ul>
+      <li>JJ: Coco Crisp, of course. And the section with EBB, Nuke Laloosh, Crash Davis, Crush Davis, Tove Lo, and Tupelo Honey (Puzzle I).</li>
+      <li>JJ: It as also amazing that James Dean was really in 3 major movies, though in 2 of them he played characters that had last names that anagrammed to the other (though that apparently was intentionally done by producers).</li>
+      <li>Paul: My best discovery was that KIM JONG-IL with its only duplicated letter ROT-1, is comprised of a string of consecutive letters of the alphabet.</li>
+      <li>JJ, Paul: After we'd already decided on the target word MUSICIAN / 89, and the Billy Joel connection we wanted to make - we found that three of the FOB members had last names equal in value to the target word, while the fourth was just one off. Then we saw that person's role (bassist) was 89 so we got to include him anyway</li>
+      <li>Paul: Only after test solving did we realize we had to tighten up the unknown category for the reality shows. It was just a coincidence that all of the ones used in the puzzle + the one we needed to clue all had the same word value! So it was as insanely simple to fix as it was a coincidence.</li>
+    </ul>
+
+    <p><strong>Is there a reason why so many puzzles featured cryptics?</strong></p>
+    <p>
+      No particular reason -- it just kind of ended up going that way, and we decided that the imbalance didn't need correcting.
+    </p>
+
+    <p><strong>Hephaestus doesn't have a planet AND gets assigned to... Ohio... AND gets cut from Mystery Hunt? Truly cruel.</strong></p>
+    <p>
+      At least we didn't send him to Nickelback!
+    </p>
+
+  </main>
+
+  <aside>
+    <script>
+      const heads = [...$('h3,h4,h5,h6')].map(head => [head, $('<div>')
+          .text(head.textContent)
+          .css('padding-left', (parseInt(head.tagName.substr(1))-2) + 'em')
+          .click(() => head.scrollIntoView())
+          .appendTo('aside')]);
+      function highlight() {
+        const rects = heads.map(([head]) => head.getBoundingClientRect());
+        heads.forEach(([head, link], i) => link.toggleClass('highlight',
+          (!rects[i + 1] || rects[i + 1].top > 0) && rects[i].top < innerHeight));
+      }
+      document.addEventListener('scroll', highlight, { passive: true });
+      highlight();
+    </script>
+  </aside>
+
+{% endblock %}

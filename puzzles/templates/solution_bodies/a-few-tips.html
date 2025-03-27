@@ -1,0 +1,105 @@
+{% extends "solution.html" %}
+{% load static %}
+
+{% block puzzle-author %}
+  Bella (Songshan) Guo, Linus Hamilton, Frankie Rady
+{% endblock %}
+
+{% block solution-body-md %}
+
+<style>
+  img {
+    display: block;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .overlay-container table td:nth-child(2) img {
+    max-width: 25rem;
+  }
+
+  @media (min-width: 640px) {
+    img {
+      max-width: calc(min(100%, 63rem));
+    }
+  }
+</style>
+
+
+We see a series of illustrations depicting various people in difficult situations where they would need a specific tool to make their problem easier.
+We start by figuring out exactly what tools are missing.
+In the flavor text, phrases such as “looking up” and “leave you in the dark” evoke a night sky, and sure enough, research will tell us that these tools are all represented as official IAU (International Astronomical Union) designated constellations.
+This is further confirmed by the phrase “instruments and utensils”.
+
+Caption | Tool Clued | Constellation
+--------|------------|--------------
+Tip: You can figure out the angle between two distant things using a certain tool. It even works at sea! | Sextant | `SEXTANS`
+Tip: If you have space in your living room, you can use a certain tool not only to tell the time, but also to make your living room look nice! | Pendulum Clock | `HOROLOGIUM`
+Tip: If you're at sea and don't have the first tool, you can use another tool that has a smaller arc and is older in design, though it may not be as accurate![^1] | Octant | `OCTANS`
+Tip: You can use a certain tool to see things that are too small to see without help! | Microscope | `MICROSCOPIUM`
+Tip: You can use a certain tool to see things that are far away! | Telescope | `TELESCOPIUM`
+Tip: You can figure out the weight of something by using a certain tool to compare it to the weight of something you already know the weight of! | Scales | `LIBRA`
+Tip: If you ever get lost, you can use a certain tool that has a piece of metal in it that will point towards the top of the Earth!  | Mariner’s Compass | `PYXIS`
+Tip: You can use a certain tool part as a pattern to help measure something you've set your sights on. At least two other tools mentioned earlier have this part in them![^2] | Reticle | `RETICULUM`
+Tip: You can use a certain tool to shape different materials such as wood or stone! | Chisel | `CAELUM`
+Tip: You can use a certain tool to make drawing circles by hand much easier! | Drafting Compass | `CIRCINUS`
+Tip: You can use a certain tool to heat other things by filling the bottom of it with charcoal and lighting the charcoal on fire! | Furnace | `FORNAX`
+Tip: You can use a certain tool to hold a painting up while you work on it, making it easier to draw or paint! | Easel | `PICTOR`
+Tip: You can use a certain tool to push air into something else without having to use your own breath! | Air Pump | `ANTLIA`
+Tip: People who build things out of wood can use a certain tool to measure 90 degree angles! | Carpenter’s Square | `NORMA`
+
+This brings us to the actual images themselves.
+The flavor text mentions “handy pointers” and sure enough, each image has a hand with an extended pointer index finger, and in one image there’s even a mouse pointer that resembles a hand with a pointer finger!
+Various extra lines can also be found in each image, and the flavor text mentions needing to “chart out” your tools and to “line things up.”
+This clues us that we need to overlay [the IAU’s official constellation charts](https://www.iau.org/public/themes/constellations/) over each image and line them up using the extra lines (with ).
+This is further confirmed by the “h’s” at the the top of each image lining up with the hour marks on the actual charts.
+Now we will see that each pointer finger is pointing at a single star in each constellation. In cases that are slightly ambiguous, we should take the star closest to each finger.
+
+<div class="overlay-container" markdown="1">
+| Constellation | Image Overlay                                  | Star Pointed To       |
+|-----------------|------------------------------------------------|-----------------------|
+| `SEXTANS`       | ![]({% static 'solution_resources/a-few-tips/1.png' %}) | Alpha Sextantis       |
+| `HOROLOGIUM`    | ![]({% static 'solution_resources/a-few-tips/2.png' %}) | Alpha Horologii       |
+| `OCTANS`        | ![]({% static 'solution_resources/a-few-tips/3.png' %}) | Alpha Octantis        |
+| `MICROSCOPIUM`  | ![]({% static 'solution_resources/a-few-tips/4.png' %}) | Epsilon Microscopii   |
+| `TELESCOPIUM`   | ![]({% static 'solution_resources/a-few-tips/5.png' %}) | Alpha Telescopii      |
+| `LIBRA`         | ![]({% static 'solution_resources/a-few-tips/6.png' %}) | Epsilon Librae        |
+| `PYXIS`         | ![]({% static 'solution_resources/a-few-tips/7.png' %}) | Epsilon Pyxidis       |
+| `RETICULUM`     | ![]({% static 'solution_resources/a-few-tips/8.png' %}) | Gamma Reticuli        |
+| `CAELUM`        | ![]({% static 'solution_resources/a-few-tips/9.png' %}) | Beta Caeli            |
+| `CIRCINUS`      | ![]({% static 'solution_resources/a-few-tips/10.png' %}) | Gamma Circini         |
+| `FORNAX`        | ![]({% static 'solution_resources/a-few-tips/11.png' %}) | Alpha Fornacis        |
+| `PICTOR`        | ![]({% static 'solution_resources/a-few-tips/12.png' %}) | Beta Pictoris         |
+| `ANTLIA`        | ![]({% static 'solution_resources/a-few-tips/13.png' %}) | Delta Antliae         |
+| `NORMA`         | ![]({% static 'solution_resources/a-few-tips/14.png' %}) | Delta Normae          |
+</div>
+
+Once we have a list of stars, we need to figure out what to do with them.
+Each star has a Bayer designation represented by a Greek letter ranging from Alpha to Epsilon, the first five letters of the Greek alphabet.
+Using these letters as numbers from 1 to 5, we should index into the name of each constellation to get a new letter.
+
+| Constellation  | Greek Letter | Index | Extract |
+|----------------|--------------|-------|---------|
+| `SEXTANS`      | Alpha        | 1     | `S`     |
+| `HOROLOGIUM`   | Alpha        | 1     | `H`     |
+| `OCTANS`       | Alpha        | 1     | `O`     |
+| `MICROSCOPIUM` | Epsilon      | 5     | `O`     |
+| `TELESCOPIUM`  | Alpha        | 1     | `T`     |
+| `LIBRA`        | Epsilon      | 5     | `A`     |
+| `PYXIS`        | Epsilon      | 5     | `S`     |
+| `RETICULUM`    | Gamma        | 3     | `T`     |
+| `CAELUM`       | Beta         | 2     | `A`     |
+| `CIRCINUS`     | Gamma        | 3     | `R`     |
+| `FORNAX`       | Alpha        | 1     | `F`     |
+| `PICTOR`       | Beta         | 2     | `I`     |
+| `ANTLIA`       | Delta        | 4     | `L`     |
+| `NORMA`        | Delta        | 4     | `M`     |
+
+This gives us the phrase `SHOOT A STAR FILM`.
+Entering this as an answer we will then be prompted to film a short video describing how to use a tool based on a fictional constellation, such as those in the [Hole in the Ceiling of Hades](https://puzzles.mit.edu/2024/mythstoryhunt.world/rounds/the-hole-in-the-ceiling-of-hades) round in MITMH 2024.
+On completion, we receive our final answer: **`SONY PSP`**.
+
+[^1]: The octant was invented around 1730 and has an arc of 45°, one eighth of a circle. This device was only useful during the daytime since it was too narrow to measure lunar distance. A few years later, the sextant was developed with a 60° angle so that lunar distance can be properly measured.
+[^2]: This clue refers to the sextant and octant as a reticle or crosshair is usually built in, though sometimes telescopes or microscopes have a reticle as well. Both “reticle” and “Reticulum” come from a Latin word that means “little net”. This is referenced by a person holding a butterfly net in the illustration for this clue.
+{% endblock %}

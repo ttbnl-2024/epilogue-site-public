@@ -1,0 +1,27 @@
+- model: auth.User
+  pk: 1
+  fields:
+    username: admin
+    # password is "YPx7fImnjX3XMB0kH0fZ"
+    password: pbkdf2_sha256$870000$budd6JgOzEp2BIVBkxDbI0$ACh7/FbdBhl98FV4IU47qzv3nZjmHkvwz81rWvEyB5Y=
+    is_staff: True
+    is_superuser: True
+- model: auth.User
+  pk: 2
+  fields:
+    username: test
+    # password is "CsBYt3xuK5YQK4NPLyGT"
+    password: pbkdf2_sha256$870000$G56UnHuGFL0RRtPSTiyQQf$WguPXzGP7sSl93JGIAgqvq8klA3Kw+7kNROz5gucYjw=
+- model: puzzles.Team
+  pk: 1
+  fields:
+    user: 1
+    team_name: admin
+    creation_time: "9001-01-01T00:00:00+00:00"
+    is_prerelease_testsolver: True
+- model: puzzles.Team
+  pk: 2
+  fields:
+    user: 2
+    team_name: test
+    creation_time: "9001-01-01T00:00:00+00:00"

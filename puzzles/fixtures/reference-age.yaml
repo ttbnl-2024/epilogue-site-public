@@ -1,0 +1,98 @@
+- model: puzzles.Puzzle
+  pk: 440
+  fields:
+    emoji: ":map:"
+    name: Reference Age
+    slug: reference-age
+    body_template: reference-age.html
+    answer: UNPASSABLE
+    round: 17
+    unlock_global: -1
+    unlock_local: 2
+    order: 6
+- model: puzzles.CannedHint
+  pk: 1513
+  fields:
+    puzzle: 440
+    description: Getting started at the very beginning, like they are overwhelmed
+      and don't know where to begin
+    order: 1.0
+    keywords: start
+    content: You're unlikely to be able to identify all the Google Streetview images
+      on their own, but you should be able to place a few. Find those and see what
+      you can figure out.
+- model: puzzles.CannedHint
+  pk: 2197
+  fields:
+    puzzle: 440
+    description: Still can't get started, can't id any of them
+    order: 2.0
+    keywords: Start, location id
+    content: Make sure to try reverse image searching. We recommend starting with
+      the later images - our testsolvers found those to be easier to id. You can take
+      a look at the one with Japanese on it to help you locate it.
+- model: puzzles.CannedHint
+  pk: 1514
+  fields:
+    puzzle: 440
+    description: They've found some of the images, but don't know what to do with
+      the arrows at all
+    order: 10.0
+    keywords: images, arrows
+    content: Given that you've found some of the images, maybe you can associate them
+      somehow with the arrows. After doing that once or twice, what might strike you
+      about where the circles end up?
+- model: puzzles.CannedHint
+  pk: 1515
+  fields:
+    puzzle: 440
+    description: They've found a few images, and they've paired up a few arrows, but
+      what does all that mean
+    order: 25.0
+    keywords: circles, arrows, paired
+    content: The title is surprisingly literal for the subject matter of this puzzle.
+- model: puzzles.CannedHint
+  pk: 2199
+  fields:
+    puzzle: 440
+    description: 25.0, but still stuck
+    order: 26.0
+    keywords: circles, arrows, paired, break in
+    content: The flavor text mentions something "golden". Are there golden objects
+      that mark "reference age"'s?
+- model: puzzles.CannedHint
+  pk: 1516
+  fields:
+    puzzle: 440
+    description: Same as 25, but they're getting mad and frustrated
+    order: 40.0
+    keywords: ''
+    content: At each of the circles, there's something that (to Americans, at least)
+      will be more familiar as a monument in Utah. It marks something.
+- model: puzzles.CannedHint
+  pk: 2200
+  fields:
+    puzzle: 440
+    description: 25.0 but angrier
+    order: 41.0
+    keywords: break in
+    content: Photos 5 and 6 may be helpful. Where do their paths end? Have you tried
+      googling that?
+- model: puzzles.CannedHint
+  pk: 2198
+  fields:
+    puzzle: 440
+    description: Same as 25, but now they're really frustrated
+    order: 42.0
+    keywords: break in, circles, arrows
+    content: Some of these paths end in a location that contains GSSP in its name.
+      What does that stand for?
+- model: puzzles.CannedHint
+  pk: 1517
+  fields:
+    puzzle: 440
+    description: They're having trouble extracting
+    order: 90.0
+    keywords: extraction
+    content: The numbers at the bottom are indexes into each of the missing words.
+      What would be a sensible ordering for these timeframes?

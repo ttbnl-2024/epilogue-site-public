@@ -1,0 +1,54 @@
+- model: puzzles.Puzzle
+  pk: 739
+  fields:
+    name: Exotic Fen
+    slug: exotic-fen
+    body_template: exotic-fen.html
+    answer: SPHINGES
+    round: 17
+    unlock_global: -1
+    unlock_local: 0
+    order: 1
+    emoji: ":eye:"
+
+- model: puzzles.CannedHint
+  pk: 1780
+  fields:
+    puzzle: 739
+    description: How do I get to Level Two??
+    order: 10.0
+    keywords: level two, level 2
+    content: The puzzle opens with a comic. This comic, conceptually, shows off a
+      rule followed by the riddle text in Level One. The rule applies to more than
+      just that riddle text.
+- model: puzzles.CannedHint
+  pk: 1781
+  fields:
+    puzzle: 739
+    description: How do I beat Level Three??
+    order: 50.0
+    keywords: level three, level 3
+    content: "This puzzle opens with a comic that shows off a rule: \"Things change\
+      \ when you're not looking at them.\"\r\n\r\nBeating Level Two rewards you with\
+      \ a comic that shows off a new rule. What can you do to emulate the comic?"
+- model: puzzles.CannedHint
+  pk: 1783
+  fields:
+    puzzle: 739
+    description: (They want a more explicit hint for beating Level Three.)
+    order: 51.0
+    keywords: level three, level 3
+    content: Consider the comic you got from beating Level Two. If the observer swiveled
+      their telescope left/right/up/down, then they change what part of the forest
+      they can see. If they adjust the focus of their telescope, they can observe
+      a larger/smaller part of the forest. Can you do the same?
+- model: puzzles.CannedHint
+  pk: 1782
+  fields:
+    puzzle: 739
+    description: How do I beat Level Four??
+    order: 100.0
+    keywords: level four, level 4, final
+    content: Your instance of the puzzle is independent from your teammates'. In fact,
+      everything in the puzzle is local to your computer. Given that, how can you
+      still emulate the rule taught by the comic you got from beating Level Three?

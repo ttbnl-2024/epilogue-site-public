@@ -1,0 +1,156 @@
+- model: puzzles.Puzzle
+  pk: 43
+  fields:
+    name: Box Offer
+    slug: box-offer
+    body_template: box-offer.html
+    round: 17
+    answer: DAMPNESS
+    unlock_global: -1
+    unlock_local: 3
+    order: 8
+    emoji: ":gem:"
+
+- model: puzzles.PuzzleMessage
+  pk: 331
+  fields:
+    puzzle: 43
+    guess: A NEW HOPE
+    response: Keep going!
+- model: puzzles.PuzzleMessage
+  pk: 332
+  fields:
+    puzzle: 43
+    guess: FORCED IT
+    response: "Keep going!\nReturn to the puzzle for your shipping manifest."
+
+- model: puzzles.CannedHint
+  pk: 2081
+  fields:
+    puzzle: 43
+    description: The solvers are not sure how to start.
+    order: 0.0
+    keywords: Start, Begin, Break in, Charms, Bracelets
+    content: They say friendship bracelets tell a story. See if you can figure out
+      what (fictional) story each set of charms is trying to tell. You are in Hollywood
+      after all, so you can safely assume that these are likely film plots.
+- model: puzzles.CannedHint
+  pk: 2082
+  fields:
+    puzzle: 43
+    description: Solver are not sure how to use the Walk of Fame stars or names.
+    order: 1.0
+    keywords: Start, Begin, Break in, Stars, Walk of Fame
+    content: The Walk of Fame is a popular tourist destination in Hollywood. But what
+      do the stars actually represent? Usually, they contain the name of a celebrity,
+      and the symbol at the center of the star represents the industry in which they
+      rose to fame. However the names in these stars do not look so conventional,
+      so maybe you should ask the question, what does every great film need? And the
+      answer of course, is a great villain! Pandora is known for her close ties to
+      all things evil. See if you can pair each of these 'stars' with another of the
+      puzzle artifacts that you have uncovered.
+- model: puzzles.CannedHint
+  pk: 2083
+  fields:
+    puzzle: 43
+    description: Solvers are really, really stuck on the Walk of Fame stars and have
+      not yet figured out what they represent.
+    order: 1.1
+    keywords: Stars, Walk of Fame, Nametags
+    content: Pandora is known for her close ties to all things evil. The text on each
+      star clues a famous villain. The number represents the year the film the villain
+      is from was released. You should be able to match each villain with a bracelet.
+- model: puzzles.CannedHint
+  pk: 2084
+  fields:
+    puzzle: 43
+    description: Solvers are not sure how to use the decriptions, names or addresses
+      on the boxes.
+    order: 2.0
+    keywords: Boxes, Addresses, Sender, Name
+    content: Along with being provided bracelets and a map of Walk of Fame stars,
+      you are also given the boxes each bracelet came in, as well a a return address
+      for the person who sent them to Pandora. Now rather than listing the name of
+      this person (which we can assume to be one of her "wicked" (evil) friends, a
+      clue phrase is provided. Try interpreting this clue phrase as best you can in
+      the context of the relationship between the villain and an aspect of each film.
+      The address itself will provide an ordering.
+- model: puzzles.CannedHint
+  pk: 2085
+  fields:
+    puzzle: 43
+    description: Solvers are stuck on the first extraction.
+    order: 2.1
+    keywords: Extraction
+    content: Pandora is not just a Greek Goddess, it is also a famous Jewellery retailer.
+      Those of you with a keen eye should have spotted that some of the Bracelet charms
+      are in fact "the real deal" (genuine Pandora charms you can find on their website).
+      For your convenience, these have already been identified for you. You can also
+      guess that this means the number of charms provides a enumeration, specifically,
+      the enumeration of the thing referenced in the sender line in the address on
+      each box.
+- model: puzzles.CannedHint
+  pk: 2086
+  fields:
+    puzzle: 43
+    description: Solvers have solved the first part of the puzzle but are unsure how
+      to proceed.
+    order: 3.0
+    keywords: A NEW HOPE, second part of the puzzle, intermediate clue phrase
+    content: So you thought you were done. You thought you had it all figured out.
+      But you forgot one important aspect. This is Hollywood! And what does everyone
+      successful film usually end up getting... that's right, a SEQUEL. The best sequels
+      always stay true to the original. Think about how you could potentially reuse
+      some of the obscure artifacts in this puzzle given a new context, or more specifically,
+      a new film! But of course you need to also remember that with a new film also
+      comes a new villain!
+- model: puzzles.CannedHint
+  pk: 2087
+  fields:
+    puzzle: 43
+    description: Solvers are stuck on narrowing down the new answers for the second
+      part of the puzzle.
+    order: 3.1
+    keywords: Enumeration, second part, sender list
+    content: In the first part of the puzzle, the number of charms on each bracelet
+      provided the enumerations for the answers to the sender clues. In this "sequel",
+      the enumerations for the sender clue answers are provided by the text inscriptions
+      on the Walk of Fame stars.
+- model: puzzles.CannedHint
+  pk: 2088
+  fields:
+    puzzle: 43
+    description: Solvers are stuck on extracting the second part of the puzzle.
+    order: 3.2
+    keywords: Extraction, second extraction
+    content: This time, reading the first letters will give you the answer to the
+      second part of the puzzle. You do not need to reorder the answers.
+- model: puzzles.CannedHint
+  pk: 2089
+  fields:
+    puzzle: 43
+    description: Solvers are stuck on identifying missing information in the third
+      part of puzzle.
+    order: 4.0
+    keywords: Final extraction, shipping manifest, stars, ID
+    content: By now, you will have discovered that this wasn't a two-part series,
+      it was actually a trilogy! You are now looking to find out what made opening
+      the boxes easy for Pandora. You may be wondering why the Hollywood Walk of Fame
+      stars were even used at all, because the actors (celebrity) names haven't even
+      been relevant to the puzzle. If you believe this to be true, take a closer look
+      at that shipping manifest, specifically the column with all of the *****.
+- model: puzzles.CannedHint
+  pk: 2090
+  fields:
+    puzzle: 43
+    description: Solvers are stuck on the final extraction in the shipping manifest.
+    order: 4.1
+    keywords: Final Extraction, Part 3, Shipping Manifest.
+    content: By now, you will have discovered that this wasn't a two-part series,
+      it was actually a trilogy! You are now looking to find out what made opening
+      the boxes easy for Pandora. By now you should realize the actors names are important,
+      however you may not be clear on the final extraction. We promise we tried to
+      make it easier this time. As any celebrity will warn you, you should always
+      read the fine print at the bottom of the document before signing any contracts.
+      You already have a mass, and you are given an acceleration, so logically there
+      is only one thing left to find... If you are still stuck, try using F=ma.

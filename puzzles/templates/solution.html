@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load puzzle_tags %}
+
+{% block page-title %}
+  <title>{% blocktranslate with puzzle_name=puzzle.name %}Solution: {{ puzzle_name }}{% endblocktranslate %}</title>
+{% endblock %}
+
+{% block top-left-actions %}
+  <a href="{% url 'puzzle' puzzle.slug %}" class="btn">{% translate "Back to the puzzle" %}</a>
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    h2 {
+      font-size: 2.5rem;
+      font-weight: normal;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    h4 {
+      font-size: 2rem;
+      font-weight: normal;
+      margin: 2rem 0;
+    }
+  </style>
+
+  <h1>
+    {% blocktranslate with puzzle_name=puzzle.name %}Solution: {{ puzzle_name }}{% endblocktranslate %}
+    {% if puzzle.answer %}<div class="solved-title-marker">{% translate "Answer:" %} <span class="solved-title-answer spoiler">{{ puzzle.answer }}</span></div>{% endif %}
+  </h1>
+
+  <main class="puzzle-main">
+    <h2 style="margin-top: 0" class="credit-line">
+      {% translate "Written by" %}
+      {% block puzzle-author %}
+        {% translate "aliens" %}
+      {% endblock %}
+    </h2>
+
+    {% puzzleblock solution-body %}
+    {% if solution_body %}{{ solution_body }}{% elif template_name %}
+      {% blocktranslate %}This solution doesn&rsquo;t seem to exist yet.
+        Searched for a solution template named <code>{{ template_name }}</code>{% endblocktranslate %}
+    {% else %}
+      {% translate "This solution template exists, but it doesn&rsquo;t seem to define a solution content block. Check the post production guide?" %}
+    {% endif %}
+
+    {% puzzleblock author-notes %}
+    {% if author_notes %}
+      <h2 id="authors-notes">{% translate "Author&rsquo;s Notes" %}</h2>
+      {{ author_notes }}
+    {% endif %}
+
+    {% puzzleblock appendix %}
+    {% if appendix %}
+      <h2 id="appendix">{% block appendix-title %}{% translate "Appendix" %}{% endblock %}</h2>
+      {{ appendix }}
+    {% endif %}
+  </main>
+
+{% endblock %}

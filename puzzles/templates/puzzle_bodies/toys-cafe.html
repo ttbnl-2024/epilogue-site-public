@@ -1,0 +1,65 @@
+{% extends "puzzle.html" %}
+{% load static %}
+{% block puzzle-body-html %}
+
+  <style>
+    .toys-cafe {
+      margin: 0 auto;
+    }
+
+    .toys-cafe > :not([hidden]) ~ :not([hidden]) {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (min-width: 640px) {
+      img {
+        max-width: calc(min(100%, 63rem));
+      }
+    }
+  </style>
+
+  <div class="toys-cafe">
+    <img
+      src="{% static 'puzzle_resources/toys-cafe/puzzle.png' %}"
+      alt="An image of toys and games. Some areas are colored blue."
+    />
+    <hr/>
+    <img
+      src="{% static 'puzzle_resources/toys-cafe/Figure_1.svg' %}"
+      alt="An undirected graph of mostly black nodes. One node is red, and one node is blue."
+    />
+    <img
+      src="{% static 'puzzle_resources/toys-cafe/Figure_2.svg' %}"
+      alt="An undirected graph of mostly black nodes. One node is red, and one node is blue."
+    />
+    <img
+      src="{% static 'puzzle_resources/toys-cafe/Figure_3.svg' %}"
+      alt="An undirected graph of mostly black nodes. One node is red, and one node is blue."
+    />
+    <img
+      src="{% static 'puzzle_resources/toys-cafe/Figure_4.svg' %}"
+      alt="A directed graph of mostly black nodes. One node is red, and one node is blue."
+    />
+    <img
+      src="{% static 'puzzle_resources/toys-cafe/Figure_5.svg' %}"
+      alt="A directed graph of mostly black nodes. One node is red, and one node is blue."
+    />
+    <img
+      src="{% static 'puzzle_resources/toys-cafe/Figure_6.svg' %}"
+      alt="A directed graph of mostly black nodes. One node is red, and one node is blue."
+    />
+  </div>
+
+  <p>(In case it helps: the graphs have 136, 140, 243, 150, 30, and 54 vertices respectively, and the last graph is rotationally symmetric.)</p>
+
+  <button class="btn clipboard-button" data-skip-inline-styles="true"></button>
+
+{% endblock %}

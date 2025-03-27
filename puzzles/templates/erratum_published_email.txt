@@ -1,0 +1,6 @@
+{% load i18n %}
+Hi puzzlers,
+
+{% blocktranslate %}An erratum has been issued for the puzzle <strong><a href="{{ puzzle_link }}">{{ puzzle_title }}</a></strong>.{% endblocktranslate %}
+
+{% translate "Erratum:" %} {{ erratum.formatted_updates_text|safe }}

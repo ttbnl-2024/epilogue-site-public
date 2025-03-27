@@ -1,0 +1,127 @@
+{% extends "puzzle.html" %}
+{% load static %}
+{% block puzzle-body-html %}
+<style>
+  img {
+    display: block;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 640px) {
+    img {
+      max-width: 63rem;
+    }
+  }
+
+  .dial-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .dial-container > :not([hidden]) ~ :not([hidden]) {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .dial-container div {
+    max-width: 180px;
+   }
+
+  .dial-container p {
+    text-align: center;
+    overflow-wrap: anywhere;
+    text-wrap-style: balance;
+   }
+</style>
+
+<p class="flavor">
+  The dials on these safes have failed to stay attached.  Did we get all the combinations in place?
+</p>
+
+<div class="info-note no-copy">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" data-tooltip-id="" data-tooltip-content="info-tooltip" class="info-tooltip"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+  <span>Image content available in copy-to-clipboard.</span>
+</div>
+
+<p>
+  Two safe dials will spin Right-Left, two will spin Left-Right, two will spin Right only, and two will spin Left only.
+</p>
+
+<div class="dial-container">
+  <div>
+    <p>
+      <img src="{% static 'puzzle_resources/failsafe/safe.png' %}" alt="Safe dial" />
+      1-4-6-7-4-8-8-5-6-1-7-5-6-9-7
+    </p>
+  </div>
+  <div>
+    <p>
+      <img src="{% static 'puzzle_resources/failsafe/safe.png' %}" alt="Safe dial" />
+      2-8-6-9-8-11-4-11-6-4-9-8-1-7-2-1-7-2-11-10-3
+    </p>
+  </div>
+  <div>
+    <p>
+      <img src="{% static 'puzzle_resources/failsafe/safe.png' %}" alt="Safe dial" />
+      2-2-2-6-11-2-7-9-2-3-11-6
+    </p>
+  </div>
+  <div>
+    <p>
+      <img src="{% static 'puzzle_resources/failsafe/safe.png' %}" alt="Safe dial" />
+      12-10-4-6-10-10-10-8-6-6-11-11-5-5-1-9-7-7-5-12-12
+    </p>
+  </div>
+  <div>
+    <p>
+      <img src="{% static 'puzzle_resources/failsafe/safe.png' %}" alt="Safe dial" />
+      1-11-9-3-11-7-10-2-9-7-1-9-4-11-10-7
+    </p>
+  </div>
+  <div>
+    <p>
+      <img src="{% static 'puzzle_resources/failsafe/safe.png' %}" alt="Safe dial" />
+      10-2-7-8-7-6-7-12-5-12-11-8-3-8-1-10-9-13-9<wbr/>-10
+    </p>
+  </div>
+  <div>
+    <p>
+      <img src="{% static 'puzzle_resources/failsafe/safe.png' %}" alt="Safe dial" />
+      11-1-12-13-3-4-13-14-11-4-2-12-13-12-13-12-7<wbr/>-13
+    </p>
+  </div>
+  <div>
+    <p>
+      <img src="{% static 'puzzle_resources/failsafe/safe.png' %}" alt="Safe dial" />
+      3-10-3-8-4-6-4-7-6-5-9-9-11-4-7
+    </p>
+  </div>
+</div>
+
+<p>
+<img
+  src="{% static 'puzzle_resources/failsafe/dials.jpg' %}"
+  alt=""
+/>
+</p>
+
+<div class="copy-only">
+  <p>Dials:</p>
+<ul>
+  <li>ACEGMNORT</li>
+  <li>ADEGIKLNOTV</li>
+  <li>ACEILMNOQRTU</li>
+  <li>DEGHIMNORTUV</li>
+  <li>ACEFILMNOPRTU</li>
+  <li>ACEGHIJMNOPRU</li>
+  <li>ADEGHIKLMNORV</li>
+  <li>ABDEGILMNOPRSUY</li>
+</ul>
+</div>
+
+<button class="btn clipboard-button" data-skip-inline-styles="true"></button>
+
+{% endblock %}

@@ -1,0 +1,133 @@
+- model: puzzles.Puzzle
+  pk: 318
+  fields:
+    name: Ohh, My Fee!
+    slug: ohh-my-fee
+    body_template: ohh-my-fee.html
+    round: 17
+    answer: NAPLES
+    unlock_global: -1
+    unlock_local: 6
+    order: 11
+    emoji: ":bed:"
+
+- model: puzzles.PuzzleMessage
+  pk: 369
+  fields:
+    puzzle: 318
+    guess: NAPLESS
+    response: Almost there! Let's put this puzzle to bed!
+- model: puzzles.PuzzleMessage
+  pk: 435
+  fields:
+    puzzle: 318
+    guess: WITH NO SIESTA
+    response: "Keep going! Let's put this puzzle to bed!"
+
+- model: puzzles.CannedHint
+  pk: 2048
+  fields:
+    puzzle: 318
+    description: Solvers are stuck on getting started
+    order: 1.0
+    keywords: start, begin
+    content: 'This is a cryptic-style crossword. Each clue contains two parts: a definition
+      of the meaning of the entry and a literal construction of the entry using wordplay.
+      If you''re unfamiliar with this style of clues, check out https://www.theatlantic.com/past/docs/issues/puzzclue.htm
+      for more information.'
+- model: puzzles.CannedHint
+  pk: 2049
+  fields:
+    puzzle: 318
+    description: Solvers have noticed some of the clued answers don't correctly fit
+      into the grid
+    order: 2.0
+    keywords: too long, too short, fit
+    content: 'This is not an error in the puzzle: some of the correct answers are
+      in fact too long or too short for the grid. Use the crossing answers to help
+      determine how they get entered. You also might want to look up the mythological
+      origins of one of the terms in the flavor text... .'
+- model: puzzles.CannedHint
+  pk: 2050
+  fields:
+    puzzle: 318
+    description: Solvers need a stronger nudge about the answers that don't fit into
+      the grid.
+    order: 2.1
+    keywords: too long, too short, fit, procrustean
+    content: In the myth of Procrustes -- whence the phrase "Procrustean Bed" comes
+      -- the giant robber Procrustes would force travelers to lie on his stone bed.
+      If they were too short, he would stretch them to the right length. If they were
+      too tall, he would cut off the overhanging part to make them fit. You'll need
+      to play the role of Procrustes and either "stretch" or "shorten" twelve of the
+      answers (six across and six down) in a similar manner.
+- model: puzzles.CannedHint
+  pk: 2051
+  fields:
+    puzzle: 318
+    description: Solvers still don't understand how to use the too-short or too-long
+      answers, or have identified the new words but don't know how to use them.
+    order: 2.2
+    keywords: too long, too short, fit, procrustean
+    content: 'Six Down answers are one letter too short for their grid spaces: you
+      will need to "stretch" them by doubling one of the letters to form a new word
+      that fits the space. Similarly, six Across answers are one letter too long for
+      their grid spaces. You will need to remove a letter from one end of the word
+      (i.e., the first or last letter) to make a new word that fits the space. Once
+      you are done, take a look at the doubled or removed letters in order. Do they
+      spell any recognizable words?'
+- model: puzzles.CannedHint
+  pk: 2053
+  fields:
+    puzzle: 318
+    description: Solvers have extracted the message "WITH NO SIESTA" from the Procrustean
+      letters but don't know what to do with it.
+    order: 2.3
+    keywords: with, no, siesta, extract
+    content: '"WITH NO SIESTA" is the second half of a message. You will find the
+      first half of the message in the completed grid (its location is pretty obvious).'
+- model: puzzles.CannedHint
+  pk: 2052
+  fields:
+    puzzle: 318
+    description: Solvers have uncovered the message in the circled grid squares but
+      don't know how to use them.
+    order: 3.0
+    keywords: circle, crackpot, spa, lens
+    content: The message CRACKPOT SPA LENS is the first half of a message. You will
+      need to figure out what's going on with 12 of the entries in the puzzle to find
+      the second half.
+- model: puzzles.CannedHint
+  pk: 2054
+  fields:
+    puzzle: 318
+    description: Solvers have found the entire message "CRACKPOT SPA LENS WITH NO
+      SIESTA" but don't know what to do with it.
+    order: 4.0
+    keywords: crackpot spa lens with no siesta, extract
+    content: '"CRACKPOT SPA LENS WITH NO SIESTA" is one final cryptic clue to the
+      puzzle''s answer. One half is the definition and the other half is the wordplay.
+      Solve it like you would any other cryptic clue.'
+- model: puzzles.CannedHint
+  pk: 2056
+  fields:
+    puzzle: 318
+    description: Solvers cannot think of a six-letter word (or, any word) that solves
+      the final clue
+    order: 4.1
+    keywords: crackpot spa lens with no siesta, length, blanks
+    content: 'Forget about a desired length: can you come up with a single (albeit
+      uncommon) word meaning "with no siesta" that could be constructed via the wordplay
+      "crackpot spa lens"? If so, how many letters long is that word? If it''s one
+      letter longer or shorter than six, we''ve already been using a method to get
+      around that problem... .'
+- model: puzzles.CannedHint
+  pk: 2055
+  fields:
+    puzzle: 318
+    description: Solvers have the answer NAPLESS but it is incorrect.
+    order: 5.1
+    keywords: NAPLESS
+    content: '"NAPLESS" -- as a seven-letter word -- does not, in fact, fit into the
+      six blanks below the grid. So, what do we do in this puzzle to answers that
+      are one letter too long for the space in which they need to be entered?'

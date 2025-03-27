@@ -1,0 +1,81 @@
+- model: puzzles.Puzzle
+  pk: 743
+  fields:
+    name: I Feel Ucky
+    slug: i-feel-ucky
+    body_template: i-feel-ucky.html
+    answer: INSPECT
+    round: 17
+    unlock_global: -1
+    unlock_local: 1
+    order: 4
+    emoji: ":bangbang:"
+
+- model: puzzles.CannedHint
+  pk: 1883
+  fields:
+    puzzle: 743
+    description: Solvers don't know what kind of puzzle this is
+    order: 0.0
+    keywords: crossword, double or nothing
+    content: This is a cryptic crossword in a double-or-nothing grid, where each cell
+      in the grid has either 0 or 2 letters.
+- model: puzzles.CannedHint
+  pk: 1884
+  fields:
+    puzzle: 743
+    description: Solvers are stuck on the trick where some words need to be doubled
+      or removed
+    order: 40.0
+    keywords: clues, parse, extra words
+    content: Some clues need to be modified in order to parse, in a way that relates
+      to "double or nothing".  A number of clues need to be modified in one way, and
+      an equal number need to be modified in another.
+- model: puzzles.CannedHint
+  pk: 1885
+  fields:
+    puzzle: 743
+    description: Solvers have completed the grid but not noticed how the doubled and
+      removed words pair up
+    order: 60.0
+    keywords: extraction
+    content: Try to pair up the doubled and removed words -- there should be 14 of
+      each.  The doubled words need to be modified in a very appropriate way in order
+      to match them with the removed words.
+- model: puzzles.CannedHint
+  pk: 1886
+  fields:
+    puzzle: 743
+    description: Solvers have the pairings of doubled and removed words but don't
+      have the final clue phrase
+    order: 80.0
+    keywords: extraction, paired
+    content: In each pair of a doubled word and removed word, one clue is Across and
+      one is Down.  Overall, there are 14 pairs, equal to the number of rows and columns
+      in the grid.  Use this to extract 14 squares from the grid, one for each pair,
+      then read top-to-bottom.
+- model: puzzles.CannedHint
+  pk: 1887
+  fields:
+    puzzle: 743
+    description: Solvers are stuck on the final clue phrase and don't know words need
+      to be doubled
+    order: 90.0
+    keywords: final clue
+    content: You have LOOK OVER EPISODES IN CRUST SEVEN; this matches with the blanks
+      to form a cryptic clue, for which SEVEN is the enumeration (answer length).  This
+      cryptic clue needs to be modified slightly, in a way reminiscent of what you
+      did earlier in the puzzle.  Why do some of the words have two underlines?
+- model: puzzles.CannedHint
+  pk: 1888
+  fields:
+    puzzle: 743
+    description: Solvers have the final clue phrase and have correctly doubled words
+      in the clue, but can't solve it
+    order: 95.0
+    keywords: final clue, doubled
+    content: "After doubling the underlined words, you have the clue phrase \"LOOK\
+      \ OVER OVER EPISODES IN IN CRUST CRUST (7)\", another cryptic clue.  Some hints:\r\
+      \n-- The definition is \"LOOK OVER\".\r\n-- Episodes is often abbreviated \"\
+      eps\".  But remember the other \"OVER\".\r\n-- One (but not both) of the INs\
+      \ means \"put inside\".\r\n-- \"Crust\" can mean \"outer letters\"."

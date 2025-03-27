@@ -1,0 +1,39 @@
+{% extends "solution.html" %}
+{% load static %}
+
+{% block puzzle-author %}
+  Nick Poulos, Charles Steinhardt, Daniel Kramarsky
+{% endblock %}
+
+{% block solution-body-md %}
+
+While it is unlikely we can identify all of the Street View images at the outset, getting two or three should be readily doable.
+Some research turns up that these places all appear to be near geologically interesting sites. In fact, each image is taken near a [Global Boundary Stratotype Section and Point](https://stratigraphy.org/gssps/) (or “golden spike”).
+These mark agreed-upon references for the markers to ends of geological eras.
+
+We can narrow down the search space to “places near golden spikes”; this is helpful for identifying the remaining Street View images.
+But there’s more help to be found: each of the 14 arrows depicts a path from each golden spike to the place where the Street View photo was taken (ordered alphabetically by geological epoch or era).
+The dot represents the spike; the arrow at the other end depicts the direction the Street View camera was facing.
+Dashed parts of the line represent off-road or restricted-access places you normally can’t take a car.
+
+We can, with this aid, find all the remaining photos.
+We can then figure out the words that have been blacked out of each Street View image (the Street View images having been ordered alphabetically by blacked-out word).
+Organizing those words chronologically by their corresponding golden spike’s place in the geological record (youngest to oldest), and using the numbers provided as indices, we get the phrase `ANS UNPASSABLE` so the answer is <strong>`UNPASSABLE`</strong>.
+
+| Age/Stage  | Street View Link                            | Image | Arrow | Redacted       | #  | Letter |
+|------------|---------------------------------------------|-------|-------|----------------|----|--------|
+| Meghalayan | <https://maps.app.goo.gl/jivuAUovLsn5fSTH8> | 4     | i     | `HANGNE`       | 2  | `A`    |
+| Chibanian  | <https://maps.app.goo.gl/gSZyB9JUT8gs191o8> | 3     | e     | `GOLF5COUNTRY` | 9  | `N`    |
+| Chattian   | <https://maps.app.goo.gl/xhgbNdjSMyDxfwUD9> | 2     | d     | `COUNTRYHOUSE` | 11 | `S`    |
+| Campanian  | <https://maps.app.goo.gl/4bSou9jE5kY6uA6h7> | 6     | c     | `LUIGIFAGIOLI` | 2  | `U`    |
+| Bajocian   | <https://maps.app.goo.gl/2NCGWWz6vEvTTdiv8> | 7     | a     | `NM`           | 1  | `N`    |
+| Toarcian   | <https://maps.app.goo.gl/6dhbwQ9huUneK6dk7> | 5     | m     | `IGAPHE`       | 4  | `P`    |
+| Ladinian   | <https://maps.app.goo.gl/m7KB7KAHjGLhKwZh6> | 1     | h     | `BAGOLINO`     | 2  | `A`    |
+| Bashkirian | <https://maps.app.goo.gl/fRnkzFCNw8SSNqXi6> | 12    | b     | `WARMSPRINGS`  | 5  | `S`    |
+| Pragian    | <https://maps.app.goo.gl/147y72zqZuYNZfPC9> | 9     | j     | `SLIVENEC`     | 1  | `S`    |
+| Přídolí    | <https://maps.app.goo.gl/CRbuY22Vs9it77HT9> | 11    | k     | `TRUNEČKA`     | 8  | `A`    |
+| Sandbian   | <https://maps.app.goo.gl/6bzP47sjb6D8nEmZ7> | 10    | l     | `TRB`          | 3  | `B`    |
+| Drumian    | <https://maps.app.goo.gl/CYH2QdB9wyKp9t3v7> | 8     | f     | `RELOCATION`   | 3  | `L`    |
+| Ediacaran  | <https://maps.app.goo.gl/nYFFVF3ojgNfVinL7> | 13    | g     | `WILPENA`      | 5  | `E`    |
+
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends "puzzle.html" %}
+{% load static %}
+{% block puzzle-body-html %}
+
+  <style>
+    .fetched {
+      margin: 0 auto;
+    }
+
+    .fetched > :not([hidden]) ~ :not([hidden]) {
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (min-width: 640px) {
+      img {
+        max-width: calc(min(100%, 63rem));
+      }
+      .fetched span {
+        display: block;
+        max-width: calc(min(100%, 63rem));
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1rem;
+      }
+    }
+  </style>
+
+  <p class="flavor">
+    While investigating anomalies in time, a car crashed into a lone pine tree at a mall, triggering a butterfly effect that scattered your crew across time and space to other moments where the time-space barrier has weakened.
+    <br/><br/>
+    Find out what they’ve been sent to and why they’ve been sent, and you might be able to help bring your people back to their proper places.
+  </p>
+
+  <div class="fetched">
+    <div>
+      <img
+        src="{% static 'puzzle_resources/fetched/1.png' %}"
+        alt=""
+      />
+      <span>Readings from the initial team detected the location’s anomalous activity that was preceded by a ghostly apparition, weighed down by heavy chains.</p>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/fetched/2.png' %}"
+        alt=""
+      />
+      <span>While attempts to study the glyphs confronting this team bore some fruit, they found it challenging to understand the underlying thoughts being conveyed.</p>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/fetched/3.png' %}"
+        alt=""
+      />
+      <span>Zealously guarding the only form of communication available to them, the team received warnings of a serial killer on the loose whose moniker sounded like the name of a bird.</p>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/fetched/4.png' %}"
+        alt=""
+      />
+      <span>Even though the team had not previously visited this location, they nevertheless reported feeling like something about the place rang a bell for them.</p>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/fetched/5.png' %}"
+        alt=""
+      />
+      <span>Stuck where they landed, the team grew frustrated and started sending the same message over and over again.</p>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/fetched/6.png' %}"
+        alt=""
+      />
+      <span>Cresting a ridge in the Scottish Highlands, this team found the whole situation just a little bit romantic…at least, until they’re pulled into a rebellion on the losing side.</p>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/fetched/7.png' %}"
+        alt=""
+      />
+      <span>Investigations into this anomalous site are complicated by a king’s death, felled by a poisoned robe.</p>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/fetched/8.png' %}"
+        alt=""
+      />
+      <span>Eyewitness reports from locals mentioned a number of suspicious individuals facing off against a group of sparrows, near the book depository.</p>
+    </div>
+  </div>
+
+  <button class="btn clipboard-button" data-skip-inline-styles="true"></button>
+
+{% endblock %}

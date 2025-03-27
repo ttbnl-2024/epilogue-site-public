@@ -1,0 +1,129 @@
+{% extends "solution.html" %}
+{% load static %}
+
+{% block puzzle-author %}
+  John Bromels
+{% endblock %}
+
+{% block solution-body-md %}
+
+<style>
+  img {
+    display: block;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 640px) {
+    img {
+      max-width: calc(min(100%, 63rem));
+    }
+  }
+</style>
+
+We are presented with a barred crossword grid and cryptic clues, with some yellow squares in the grid. Solving the puzzle, we notice that some answers don’t seem to fit correctly into the grid. Is this an error on the part of the constructor?
+
+Then we recall that the puzzle’s flavor text references a “Procrustean Bed,” referring to the myth of Procrustes, a bandit who would abduct passers-by on the road to Thebes and put them onto his bed. If they were too short, he stretched them to make them fit, and if they were too tall, he cut off their feet or legs to make them fit. When Procrustes sets upon Theseus, he is surprised to find the hero exactly fits the bed. Theseus then overwhelms Procrustes, throws him onto his own bed (for which he is too tall) and cuts his head off. This is bolstered by the fact that each sentence of the flavor text contains a word with an extra letter (`OHH`, `SOO`, and `HMMM`) and a missing terminal letter (`FEE[T]`, `DRAWBACK[S]`, `ON[E]`).
+
+We intuit that we must do the same thing with this puzzle. If an answer is too long for its space, we need to remove a letter to create a valid word that fits the space. If an answer is too short, we need to stretch it by doubling an internal letter to create a valid word for the space.
+
+We discover six Across answers that are “too tall” and need to be trimmed:
+
+- 12A `WASSAILERS` becomes `ASSAILERS`
+- 20A `SCAMPI` becomes `SCAMP`
+- 21A `THEATER` becomes `HEATER`
+- 30A `BUTTERWORTH` becomes `BUTTERWORT`
+- 38A `NASCENT` becomes `ASCENT`
+- 43A `OPALS` becomes `PALS`
+
+We also discover six Down answers that are “too short” and need to be stretched:
+
+- 2D `POSES` becomes `POSSES`
+- 18D `TAXING` becomes `TAXIING`
+- 23D `RENTERS` becomes `REENTERS`
+- 27D `MOUSE` becomes `MOUSSE`
+- 30D `BITER` becomes `BITTER`
+- 34D `NAN` becomes `NAAN`
+
+Pulling the letters (the removed letter from a “too tall” Across answer and the doubled letter from a “too short” Down answer) in clue order yields `WITH NO SIESTA`.
+
+Pulling the yellow squares from the completed grid, we get the phrase `CRACKPOT SPA LENS`, which – when combined with the prior phrase, gives the cryptic clue:
+`CRACKPOT SPA LENS WITH NO SIESTA`.
+By rearranging the letters in `SPA LENS` we get the word `NAPLESS` (“with no siesta”).
+
+However, we have a six-letter enumeration at the bottom of the page, and our answer is seven letters long. Then we realize we need to apply the Procrustean Bed treatment to the answer one last time and cut off the last letter to make the six-letter answer: **`NAPLES`**.
+
+{% endblock %}
+
+{% block appendix-title %}
+Appendix
+{% endblock %}
+
+{% block appendix-md %}
+
+![]({% static 'solution_resources/ohh-my-fee/grid.png' %})
+
+### Across
+
+<ol>
+  <li value="1">SPECTRA (SPECTRAL - L)</li>
+  <li value="9">SODA (SOD + A)</li>
+  <li value="11">TOTO (TUTU with “closed loops”)</li>
+  <li value="12">WASSAILERS (W + ass + ailers)</li>
+  <li value="15">ASTI (Apple Soda Tastes Icky)</li>
+  <li value="16">NCIS (NC is)</li>
+  <li value="17">SATCH (CHATS anag.)</li>
+  <li value="19">SUN GOD (sung + OD)</li>
+  <li value="20">SCAMPI (scam pi)</li>
+  <li value="21">THEATER (IolanTHE A TERrible)</li>
+  <li value="22">RR CROSSING (erring - e + cross)</li>
+  <li value="25">APPLE (dAPPLEd)</li>
+  <li value="26">HAM (witH AMerican)</li>
+  <li value="28">SUITS (double def.)</li>
+  <li value="30">BUTTERWORTH (butt + THROWER anag.)</li>
+  <li value="35">KEURIG (“cure rig”)</li>
+  <li value="37">TACIT (TACTIC - C)</li>
+  <li value="38">NASCENT (an< + scent)</li>
+  <li value="41">TASTE (STATE anag.)</li>
+  <li value="42">OR SO (Torso - T)</li>
+  <li value="43">OPALS (slap + O rev.)</li>
+  <li value="44">ENCIRCLES (cleric anag. + EdNa’S)</li>
+  <li value="45">ITEM (I Tried Eating Myself)</li>
+  <li value="46">ROMP (prompt - P - T)</li>
+  <li value="47">SLYNESS (Sly + Ness)</li>
+</ol>
+
+### Down
+
+<ol>
+  <li value="1">STAMINA (rev. animals - L + T)</li>
+  <li value="2">POSES (supposes - ‘Sup)</li>
+  <li value="3">ET TU (bET TUpperware)</li>
+  <li value="4">COINER (RECON + I)</li>
+  <li value="5">TANG (gnat rev.)</li>
+  <li value="6">ASIDE (dbl. Def. w/A-SIDE)</li>
+  <li value="7">LASER (Resale - E rev.)</li>
+  <li value="8">MISS USSR (missus sr.)</li>
+  <li value="9">SLACKS (dbl. def.)</li>
+  <li value="10">ASH PUG (esophagus - eso anag.)</li>
+  <li value="13">SCOTCH (Scot + CHug & lit)</li>
+  <li value="14">RCMP (RoCk MaPs)</li>
+  <li value="18">TAXING (T.A.+ Xing)</li>
+  <li value="21">HAPTICS (CAPS HIT anag.)</li>
+  <li value="23">RENTERS (R’s + Enter)</li>
+  <li value="24">RAW (war rev.)</li>
+  <li value="27">MOUSE (house - H + M)</li>
+  <li value="29">SCHISMS (Sch. is M + S)</li>
+  <li value="30">BITER (tribe anag.)</li>
+  <li value="31">TRI-TIP (It trip anag.)</li>
+  <li value="32">TIEPIN (pinkie - K + T)</li>
+  <li value="33">TITLES (tiles + T)</li>
+  <li value="34">NAN (aN ANtiquery)</li>
+  <li value="35">KNOCK (“nock”)</li>
+  <li value="36">EARLS (pearls - P)</li>
+  <li value="39">COSY (dbl. def.)</li>
+  <li value="40">NATE (ante anag.)</li>
+</ol>
+
+{% endblock %}

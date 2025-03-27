@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load puzzle_tags %}
+
+{% block page-title %}
+  <title>{% blocktranslate with puzzle_name=puzzle.name %}Stats: {{ puzzle_name }}{% endblocktranslate %}</title>
+  <meta name="robots" content="noindex" />
+{% endblock %}
+
+{% block top-left-actions %}
+  <a href="{% url 'puzzle' puzzle.slug %}" class="btn">{% translate "Back to the puzzle" %}</a>
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    .list-table td:not(:first-child) {
+      white-space: nowrap;
+      font-variant: tabular-nums;
+    }
+  </style>
+
+  <h1>{% blocktranslate with puzzle_name=puzzle.name %}Stats: {{ puzzle_name }}{% endblocktranslate %}</h1>
+
+  <main>
+    <div class="info-row">
+      <div>
+        <div class="stat-entry">{% translate "Total solves:" %} <span class="stat-value">{{ solves }}</span></div>
+        <div class="stat-entry">{% translate "Total guesses:" %} <span class="stat-value">{{ guesses }}</span></div>
+      </div>
+      <div>
+        <div class="stat-entry">{% translate "Hints asked:" %} <span class="stat-value">{{ hint_count }}</span></div>
+        <div class="stat-entry">{% translate "Teams unlocked:" %} <span class="stat-value">{{ unlock_count }}</span></div>
+      </div>
+    </div>
+
+    <table class="sortable list-table">
+      <col style="width: 30%">
+      <col style="width: 10%">
+      <col style="width: 20%">
+      <col style="width: 10%">
+      <col style="width: 20%">
+      <col style="width: 10%">
+      <thead>
+        <tr>
+          <th>{% translate "Team" %}</th>
+          <th>{% translate "Other guesses" %}</th>
+          <th>{% translate "Unlock time" %} ({{ start_time|date:"T" }})</th>
+          <th>{% translate "Time to solve" %}</th>
+          <th>{% translate "Solve time" %} ({{ start_time|date:"T" }})</th>
+          <th>{% translate "Time to solve after " %}<span style="font-family: monospace; word-break: break-all;">{{ wrong }}</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for solver in solvers %}
+          <tr{% if solver.is_current %} class="current-team"{% endif %}>
+            <td><a href="{% url 'team' solver.team.team_name %}">{{ solver.team.team_name }}</a></td>
+            <td>{{ solver.total_guesses }}</td>
+            <td sorttable_customkey="{{ solver.unlock_time|unix_time }}">{% format_time solver.unlock_time %}</td>
+            <td sorttable_customkey="{{ solver.open_duration }}">{% format_duration solver.open_duration %}</td>
+            <td sorttable_customkey="{{ solver.solve_time|unix_time }}">{% format_time solver.solve_time %}</td>
+            <td sorttable_customkey="{{ solver.wrong_duration }}">{% if solver.wrong_duration %}{% format_duration solver.wrong_duration %}{% endif %}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <br/>
+    <table class="sortable list=table">
+      <thead>
+        <tr>
+          <th>{% translate "Guess" %}</th>
+          <th>{% translate "Submission count" %}</th>
+          <th>{% translate "Partial?" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-family: monospace; font-weight: bold;">{{ answer }}</td>
+          <td>{{ solves }}</td>
+          <td></td>
+        </tr>
+        {% for guess in answers_tried %}
+          <tr>
+            <td style="font-family: monospace; word-break: break-all;">{{ guess.guess }}</td>
+            <td>{{ guess.count }}</td>
+            <td>{% if guess.partial %}✅{% endif %}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </main>
+
+{% endblock %}

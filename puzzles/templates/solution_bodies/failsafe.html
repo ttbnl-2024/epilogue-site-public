@@ -1,0 +1,49 @@
+{% extends "solution.html" %}
+{% load static %}
+
+{% block puzzle-author %}
+  Todd Becker
+{% endblock %}
+
+{% block solution-body-md %}
+
+<style>
+  .extra {
+    color: red;
+  }
+
+</style>
+
+This puzzle is about spinning safe dials with letters on them, according to given combinations.
+When we match a dial with a combination, we get a list of ingredients (with an extra letter) for a well-known cocktail.
+For confirmation, the cocktails are in alphabetical order by the given turn sequences.
+
+<div class="table-wrap" markdown="1">
+| Dial              | Combo                                              | Turn       | Ingredients                                            | Cocktail            |
+|-------------------|----------------------------------------------------|------------|--------------------------------------------------------|---------------------|
+| `ACEGMNORT`       | 1-4-6-7-4-8-8-5-6-1-7-5-6-9-7                      | Right-Left | COGNAC AM<span class="extra">(6/C)</span>ARETTO        | `FRENCH CONNECTION` |
+| `ACEILMNOQRTU`    | 2-8-6-9-8-11-4-11-6-4-9-8-1-7-2-1-7-2-11-10-3      | Left       | TEQUILA COINTREAU L<span class="extra">(2/E)</span>IME | `MARGARITA`         |
+| `DEGHIMNORTUV`    | 2-2-2-6-11-2-7-9-2-3-11-6                          | Right      | GIN <span class="extra">(6/D)</span> VERMOUTH          | `MARTINI`           |
+| `ACEGHIJMNOPRU`   | 12-10-4-6-10-10-10-8-6-6-11-11-5-5-1-9-7-7-5-12-12 | Left       | CHAMPAGNE ORANGE JUI<span class="extra">(5/A)</span>CE | `MIMOSA `           |
+| `ADEGHIKLMNORV`   | 1-11-9-3-11-7-10-2-9-7-1-9-4-11-10-7               | Left-Right | VOD<span class="extra">(3/H)</span>KA GINGER LIME      | `MOSCOW MULE`       |
+| `ACEFILMNOPRTU`   | 10-2-7-8-7-6-7-12-5-12-11-8-3-8-1-10-9-13-9-10     | Right      | RUM COCONUT PINE<span class="extra">(1/F)</span>APPLE  | `PINA COLADA`       |
+| `ABDEGILMNOPRSUY` | 11-1-12-13-3-4-13-14-11-4-2-12-13-12-13-12-7-13    | Right-Left | GIN LEMON S<span class="extra">(4/B)</span>YRUP SODA   | `TOM COLLINS`       |
+| `ADEGIKLNOTV`     | 3-10-3-8-4-6-4-7-6-5-9-9-11-4-7                    | Left-Right | GIN V<span class="extra">(4/G)</span>ODKA LILLET       | `VESPER`            |
+</div>
+
+The extra letters are consecutive from A-H.
+Reorder, and index into the cocktail name by the extra number to extract the answer <strong>`SCHNAPPS`</strong>.
+
+| Letter | Cocktail            | Index | Extract |
+|--------|---------------------|-------|---------|
+| A      | `MIMOSA`            | 5     | S       |
+| B      | `TOM COLLINS`       | 4     | C       |
+| C      | `FRENCH CONNECTION` | 6     | H       |
+| D      | `MARTINI`           | 6     | N       |
+| E      | `MARGARITA`         | 2     | A       |
+| F      | `PINA COLADA`       | 1     | P       |
+| G      | `VESPER`            | 4     | P       |
+| H      | `MOSCOW MULE`       | 3     | S       |
+
+
+{% endblock %}

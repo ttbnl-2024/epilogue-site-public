@@ -1,0 +1,36 @@
+# SQLite database
+/**/*.sqlite3
+
+# pyc files
+/**/*.pyc
+
+# translation compiled files
+/**/*.mo
+
+# Auto-collected static files folder
+/static/
+
+# Virtualenv
+/venv/
+/env/
+
+# pyenv
+.python-version
+
+# pid files
+/**/*.pid
+
+# MacOS generated files
+.DS_Store
+
+# IntelliJ
+.idea/
+
+dump.rdb
+
+*.swp
+\.vscode/
+.ruff_cache
+
+/logs/*.log
+prod-export/**

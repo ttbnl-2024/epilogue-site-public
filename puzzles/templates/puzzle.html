@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load puzzle_tags %}
+{% load static %}
+
+{% block page-title %}
+  <title>{{ puzzle.name }}</title>
+{% endblock %}
+
+{% block top-left-actions %}
+  <a href="{% url 'puzzles' %}" class="btn">Puzzles</a>
+  {% if team and not hunt_is_closed %}
+    <a href="{% url 'solve' puzzle.slug %}" class="btn">{% translate "Submit an answer" %}</a>
+    {% if not puzzle.is_meta and num_free_answers_remaining > 0 and puzzle_answer is None %}
+      <a href="{% url 'free-answer' puzzle.slug %}" class="btn">{% translate "Use free answer" %}</a>
+    {% endif %}
+  {% endif %}
+  {% if can_view_hints %}
+    <a href="{% url 'hints' puzzle.slug %}" class="btn">{% if can_ask_for_hints %}{% translate "Ask for a hint" %}{% else %}{% translate "View hints" %}{% endif %}</a>
+  {% endif %}
+  {% if hunt_is_closed or not team and hunt_is_over %}
+    <a href="{% url 'post-hunt-solve' puzzle.slug %}" class="btn">{% translate "Check your answer spoiler-free" %}</a>
+  {% endif %}
+  {% if hunt_is_over or is_superuser %}
+    <a href="{% url 'solution' puzzle.slug %}" class="btn">{% translate "View solution" %}</a>
+    <a href="{% url 'stats' puzzle.slug %}" class="btn">{% translate "Stats" %}</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+  <h1>
+    {{ puzzle.name }}
+    {% if puzzle_answer %}
+      <div class="solved-title-marker">{% translate "Solved!" %} <span class="solved-title-answer">{{ puzzle_answer }}</span></div>
+    {% endif %}
+  </h1>
+
+  <main class="puzzle-main clipboard-container">
+    {% for erratum in visible_errata %}
+      {% if erratum.puzzle == puzzle and erratum.puzzle_text %}
+        <div class="puzzle-erratum">
+          {% if not erratum.published %}
+            <strong>[<a href="{% url 'admin:puzzles_erratum_change' erratum.id %}">{% translate "UNPUBLISHED" %}</a>]</strong>
+          {% endif %}
+          {% format_time erratum.timestamp "DATE_AT_TIME" as hint_time %}
+          {% blocktranslate %}<strong>Erratum</strong> on {{ hint_time }}:{% endblocktranslate %}
+          {{ erratum.puzzle_text|safe }}
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    {% puzzleblock puzzle-body %}
+    {% if puzzle_body %}{{ puzzle_body }}{% elif template_name %}
+      {% blocktranslate %}This puzzle doesn&rsquo;t seem to exist yet.
+        Searched for a puzzle template named <code>{{ template_name }}</code>{% endblocktranslate %}
+    {% else %}
+      {% translate "This puzzle template exists, but it doesn&rsquo;t seem to define a puzzle content block. Check the post production guide?" %}
+    {% endif %}
+  </main>
+
+  <script src="{% static "js/copyjack.js" %}"></script>
+
+{% endblock %}

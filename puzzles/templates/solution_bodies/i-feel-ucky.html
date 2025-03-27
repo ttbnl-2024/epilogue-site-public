@@ -1,0 +1,139 @@
+{% extends "solution.html" %}
+{% load static %}
+
+{% block puzzle-author %}
+  Jacob N Scott
+{% endblock %}
+
+{% block solution-body-md %}
+
+<style>
+  img {
+    display: block;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 640px) {
+    img {
+      max-width: calc(min(100%, 63rem));
+    }
+  }
+</style>
+
+This is a cryptic with a "double or nothing"-style grid in which every square has either 0 or 2 letters.
+
+Some of the clues don't work as-is.  14 of the clues have words that must be removed before solving, and another 14 have words that must be "doubled" -- replaced with two consecutive copies of the word -- for the clue to work (just like the "L" in the title).  For example, in the clue "We hear, perhaps, a peeping Tom who sings", "Tom" must be doubled, forming a clue that parses as "(We hear, perhaps, a peeping Tom) (Tom who sings)", with answer `LEHRER` (singer Tom, homophone of `LEERER`).
+
+![]({% static 'solution_resources/i-feel-ucky/grid.png' %})
+
+These "doubled" and "nothing-ed" (removed) words pair up.  Each "doubled" word, when doubled, forms a different word or phrase that has a significantly different meaning, which is suggested by one of the removed words.  For example, Tom doubles to TomTom, a navigational device, and so pairs with "navigation".
+
+In each pair one clue is vertical and one is horizontal.  Highlight the square at the intersection of that row and column (overall every row and column is used exactly once) and read top-to-bottom to get the phrase "LOOK OVER EPISODES IN CRUST SEVEN".
+
+| Row | Doubled | Answer to doubled clue | Doubled word | Removed | Answer to removed clue | Removed word | Extract |
+|-----|---------|------------------------|--------------|---------|------------------------|--------------|---------|
+| 1   | 1A      | `EMPATH`               | Chop         | 7D      | `LOTION`               | Hurry        | `LO`    |
+| 2   | 23D     | `QUIP`                 | Yo           | 14A     | `BASTET`               | Toy          | `OK`    |
+| 3   | 47D     | `UNDO`                 | Do           | 17A     | `TIPS OVER`            | Bird         | `OV`    |
+| 4   | 20A     | `EARS`                 | Tar          | 3D      | `CUER`                 | Sauce        | `ER`    |
+| 5   | 33D     | `NETHER`               | There        | 22A     | `HELL`                 | Condolences  | `EP`    |
+| 6   | 25D     | `ISLE`                 | Can          | 24A     | `LEIS`                 | Dance        | `IS`    |
+| 7   | 34A     | `SLIPSHOD`             | Hush         | 13D     | `VEER`                 | Secret       | `OD`    |
+| 8   | 36A     | `POINT OUT`            | Putt         | 46D     | `BUTS`                 | Car          | `ES`    |
+| 9   | 37A     | `LENGTH`               | Fifty        | 48D     | `DEUS`                 | Evenly       | `IN`    |
+| 10  | 40A     | `LEHRER`               | Tom          | 19D     | `APPOSE`               | Navigation   | `CR`    |
+| 11  | 22D     | `HERETO`               | Hear         | 44A     | `QUAD`                 | Amen         | `US`    |
+| 12  | 53A     | `TSUNDERE`             | Tin          | 8D      | `BOER`                 | Adventurer   | `TS`    |
+| 13  | 55A     | `ABUSED`               | Major        | 51D     | `EVAN`                 | Heller       | `EV`    |
+| 14  | 1D      | `EMINEM`               | Me           | 56A     | `ENCHANTS`             | Lolcat       | `EN`    |
+
+
+This fits nicely in the blanks provided.  The words in the double-underscored blanks must be doubled, forming the cryptic clue "LOOK OVER OVER EPISODES IN IN CRUST CRUST (7)".  This parses as (LOOK OVER = definition) (OVER EPISODES = EPS backward) IN (put inside) IN (just the letters IN) CRUST CRUST (= CT, the outside of CRUST) to give the answer, IN + (EPS<=) + C[rus]T, or **`INSPECT`**.
+
+{% endblock %}
+
+{% block appendix-title %}
+Appendix
+{% endblock %}
+
+{% block appendix-md %}
+
+### Across
+
+| \# | Clue | Modify? | Answer | Explanation |
+| - | - | - | - | - |
+| 1A | Chop meat after removing overcooked center to make medium | Double "chop" | `EMPATH` | (CHOP MEAT - [over]CO[oked])* |
+| 7A | Crazy reason to commit crime, track vehicle |  | `LOCOMOTIVE` | LOCO + MOTIVE |
+| 14A | Cat toy?  God, the thousand in a wooden container is becoming close to sufficient | Remove "toy" | `BASTET` | BAS(K->[sufficien]T)ET |
+| 15A | Capable of being reserved, Radley goes before bleak mix-up |  | `BOOKABLE` | BOO + (BLEAK)* |
+| 16A | Popular fringe science remedy is unsafe |  | `INSECURE` | IN + S[cienc]E + CURE |
+| 17A | Bird topples from plastic post, eats bit of insect very abruptly (2 wds.) | Remove "bird" | `TIPS OVER` | (POST)* with I inserted + VER[y] |
+| 18A | To begin with, every month exclusively retell your father each gritty thing (2 wds.) |  | `EMERY PAPER` | EMERY (first letters) + PA + PER |
+| 20A | Tar Heels playing without heart, case of total holes in the head. | Double "tar" | `EARS` | (TAR TAR HEELS - HEART T[ota]L)* |
+| 21A | Beer and pop distributed in city |  | `ALEPPO` | ALE + (POP)* |
+| 22A | Hi!  Condolences, losing a love is torture. | Remove "condolences" | `HELL` | HELL[o] |
+| 24A | Relax in dance audition for Hawaiian circles | Remove "dance" | `LEIS` | "LAZE" |
+| 27A | "Don't start": Simon's response to "Are you logged in?" (2 wds.) |  | `IM ON` | [s]IMON |
+| 28A | "The Force Awakens", for one, about Qui-gon and Elsbeth, giving the primary two characters |  | `REQUEL` | RE + QU[i-gon] + EL[sbeth] |
+| 31A | West African to talk at length on three points |  | `GABONESE` | GAB + ON + ESE (3 compass directions) |
+| 34A | Carrying Hush Puppies without laces, for example, makes Nova Scotia Democrat careless | Double "hush" | `SLIPSHOD` | SLIP(SH)O(N->D) |
+| 35A | Conservatives don't read the start of news articles |  | `TORIES` | [s]TORIES |
+| 36A | Draw attention to love Indiana invested into extreme putt, evenly bagging hole (2 wds.) | Double "putt" | `POINT OUT` | P(O+IN)T + UT, O inserted |
+| 37A | In the end zone Peyton making great catch after fifty yards for half a football field | Double "fifty" | `LENGTH` | L + ENGTH (last letters) |
+| 38A | Really liked small breasts |  | `DUGS` | DUG + S |
+| 39A | In Berlin, one boarded a boat with fishing nets |  | `SEINES` | S(EINE)S |
+| 40A | We hear, perhaps, a peeping Tom who sings | Double "Tom" | `LEHRER` | "LEERER" |
+| 41A | Noisily chew chocolate bar |  | `CRUNCH` | Double def. |
+| 44A | Group of soldiers beheaded in grassy area on college campus, amen | Remove "amen" | `QUAD` | [s]QUAD |
+| 46A | Nonsense, prostitutes have use in dormitories |  | `BUNKHOUSES` | BUNK + HO(USE)S |
+| 50A | Took too much from an account of Italian composer almost getting trapped by rocks in a mine (tungsten) |  | `OVERDREW` | O(VERD[i])RE + W |
+| 53A | Primarily tin contains bit of umami and diced reed -- it's cold on the outside but sweet on the inside in Japan | Double "tin" | `TSUNDERE` | T + S(U)N + (REED)* |
+| 54A | High five between perverted Lee and one senator Cruz |  | `ELEVATED` | (LEE)* + V + A + TED |
+| 55A | Pachelbel's Canon major completer goes back, acquires half-forgotten spouse, is mistreated | Double "major" | `ABUSED` | (D + BA) reversed around [spo]USE |
+| 56A | Lolcat captivates English actor Jackie Eliot | Remove "lolcat" | `ENCHANTS` | EN + CHAN + TS |
+| 57A | I can't wait til despot loses power and is destroyed (3 wds.) |  | `LETS DO IT` | (TIL DESPOT - P)* |
+
+### Down
+
+| \# | Clue | Modify? | Answer | Explanation |
+| - | - | - | - | - |
+| 1D | Give me Nickelback or a famous rapper | Double "me" | `EMINEM` | ME(NI)ME<= |
+| 2D | "Foundation" is crass |  | `BASE` | Double def. |
+| 3D | Contra caller's mutt ingests bit of espagnole sauce | Remove "sauce" | `CUER` | CU(E)R |
+| 4D | Payment processor of the Holy Father accepts cryptocurrency, finally |  | `PAYPAL` | PA(Y)PAL |
+| 5D | Actress looks back, embraces end of employment |  | `STREEP` | PEER(T)S<= |
+| 6D | Seth puzzled about confusing item in cryptic crossword publication (2 wds.) |  | `THE TIMES` | (SETH)* around (ITEM)* |
+| 7D | Essentially in autopilot, I hurry onwards making preparation | Remove "hurry" | `LOTION` | pLOT I ONwards |
+| 8D | Huguenot disheartened more courageous adventurer | Remove "adventurer" | `BOER` | BO[ld]ER |
+| 9D | Officers upset contracted sci-fi character |  | `COPS` | SPOC[k]<= |
+| 10D | Dunce coming from two Midwest states |  | `MOOK` | MO (Missouri) + OK (Oklahoma) |
+| 11D | Most importantly, abs love to be utilized repeatedly (3 wds.) |  | `ABOVE ALL ELSE` | ABSLOVE letter bank |
+| 12D | Bathroom contractors split counter when papa goes out for half-serving of beer  |  | `TILERS` | SPLIT<=, P->[be]ER |
+| 13D | Secret career is heartless facade | Remove "secret" | `VEER` | VE[ne]ER |
+| 19D | Put in close proximity navigation app and operating system "Echo" | Remove "navigation" | `APPOSE` | APP + OS + E |
+| 22D | Hear two in this matter | Double "hear" | `HERETO` | "HEAR TWO" |
+| 23D | Question "Awake?" interrupted by English "yo mamma" utterance, for example | Double "yo" | `QUIP` | Q + UP, I ("yo" in English) inserted |
+| 24D | Delegator's smooth |  | `LEGATO` | deLEGATOr |
+| 25D | Manhattan, for example, is clean to can | Double "can" | `ISLE` | IS CLEAN removing CAN |
+| 26D | Crime boss put bullets in doppelganger (not dead!) |  | `RINGLEADER` | [dead]RING(LEAD)ER |
+| 29D | Hermit's son thrashing about in hut (hyph.) |  | `SHUT-IN` | S + (IN HUT)* |
+| 30D | Soldiers regularly producing poems |  | `ODES` | sOlDiErS |
+| 32D | Physicist is unexciting speaker for the audience |  | `BOHR` | "BORE" |
+| 33D | An obsidian portal can take you there, but it's messed up after the end of civilization | Double "there" | `NETHER` | N + (THERE)* |
+| 34D | Rudimentary weapons break things, taking zero skill, extremely stupid (at first) outside |  | `SLINGSHOTS` | O inside (THINGS)*, all inside S[kil]L + S[tupid] |
+| 36D | According to the Reverend, Cash, of some rock music, is not important |  | `PODUNK` | Spoonerism of "DOUGH PUNK" |
+| 38D | Tie the knot again after Charlie worked on a ship |  | `CREWED` | C + REWED |
+| 42D | Intergovernmental organization uniform black, not fit for service |  | `UNUSABLE` | UN + U + SABLE |
+| 43D | Busts famous communist spies at borders.  About time! |  | `CHESTS` | CHE + S[pie]S, T inserted |
+| 44D | Rings of witches banish most extreme members to location where one of them was killed by two children |  | `OVEN` | [c]OVEN[s] (definition refers to Hansel and Gretel) |
+| 45D | Thoroughly beat 1-to-50 egg dish, at last rising |  | `QUELCH` | QU[I->L]CHE, bottom E moving earlier |
+| 46D | Flipping car, leftover ticket results in objections | Remove "car" | `BUTS` | STUB<= |
+| 47D | Revert unoriginal hair-behind-the-head do | Double "do" | `UNDO` | [b]UN + DO |
+| 48D | Looking up, evenly appealed to Roman god | Remove "evenly" | `DEUS` | SUED<= |
+| 49D | Website, third-place, to step up and change yet again |  | `REEDIT` | RE[D shifted by +1]DIT |
+| 51D | Actress Heller Wood is somewhat relevant | Remove "Heller" | `EVAN` | relEVANt |
+| 52D | Oath made by Greek house: to improve failing grade |  | `DRAT` | [F->D as a letter grade]RAT |
+{% endblock %}
+

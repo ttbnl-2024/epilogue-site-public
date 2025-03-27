@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load puzzle_tags %}
+{% load static %}
+
+{% block page-title %}
+  <title>{% blocktranslate with puzzle=hint.puzzle team=hint.team %}Hint: {{ puzzle }} from {{ team }}{% endblocktranslate %}</title>
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    .canned-hint-table td p:first-child {
+      margin-top: 0;
+    }
+
+    .canned-hint-table td p:last-child {
+      margin-bottom: 0;
+    }
+    .hint-table .btn {
+      margin-top: 0.5rem;
+    }
+  </style>
+
+  <h1>{% translate "Answer a hint" %}</h1>
+
+  <div class="hint-controls">
+    <a class="btn" href="{% url 'hint_claimer' %}">
+      {% translate "Your name is" %} <b id="claimer">{{ current_claimer.display_name }}</b>.
+    </a>
+    <script src="{% static "js/hint.js" %}"></script>
+    <span>
+      <a href="{% url 'impersonate-start' hint.team.user_id %}" class="btn danger">{% translate "Impersonate" %}</a>
+      <a href="/admin/puzzles/hint/{{ hint.id }}/change/" class="btn">{% translate "View in admin" %}</a>
+    </span>
+  </div>
+
+  <main>
+
+    <table class="hint-table">
+      {% if hint.is_followup %}
+        <div class="note">
+          {% blocktranslate %}You&rsquo;re answering a follow-up hint: the team indicated the last
+            hint they got wasn&rsquo;t helpful for some reason, and they&rsquo;d
+            like clarification. Their previous hints are included here for context.
+            <br>The follow-up request, at the bottom, does not consume a hint
+            regardless of what status you assign to it. You should clarify whatever
+            was confusing or mistargeted in the last response, but feel free to
+            request that the team use a real hint instead. Setting this hint to
+            Refunded will also prevent additional follow-ups to the follow-up.{% endblocktranslate %}
+        </div>
+      {% endif %}
+      {% for hint in previous_same_team %}
+        <tbody style="background-color: #{{ hint.hint_question|hash|slice:':6' }}20">
+          <tr>
+            <td>
+              {% if hint.is_followup %}<em>({% translate "followup" %}){% endif %}
+              {% format_time hint.submitted_datetime 'DATE_AT_TIME' %}
+              {% if hint.is_followup %}</em>{% endif %}
+            </td>
+            <td colspan="3">
+              {% if hint.answered_datetime %}
+                {% format_time_since hint.answered_datetime now as answered_since %}
+                {% blocktranslate with status=hint.get_status_display claimer=hint.claimed_by.display_name %}{{ status }} {{ answered_since }} ago by {{ claimer }}{% endblocktranslate %}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                  <pre class="submitted-text">{{ hint.hint_question }}</pre>
+              <hr>
+                  <pre class="submitted-text">{{ hint.response }}</pre>
+            </td>
+          </tr>
+        </tbody>
+      {% endfor %}
+      <tbody style="background-color: #{{ hint.hint_question|hash|slice:':6' }}20">
+        <tr>
+          <th>
+            {% if hint.is_followup %}<em>({% translate "followup" %}){% endif %}
+            {% format_time hint.submitted_datetime 'DATE_AT_TIME' %}
+            {% if hint.is_followup %}</em>{% endif %}
+          </th>
+          <th>
+            <a href="{% url 'team' hint.team.team_name %}">
+              {{ hint.team }}
+            </a>
+          </th>
+          <th>
+            <a href="{% url 'solution' hint.puzzle.slug %}">
+              {{ hint.puzzle }}
+            </a>
+          </th>
+          <th>
+            <a href="/admin/puzzles/answersubmission/?team__id__exact={{ hint.team_id }}&puzzle__id__exact={{ hint.puzzle_id }}">
+              ({% translate "guesses" %})
+            </a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            {% if hint.answered_datetime %}
+              {% format_time_since hint.answered_datetime now as answered_since %}
+              {% blocktranslate with status=hint.get_status_display claimer=hint.claimed_by.display_name %}{{ status }} {{ answered_since }} ago by {{ claimer }}{% endblocktranslate %}
+            {% elif hint.claimed_datetime %}
+              <span style="color: red">
+                {% format_time_since hint.claimed_datetime now as claimed_since %}
+                {% blocktranslate with claimer=hint.claimed_by.display_name %}Claimed {{ claimed_since }} ago by {{ claimer }}{% endblocktranslate %}
+              </span>
+            {% elif hint.claimed_by %}
+              <span style="color: red">
+                {% blocktranslate with claimer=hint.claimed_by.display_name %}Claimed at unknown time (!?) by {{ claimer }}{% endblocktranslate %}
+              </span>
+            {% else %}
+              <a href="{% url 'hint' hint.id %}?claim=true" class="btn">{% translate "Claim this hint" %}</a>
+            {% endif %}
+          </td>
+          <td>
+            <a href="{% url 'hint-list' %}?team={{ hint.team_id }}">
+              ({% translate "all from same team" %})
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'hint-list' %}?puzzle={{ hint.puzzle_id }}">
+              ({% translate "all from same puzzle" %})
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'hint-list' %}?team={{ hint.team_id }}&puzzle={{ hint.puzzle_id }}">
+              ({% translate "both" %})
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+                  <pre class="submitted-text">{{ hint.hint_question }}</pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    {{ form.non_field_errors }}
+    <form method="post" class="hint-controls">
+      {% csrf_token %}
+      {% for field in form %}
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors }}
+      {% endfor %}
+      <input type="hidden" name="initial_status" value="{{ hint.status }}">
+      <br>
+      {% if hint.status == 'NR' %}
+        <button class="btn danger action-btn" name="action" type="submit" value="unclaim" formnovalidate>{% translate "Unclaim" %}</button>
+      {% else %}
+        <a class="btn action-btn" href="{% url 'hint-list' %}">{% translate "Back to list" %}</a>
+      {% endif %}
+      <button class="btn action-btn" name="action" type="submit">{% translate "Submit" %}</button>
+    </form>
+
+    {% if canned_hints %}
+      <h4>Canned hints</h4>
+      <table class="canned-hint-table">
+        <thead>
+          <tr>
+            <th style="width:10%">Order</th>
+            <th style="width:20%">Description</th>
+            <th style="width:20%">Keywords</th>
+            <th style="width:40%">Content</th>
+            <th style="width:10%">Copy</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for h in canned_hints %}
+            <tr>
+              <td>{{h.order}}</td>
+              <td>{{h.description}}</td>
+              <td><b>{% for tag in h.get_keywords %}{{tag}} {% endfor %}</b></td>
+              <td id="canned-{{forloop.counter}}">{{h.content|linebreaks}}</td>
+              <td><button onclick="copyHint('canned-{{forloop.counter}}')" class="btn action-btn">{% translate "Copy" %}</button></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+
+    {% if previous_all_teams %}
+      <h4>Hints to other teams</h4>
+      <table class="hint-table">
+        {% for hint in previous_all_teams %}
+          <tbody style="background-color: #{{ hint.hint_question|hash|slice:':6' }}20">
+            <tr>
+              <td>
+                <a href="{% url 'hint' hint.id %}">
+                  {% if hint.answered_datetime %}
+                    {% format_time_since hint.answered_datetime now as answered_since %}
+                    {% blocktranslate with status=hint.get_status_display claimer=hint.claimed_by.display_name %}{{ status }} {{ answered_since }} ago by {{ claimer }}{% endblocktranslate %}
+                  {% endif %}
+                </a>
+              </td>
+              <td>
+                <a href="{% url 'hint-list' %}?team={{ hint.team_id }}">
+                  {{ hint.team }}
+                </a>
+              </td>
+              <td>
+                <button onclick="copyHint('hint-{{ hint.id }}')" class="btn action-btn">{% translate "Copy response" %}</button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <pre class="submitted-text" id="hint-{{ hint.id }}">{{ hint.response }}</pre>
+              </td>
+            </tr>
+          </tbody>
+        {% endfor %}
+      </table>
+    {% endif %}
+  </main>
+{% endblock %}

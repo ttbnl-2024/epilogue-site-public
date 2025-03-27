@@ -1,0 +1,27 @@
+{% extends "puzzle.html" %}
+{% load static %}
+{% block puzzle-body-html %}
+
+<p>
+  While exploring Hephaestus's warehouse, you find some notes on his production process. He starts by discarding the common steelmaking impurities from the raw materials, then alloying in ingots of two or three appropriate elements (all stable) to create the finished product. Unfortunately, you don't have the recipes! Fortunately, you have the differences in the standard (abridged) weight between the finished product and the raw material.
+</p>
+
+<p>
+  Once you refine the raw materials into final products, you can iron out what Pluto should give to Hephaestus.
+</p>
+
+<table style="margin: 0 auto;">
+  <tbody>
+    {% for name, weight in weights.items %}
+    <tr>
+        <td>{{ name }}</td>
+        <td style="text-align: right;">{{ weight }} </td>
+      </tr>
+    {% endfor%}
+
+  </tbody>
+</table>
+
+<button class="btn clipboard-button" data-skip-inline-styles="true"></button>
+
+{% endblock %}

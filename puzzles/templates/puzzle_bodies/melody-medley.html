@@ -1,0 +1,73 @@
+{% extends "puzzle.html" %}
+{% load static %}
+{% block puzzle-body-html %}
+
+<style>
+  .pdf-viewer {
+    aspect-ratio: 8.5/11;
+    width: 100%;
+    display: block;
+  }
+  .yt-player {
+    margin: 0 auto;
+    display: block;
+  }
+</style>
+
+<div class="info-note">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" data-tooltip-id="" data-tooltip-content="info-tooltip" class="info-tooltip"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+  <span>
+    This is a standalone puzzle.
+    Its answer will not be used in the meta; and solving it will not unlock more puzzles.
+    Since this puzzle was not successfully testsolved, we have provided an optional, up-front starting hint in a dropdown.
+  </span>
+</div>
+
+<details class="no-copy">
+  <summary>Starting Hint</summary>
+
+  <p class="spoiler">
+    Apollo has taken a number of classical music (or rather Western art music) melodies and mixed them together into a larger work.
+  </p>
+
+  <p class="spoiler">
+    The piece is a set of five minipuzzles (and a separate minimeta).
+    The puzzles are sections A-E; you can ignore the sections marked M# for now.
+    The actual puzzle content are the parts marked in black and blue.
+    Start with parts marked in blue; each is a hint for how the entire segment functions.
+    You can safely ignore parts in gray; those are largely accompaniment to other pieces in the work, and are mostly to make everything sound nice.
+  </p>
+
+  <p class="spoiler">If you get stuck, here's some further advice:</p>
+
+  <details>
+    <summary><span class="spoiler">More on getting started</span></summary>
+    <p class="spoiler">
+      You will need to identify the actual pieces.
+      The composers' initials are given as a hint.
+      <a href="https://musipedia.org">Musipedia</a> is a great way to identify melodies of any kind, particularly classical.
+      The medley may change a melody's key, rhythm, or tempo to fit its section; the contour, however, will always be the same.
+    </p>
+  </details>
+</details>
+
+<p class="flavor">
+  Apollo, patron of the establishment where you now find yourself, has been hammering away at the piano.
+  It's a grand composition, but he believes the qualities of the original works dominate in every case.
+</p>
+
+<iframe
+  class="yt-player"
+  width="560"
+  height="315"
+  src="https://www.youtube-nocookie.com/embed/TuZ66C_8E4I?si=nxZIbtryzv5V2LZj"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>\
+</iframe>
+<br/>
+
+<p><a href="{% static 'puzzle_resources/melody-medley/melody-medley-score.pdf' %}">Direct PDF link</a></p>
+<iframe class="pdf-viewer" src="{% static 'puzzle_resources/melody-medley/melody-medley-score.pdf' %}"></iframe>
+
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load puzzle_tags %}
+
+{% block content %}
+
+  <h1>{% translate "FAQ" %}</h1>
+
+  <main>
+    <div class="no-break">
+      <h4>{% translate "What is this? How do I solve these puzzles?" %}</h4>
+      <p>{% blocktranslate %}Each puzzle in this hunt comes with some information, and the goal is to extract an answer out of it. The puzzles can take many different forms; the only real commonality is that you usually receive no direct instructions, so it’s up to you to figure out how to make sense of the information you’re given. You can read a longer introduction to puzzlehunts <a href="https://blog.vero.site/post/puzzlehunts">here</a>.{% endblocktranslate %}</p>
+      <p>{% blocktranslate %}If you are new to puzzles and are interested in seeing some examples, or if you’re looking for some practice, we recommend looking at puzzles from other online hunts such as <a href="https://galacticpuzzlehunt.com/">Galactic Puzzle Hunt</a>, <a href="https://teammatehunt.com/">Teammate Hunt</a>, <a href="https://puzzlepotluck.com/">Puzzle Potluck</a>, <a href="https://huntinality.com/">Huntinality</a>, or <a href="https://reddothunt.sg">REDDOThunt</a>.{% endblocktranslate %}</p>
+      <div>
+        <div class="no-break">
+          <h4>{% translate "Who is running this hunt?" %}</h4>
+          <p>
+            {% blocktranslate trimmed %}
+              We are a subset of the running team of the <a href="https://puzzles.mit.edu/2024/">2024 MIT Mystery Hunt</a>, The Team Formerly Known As The Team Formerly Known As The Team Formerly Known As The Team Formerly Known As The Team Formerly Known As The Team Formerly Known As The Team To Be Named Later.
+            {% endblocktranslate %}
+          </p>
+        </div>
+        <div class="no-break">
+          <h4>{% translate "What do you mean by epilogue? Do I need to have done MITMH24?" %}</h4>
+          <p>
+            {% blocktranslate trimmed %}
+              This epilogue is a continuation of the <a href="https://puzzles.mit.edu/2024/mythstoryhunt.world/oracle">story of MITMH24</a>.
+              However, it will not use any answers or puzzle content from MITMH24, and you can participate in and solve the epilogue without knowledge of anything from MITMH24.
+            {% endblocktranslate %}
+          </p>
+        </div>
+        <div class="no-break">
+          <h4>{% translate "How long and difficult is this hunt?" %}</h4>
+          <p>
+            {% blocktranslate trimmed %}
+              There will be 1 round of 12 puzzles, and one meta; plus some standalone puzzles.
+              These are Mystery Hunt style puzzles that range in difficulty from "Hera" to "Underworld" to "Overworld", with the majority being "Overworld" in difficulty.
+            {% endblocktranslate %}
+          </p>
+        </div>
+        <div class="no-break">
+          <h4>{% translate "Wait, standalone puzzles?" %}</h4>
+          <p>
+            {% blocktranslate trimmed %}
+              In addition to the round, we are also releasing an extremely long, round length, puzzle originally written and fully successfully testsolved for the original hunt that was cut due to length concerns.
+              We will also be releasing two puzzles that did not pass testsolving, but have fun creative artifacts that you may enjoy viewing or listening to.
+              These standalone puzzles are not required to "complete" the epilogue, but the round-length puzzle will be shown separately on the leaderboard for bragging rights.
+            {% endblocktranslate %}
+          </p>
+        </div>
+        <div class="no-break">
+          <h4>{% translate "What exactly happens when the hunt ends?" %}</h4>
+          <p>
+            {% format_time end_time "WEEKDATE_AT_TIME" as hunt_end %}
+            {% blocktranslate trimmed %}
+              When the hunt ends on <strong>{{ hunt_end }}</strong>, the scoreboard will be frozen and solutions for all the puzzles will be released, and we will prepare a wrap-up to be available soon after.
+            {% endblocktranslate %}
+      {% comment %}
+        {% format_time close_time "WEEKDATE_AT_TIME" as hunt_close %}
+        However, if you have not finished and still want to experience the whole hunt, you’ll still be able to register new teams, submit answers on the website, and progress through the hunt until <strong>{{ hunt_close }}</strong>. The only difference is that you won’t be able to use scrolls (hints) after the hunt ends. {% endcomment %}
+          </p>
+        </div>
+        <div class="no-break">
+          <h4>{% translate "How accessible is this hunt?" %}</h4>
+          <p>
+            {% blocktranslate trimmed %}
+              There may be puzzles involving colours, images and audio. If you encounter an accessibility issue, please email us at <a href="mailto:{{ contact }}">{{ contact }}</a> so that we can try to set up an accommodation. Some puzzles are not mobile-friendly.
+            {% endblocktranslate %}
+          </p>
+        </div>
+        <div class="no-break">
+          <h4>{% translate "I think there’s a mistake in this puzzle!" %}</h4>
+          <p>{% blocktranslate with contact=contact_email %}Please describe the error in an email to <a href="mailto:{{ contact }}">{{ contact }}</a> and we’ll try to correct it.{% endblocktranslate %}</p>
+        </div>
+        <div class="no-break">
+          <h4>{% translate "I’m stuck on a puzzle. What should I do?" %}</h4>
+          <p>{% blocktranslate %}Here are some general puzzle tips that might be useful:{% endblocktranslate %}</p>
+          <ul>
+            <li>{% blocktranslate %}Thoroughly check the work that you’ve already done. Fixing a small mistake or incorrect assumption can greatly help with getting unstuck.{% endblocktranslate %}</li>
+            <li>{% blocktranslate %}Get fresh eyes on the puzzle, or conversely, take a break and look at something else.{% endblocktranslate %}</li>
+            <li>{% blocktranslate %}Consider what information you haven’t used yet.{% endblocktranslate %}</li>
+            <li>{% blocktranslate %}It can be useful to put everything you have into your favourite search engine.{% endblocktranslate %}</li>
+            <li>{% blocktranslate %}Look at <a href="https://devjoe.appspot.com/huntindex/index/keywords.html">similar examples</a> of the puzzle type you’re working on.{% endblocktranslate %}</li>
+            <li>{% blocktranslate %}<a target="_blank" href="https://beta.vero.site/try">Have you tried…</a>{% endblocktranslate %}</li>
+          </ul>
+
+          <p>{% blocktranslate %}Remember that after hints are released, you can also use them to get a nudge in the right direction. Please use them if you’re stuck!{% endblocktranslate %}</p>
+
+        </div>
+        <div class="no-break">
+          <h4>{% translate "If we win, do we have to write the next epilogue?" %}</h4>
+          <p>{% blocktranslate %}No, but more puzzles are always welcome!{% endblocktranslate %}</p>
+        </div>
+        <div class="no-break">
+          <h4>{% translate "I have a question that’s not on this list!" %}</h4>
+          <p>{% blocktranslate with contact=contact_email %}Contact us at <a href="mailto:{{ contact }}">{{ contact }}</a> and we’ll do our best to answer it.{% endblocktranslate %}</p>
+        </div>
+      </main>
+
+{% endblock %}

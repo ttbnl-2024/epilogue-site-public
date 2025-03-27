@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block page-title %}
+  <title>{% blocktranslate with puzzle_name=puzzle.name %}Check: {{ puzzle_name }}{% endblocktranslate %}</title>
+{% endblock %}
+
+{% block top-left-actions %}
+  <a href="{% url 'puzzle' puzzle.slug %}" class="btn">{% translate "Back to the puzzle" %}</a>
+{% endblock %}
+
+{% block content %}
+
+  <h1>
+    {% blocktranslate with puzzle_name=puzzle.name %}Check: {{ puzzle_name }}{% endblocktranslate %}
+    {% if is_correct %}
+      <div class="solved-title-marker">{% translate "Solved!" %} <span class="solved-title-answer">{{ puzzle.answer }}</span></div>
+    {% elif is_wrong %}
+      <div class="solved-title-marker">{% translate "Incorrect!" %}</div>
+    {% endif %}
+  </h1>
+
+  <main>
+    <form>
+      {{ form.non_field_errors }}
+      {% for field in form %}
+        <div class="form-row">
+          <div class="form-desc">
+            {{ field.label_tag }}
+          </div>
+          {{ field }}
+          {{ field.errors }}
+          <a class="delete-row" href="#">&#x2794;</a>
+        </div>
+      {% endfor %}
+    </form>
+  </main>
+
+  <script>
+    $('.delete-row').click(function(e) {
+      e.preventDefault();
+      this.closest('form').requestSubmit();
+    });
+  </script>
+
+{% endblock %}

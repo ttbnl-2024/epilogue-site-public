@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load puzzle_tags %}
+
+{% block content %}
+
+  {% if hunt_is_prereleased %}
+    <h3 class="prerelease-msg">
+      {% translate "You are a pre-release testsolver, so you may be seeing puzzles that are locked for the general public. Please be careful!" %}
+    </h3>
+  {% endif %}
+
+  <style>
+    .canvas-wrapper {
+      margin: 2rem 0;
+    }
+
+    .canvas {
+      position: relative;
+      margin: 0 auto;
+      width: clamp(70%, calc(100% - 20vw), 100%);
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    @media screen and (max-width: 960px) {
+      .canvas > img {
+        width: 100%;
+      }
+    }
+
+    .wrapper {
+      transform: translate(-50%, 0);
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .wrapper > div > a {
+      position: absolute;
+      pointer-events: auto;
+    }
+
+    .invisible {
+      opacity: 0;
+    }
+
+    div.wrapper:hover img.icon {
+      transform: scale(1.05);
+    }
+
+    img.icon {
+      transition: transform.2s ease;
+    }
+
+    .icon-label {
+      position: relative;
+      z-index: 1;
+    }
+
+    .puzzle-title {
+      display: block;
+      font-size: max(8px,min(18px,2vw));
+      line-height: max(8px,min(18px,2vw));
+      background: rgba(32, 32, 32, 0.8);
+      border-radius: 8px;
+      padding: max(4px, min(8px, 1vw));
+      margin: -1rem auto 0;
+      width: fit-content;
+      text-align: center;
+      transform: translate(0, -1vw);
+    }
+  </style>
+
+  <div class="canvas-wrapper">
+    <div class="canvas">
+      <div class="img-bg">
+        <img src="{% static 'images/fire_background.png' %}"/>
+      </div>
+      {% for puzzle in rounds.hephaestus.puzzles %}
+        {% with puzzle.image_data as d %}
+          <div class="wrapper" style="left: {{ d.x }}%; top: {{ d.y }}%; width: {{ d.w }}%;">
+            <div>
+              <a class="puzzle-link" href="{% url 'puzzle' puzzle.puzzle.slug %}">
+                <img class="invisible" src="{% static 'icons/'|add:d.icon %}" />
+              </a>
+            </div>
+            <div style="width: 100%; position: relative;">
+              <img class="icon" src="{% static 'icons/'|add:d.icon %}" />
+            </div>
+            <div class="icon-label">
+              <span class="puzzle-title">{{ puzzle.puzzle.name }}</span>
+            </div>
+          </div>
+        {% endwith %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <main>
+    <div class="overflow-container">
+      {% include 'puzzles_list.html' with round=rounds.hephaestus %}
+    </div>
+    <hr/>
+    <h4>Standalone Puzzles</h4>
+    <div class="overflow-container">
+      <table class="puzzles-list">
+        {% include 'puzzles_list.html' with round=rounds.standalone %}
+      </table>
+    <div>
+  </main>
+
+{% endblock %}

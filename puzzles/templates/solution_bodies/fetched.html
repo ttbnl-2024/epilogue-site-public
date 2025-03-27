@@ -1,0 +1,45 @@
+{% extends "solution.html" %}
+{% load static %}
+
+{% block puzzle-author %}
+  Michael Andersen
+{% endblock %}
+
+{% block solution-body-md %}
+
+The scenes depict Star Trek crews in different movies, television series, and video games centered around time travel.
+This is clued by the flavortext reference to when *Back to the Future*’s Delorean crashes into the final pine tree that gave Lone Pines Mall (previously, Twin Pines Mall) its name.
+
+First, we identify which time travel media properties are featured, made simpler by including a black-and-white icon representing the source of time travel in the property.
+Additional clues from the background image selection and text descriptions help make those matches unambiguous in nature.
+
+| Time Travel Franchise | Iconic Source of Time Travel |
+|-----------------------|------------------------------|
+| A Christmas Carol     | Three Ghosts                 |
+| Arrival               | Alien Symbols                |
+| Frequency             | HAM Radio                    |
+| It’s A Wonderful Life | Angel                        |
+| LOST                  | Island                       |
+| Outlander             | Standing Stones              |
+| Prince of Persia      | Dagger of Time               |
+| The Umbrella Academy  | Briefcase                    |
+
+We note that the Time Travel franchises are listed in alphabetical order, indicating that an alternative sort order is necessary.
+Because the flavortext implies that they should be brought back to *their proper places*, we sort by Star Trek Series.
+
+The first letters of each description (when sorted by Star Trek series) spells out `CREW SIZE`, reinforcing that this is the correct sort, and giving the index for final extraction.
+
+| Star Trek Series               | Time Travel Franchise | 1st Letter of Desc. | # Crew Members | Index |
+|--------------------------------|-----------------------|---------------------|----------------|-------|
+| Star Trek: The Original Series | Outlander             | `C`                 | 2              | `U`   |
+| Star Trek: The Next Generation | A Christmas Carol     | `R`                 | 6              | `S`   |
+| Star Trek: Deep Space 9        | The Umbrella Academy  | `E`                 | 8              | `E`   |
+| Star Trek: Voyager             | Arrival               | `W`                 | 6              | `A`   |
+| Star Trek: Discovery           | LOST                  | `S`                 | 3              | `S`   |
+| Star Trek: Lower Decks         | Prince of Persia      | `I`                 | 9              | `P`   |
+| Star Trek: Prodigy             | Frequency             | `Z`                 | 3              | `E`   |
+| Star Trek: Strange New Worlds  | It’s A Wonderful Life | `E`                 | 7              | `N`   |
+
+This gives the final instruction, `USE ASPEN` — making **`ASPEN`** the correct answer — replacing the downed pine tree with a different type of tree to fix the timeline.
+
+{% endblock %}

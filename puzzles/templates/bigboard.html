@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load puzzle_tags %}
+{% load humanize %}
+
+{% block page-title %}
+  <title>{% translate "Bigboard" %}</title>
+{% endblock %}
+
+{% block top-left-actions %}
+  <a href="{% url 'wrapup' %}" class="btn">{% translate "Back to wrap-up" %}</a>
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    body {
+      width: auto;
+      max-width: none;
+      margin: 0 5vw;
+    }
+
+    .bg {
+      display: none;
+    }
+
+    .content {
+      text-align: center;
+      font-size: 1.25rem;
+    }
+
+    table {
+      table-layout: fixed;
+    }
+
+    td, th {
+      padding: 0 0.3em;
+      line-height: 1.25;
+      white-space: nowrap;
+      min-width: 2.5em;
+      height: 2.5em;
+    }
+
+    td.U { {# unlocked #}
+      background-color: #ccc;
+    }
+    td.W { {# wrong #}
+      background-color: #dbb;
+    }
+    td.S { {# solved #}
+      background-color: #060;
+      color: white;
+    }
+    td.B { {# backsolved #}
+      background-color: #4a4;
+    }
+    td.F { {# free answer #}
+      background-color: #cea;
+    }
+    td.H { {# hinted #}
+      background-image: linear-gradient(to bottom right, transparent 50%, #bee 50%);
+    }
+    td.P { {# post-hunt solve #}
+      opacity: 0.5;
+    }
+
+    .end:not(:last-child) {
+      border-right: 1px solid #e1e1e1;
+    }
+
+    td:first-child {
+      position: sticky;
+      left: 0;
+      background-color: var(--sticky-bg-color);
+      z-index: 1;
+      max-width: 160px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: bold;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background-color: var(--sticky-bg-color);
+      z-index: 2;
+      text-align: center;
+    }
+
+    table .hunt-icon {
+      width: 24px;
+    }
+
+    small {
+      display: block;
+    }
+
+    #hide {
+      width: 2rem;
+      height: 5rem;
+      margin: 0 1rem 0 0;
+      vertical-align: top;
+    }
+
+    [for=hide] {
+      display: inline-block;
+      font-size: 2rem;
+      line-height: 5rem;
+    }
+
+    :checked ~ table .finished {
+      display: none;
+    }
+
+    .puzzle-title-header-link {
+      display: inline-block;
+      padding: 10px 2px;
+      width: 100%;
+    }
+
+    .puzzle-title-header-link::before {
+      content: attr(data-puzzle-name);
+      position: absolute;
+      left: 50%;
+      bottom: 8px;
+      font-size: 12pt;
+      font-weight: normal;
+      color: initial;
+      padding: 8px;
+      transform: translate(-50%, 100%);
+      opacity: 0;
+      transition: opacity 0.15s;
+      pointer-events: none;
+      border-radius: 0 0 8px 8px;
+      background-color: var(--sticky-bg-color);
+    }
+
+    .puzzle-title-header-link:hover::before {
+      opacity: 1;
+    }
+  </style>
+
+  <input type="checkbox" id="hide"><label for="hide">{% translate "Hide finished teams" %}</label>
+  <p>{% translate "You can put ?30 after the URL to limit to 30 teams." %}</p>
+
+  <table>
+    {% spacelesser %}
+      <col> {# team #}
+      <col class="end"> {# place #}
+      <col> {# solves #}
+      <col> {# metas #}
+      <col> {# hints #}
+      <col class="end"> {# last solve #}
+      {% for puzzle in puzzles %}
+        <col{% if puzzle.puzzle.is_meta %} class="end"{% endif %}>
+      {% endfor %}
+      <tr>
+        <th>{% translate "Team" %}
+          <th>{% translate "#" %}
+            <th>{% include 'icon-solve.svg' %}
+              <th>{% include 'icon-meta.svg' %}
+                <th>{% include 'icon-hint.svg' %}
+                  <th>{% translate "Last solve" %}
+                    {% for puzzle in puzzles %}
+                      <th><a class="puzzle-title-header-link" data-puzzle-name="{{ puzzle.puzzle.name }}" href="{% url 'stats' puzzle.puzzle.slug %}">{{ puzzle.puzzle.short_name }}</a>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <td>{% translate "Solves" %}
+                      <td>
+                        <td colspan="4">
+                          {% for puzzle in puzzles %}
+                            <td class="S">{{ puzzle.solves }}
+                          {% endfor %}
+                        </tr>
+                        <tr>
+                          <td>{% translate "Guesses" %}
+                            <td>
+                              <td colspan="4">
+                                {% for puzzle in puzzles %}
+                                  <td class="W">{{ puzzle.total_guesses }}
+                                {% endfor %}
+                              </tr>
+                              <tr>
+                                <td>{% translate "Unlocks" %}
+                                  <td>
+                                    <td colspan="4">
+                                      {% for puzzle in puzzles %}
+                                        <td class="U">{{ puzzle.total_unlocks }}
+                                      {% endfor %}
+                                    </tr>
+                                    {% if hints_enabled %}
+                                      <tr>
+                                        <td>{% translate "Hints" %}
+                                          <td>
+                                            <td colspan="4">
+                                              {% for puzzle in puzzles %}
+                                                <td class="H">{{ puzzle.hints }}
+                                              {% endfor %}
+                                            </tr>
+                                    {% endif %}
+                                    {% if free_answers_enabled %}
+                                      <tr>
+                                        <td>{% include 'icon-answer.svg' %}
+                                          <td>
+                                            <td colspan="4">
+                                              {% for puzzle in puzzles %}
+                                                <td class="F">{{ puzzle.free_solves }}
+                                              {% endfor %}
+                                            </tr>
+                                    {% endif %}
+                                    <tr>
+                                      <td>{% translate "%Solve/Guess" %}
+                                        <td>
+                                          <td colspan="4">
+                                            {% for puzzle in puzzles %}
+                                              <td>{% percentage puzzle.solves puzzle.total_guesses %}
+                                            {% endfor %}
+                                          </tr>
+                                          <tr>
+                                            <td>{% translate "%Solve/Unlock" %}
+                                              <td>
+                                                <td colspan="4">
+                                                  {% for puzzle in puzzles %}
+                                                    <td>{% percentage puzzle.solves puzzle.total_unlocks %}
+                                                  {% endfor %}
+                                                </tr>
+                                                {% for board_entry in board %}
+                                                  <tr{% if board_entry.finished %} class="finished"{% endif %}>
+                                                    <td>
+                                                      <a href="{% url 'team' board_entry.team.team_name %}">
+                                                        {{ board_entry.team.team_name }}
+                                                      </a>
+                                                      <td>
+                                                        {{ forloop.counter }}
+                                                        {% if board_entry.finished %}
+                                                          <small>{{ board_entry.finished }}</small>
+                                                        {% endif %}
+                                                        <td>
+                                                          {% if board_entry.total_solves %}
+                                                            {{ board_entry.total_solves }}
+                                                          {% endif %}
+                                                          {% if board_entry.wrong_guesses %}
+                                                            &minus;{{ board_entry.wrong_guesses }}
+                                                          {% endif %}
+                                                          {% if board_entry.free_solves %}
+                                                            <small>+{{ board_entry.free_solves }}</small>
+                                                          {% endif %}
+                                                          <td>
+                                                            {% if board_entry.meta_solves %}
+                                                              {{ board_entry.meta_solves }}
+                                                            {% endif %}
+                                                            <td>
+                                                              {% if board_entry.used_hints or board_entry.team.num_hints_total %}
+                                                                {{ board_entry.used_hints }} / {{ board_entry.team.num_hints_total }}
+                                                              {% endif %}
+                                                              <td>
+                                                                {% format_time board_entry.last_solve_time %}
+                                                                {% for entry in board_entry.entries %}
+                                                                  <td{% if entry.cls %} class="{{ entry.cls }}"{% endif %}>
+                                                                    {% if entry.solve_position %}
+                                                                      {{ entry.solve_position }}
+                                                                    {% endif %}
+                                                                    {% if entry.wrong_guesses %}
+                                                                      &minus;{{ entry.wrong_guesses }}
+                                                                    {% endif %}
+                                                                    {% if entry.hints %}
+                                                                      <small>+{{ entry.hints }}</small>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                              </tr>
+                                                {% endfor %}
+    {% endspacelesser %}
+  </table>
+
+{% endblock %}

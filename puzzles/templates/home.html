@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load puzzle_tags %}
+
+{% block content %}
+  <style>
+    @media print {
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .feedback, .register {
+        display: none;
+      }
+
+      .print-register {
+        text-align: center;
+        margin: 20px 0 40px;
+      }
+    }
+
+    @media screen {
+      .print-register {
+        display: none;
+      }
+
+      .feedback, .register {
+        text-align: center;
+        margin-bottom: 40px;
+        background-color: rgba(32, 32, 32, 0.9);
+        padding: 1rem;
+      }
+
+      .register .btn {
+        height: 48px;
+        line-height: 48px;
+        font-size: 3rem;
+      }
+    }
+
+    .footnote {
+      font-size: 80%;
+      line-height: 1.5;
+    }
+  </style>
+
+  <h1>{{ hunt_title }}</h1>
+
+  {% if hunt_is_over %}
+    <div class="feedback">
+      {% if hunt_is_closed %}
+        {% blocktranslate with title=hunt_title %}The {{ title }} has now come to a close. Thanks for puzzling with us!{% endblocktranslate %}
+      {% else %}
+        {% format_time close_time "DATE_AT_TIME" as hunt_close %}
+        {% blocktranslate with title=hunt_title %}The {{ title }} is now over, but you can still register and progress through the hunt until {{ hunt_close }}.{% endblocktranslate %}
+      {% endif %}
+      <br>
+      {% with feedback_url="https://docs.google.com/forms/d/e/1FAIpQLSdFUT-De7-9mfWKJUYhUtVskodPAi2SXLgWSHzoAQgOc88N7g/viewform" %}
+        {% if wrapup_page_visible %}
+          {% url 'wrapup' as wrapup_url %}
+          {% blocktranslate %}Please fill out our <a href="{{ feedback_url }}">feedback form</a> and check out our <a href="{{ wrapup_url }}">wrap-up</a>!{% endblocktranslate %}
+        {% else %}
+          {% blocktranslate %}Please fill out our <a href="{{ feedback_url }}">feedback form</a> to let us know what you thought about the hunt.{% endblocktranslate %}
+        {% endif %}
+      {% endwith %}
+    </div>
+  {% endif %}
+
+  <div class="info-row">
+    <div>
+      <h4>{% translate "What" %}</h4>
+      <div class="info-desc">
+        {% translate "A year after Pluto's ordeal, everything is peaceful. Suddenly, the phone rings! Who could be calling, and what do they want?" %}<sup>*</sup>
+        <br><br>
+        <div class="footnote">
+          <sup>*</sup>
+          {% translate "We've been trying to reach you about your extended Mystery Hunt--" %}
+        </div>
+      </div>
+    </div>
+    <div>
+      <h4>{% translate "When" %}</h4>
+      <div class="info-desc">
+        {% format_time start_time "DATE_AT_TIME" as hunt_start %}
+        {% format_time end_time "DATE_AT_TIME" as hunt_end %}
+        {% if hunt_is_over %}
+          {% blocktranslate %}The hunt began on {{ hunt_start }}, and ended on {{ hunt_end }}.{% endblocktranslate %}
+        {% else %}
+          {% days_between start_time end_time as num_days %}
+          {% blocktranslate %}The hunt will begin on {{ hunt_start }}, and it will end {{ num_days }} days later on {{ hunt_end }}.{% endblocktranslate %}
+        {% endif %}
+      </div>
+    </div>
+    <div>
+      <h4>{% translate "Who" %}</h4>
+      <div class="info-desc">
+        {% with organizer=hunt_organizers %}
+          {% if hunt_is_closed %}
+            {% blocktranslate %}This was a puzzlehunt run by<br/> {{ organizer }}.{% endblocktranslate %}
+          {% else %}
+            {% url 'faq' as faq_url %}
+            {% url 'rules' as rules_url %}
+            {% blocktranslate %}This is a puzzlehunt run by<br/>{{ organizer }}.{% endblocktranslate %}
+            <br/>
+            <br/>
+            {% blocktranslate %}Registration is open! Be sure to check out our <a href="{{ rules_url }}">rules</a> and  <a href="{{ faq_url }}">faq</a> pages for more information. It is a follow-up to the <a href="https://puzzles.mit.edu/2024/">2024 MIT Mystery Hunt</a>.{% endblocktranslate %}
+          {% endif %}
+        {% endwith %}
+      </div>
+    </div>
+  </div>
+
+  {% if not hunt_is_closed and not request.user.is_authenticated %}
+    <div class="register">
+      <a href="{% url 'register' %}" class="btn">{% translate "Register your team!" %}</a>
+    </div>
+    <h3 class="print-register">
+      <a>{% translate "Register at" %} {% url 'register' %}</a>
+    </h3>
+  {% endif %}
+{% endblock %}

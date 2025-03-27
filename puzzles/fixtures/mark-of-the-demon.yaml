@@ -1,0 +1,324 @@
+- model: puzzles.Puzzle
+  pk: 30
+  fields:
+    name: Mark of the Demon
+    slug: mark-of-the-demon
+    body_template: mark-of-the-demon.html
+    round: 100
+    answer: I SEE DEAD PEOPLE
+    unlock_global: -1
+    unlock_local: 0
+    order: 2
+    emoji: ":imp:"
+
+- model: puzzles.CannedHint
+  pk: 2213
+  fields:
+    puzzle: 30
+    description: Automatic hint, given to everyone
+    order: 0.0
+    keywords: starting
+    content: "First, identify which role cards everyone has at the end of the game\
+      \ and answer the corresponding question on the game board.  You may not always\
+      \ be able to see the cards, but the players' behavior can help you figure out\
+      \ which is which.  Each game board question begins \"number the xth\", which\
+      \ indicates a letter in that question's answer.  Turn that letter into a number\
+      \ using use A=1 Z=26. \r\n\r\nNext, find a name for each role.  These are nicknames\
+      \ given to the players in other real VHS board games. Find the name of those\
+      \ games, and use the number from the first step to index into it and get the\
+      \ answer to Part 1.\r\n\r\nTo help identify the games, consult the DarkGrimoires.txt\
+      \ file, which gives word lengths for all of their titles. If you get stuck,\
+      \ here is the list of games: (see next hint)"
+- model: puzzles.CannedHint
+  pk: 2214
+  fields:
+    puzzle: 30
+    description: List of VHS games
+    order: 0.1
+    keywords: Games
+    content: "The games you're looking for are\r\nAtmosfear: Khufu the Mummy\r\nNightmare\r\
+      \nNightmare III: Witch\r\nNightmare IV: Vampire\r\nStar Trek: The Next Generation\
+      \ \u2013 Interactive VCR Board Game \u2013 A Klingon Challenge \r\nStar Wars:\
+      \ The Interactive Video Board Game: Assault on the Death Star\r\nVideo Grin\
+      \ N' Bear It\r\nWaynes World VCR Board Game"
+- model: puzzles.CannedHint
+  pk: 2246
+  fields:
+    puzzle: 30
+    description: Solvers haven't found the flashing letters at 1:09
+    order: 20.0
+    keywords: search
+    content: "Look for letters appearing over the video at 1:09.  It\u2019s easier\
+      \ to catch them if you go frame by frame."
+- model: puzzles.CannedHint
+  pk: 2247
+  fields:
+    puzzle: 30
+    description: Solvers haven't found all the single frame letters
+    order: 20.1
+    keywords: dial, blink, ship
+    content: TNG SHIP SUFFIX
+- model: puzzles.CannedHint
+  pk: 2248
+  fields:
+    puzzle: 30
+    description: Solvers haven't done anything with the reversed audio at 2:36
+    order: 21.0
+    keywords: backwards, reverse, audio
+    content: Reverse the reversed audio at 2:36 to hear a clue.
+- model: puzzles.CannedHint
+  pk: 2249
+  fields:
+    puzzle: 30
+    description: Solvers haven't reversed the reversed audio
+    order: 21.1
+    keywords: audio, reverse, backwards
+    content: DONUT SHAPE
+- model: puzzles.CannedHint
+  pk: 2250
+  fields:
+    puzzle: 30
+    description: Solvers haven't found a clue for the maze at 3:24.
+    order: 22.0
+    keywords: maze
+    content: The solve path for the maze at 2:34 draws the letter N.
+- model: puzzles.CannedHint
+  pk: 2251
+  fields:
+    puzzle: 30
+    description: Solvers haven't done anything with the static at 3:47
+    order: 23.0
+    keywords: static
+    content: The white bands of static at 3:47 are Morse. Decode them top to bottom,
+      first screen to last.
+- model: puzzles.CannedHint
+  pk: 2252
+  fields:
+    puzzle: 30
+    description: Solvers can't extract morse from the static
+    order: 23.1
+    keywords: static, morse
+    content: The static decodes to DIMPLED BALL GOES HERE.
+- model: puzzles.CannedHint
+  pk: 2253
+  fields:
+    puzzle: 30
+    description: Solvers can't find the clue with the demon's line at 4:10
+    order: 24.0
+    keywords: games, little
+    content: The audio stutter in the line "I must say, I will miss our little games"
+      at 4:10 gives you the letter R.
+- model: puzzles.CannedHint
+  pk: 2254
+  fields:
+    puzzle: 30
+    description: Solvers can't find anything in the Please Stand By screens at 4:37
+    order: 25.0
+    keywords: stand by
+    content: "The stacked lines in the \u201CPlease Stand By\u201D graphics at 4:37\
+      \ encodes semaphore."
+- model: puzzles.CannedHint
+  pk: 2255
+  fields:
+    puzzle: 30
+    description: Solvers can't decode the semaphore
+    order: 25.1
+    keywords: stand by, semaphore
+    content: The Stand By semaphore spells out MDMA.
+- model: puzzles.CannedHint
+  pk: 2256
+  fields:
+    puzzle: 30
+    description: Solvers can't decipher the image at the URL at 5:15
+    order: 26.0
+    keywords: url, /bit.ly/SpookyScaryHiddenURL, colors, colored,
+    content: The image at http://bit.ly/SpookyScaryHiddenURL will need to be desaturated
+      in an image editor.
+- model: puzzles.CannedHint
+  pk: 2271
+  fields:
+    puzzle: 30
+    description: Players couldn't desaturate the image at the URL.
+    order: 26.1
+    keywords: url, /bit.ly/SpookyScaryHiddenURL, colors, colored, image, desaturate
+    content: TWO VS KISSING
+- model: puzzles.CannedHint
+  pk: 2257
+  fields:
+    puzzle: 30
+    description: Solvers haven't figured out what to do with the audio at 6:40
+    order: 27.0
+    keywords: scan, patience, eldritch group therapy, EGT, audio
+    content: The chirping audio at 6:40 needs to be played into an SSTV decoder like
+      RX-SSTV, specifically using Marlin 1 mode.  You can get RX-SSTV at https://www.qsl.net/on6mu/rxsstv.htm
+- model: puzzles.CannedHint
+  pk: 2258
+  fields:
+    puzzle: 30
+    description: Solvers can't decode the SSTV audio.
+    order: 27.1
+    keywords: scan, patience, eldritch group therapy, EGT, audio, SSTV
+    content: A picture of an EYE.
+- model: puzzles.CannedHint
+  pk: 2259
+  fields:
+    puzzle: 30
+    description: Solvers haven't found an extract path for the bug sounds at 8:08
+    order: 28.0
+    keywords: animals, animal crossing, animal forest, insects, bugs, audio
+    content: The insect sounds at 8:08 are bug sounds from Animal Crossing (2001)
+      aka Animal Forest. Index the number of times the sound is repeated into the
+      name of each bug to get the cluephrase.
+- model: puzzles.CannedHint
+  pk: 2260
+  fields:
+    puzzle: 30
+    description: Solvers haven't made the extraction on the Animal Crossing bug sounds
+      puzzle.
+    order: 28.1
+    keywords: animals, animal crossing, animal forest, insects, bugs, audio
+    content: FOURTEEN
+- model: puzzles.CannedHint
+  pk: 2261
+  fields:
+    puzzle: 30
+    description: Solvers can't extract anything from the zalgo text at 10:11
+    order: 29.0
+    keywords: masonic, zalgo, pig
+    content: The tops of each character column at 10:11 are Pigpen characters
+- model: puzzles.CannedHint
+  pk: 2262
+  fields:
+    puzzle: 30
+    description: Solvers haven't decoded the pigpen
+    order: 29.1
+    keywords: pigpen, zalgo, masonic, pig
+    content: LOOK AT ME IM SANDRA
+- model: puzzles.CannedHint
+  pk: 2263
+  fields:
+    puzzle: 30
+    description: Solvers can't find the clue after Magnavox's line at 11:15 "You pathetic
+      humans have such short lives"
+    order: 30.0
+    keywords: dial, blink
+    content: The image that flashes for a frame at 11:51 says DIAL FOR MURDER
+- model: puzzles.CannedHint
+  pk: 2264
+  fields:
+    puzzle: 30
+    description: Solvers haven't figured out how to decrypt the numbers at 12:24
+    order: 31.0
+    keywords: numbers, encryption, bit,layer
+    content: "Convert the numbers on screen at 12:24 from ascii \u2192 base 64 \u2192\
+      \ hex \u2192 text"
+- model: puzzles.CannedHint
+  pk: 2265
+  fields:
+    puzzle: 30
+    description: Solvers aren't able to solve encryption chain on the white grid of
+      numbers.
+    order: 31.1
+    keywords: numbers, encryption, bit, layer, hex, base64,ascii
+    content: ROT THIRTEEN R
+- model: puzzles.CannedHint
+  pk: 2266
+  fields:
+    puzzle: 30
+    description: Solvers haven't found the QR code at 13:08
+    order: 32.0
+    keywords: qr, face, quick response
+    content: Scan the QR code in the demon face at 13:08 to get MOVIE BUT EVERY TIME
+      THEY SAY.
+- model: puzzles.CannedHint
+  pk: 2267
+  fields:
+    puzzle: 30
+    description: Solvers can't find a clue to match the demon line at at 14:24., "Just
+      a little bit more, and I'll be able to escape the confines of this cursed tape."
+    order: 33.0
+    keywords: escape, hear my words, little bit
+    content: Turn on closed captions on the video while the voiceover is playing at
+      14:24.
+- model: puzzles.CannedHint
+  pk: 2268
+  fields:
+    puzzle: 30
+    description: Solvers haven't found the clue in the closed captions at 14:24.
+    order: 33.1
+    keywords: escape, hear my words, little bit, caption
+    content: OHM MEASURE
+- model: puzzles.CannedHint
+  pk: 2269
+  fields:
+    puzzle: 30
+    description: Solvers haven't decoded the letters that appear at 15:24 with the
+      outline of a keyboard.
+    order: 34.0
+    keywords: shift, keyboard, XINNIB VKIIS
+    content: To decrypt the phrase at 15:24, shift each letter right one space on
+      a QWERTY keyboard
+- model: puzzles.CannedHint
+  pk: 2270
+  fields:
+    puzzle: 30
+    description: Solvers haven't figured out the keyboard shift cipher
+    order: 34.1
+    keywords: shift, keyboard, XINNIB VKIIS
+    content: COMMON BLOOD
+- model: puzzles.CannedHint
+  pk: 2272
+  fields:
+    puzzle: 30
+    description: Solvers are stuck at turning the 15 mini-puzzle answers into a solve.
+    order: 100.0
+    keywords: extraction
+    content: 'Each of the mini-puzzles in the video gives you either a letter, or
+      a cluephrase whose answer is a letter.  Arrange them in the order they appear
+      in the video to get your answer. For complete spoilers, here are full list of
+      clues and solutions: (see next hint)'
+- model: puzzles.CannedHint
+  pk: 2273
+  fields:
+    puzzle: 30
+    description: Solvers are missing too many letters/stuck on final extraction and
+      want spoilers
+    order: 100.1
+    keywords: extraction
+    content: "TNG SHIP SUFFIX = D\r\nDONUT SHAPE = O\r\nmaze solution = N\r\nDIMPLED\
+      \ BALL GOES HERE = T\r\naudio glitch phoneme = R\r\nMDMA = E\r\nTWO VS KISSING\
+      \ = W\r\neye image = I\r\nFOURTEEN = N\r\nLOOK AT ME IM SANDRA = D\r\nDIAL FOR\
+      \ MURDER = M\r\nROT THIRTEEN R = E\r\nMOVIE BUT EVERY TIME THEY SAY = B\r\n\
+      OHM MEASURE = R\r\nCOMMON BLOOD = O"
+- model: puzzles.PuzzleMessage
+  pk: 265
+  fields:
+    puzzle: 30
+    guess: DONT REWIND ME BRO
+    response: >
+      We read your guess aloud, and all of the magic smoke that had escaped
+      went right back into the computers! Everything is working smoothly, and
+      it smells even cleaner than when we got here!
+
+
+      This email opened itself up (weird) and it had this file already attached.
+      We haven't watched it... it seems like it's for you.
+
+
+      - TTBNL HQ
+
+      <em>
+        The attached file would have been a video. Unfortunately, the video has been lost since the original authoring of the puzzle. It shows the actors collapsing in their seats or on the table. The screen changes to black, and the text <code>I SEE DEAD PEOPLE</code> appears.
+      </em>
+- model: puzzles.PuzzleMessage
+  pk: 264
+  fields:
+    puzzle: 30
+    guess: MAGNAVOX
+    response: "Hi, this is TTBNL HQ - something weird just happened in our headquarters.\
+      \ As soon as you submitted that last guess, the lights in the room dimmed, and\
+      \ all of our devices started smoking. Once the fog cleared, this video was playing\
+      \ on loop across all the devices.\r\n\r\nIf I didn\u2019t know any better, I\u2019\
+      d suspect you summoned a foul demon or something. But clearly you wouldn\u2019\
+      t do something so foolish, dooming us all to eternal torment. Anyway, here\u2019\
+      s the vide: <a href=\"https://youtu.be/ipmQjPUxGZ0\">https://youtu.be/ipmQjPUxGZ0</a>"

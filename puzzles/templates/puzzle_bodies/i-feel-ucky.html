@@ -1,0 +1,183 @@
+{% extends "puzzle.html" %}
+{% load static %}
+{% block puzzle-body-html %}
+
+  <style>
+    .crossword {
+      margin: 0 auto;
+      text-align: center;
+      border: 2px solid black;
+    }
+
+    .crossword td {
+      border: 1px solid lightgrey;
+      background-color: white;
+      color: black;
+      padding: 1px;
+      height: min(25px, 5.333333333333333vw);
+      width: min(25px, 5.333333333333333vw);
+      position: relative;
+    }
+
+    .crossword .clue {
+      position: absolute;
+      width: min-content;
+      height: 33%;
+      text-align: left;
+      color: black;
+      top: clamp(-3px,-1px - .03vw,-1px);
+      left: clamp(0px,.3vw,2px);
+      font-size: clamp(4px,1.5vw,10px);
+    }
+
+    .clues {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-top: 2rem;
+    }
+
+    .clues div {
+      width: 100%;
+    }
+
+    @media screen and (min-width: 960px){
+      .clues div {
+        width: 45%;
+      }
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (min-width: 640px) {
+      img {
+        max-width: calc(min(100%, 63rem));
+      }
+    }
+  </style>
+
+  <p class="flavor">
+    I've lost so much I think I'm gonna be sick... double or nothing?
+  </p>
+
+  <div class="info-note">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" data-tooltip-id="" data-tooltip-content="info-tooltip" class="info-tooltip"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span>A <a href="https://docs.google.com/spreadsheets/d/1YIlHoZspol6h6aQJlSrV8qJtIPBZSK-gHj3-8eV38WQ/edit?gid=0#gid=0">copyable spreadsheet</a> is available.</span>
+  </div>
+
+  <br class="copy-only"/>
+
+  <table class="crossword">
+    <tbody>
+      <tr><td style=""><div class="clue">1</div></td><td style=""><div class="clue">2</div></td><td style=""><div class="clue">3</div></td><td style=""><div class="clue">4</div></td><td style=""><div class="clue">5</div></td><td style=""><div class="clue">6</div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">7</div></td><td style=""><div class="clue">8</div></td><td style=""><div class="clue">9</div></td><td style=""><div class="clue">10</div></td><td style=""><div class="clue">11</div></td><td style=""><div class="clue">12</div></td><td style=""><div class="clue">13</div></td></tr>
+      <tr><td style=""><div class="clue">14</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">15</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td></tr>
+      <tr><td style=""><div class="clue">16</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">17</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td></tr>
+      <tr><td style=""><div class="clue">18</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue">19</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">20</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td></tr>
+      <tr><td style="background-color:black;"><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">21</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">22</div></td><td style=""><div class="clue">23</div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td></tr>
+      <tr><td style=""><div class="clue">24</div></td><td style=""><div class="clue">25</div></td><td style=""><div class="clue">26</div></td><td style="background-color:black;"><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">27</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">28</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue">29</div></td><td style=""><div class="clue">30</div></td></tr>
+      <tr><td style=""><div class="clue">31</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue">32</div></td><td style=""><div class="clue">33</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">34</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td></tr>
+      <tr><td style=""><div class="clue">35</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">36</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td></tr>
+      <tr><td style=""><div class="clue">37</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">38</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">39</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td></tr>
+      <tr><td style="background-color:black;"><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">40</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">41</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue">42</div></td><td style=""><div class="clue">43</div></td><td style="background-color:black;"><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td></tr>
+      <tr><td style=""><div class="clue">44</div></td><td style=""><div class="clue">45</div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">46</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue">47</div></td><td style=""><div class="clue">48</div></td><td style=""><div class="clue">49</div></td></tr>
+      <tr><td style=""><div class="clue">50</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue">51</div></td><td style=""><div class="clue">52</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">53</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td></tr>
+      <tr><td style=""><div class="clue">54</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">55</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td></tr>
+      <tr><td style=""><div class="clue">56</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style="background-color:black;"><div class="clue"></div></td><td style=""><div class="clue">57</div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td><td style=""><div class="clue"></div></td></tr>
+    </tbody>
+  </table>
+
+  <br class="no-copy"/>
+  <img src="{% static 'puzzle_resources/i-feel-ucky/blanks.png' %}"/>
+  <br class="copy-only"/>
+
+  <div class="clues">
+    <div>
+      <h3 class="no-copy">Across</h3>
+      <span class="copy-only">Across</span>
+      <ol>
+        <li value="1">Chop meat after removing overcooked center to make medium</li>
+        <li value="7">Crazy reason to commit crime, track vehicle</li>
+        <li value="14">Cat toy?  God, the thousand in a wooden container is becoming close to sufficient</li>
+        <li value="15">Capable of being reserved, Radley goes before bleak mix-up</li>
+        <li value="16">Popular fringe science remedy is unsafe</li>
+        <li value="17">Bird topples from plastic post, eats bit of insect very abruptly (2 wds.)</li>
+        <li value="18">To begin with, every month exclusively retell your father each gritty thing (2 wds.)</li>
+        <li value="20">Tar Heels playing without heart, case of total holes in the head.</li>
+        <li value="21">Beer and pop distributed in city</li>
+        <li value="22">Hi!  Condolences, losing a love is torture.</li>
+        <li value="24">Relax in dance audition for Hawaiian circles</li>
+        <li value="27">"Don't start": Simon's response to "Are you logged in?" (2 wds.)</li>
+        <li value="28">"The Force Awakens", for one, about Qui-gon and Elsbeth, giving the primary two characters</li>
+        <li value="31">West African to talk at length on three points</li>
+        <li value="34">Carrying Hush Puppies without laces, for example, makes Nova Scotia Democrat careless</li>
+        <li value="35">Conservatives don't read the start of news articles</li>
+        <li value="36">Draw attention to love Indiana invested into extreme putt, evenly bagging hole (2 wds.)</li>
+        <li value="37">In the end zone Peyton making great catch after fifty yards for half a football field</li>
+        <li value="38">Really liked small breasts</li>
+        <li value="39">In Berlin, one boarded a boat with fishing nets</li>
+        <li value="40">We hear, perhaps, a peeping Tom who sings</li>
+        <li value="41">Noisily chew chocolate bar</li>
+        <li value="44">Group of soldiers beheaded in grassy area on college campus, amen</li>
+        <li value="46">Nonsense, prostitutes have use in dormitories</li>
+        <li value="50">Took too much from an account of Italian composer almost getting trapped by rocks in a mine (tungsten)</li>
+        <li value="53">Primarily tin contains bit of umami and diced reed -- it's cold on the outside but sweet on the inside in Japan</li>
+        <li value="54">High five between perverted Lee and one senator Cruz</li>
+        <li value="55">Pachelbel's Canon major completer goes back, acquires half-forgotten spouse, is mistreated</li>
+        <li value="56">Lolcat captivates English actor Jackie Eliot</li>
+        <li value="57">I can't wait til despot loses power and is destroyed (3 wds.)</li>
+      </ol>
+    </div>
+    <br class="copy-only"/>
+    <div>
+      <h3 class="no-copy">Down</h3>
+      <span class="copy-only">Down</span>
+      <ol>
+        <li value="1">Give me Nickelback or a famous rapper</li>
+        <li value="2">"Foundation" is crass</li>
+        <li value="3">Contra caller's mutt ingests bit of espagnole sauce</li>
+        <li value="4">Payment processor of the Holy Father accepts cryptocurrency, finally</li>
+        <li value="5">Actress looks back, embraces end of employment</li>
+        <li value="6">Seth puzzled about confusing item in cryptic crossword publication (2 wds.)</li>
+        <li value="7">Essentially in autopilot, I hurry onwards making preparation</li>
+        <li value="8">Huguenot disheartened more courageous adventurer</li>
+        <li value="9">Officers upset contracted sci-fi character</li>
+        <li value="10">Dunce coming from two Midwest states</li>
+        <li value="11">Most importantly, abs love to be utilized repeatedly (3 wds.)</li>
+        <li value="12">Bathroom contractors split counter when papa goes out for half-serving of beer</li>
+        <li value="13">Secret career is heartless facade</li>
+        <li value="19">Put in close proximity navigation app and operating system "Echo"</li>
+        <li value="22">Hear two in this matter</li>
+        <li value="23">Question "Awake?" interrupted by English "yo mamma" utterance, for example</li>
+        <li value="24">Delegator's smooth</li>
+        <li value="25">Manhattan, for example, is clean to can</li>
+        <li value="26">Crime boss put bullets in doppelganger (not dead!)</li>
+        <li value="29">Hermit's son thrashing about in hut (hyph.)</li>
+        <li value="30">Soldiers regularly producing poems</li>
+        <li value="32">Physicist is unexciting speaker for the audience</li>
+        <li value="33">An obsidian portal can take you there, but it's messed up after the end of civilization</li>
+        <li value="34">Rudimentary weapons break things, taking zero skill, extremely stupid (at first) outside</li>
+        <li value="36">According to the Reverend, Cash, of some rock music, is not important</li>
+        <li value="38">Tie the knot again after Charlie worked on a ship</li>
+        <li value="42">Intergovernmental organization uniform black, not fit for service</li>
+        <li value="43">Busts famous communist spies at borders.  About time!</li>
+        <li value="44">Rings of witches banish most extreme members to location where one of them was killed by two children</li>
+        <li value="45">Thoroughly beat 1-to-50 egg dish, at last rising</li>
+        <li value="46">Flipping car, leftover ticket results in objections</li>
+        <li value="47">Revert unoriginal hair-behind-the-head do</li>
+        <li value="48">Looking up, evenly appealed to Roman god</li>
+        <li value="49">Website, third-place, to step up and change yet again</li>
+        <li value="51">Actress Heller Wood is somewhat relevant</li>
+        <li value="52">Oath made by Greek house: to improve failing grade</li>
+      </ol>
+    </div>
+  </div>
+
+  <button class="btn clipboard-button" data-skip-inline-styles="true"></button>
+
+{% endblock %}
+

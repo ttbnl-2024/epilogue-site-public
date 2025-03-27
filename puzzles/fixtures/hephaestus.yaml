@@ -1,0 +1,134 @@
+- model: puzzles.Puzzle
+  pk: 352
+  fields:
+    name: Hephaestus
+    slug: hephaestus
+    body_template: hephaestus.html
+    round: 17
+    answer: METALLICA BONDING
+    unlock_global: -1
+    unlock_local: 9
+    order: 13
+    emoji: ":hammer_pick:"
+    is_meta: true
+
+- model: puzzles.PuzzleMessage
+  pk: 3
+  fields:
+    puzzle: 352
+    guess: METAL CAN BONG
+    response: "You ring Pluto with your suggestion. He is skeptical, to say the least. \"Uh, a <code>METAL CAN BONG</code>? Really? Surely you can come up with something more refined.\"\n\u0394 = 237.986"
+- model: puzzles.CannedHint
+  pk: 62
+  fields:
+    puzzle: 352
+    description: Solvers are stuck on getting started
+    order: 5.0
+    keywords: getting started, start
+    content: Since you are told that you are removing common steel making impurities,
+      perhaps you can identify some in your answers.
+- model: puzzles.CannedHint
+  pk: 64
+  fields:
+    puzzle: 352
+    description: Solvers are stuck on getting started (2)
+    order: 5.1
+    keywords: getting started, start
+    content: Every answer has N, P, and S in it.
+- model: puzzles.CannedHint
+  pk: 65
+  fields:
+    puzzle: 352
+    description: Solvers are stuck on new weights
+    order: 40.0
+    keywords: weights
+    content: You are given the difference in the standard weight between the finished
+      product and the raw material. The raw material still includes the weight of
+      the impurities you had to remove.
+- model: puzzles.CannedHint
+  pk: 66
+  fields:
+    puzzle: 352
+    description: Solvers are stuck on new weights (2)
+    order: 40.1
+    keywords: weights
+    content: Since you are given the difference in the standard weight between the
+      finished product and the raw material, you need to add the weight removed to
+      the given weight to find the weight of the 2-3  elements that need to be alloyed
+      in.
+- model: puzzles.CannedHint
+  pk: 70
+  fields:
+    puzzle: 352
+    description: Solvers are stuck on adding in elements
+    order: 60.0
+    keywords: adding, alloying
+    content: You need to find 2-3 elements whose weights sum to the NPS weights plus
+      the given added weight and insert those elements into the remaining letters
+      to make a new word. Make sure to use the standard (abridged) weight.
+- model: puzzles.CannedHint
+  pk: 71
+  fields:
+    puzzle: 352
+    description: Solvers are stuck on adding in elements (2)
+    order: 70.0
+    keywords: adding, alloying
+    content: Notice that the answers you got so far are each 1 letter shorter than
+      the title of the puzzles. You can use that to deduce how many elements may be
+      added into each one.
+- model: puzzles.CannedHint
+  pk: 63
+  fields:
+    puzzle: 352
+    description: Solvers are stuck on extraction/adding in elements
+    order: 80.0
+    keywords: Extraction/adding in elements
+    content: The elemental symbol for Iron appears in each of the feeder titles.
+- model: puzzles.CannedHint
+  pk: 67
+  fields:
+    puzzle: 352
+    description: Solvers are stuck on extraction (2)
+    order: 80.1
+    keywords: Extraction
+    content: The length of the puzzle titles are each 1 letter longer than the resulting
+      word after alloying in your 2-3 metals. Since Fe shows up in each title, if
+      you consider it as a single element rather than two letters, it gives a location
+      in each feeder answer.
+- model: puzzles.CannedHint
+  pk: 72
+  fields:
+    puzzle: 352
+    description: Solvers are stuck on ordering
+    order: 90.0
+    keywords: Ordering
+    content: There are a few sets of numbers in this puzzle. Why not try organizing
+      by a set of numbers and see if that works.
+- model: puzzles.CannedHint
+  pk: 73
+  fields:
+    puzzle: 352
+    description: Solvers are stuck on ordering (2)
+    order: 90.1
+    keywords: Ordering
+    content: You should order smallest to largest using the total weight of the added
+      alloys.
+- model: puzzles.CannedHint
+  pk: 68
+  fields:
+    puzzle: 352
+    description: Solvers are stuck on how to keep going after extraction
+    order: 100.0
+    keywords: Keep going
+    content: You will need to repeat the process that you have completed for each
+      of the feeders
+- model: puzzles.CannedHint
+  pk: 69
+  fields:
+    puzzle: 352
+    description: Solvers are stuck on how to keep going after extraction (2)
+    order: 100.1
+    keywords: keep going
+    content: Just like for each of the feeders, you need to remove any N, P, or S
+      in your current answer and add in 2-3 elements. The elements you add in have
+      to have a sum weight equal to that of the removed elements plus 237.986.

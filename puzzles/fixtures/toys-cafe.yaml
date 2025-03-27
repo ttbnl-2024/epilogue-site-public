@@ -1,0 +1,69 @@
+- model: puzzles.Puzzle
+  pk: 748
+  fields:
+    name: Toys' Cafe
+    slug: toys-cafe
+    body_template: toys-cafe.html
+    answer: SPLINT
+    round: 17
+    unlock_global: -1
+    unlock_local: 2
+    order: 7
+    emoji: ":yo_yo:"
+
+- model: puzzles.cannedhint
+  pk: 1850
+  fields:
+    puzzle: 748
+    description: What's going on??
+    order: 0.0
+    keywords: start
+    content: One of the toys in this puzzle is a 5-disc Towers of Hanoi. How many
+      different states can you put that toy in? The internet has more info about this
+      particular graph.
+- model: puzzles.cannedhint
+  pk: 1851
+  fields:
+    puzzle: 748
+    description: Help me find the blue state in some of the subpuzzles! (this hint
+      covers the Snake, Blocks, and Chess subpuzzles)
+    order: 50.0
+    keywords: snake, blocks, chess
+    content: "Snake: If the snake chases its own tail in a loop, then it will slither\
+      \ around the same size loop in the graph. Can you ID the two loops the red state\
+      \ lives in?\n\nBlocks: The blue state is in a long road of unique moves.\
+      \ At the end of that road, the \u0393-shaped block is in the top-right corner,\
+      \ and the \u231F block is in the bottom-right corner.\n\nChess: Try to find\
+      \ a configuration where there's only 1 legal move. There are only 2 such configurations,\
+      \ and you can use the red state to disambiguate which is which."
+- model: puzzles.cannedhint
+  pk: 1852
+  fields:
+    puzzle: 748
+    description: Help me find the blue state in some of the subpuzzles! (this hint
+      covers the Water Pouring, Tic-Tac-Toe, and Towers of Hanoi subpuzzles)
+    order: 50.0
+    keywords: water, tic, tac, toe, hanoi
+    content: "Water pouring: The graph is a total mess. But it's symmetric, and the\
+      \ symmetry maps the red state to the blue state. Can you find the symmetry of\
+      \ the water-pouring toy? It's a generic symmetry of water-pouring puzzles: that\
+      \ is, it applies no matter how tall each glass is.\n\nTic-tac-toe: What\
+      \ move must have been played last, and what does the graph tell you about ways\
+      \ O and X could have won earlier? A useful observation: numbering the columns\
+      \ of the graph 0, 1, 2, 3, and 4, there is a vertex in column 2 that leads to\
+      \ two terminal vertices in column 3.\n\nTowers of Hanoi: The three corners\
+      \ of this graph are the unique Towers of Hanoi states with only two legal moves.\
+      \ What are those states? If all else fails, you can find info about this particular\
+      \ graph online."
+- model: puzzles.cannedhint
+  pk: 1853
+  fields:
+    puzzle: 748
+    description: Stucc on extraction >:(
+    order: 100.0
+    keywords: extract, extraction
+    content: "[[If the solvers are stuck here, they probably either (1) have incorrect\
+      \ work, or (2) are staring at a grid with blue cells shaded, instead of thinking\
+      \ about the actual picture. If the latter...]]\n\nWhat does the picture\
+      \ look like when all the toys are in the correct states? I mean the *actual*\
+      \ picture."

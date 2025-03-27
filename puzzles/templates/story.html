@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+  <style>
+    img {
+      display: block;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (min-width: 640px) {
+      img {
+        max-width: calc(min(100%, 63rem));
+      }
+    }
+  </style>
+
+  <h1>{% translate "Story" %}</h1>
+
+  <main>
+
+    {% for key in story_points %}
+
+      {% if key == 'meta1_done' %}
+        <div class="no-break story-chunk">
+          <h4>{% translate "The Perfect Gift!!!" %}</h4>
+          <p>
+            {% blocktranslate trimmed %}
+            You give Pluto a call. "<code>METALLICA BONDING</code>? Oh man, we both do love rockin' out. I'm sure I can score some tickets to their shows in Syracuse and Columbus. And maybe I can find a good death metal concert to take him to. Thanks. That's sure to do the trick. See you around."<br/>
+            <br/>
+            He hangs up. While you appreciate the thanks, you'll take a pass on seeing him for a while.
+            {% endblocktranslate %}
+          </p>
+          <img src="{% static 'images/fire_vibin.png' %}"/>
+          <p>
+            {% blocktranslate trimmed %}
+            Thanks for puzzling! If you haven't yet, be sure to check out the standalone puzzles.
+            Additionally, please fill out our <a href="https://docs.google.com/forms/d/e/1FAIpQLSdFUT-De7-9mfWKJUYhUtVskodPAi2SXLgWSHzoAQgOc88N7g/viewform">feedback survey</a> and let us know what you thought!
+            {% endblocktranslate %}
+        </div>
+      {% endif %}
+
+      {% if key == 'meta1_fake' %}
+        <div class="no-break story-chunk">
+          <h4>{% translate "The Perfect Gift???" %}</h4>
+          <p>
+            {% blocktranslate trimmed %}
+            You ring Pluto with your suggestion. He is skeptical, to say the least. "Uh, a <code>METAL CAN BONG</code>? Really? Surely you can come up with something more refined."
+            {% endblocktranslate %}
+          </p>
+        </div>
+      {% endif %}
+
+      {% if key == 'round1_open' %}
+        <div class="no-break story-chunk">
+          <h4>{% translate "A Gift for Hephaestus" %}</h4>
+          <p>
+            {% blocktranslate trimmed %}
+            You ignore the first call. After the second, you look up which country has 30 as a dialing prefix. Why are you getting calls from...? Oh dear. You pick up on call three.<br/>
+            <br/>
+            "Decided to pick up?"<br/>
+            <br/>
+            "Pluto? How did you get this number?"<br/>
+            <br/>
+            "Hermes. He is the god of communication, after all."<br/>
+            <br/>
+            "Fair enough. Wait. This isn't, uh, about, uh, you know, a business call?"<br/>
+            <br/>
+            "No, no. Those I do in person."<br/>
+            <br/>
+            "Well, then, is everything OK? You're not going on another sabbatical, are you?"<br/>
+            <br/>
+            "No, everything's fine. It was surprising how quickly everything fell apart down there, actually. But the fields are at about 90% Elysian now, and we finally found where Sisyphus's boulder rolled off to."<br/>
+            <br/>
+            "So what's up?"<br/>
+            <br/>
+            "I need your opinion. My nephew is in a big funk. All of the planet stuff last year just rubbed it in that he doesn't have a planet named after him. Well, a real planet."<br/>
+            <br/>
+            "Oh, is this Vulcan? He seemed to not be the kind to get emotional."<br/>
+            <br/>
+            "Well, when Star Trek came out he sort of took to the persona of being emotionless, but deep down that's just a show. Heph is really quite firey. I'm trying to figure out what I can do for him to cheer him up. Do you have any ideas?"<br/>
+            <br/>
+            "I don't know much about him; we only met briefly last year."<br/>
+            <br/>
+            "Well, I hope you have a little vacation time saved up."<br/>
+            <br/>
+            The call ends just as a familiar sound rumbles outside.
+            You look out to see your stalwart vehicle, ready to go. You sigh, pack a bag, and head out. After a long while, you end up pulling off I-490 and driving along the Cuyahoga River until you get to a massive building. You park and head inside, and find that some puzzling industrial activity has been underway.
+          {% endblocktranslate %}
+          </p>
+        </div>
+      {% endif %}
+
+      {% if key == 'pre_hunt' %}
+        <div class="no-break story-chunk">
+          <h4>The Phone Call</h4>
+          <p>
+            {% blocktranslate trimmed %}
+            It's been a hectic year after you helped restore Pluto to his rightful status.
+            Especially after your brief stint as detective trainees, all you want to do is relax.<br/>
+            <br/>
+            You make a point of ignoring calls from unknown numbers -- after all, the last call you got mentioned something about an "extended Mystery Hunt" before you hung up.
+            {% endblocktranslate %}
+          </p>
+        </div>
+      {% endif %}
+
+    {% endfor %}
+
+  </main>
+
+{% endblock %}

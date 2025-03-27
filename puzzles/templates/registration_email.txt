@@ -1,0 +1,9 @@
+{% load i18n %}
+{% autoescape off %}
+{% blocktranslate %}You have successfully registered team {{ team_name }} for the {{ hunt_title }}.{% endblocktranslate %}
+
+{% blocktranslate %}If you need to modify your team information, you can do so at {{ team_link }}{% endblocktranslate %}
+
+{% translate "See you at the hunt!" %}
+{{ hunt_organizers }}
+{% endautoescape %}

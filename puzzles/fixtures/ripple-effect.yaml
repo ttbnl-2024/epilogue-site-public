@@ -1,0 +1,65 @@
+- model: puzzles.Puzzle
+  pk: 125
+  fields:
+    name: Ripple Effect
+    slug: ripple-effect
+    body_template: ripple-effect.html
+    answer: SHENZHEN IO
+    round: 100
+    unlock_global: -1
+    unlock_local: 0
+    order: 1
+    emoji: ":fire:"
+
+- model: puzzles.PuzzleMessage
+  pk: 310
+  fields:
+    puzzle: 125
+    guess: MUSICIAN
+    response: Very good.  You have discovered the TARGET WORD for this puzzle series.
+
+- model: puzzles.PuzzleMessage
+  pk: 307
+  fields:
+    puzzle: 125
+    guess: UPDATE WITH UNKNOWNS
+    response: "You\u2019re on fire!  Keep going!"
+
+- model: puzzles.CannedHint
+  pk: 2114
+  fields:
+    puzzle: 125
+    description: The solvers have not figured out the proper ordering or the TARGET
+      WORD.
+    order: 0.0
+    keywords: getting started, order
+    content: You will have to order the puzzles in order to progress to the next step
+      after solving all of the associative wordplay.  Pay attention to the snarky
+      commentary, parts of it will help at different solving steps (though you will
+      likely have to solve enough wordplay around them in order to appreciate them).  Oh,
+      and if it wasn't wholly intuitive - the TARGET WORD is the same across all the
+      puzzles.
+- model: puzzles.CannedHint
+  pk: 2115
+  fields:
+    puzzle: 125
+    description: Solvers have some progress, but have not identified the TARGET WORD
+    order: 25.0
+    keywords: target word
+    content: Have you figured out who the TARGET WORD is?   He's featured in the puzzle,
+      and you will need to consider how he has contributed to this puzzle, in order
+      to resolve a message that will take you to the final step of the puzzle.
+- model: puzzles.CannedHint
+  pk: 2116
+  fields:
+    puzzle: 125
+    description: Solvers have gotten the NUMBER A message
+    order: 90.0
+    keywords: number a, extraction
+    content: You will have to interpret what the three-word message means - the one
+      you get considering what the TARGET WORD has to do with what is missing from
+      each of the 18 puzzles, properly ordered.  If you aren't familiar, Google will
+      most likely be your best friend here.  Once you get the idea, you will use it
+      both to reorder the puzzles one last time and to apply the last two major unused
+      features common to each of the 18 puzzles to extract your final message containing
+      the puzzle's answer.

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load puzzle_tags %}
+
+{% block page-title %}
+  <title>{% translate "Finishers" %}</title>
+{% endblock %}
+
+{% block top-left-actions %}
+  <a href="{% url 'hunt-stats' %}" class="btn">{% translate "Hunt Stats" %}</a>
+  <a href="{% url 'biggraph' %}" class="btn">{% translate "Big Graph" %}</a>
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    td {
+      border: none;
+    }
+
+    .sorting [colspan] {
+      display: none;
+    }
+
+    .list-table td:not(:first-child) {
+      white-space: nowrap;
+      font-variant: tabular-nums;
+    }
+  </style>
+
+  <h1>{% translate "Finishers" %}</h1>
+
+  <main>
+    <table class="sortable list-table">
+      <col style="width: 50%">
+      <col style="width: 20%">
+      <col style="width: 10%">
+      <col style="width: 20%">
+      <tr onclick="document.querySelector('tbody').className = 'sorting'">
+        <th>{% translate "Team" %}</th>
+        <th>{% translate "Unlock" %} ({{ start_time|date:"T" }})</th>
+        <th>{% translate "Time to solve" %}</th>
+        <th>{% translate "Solve" %} ({{ start_time|date:"T" }})</th>
+      </tr>
+      {% for team in data %}
+        <tr>
+          <td><a href="{% url 'team' team.team.team_name %}">
+            {{ team.team.team_name }}
+          </a></td>
+          <td sorttable_customkey="{{ team.unlock_time|unix_time }}">
+            {% format_time team.unlock_time %}
+          </td>
+          <td sorttable_customkey="{{ team.total_time }}">
+            {% format_duration team.total_time %}
+          </td>
+          <td sorttable_customkey="{{ team.solve_time|unix_time }}">
+            {% format_time team.solve_time %}
+          </td>
+        </tr>
+        {% if is_superuser %}
+          <tr>
+            <td colspan="6">
+              <tt>{{ team.team.get_emails|join:', ' }}</tt>
+            </td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </table>
+  </main>
+
+{% endblock %}

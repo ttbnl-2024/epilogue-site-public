@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load puzzle_tags %}
+{% load static %}
+
+{% block page-title %}
+  <title>Ripple Effect Puzzle {{ subpuzzle }} (#??)</title>
+{% endblock %}
+
+{% block top-left-actions %}
+  <a href="{% url 'puzzle' 'ripple-effect' %}" class="btn">Back to Ripple Effect</a>
+{% endblock %}
+
+{% block content %}
+
+  <h1>
+    Puzzle {{ subpuzzle }} (#??)
+  </h1>
+
+  <main class="puzzle-main clipboard-container">
+    {% for erratum in visible_errata %}
+      {% if erratum.puzzle == puzzle and erratum.puzzle_text %}
+        <div class="puzzle-erratum">
+          {% if not erratum.published %}
+            <strong>[<a href="{% url 'admin:puzzles_erratum_change' erratum.id %}">{% translate "UNPUBLISHED" %}</a>]</strong>
+          {% endif %}
+          {% format_time erratum.timestamp "DATE_AT_TIME" as hint_time %}
+          {% blocktranslate %}<strong>Erratum</strong> on {{ hint_time }}:{% endblocktranslate %}
+          {{ erratum.puzzle_text|safe }}
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    {% puzzleblock puzzle-body %}
+    {% if puzzle_body %}
+      {{ puzzle_body }}
+      <button class="btn clipboard-button" data-skip-inline-styles="true"></button>
+    {% elif template_name %}
+      {% blocktranslate %}This puzzle doesn&rsquo;t seem to exist yet.
+        Searched for a puzzle template named <code>{{ template_name }}</code>{% endblocktranslate %}
+    {% else %}
+      {% translate "This puzzle template exists, but it doesn&rsquo;t seem to define a puzzle content block. Check the post production guide?" %}
+    {% endif %}
+  </main>
+
+  <script src="{% static "js/copyjack.js" %}"></script>
+
+{% endblock %}

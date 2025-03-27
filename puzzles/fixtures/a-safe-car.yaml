@@ -1,0 +1,40 @@
+- model: puzzles.Puzzle
+  pk: 645
+  fields:
+    name: A Safe Car
+    slug: a-safe-car
+    body_template: a-safe-car.html
+    answer: SOUP SPOON
+    round: 17
+    unlock_global: -1
+    unlock_local: 0
+    order: 2
+    emoji: ":red_car:"
+- model: puzzles.CannedHint
+  pk: 2015
+  fields:
+    puzzle: 645
+    description: Solvers are stuck on getting started
+    order: 0.0
+    keywords: getting started
+    content: "If you are over eighty\nYou might recall a craving\nFor funny signs\
+      \ along your way.\nMostly concerning shaving\u2026"
+- model: puzzles.CannedHint
+  pk: 2016
+  fields:
+    puzzle: 645
+    description: Solvers have not found the common word
+    order: 50.0
+    keywords: matched poems, extraction
+    content: "You found some signs that seem to say\nThe same things in a different\
+      \ way.\nThe same things in each poem are few.\nSingular even. (That\u2019\
+      s a clue.)"
+- model: puzzles.CannedHint
+  pk: 2017
+  fields:
+    puzzle: 645
+    description: Solvers have trouble with the final cluephrase cryptic
+    order: 100.0
+    keywords: cryptic
+    content: "I offer you\nA cryptic clue\nAs a proposition\n\nThe final word\r\
+      \nIs seldom heard\nBut it's the definition"

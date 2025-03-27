@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+  <h1 id="countdown" style="text-align: center"></h1>
+
+  <script>
+    var start = new Date('{{ start.isoformat }}');
+    setInterval(function() {
+      var diff = (start - new Date) / 1000;
+      var elt = document.getElementById('countdown');
+      if (diff >= 0) {
+        var min = diff / 60 | 0;
+        var sec = diff % 60 | 0;
+        if (sec < 10) {
+          sec = '0' + sec;
+        }
+        elt.textContent = min + ':' + sec;
+      } else {
+        elt.textContent = '{% translate "Refresh the page!" %}';
+      }
+    }, 100);
+  </script>
+
+{% endblock %}

@@ -1,0 +1,329 @@
+{% extends "puzzle.html" %}
+{% load static %}
+{% block puzzle-body-html %}
+
+  <style>
+    .movie-effects {
+      margin: 0 auto;
+    }
+
+    .movie-effects > :not([hidden]) ~ :not([hidden]) {
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (min-width: 640px) {
+      img {
+        max-width: calc(min(100%, 63rem));
+      }
+      .movie-effects span:not(.copy-only) {
+        display: block;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1rem;
+      }
+    }
+  </style>
+
+  <p class="flavor">
+    Videos about movies when they first came out are TIGHT!
+  </p>
+
+  <div class="movie-effects">
+    <p style="text-align: center;">
+      (3 5 5)<br/>
+      (3 5 7)<br/>
+      (3 6 5: 3 6 2 9 3 6)<br/>
+      (3 8)<br/>
+      (3 9 (4))<br/>
+      (4 2 3 6)<br/>
+      (4 4: 7 1)<br/>
+      (4 4: 7 1 - 3 6 7 4)<br/>
+      (4 4: 7 2 - 6 2 3 4)<br/>
+      <span class="copy-only">'</span>(4)<br/>
+      (5 3)<br/>
+      (5 5 & 3 9 7)<br/>
+      (5 6 3 3 7 7: 4 1)<br/>
+      (5 6 3 3 7 2 7)<br/>
+      (5 6 3 8)<br/>
+      (5 7: 7 7)<br/>
+      (6 1)<br/>
+      (6!)<br/>
+      (6! 4 2 3 4)<br/>
+      (6'1 5 (4))<br/>
+      (7 2 3 9: 2 5'1 3)<br/>
+      (7 5 3 3 4 7)<br/>
+      (8: 7)<br/>
+      (8: 7)<br/>
+      <span class="copy-only">'</span>(10)<br/>
+      <span class="copy-only">'</span>(11)<br/>
+      (12 2)<br/>
+      (12: 4 2 3 6)<br/>
+    </p>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/1.png' %}"
+        alt=""
+      />
+      <span>(1 4 6)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/2.png' %}"
+        alt=""
+      />
+      <span>(10 6)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/3.png' %}"
+        alt=""
+      />
+      <span>(5 1 7 8)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/4.png' %}"
+        alt=""
+      />
+      <span class="copy-only">'</span><span>(4)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/5.png' %}"
+        alt=""
+      />
+      <span class="copy-only">'</span><span>(13)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/6.png' %}"
+        alt=""
+      />
+      <span>(4 4 8 5)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/7.png' %}"
+        alt=""
+      />
+      <span>(6 3 5 2 3 6)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/8.png' %}"
+        alt=""
+      />
+      <span>(7 3 7 4 5)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/9.png' %}"
+        alt=""
+      />
+      <span>(7 8 2 7)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/10.png' %}"
+        alt=""
+      />
+      <span>(5 4 8)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/11.png' %}"
+        alt=""
+      />
+      <span>(5 2 3 4 6)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/12.png' %}"
+        alt=""
+      />
+      <span>(7 3 4 1 5 2 9 6 2 8)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/13.png' %}"
+        alt=""
+      />
+      <span>(8 6)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/14.png' %}"
+        alt=""
+      />
+      <span>(11 5 4)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/15.png' %}"
+        alt=""
+      />
+      <span>(10 4 8)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/16.png' %}"
+        alt=""
+      />
+      <span>(10 6)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/17.png' %}"
+        alt=""
+      />
+      <span>(4-6 4)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/18.png' %}"
+        alt=""
+      />
+      <span>(3 7 7 2 1 5 6)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/19.png' %}"
+        alt=""
+      />
+      <span>(7 1 4 3)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/20.png' %}"
+        alt=""
+      />
+      <span class="copy-only">'</span><span>(8)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/21.png' %}"
+        alt=""
+      />
+      <span class="copy-only">'</span><span>(5)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/22.png' %}"
+        alt=""
+      />
+      <span>(7 8 2 7)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/23.png' %}"
+        alt=""
+      />
+      <span>(9 7 2 3 4 3 5)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/24.png' %}"
+        alt=""
+      />
+      <span>(7 6)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/25.png' %}"
+        alt=""
+      />
+      <span>(6 5)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/26.png' %}"
+        alt=""
+      />
+      <span>(10 8)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/27.png' %}"
+        alt=""
+      />
+      <span>(11 8 6 2 3 6 2 9)</span>
+      <br/>
+      <br/>
+    </div>
+    <div>
+      <img
+        src="{% static 'puzzle_resources/movie-effects/28.png' %}"
+        alt=""
+      />
+      <span>(7 5 4 6 2 13 2 3 8 7)</span>
+      <br/>
+      <br/>
+    </div>
+    <hr>
+    <p><strong>(4+6+2 4 = 2 5 5)</strong></p>
+  </div>
+
+  <button class="btn clipboard-button" data-skip-inline-styles="true"></button>
+
+{% endblock %}

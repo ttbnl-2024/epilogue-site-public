@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block page-title %}
+  <title>{% translate "Hint Claimer Settings" %}</title>
+{% endblock %}
+
+{% block top-left-actions %}
+  <a href="{% url 'hint-list' %}" class="btn">{% translate "Back to hint list" %}</a>
+{% endblock %}
+
+{% block content %}
+
+<style>
+  #id_display_name {
+    max-width: 32rem;
+  }
+</style>
+
+<h1>{% translate "Hint Claimers" %}</h1>
+
+<main>
+  {% if current_claimer %}
+    <p>You are currently hinting as <strong>{{ current_claimer.display_name }}</strong>.</p>
+    <img class="avatar" src="{{ current_claimer.avatar_url }}"/>
+  {% else %}
+    <p>You are not currently "registered" as a hinter.</p>
+  {% endif %}
+
+  <br/>
+  <br/>
+
+  {{ form.non_field_errors }}
+  <form method="post">
+    {% csrf_token %}
+
+    <label for="id_display_name">To identify yourself, select or enter your Discord display name:</label>
+    {{ form.display_name }}
+    {{ form.display_name.errors }}
+    <datalist id="display_name_list">
+      {% for name in form.existing_names %}
+        <option value="{{ name }}">
+      {% endfor %}
+    </datalist>
+    <br/>
+    <button type="submit" class="btn">Submit</button>
+</form>
+
+</main>
+
+{% endblock %}

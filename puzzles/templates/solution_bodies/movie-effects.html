@@ -1,0 +1,165 @@
+{% extends "solution.html" %}
+{% load static %}
+
+{% block puzzle-author %}
+  The Dan Miller, images by Kennedy Miller
+{% endblock %}
+
+{% block solution-body-md %}
+
+<style>
+  .image-table td:nth-child(5),
+  .extract-table td:nth-child(3),
+  .extract-table td:nth-child(6) {
+    font-family: var(--answer-font);
+  }
+</style>
+
+We are presented with two categories of information: 28 enumerations as well as 28 images (each with their own enumerations).
+
+There are a few pieces of information that lead us to the Youtube channel [Pitch Meeting](https://www.youtube.com/@PitchMeetings).
+This is a series of hundreds of clips, where each portrays a potential "pitch meeting" from a script writer to a movie producer about a famous movie or TV series.
+
+- The puzzle's title "Movie Effects"
+- The flavor text - "videos about movies are TIGHT!" (calling things "tight" is one of the catchphrases of this series)
+- Image 28 which has someone typing "Super easy... barely an inconvenience" into a Youtube comments section (another of the catchphrases of the series)
+
+Each of the initial enumerations is for a specific movie.
+We then can find the Pitch Meeting episode for that movie.
+In each Pitch Meeting episode, something (somewhat-) related to the movie is referred to as "tight".
+Each of the 28 "tight" things from the 28 movies is drawn as one of the 28 images below.
+
+For example, the enumeration (5 3) references the movie Space Jam. In the Pitch Meeting for Space Jam, `GIANT FART BALLOONS` is referred to as "tight".
+This is image 10 with the enumeration (5 4 8).
+While most (but probably not all) of the images are not easily solvable without finding the source material, the images are listed in alphabetical order of the "tight" thing.
+
+Once we have identified each of the 28 movies and the 28 images, we can notice that each image has a defined number of things in it.
+Following our fart balloons example, there are 5 balloons in the image. We can then index that number into the image cluephrase (`GIANT FART BALLOONS`), in this case yielding a `T`.
+
+As clued by the flavortext ("movies when they first came out"), we sort by the movie release date, yielding the cluephrase `GIRL SOFTLY TO STOP TO WASTE YOUTH`.
+
+This is a cryptic clue that fits the enumeration at the bottom of the puzzle, which indicates the wordplay and definition split.
+Solving yields the final answer, **`MISSPEND`** (`MISS + P + END` = "to waste youth").
+
+{% endblock %}
+
+{% block author-notes-md %}
+Wow wow wow wow wow wow... wow. Pitch Meetings are some of my favorite Youtube videos, and I thought that could make for an entertaining puzzle.
+Originally I wanted to incorporate both the thing that is "tight" as well as the thing that was "super easy... barely an inconvenience", but upon watching the Pitch Meeting, the "SE...BAI" item is not as well-defined.
+
+In some cases, the title of the Pitch Meeting is not quite the same as the actual movie's title, in which case we used the title of the Pitch Meeting video.
+(Disney's Dumbo (1941) or Star Wars: Episode VI - Return Of The Jedi)
+{% endblock %}
+
+{% block appendix-title %}
+Appendix
+{% endblock %}
+
+{% block appendix-md %}
+
+#### Movies
+
+<div class="overflow-container" markdown="1">
+| Title enumeration    | Title                                                |
+|----------------------|------------------------------------------------------|
+| (3 5 5)              | The Sixth Sense                                      |
+| (3 5 7)              | The Polar Express                                    |
+| (3 6 5: 3 6 2 9 3 6) | The Hunger Games: The Ballad of Songbirds and Snakes |
+| (3 8)                | The Avengers                                         |
+| (4 2 3 6)            | Back To The Future                                   |
+| (4 4: 7 1)           | John Wick: Chapter 4                                 |
+| (4 4: 7 1 - 3 6 7 4) | Star Wars: Episode V - The Empire Strikes Back       |
+| (4 4: 7 2 - 6 2 3 4) | Star Wars: Episode VI - Return Of The Jedi           |
+| (4)                  | Cats                                                 |
+| (5 3)                | Space Jam                                            |
+| (5 5 & 3 9 7)        | Willy Wonka & The Chocolate Factory                  |
+| (5 6 3 3 7 7: 4 1)   | Harry Potter and the Deathly Hallows: Part 1         |
+| (5 6 3 3 7 2 7)      | Harry Potter and the Chamber of Secrets              |
+| (5 6 3 8)            | Ralph Breaks the Internet                            |
+| (5 7: 7 7)           | Black Panther: Wakanda Forever                       |
+| (6 1)                | Frozen 2                                             |
+| (6!)                 | Shazam!                                              |
+| (6! 4 2 3 4)         | Shazam! Fury of the Gods                             |
+| (6'1 5 (4))          | Disney's Dumbo (1941)                                |
+| (7 2 3 9: 2 5'1 3)   | Pirates of the Caribbean: At World's End             |
+| (7 5 3 3 4 7)        | Indiana Jones and the Last Crusade                   |
+| (8: 7)               | Avengers: Endgame                                    |
+| (8: 7)               | Twilight: Eclipse                                    |
+| (11)                 | Unbreakable                                          |
+| (12 2)               | Ghostbusters II                                      |
+| (12: 4 2 3 6)        | Transformers: Rise of the Beasts                     |
+| (3 9 (4))            | The Wolverine (2013)                                 |
+| (10)                 | Maleficent                                           |
+</div>
+
+#### Images
+
+<div class="overflow-container image-table" markdown="1">
+| Img       | Movie                                                | URL                                           | Tight enumeration      | ... is tight                                                       |
+|-----------|------------------------------------------------------|-----------------------------------------------|------------------------|--------------------------------------------------------------------|
+| 1         | John Wick: Chapter 4                                 | <https://www.youtube.com/watch?v=Mps6o9WEfgE> | (1 4 6)                | 3 HOUR MOVIES                                                      |
+| 2         | The Wolverine (2013)                                 | <https://www.youtube.com/watch?v=K-vR6UkF3z4> | (10 6)                 | ATTRACTIVE GHOSTS                                                  |
+| 3         | Shazam!                                              | <https://www.youtube.com/watch?v=aMkNwBp_Ows> | (5 1 7 8)              | BEING A PASSIVE ONLOOKER                                           |
+| 4         | Frozen 2                                             | <https://www.youtube.com/watch?v=UMNG2_4sYaA> | (4)                    | BUTS                                                               |
+| 5         | Transformers: Rise of the Beasts                     | <https://www.youtube.com/watch?v=NcITLdQOjiw> | (13)                   | BUTTERFINGERS                                                      |
+| 6         | Cats                                                 | <https://www.youtube.com/watch?v=XsNAu72v2Yc> | (4 4 8 5)              | CATS WITH HAUNTING FACES                                           |
+| 7         | Black Panther: Wakanda Forever                       | <https://www.youtube.com/watch?v=7HCqMLEJ4yc> | (6 3 5 2 3 6)          | COMING AND GOING AS YOU PLEASE                                     |
+| 8         | Maleficent                                           | <https://www.youtube.com/watch?v=DTU4xoVKmPE> | (10 6)                 | IMPROVISED CURSES                                                  |
+| 9         | Ghostbusters II                                      | <https://www.youtube.com/watch?v=lJ3gwlPYRpQ> | (7 3 7 4 5)            | FILLING THE STREETS WITH SLIME                                     |
+| 10        | Shazam! Fury of the Gods                             | <https://www.youtube.com/watch?v=z7DUnWVxd4w> | (7 8 2 7)              | GETTING CAPTURED ON PURPOSE                                        |
+| 11        | Space Jam                                            | <https://www.youtube.com/watch?v=_AZ8QG72TAw> | (5 4 8)                | GIANT FART BALLOONS                                                |
+| 12        | Twilight: Eclipse                                    | <https://www.youtube.com/watch?v=OIoTEn9O894> | (5 2 3 4 6)            | GOING TO WAR WITH BABIES                                           |
+| 13        | Harry Potter and the Deathly Hallows: Part 1         | <https://www.youtube.com/watch?v=Ud7b8Mg6iVI> | (7 3 4 1 5 2 9 6 2 8)  | HANGING OUT WITH A BUNCH OF SHIRTLESS COPIES OF YOURSELF           |
+| 14        | Star Wars: Episode V - The Empire Strikes Back       | <https://www.youtube.com/watch?v=0C2cGi9D6A0> | (8 6)                  | IGNORING GHOSTS                                                    |
+| 15        | Indiana Jones and the Last Crusade                   | <https://www.youtube.com/watch?v=7B8pV9daHd0> | (11 5 4)               | ILLUSIONARY PAINT JOBS                                             |
+| 16        | Star Wars: Episode VI - Return Of The Jedi           | <https://www.youtube.com/watch?v=b8EYthGSkMY> | (10 4 8)               | IMPOSSIBLE BABY MEMORIES                                           |
+| 17        | Avengers: Endgame                                    | <https://www.youtube.com/watch?v=HRqsC4UuY_A> | (10 4)                 | LIFESAVING RATS                                                    |
+| 18        | The Polar Express                                    | <https://www.youtube.com/watch?v=1FD2Ds9HDPs> | (3 7 7 2 1 5 6)        | NOT GETTING CRUSHED BY A TRAIN TUNNEL                              |
+| 19        | The Sixth Sense                                      | <https://www.youtube.com/watch?v=tXdO-OZPcZ0> | (7 1 4 3)              | PULLING A FAST ONE                                                 |
+| 20        | The Avengers                                         | <https://www.youtube.com/watch?v=EC2HtSpf9qk> | (8)                    | PUNCHING                                                           |
+| 21        | Back To The Future                                   | <https://www.youtube.com/watch?v=VWjJxeAsruo> | (5)                    | SCOTT                                                              |
+| 22        | Willy Wonka & The Chocolate Factory                  | <https://www.youtube.com/watch?v=Inf5du8u7OE> | (7 8 2 7)              | SOLVING PROBLEMS BY BURPING                                        |
+| 23        | The Hunger Games: The Ballad of Songbirds and Snakes | <https://www.youtube.com/watch?v=GsJmtTgptNs> | (9 7 2 3 4 3 5)        | SURVIVING BECAUSE OF HOW MUCH YOU SMELL                            |
+| 24        | Disney's Dumbo (1941)                                | <https://www.youtube.com/watch?v=iYVQscSbNUY> | (7 6)                  | TALKING SLOWER                                                     |
+| 25        | Harry Potter and the Chamber of Secrets              | <https://www.youtube.com/watch?v=2-rKwgUhPh4> | (6 5)                  | TOILET BOOKS                                                       |
+| 26        | Pirates of the Caribbean: At World's End             | <https://www.youtube.com/watch?v=gv18hJ4BKkA> | (10 8)                 | UNDERWATER BANDANAS                                                |
+| 27        | Unbreakable                                          | <https://www.youtube.com/watch?v=rRIakbMpfPY> | (11 8 6 2 3 6 2 9)     | UNNECESSARY DRAMATIC PAUSES IN THE MIDDLE OF SENTENCES             |
+| 28        | Ralph Breaks the Internet                            | <https://www.youtube.com/watch?v=gh7ro4fDbmY> | (7 5 4 6 2 13 2 3 8 7) | WRITING SUPER EASY BARELY AN INCONVENIENCE IN THE COMMENTS SECTION |
+</div>
+
+#### Extraction
+
+<div class="overflow-container extract-table" markdown="1">
+| Movie Date | Title                                                | ... is tight                                                       | Img Order | Number | Extract          |
+|------------|------------------------------------------------------|--------------------------------------------------------------------|-----------|--------|------------------|
+| 10/23/1941 | Disney's Dumbo (1941)                                | TALKING SLOWER                                                     | 24        | 7      | G                |
+| 6/30/1971  | Willy Wonka & The Chocolate Factory                  | SOLVING PROBLEMS BY BURPING                                        | 22        | 5      | I                |
+| 5/21/1980  | Star Wars: Episode V - The Empire Strikes Back       | IGNORING GHOSTS                                                    | 13        | 5      | R                |
+| 5/25/1983  | Star Wars: Episode VI - Return Of The Jedi           | IMPOSSIBLE BABY MEMORIES                                           | 15        | 9      | L                |
+| 7/3/1985   | Back To The Future                                   | SCOTT                                                              | 21        | 1      | S                |
+| 5/24/1989  | Indiana Jones and the Last Crusade                   | ILLUSIONARY PAINT JOBS                                             | 14        | 7      | O                |
+| 6/16/1989  | Ghostbusters II                                      | FILLING THE STREETS WITH SLIME                                     | 8         | 1      | F                |
+| 11/15/1996 | Space Jam                                            | GIANT FART BALLOONS                                                | 10        | 5      | T                |
+| 8/6/1999   | The Sixth Sense                                      | PULLING A FAST ONE                                                 | 19        | 4      | L                |
+| 11/14/2000 | Unbreakable                                          | UNNECESSARY DRAMATIC PAUSES IN THE MIDDLE OF SENTENCES             | 27        | 11     | Y                |
+| 11/14/2002 | Harry Potter and the Chamber of Secrets              | TOILET BOOKS                                                       | 25        | 6      | T                |
+| 11/10/2004 | The Polar Express                                    | NOT GETTING CRUSHED BY A TRAIN TUNNEL                              | 18        | 2      | O                |
+| 5/5/2007   | Pirates of the Caribbean: At World's End             | UNDERWATER BANDANAS                                                | 26        | 18     | S                |
+| 6/24/2010  | Twilight: Eclipse                                    | GOING TO WAR WITH BABIES                                           | 11        | 6      | T                |
+| 11/19/2010 | Harry Potter and the Deathly Hallows: Part 1         | HANGING OUT WITH A BUNCH OF SHIRTLESS COPIES OF YOURSELF           | 12        | 8      | O                |
+| 5/4/2012   | The Avengers                                         | PUNCHING                                                           | 20        | 1      | P                |
+| 7/26/2013  | The Wolverine (2013)                                 | ATTRACTIVE GHOSTS                                                  | 2         | 3      | T                |
+| 5/30/2014  | Maleficent                                           | IMPROVISED CURSES                                                  | 16        | 5      | O                |
+| 11/21/2018 | Ralph Breaks the Internet                            | WRITING SUPER EASY BARELY AN INCONVENIENCE IN THE COMMENTS SECTION | 28        | 1      | W                |
+| 4/5/2019   | Shazam!                                              | BEING A PASSIVE ONLOOKER                                           | 3         | 6      | A                |
+| 4/26/2019  | Avengers: Endgame                                    | LIFESAVING RATS                                                    | 17        | 5      | S                |
+| 11/22/2019 | Frozen 2                                             | BUTS                                                               | 4         | 3      | T                |
+| 12/20/2019 | Cats                                                 | CATS WITH HAUNTING FACES                                           | 6         | 20     | E                |
+| 11/11/2022 | Black Panther: Wakanda Forever                       | COMING AND GOING AS YOU PLEASE                                     | 7         | 17     | Y                |
+| 3/17/2023  | Shazam! Fury of the Gods                             | GETTING CAPTURED ON PURPOSE                                        | 9         | 16     | O                |
+| 3/24/2023  | John Wick: Chapter 4                                 | 3 HOUR MOVIES                                                      | 1         | 4      | U                |
+| 6/9/2023   | Transformers: Rise of the Beasts                     | BUTTERFINGERS                                                      | 5         | 4      | T                |
+| 11/17/2023 | The Hunger Games: The Ballad of Songbirds and Snakes | SURVIVING BECAUSE OF HOW MUCH YOU SMELL                            | 23        | 19     | H                |
+</div>
+
+{% endblock %}

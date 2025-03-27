@@ -1,0 +1,178 @@
+{% extends "puzzle.html" %}
+{% load static %}
+{% block puzzle-body-html %}
+
+  <style>
+    .box-offer {
+      margin: 0 auto;
+    }
+
+    .box-offer > :not([hidden]) ~ :not([hidden]) {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (min-width: 640px) {
+      img {
+      max-width: calc(min(100%, 63rem));
+      }
+    }
+
+    .pandora-transcript {
+      font-style: italic;
+    }
+  </style>
+
+  <div class="info-note no-copy">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" data-tooltip-id="" data-tooltip-content="info-tooltip" class="info-tooltip"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span>Image captions available in copy-to-clipboard.</span>
+  </div>
+
+  {% if manifest %}
+    <p>
+      <a href="{% static 'puzzle_resources/box-offer/shipping-manifest.pdf' %}">SHIPPING MANIFEST</a>
+    </p>
+  {% endif %}
+
+  <h4 class="no-copy">PANDORA’S BOXES - VIDEO TRANSCRIPT</h4>
+  <p class="copy-only">PANDORA’S BOXES - VIDEO TRANSCRIPT</p>
+
+  <p class="pandora-transcript">
+    [Start transcript]<br/>
+    Hey viewers, it’s ya girl, Pandora, filming a very special video for you all today on the famous Hollywood Boulevard in the wonderful city of Los Angeles, California!<br/>
+    [Pandora is on screen, looking giddy. She has a pile of small boxes in front of her along with some Pandora jewellery gift bags.]<br/>
+    I see some of my wicked cool friends have sent me a few gifts! Aww… how charming!<br/>
+    [Smiling gleefully, she picks up a box from the pile, waves it in front of the camera, and puts it back down.]<br/>
+    Yep, you guessed it, today, we will be doing another one of my unboxing videos.<br/>
+    And, between you and me, I think some of these items might even be the real deal!<br/>
+    [Pandora picks up a box and attempts to open it. She fails and looks puzzled.]<br/>
+    Hmm... well that’s weird.<br/>
+    I can’t seem to get this one open... or this one... or this one.<br/>
+    [The screen cuts to black. A voiceover and the text on the screen say, "Five hours later...”.<br/>
+    Pandora appears again looking completely soaked, water dripping everywhere.]<br/>
+    Well viewers, you’ll never guess what was inside all these stupid boxes, or how I opened them... or what was making it so freaking difficult!<br/>
+    [Screen fades out.]<br/>
+    [End transcript]
+  </p>
+
+  <h4 class="no-copy">GIFT BAG CONTENTS AND DELIVERY DETAILS</h4>
+  <p class="copy-only">PANDORA’S BOXES - VIDEO TRANSCRIPT</p>
+
+  <div class="box-offer">
+    <img
+      src="{% static 'puzzle_resources/box-offer/1.jpg' %}"
+      alt=""
+    />
+    <span class="copy-only">
+      MY CUTE LITTLE HELPER<br/>
+      3 HOLLYWOOD BLVD<br/>
+      LOS ANGELES, CA 90028<br/>
+      USA
+    </span>
+
+    <img
+      src="{% static 'puzzle_resources/box-offer/2.jpg' %}"
+      alt=""
+    />
+    <span class="copy-only">
+      MY PREFERRED NAME<br/>
+      6 HOLLYWOOD BLVD<br/>
+      LOS ANGELES, CA 90028<br/>
+      USA
+    </span>
+
+    <img
+      src="{% static 'puzzle_resources/box-offer/3.jpg' %}"
+      alt=""
+    />
+    <span class="copy-only">
+      THE LEADING LADY<br/>
+      4 HOLLYWOOD BLVD<br/>
+      LOS ANGELES, CA 90028<br/>
+      USA
+    </span>
+
+    <img
+      src="{% static 'puzzle_resources/box-offer/4.jpg' %}"
+      alt=""
+    />
+    <span class="copy-only">
+      THE CHIEF CRIMINAL MASTERMIND<br/>
+      5 HOLLYWOOD BLVD<br/>
+      LOS ANGELES, CA 90028<br/>
+      USA
+    </span>
+
+    <img
+      src="{% static 'puzzle_resources/box-offer/5.jpg' %}"
+      alt=""
+    />
+    <span class="copy-only">
+      MY RELATIONSHIP TO THE PROTAGONIST<br/>
+      1 HOLLYWOOD BLVD<br/>
+      LOS ANGELES, CA 90028<br/>
+      USA
+    </span>
+
+    <img
+      src="{% static 'puzzle_resources/box-offer/6.jpg' %}"
+      alt=""
+    />
+    <span class="copy-only">
+      MY VFX / ANIMATION STUDIO<br/>
+      7 HOLLYWOOD BLVD<br/>
+      LOS ANGELES, CA 90028<br/>
+      USA
+    </span>
+
+    <img
+      src="{% static 'puzzle_resources/box-offer/7.jpg' %}"
+      alt=""
+    />
+    <span class="copy-only">
+      MY MENTOR AND TEACHER<br/>
+      2 HOLLYWOOD BLVD<br/>
+      LOS ANGELES, CA 90028<br/>
+      USA
+    </span>
+
+    <img
+      src="{% static 'puzzle_resources/box-offer/8.jpg' %}"
+      alt=""
+    />
+    <span class="copy-only">
+      MY RIVAL’S HOME PLANET<br/>
+      8 HOLLYWOOD BLVD<br/>
+      LOS ANGELES, CA 90028<br/>
+      USA
+    </span>
+
+    <hr/>
+
+    <img
+      src="{% static 'puzzle_resources/box-offer/stars.jpg' %}"
+      alt=""
+    />
+    <ul class="copy-only">
+      <li>@MISSUS_ROBBER_67</li>
+      <li>@1PHD_97</li>
+      <li>@FALLING_TERRORIST_88</li>
+      <li>@JUMPER_22</li>
+      <li>@TWO-WIN_MEANIE_84</li>
+      <li>@ANGRIEST_82</li>
+      <li>@MEGAFANBOY_LUSTY_FOR_GLORY_04</li>
+      <li>@MORAL_TITAN_18</li>
+    </ul>
+
+  </div>
+
+  <button class="btn clipboard-button" data-skip-inline-styles="true"></button>
+
+{% endblock %}

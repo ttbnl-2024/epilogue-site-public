@@ -1,0 +1,176 @@
+{% extends "solution.html" %}
+{% load static %}
+
+{% block puzzle-author %}
+  Bella (Songshan) Guo, Haley Moore, Summer Barron, Jayden Yamada, Brent Barron, Michael Andersen
+{% endblock %}
+
+{% block solution-body-md %}
+
+<style>
+  td > code {
+    white-space: initial;
+    padding: 0;
+    margin: 0;
+  }
+
+  .part-1-extract td:first-child {
+    background-color: Silver;
+    padding: 0;
+  }
+
+  .part-1-extract td:first-child img {
+    max-width: 30px;
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+A close up of the game board in one shot shows a series of messages written in Theban alphabet.  Each message surrounds a hand-drawn sigil.
+
+Each of the sigils on the board corresponds to a role that the characters in the video may take on in the game, noted by giving the character a card with that sigil.
+
+The roles change throughout the game, but a message from the end of the game, “your roles and fates are sealed”, tells us that we should answer the questions based on who held that role at the end of the game.  Based on that and using other events in the videos, we can follow the instructions in the board message to generate a number for each sigil.
+
+Our numbers don’t translate cleanly into letters though; we need to index them into something else.
+
+In the video, it’s established that each role has a distinct name, which is given as a nickname to a player.  The character Ian gives us hints towards each role/nicknames being shared with a nickname given to players in a real-life VHS board game.
+
+The enumerations of the VHS games are given in a `txt` file, in order by release year.
+
+|TXT File Listing|Game Name (as listed on Board Game Geek)|
+|-|-|
+|`*********`|Nightmare (1991)|
+|`********* ***`|Nightmare III (1992)|
+|`****** ***** *** ***** ****`|Wayne’s World VCR Board Game (1992)|
+|`********* **`|Nightmare IV (1993)|
+|`**** **** *** **** ********** *********** *** ***** **** * ******* *********`|Star Trek the Next Generation Interactive VCR Board Game A Klingon Challenge (1993)|
+|`***** **** * **** **`|Video Grin N Bear It (1993)|
+|`**** **** *** *********** ***** ***** ****`|Star Wars The Interactive Video Board Game (1996)|
+|`********* ***** *** *****`|Atmosfear Khufu the Mummy (2006)|
+
+Five of the Role names are said aloud in the video, but others are only hinted at.
+Looking online, we can find other VHS games that use the named roles.
+Many of these games have BoardGameGeek listings that include transcripts.
+Full rips of the VHS videos and copies of the manual text are also available.
+
+Next, we’ll look for other games that might match these clues we got about the unnamed roles from the videos:
+
+a. From a game with a casino (Lucky)
+b. To do with eyes and schoolchildren (Pupil)
+c. Sounds like “shovel”, is not in English, and is from an established IP. (Suvwl’)
+
+<div class="part-1-extract" markdown="1">
+|Board Sigil|Board Message|Answer|Number|Role Name|Original Game|Extract|
+|-|-|-|-|-|-|-|
+|![]({% static 'solution_resources/mark-of-the-demon/1.png' %})|Take the fifth what this one pulled out as a number|HEAR[T]|20|Lucky|Atmosfear: Khufu the Mummy|`M`|
+|![]({% static 'solution_resources/mark-of-the-demon/2.png' %})|take the first of the source of this ones small sacrifice as a nu(mber)|[F]OOT|6|Pupil|Star Wars: The Interactive Video Board Game|`A`|
+|![]({% static 'solution_resources/mark-of-the-demon/3.png' %})|The number of roles this one played at the end|3|3|Toad|Nightmare III: Witch|`G`|
+|![]({% static 'solution_resources/mark-of-the-demon/4.png' %})|Take the second of this ones small sacrifice as a number|H[A]IR|1|The Filthy One|Nightmare IV: Vampire|`N`|
+|![]({% static 'solution_resources/mark-of-the-demon/5.png' %})|Add two to the roles this one played in the game|5|7|Young One|Nightmare|`A`|
+|![]({% static 'solution_resources/mark-of-the-demon/6.png' %})|Take the second of this ones small sacrifice as a number|B[L]OOD|12|Schwing|Waynes World VCR Board Game|`V`|
+|![]({% static 'solution_resources/mark-of-the-demon/7.png' %})|Take the second of this ones great sacrifice as a number|H[E]AD|5|Judge|Video Grin N' Bear It|`O`|
+|![]({% static 'solution_resources/mark-of-the-demon/8.png' %})|Take the fifth of this ones name as a number|ROBI[N]|14|SuvwI'|Star Trek: The Next Generation – Interactive VCR Board Game – A Klingon Challenge|`X`|
+</div>
+
+By submitting this answer, we have released the demon Magnavox, who we now have to contain!
+We unlock a message "from TTBNL headquarters":
+
+> Hi, this is TTBNL HQ - something weird just happened in our headquarters. As soon as you submitted that last guess, the lights in the room dimmed, and all of our devices started smoking. Once the fog cleared, this video was playing on loop across all the devices.
+
+> If I didn’t know any better, I’d suspect you summoned a foul demon or something. But clearly you wouldn’t do something so foolish, dooming us all to eternal torment. Anyway, here's the video: <https://youtu.be/ipmQjPUxGZ0>
+
+This new video shows the original video clips cut together in chronological order, only now, clips of Magnavox are interspersed, taunting us for unleashing him upon the world. A series of “glitched” messages have also been interspersed into the video, spelling out the final step of the puzzle.
+
+Each of these glitches is a mini puzzle with 2 parts - the video glitch itself, which solves to a cluephrase, and the cluephrase, which has a single letter answer. If we listen to Magnavox’s taunts, we can tell that they are clues to the solve method for each mini-puzzle.
+
+<div class="overflow-container" markdown="1">
+|Glitch (in order of appearance)|Language Hinting at Encryption|Cluephrase|Letter|
+|-|-|-|-|
+|Text Overlay|“...search as much as you’d like”|TNG SHIP SUFFIX|`D`|
+|Reversed Audio|“...some grand reversal”|DONUT SHAPE|`O`|
+|Maze|“...like rats in a maze”|(traced out letter “N”)|`N`|
+|Morse Code|“...have you any re-morse”|DIMPLED BALL GOES HERE|`T`|
+|Stuttering Video|n/a|(Our / “R” repeated)|`R`|
+|Broadcast Test Pattern Semaphore|“...wave the white flags”|MDMA|`E`|
+|Desaturation|“...drain you until you’re a colorless husk”|TWO VS KISSING|`W`|
+|SSTV|“...this slow a scan”|(picture of eye)|`I`|
+|Animal Crossing Bug Sounds|“You’re only animals…don’t cross me”|FOURTEEN|`N`|
+|Zalgo Text|“...Masonic pigs from the pens”|LOOK AT ME IM SANDRA|`D`|
+|Frozen Image Glitch with Single Frame|“...blink, and you’ll miss it”|DIAL FOR MURDER|`M`|
+|Trope Encryption (ascii to base64 to hex to text)|“As key…based…hex”|ROTTHIRTEENR|`E`|
+|Horror QR Code|“...a truly Quick Response”|MOVIE BUT EVERY TIME THEY SAY|`B`|
+|Closed Captioning Text|“...won’t just be able to hear my words, you’ll be able to see them”|OHM MEASURE|`R`|
+|QWERTY Keyboard Shift Cipher|“...just a small shift”|COMMON BLOOD|`O`|
+</div>
+
+The Animal Crossing Bugs puzzle is the most involved step from the second half, and leads to the following extract (with `FOURTEEN` translating to N in A1Z26 cipher).
+
+| Animal Crossing Bugs | Chirps | Extract |
+|----------------------|--------|---------|
+| `FLY`                | 1      | `F`     |
+| `GRASSHOPPER`        | 7      | `O`     |
+| `ROBUST CICADA`      | 4      | `U`     |
+| `MOLE CRICKET`       | 6      | `R`     |
+| `LONG LOCUST`        | 10     | `T`     |
+| `BEE`                | 2      | `E`     |
+| `WALKER CICADA`      | 5      | `E`     |
+| `SCORPION`           | 8      | `N`     |
+
+This gives us the phrase `DONT REWIND ME BRO`.
+Submitting this marks the end of Stage 2.
+
+We get the following as a response:
+
+> We read your guess aloud, and all of the magic smoke that had escaped
+> went right back into the computers! Everything is working smoothly, and
+> it smells even cleaner than when we got here!
+
+> This email opened itself up (weird) and it had this file already attached.
+> We haven't watched it... it seems like it's for you.
+
+> \- TTBNL HQ
+
+Unfortunately, the finale video has been lost since the original authoring of the puzzle.
+The end of the video would have shown the answer **`I SEE DEAD PEOPLE`**.
+
+{% endblock %}
+
+{% block appendix-title %}
+Film Credits
+{% endblock %}
+
+{% block appendix-md%}
+- Aiden: Lisa Podznyakova
+- Brent: Haley Moore
+- Robin: Polina Lozhnevska
+- Alex: Matt Hollenbeck
+- Paul (Voice): Dani Hollenbeck
+- The Demon: Erica Bilodeau
+- Magnavox (Voice): Michael Andersen
+
+<br/>
+
+- Stage Manager: Dani Hollenbeck
+- Shoot Organizer: Matt Hollenbeck
+- Props: Haley Moore, Lisa Pozdnyakova, Polina Lozhnevska, Dani Hollenbeck, Matt Hollenbeck, Sergio Cois, Gil da Vittoria
+- Editor: Brent Barron
+
+<br/>
+
+- TV Static via [Strange Footage](https://www.youtube.com/watch?v=qELSSAspRDI), Creative Commons 4.0 via DEED
+- TV Static audio via [YouTube Audio Library](https://www.youtube.com/watch?v=NIbPruPFhjo)
+
+Filmed at Maker Nexus in Sunnyvale, CA
+{% endblock %}
+
+{% block author-notes-md %}
+This is an ambitious video puzzle headed by myself, Michael Andersen, Summer Barron and Bella Guo, which was inspired by the 2020 puzzle The Wizard's Escape, LoadingReadyRun's VCR board game streams and YouTube horror in general.
+We wanted to tell a little self-contained story with the puzzle, since me and Michael are ARG people and we like a good spooky story.
+Originally it was something like a Duck Konundrum, where you'd compare these clips to a 60 minute video of the Mark of the Demon VHS to figure out the full events of the game.
+Luckily they talked me out of that one, and we went with shorter videos that hit the jokes and story beats we wanted while (mostly) hanging together as a solvable puzzle.
+This diabolical production was ultimately cursed with COVID, so in the end we only ever filmed a table read.
+Nevertheless we hope you enjoy it!
+
+-Haley Moore
+{% endblock %}

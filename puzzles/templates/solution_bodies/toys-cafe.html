@@ -1,0 +1,171 @@
+{% extends "solution.html" %}
+{% load static %}
+
+{% block puzzle-author %}
+  Linus Hamilton
+{% endblock %}
+
+{% block solution-body-md %}
+
+<style>
+  img {
+    display: block;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 640px) {
+    img {
+      max-width: calc(min(100%, 63rem));
+    }
+  }
+</style>
+
+### What's going on?
+
+It’s natural to guess that each graph represents some mathematical structure of one of the toys. In fact, they are the toys’ state transition graphs.
+One can confirm this by observing that
+the Towers of Hanoi toy has 3^5 = 243 possible states,
+and this equals the number of vertices in the Sierpinski triangle-looking graph.
+Searching up the state graph of a Towers of Hanoi puzzle confirms this.
+In this graph, two states are connected by an edge iff they are one move apart.
+
+We can match the toys to the graphs in a variety of ways. For example:
+
+1. With some math, we can calculate the total number of states of some toys.
+    a. As mentioned, the Towers of Hanoi toy has 3^5 = 243 possible states.
+    b. In the Chess toy, the knight and bishop are stuck, and the king & 3 rooks can occupy the remaining 7 squares in any combination. This makes for a total of (7 choose 3)\*4 = 140 states.
+    c. The Water Beakers toy is the classic “Given water beakers of size blah blah blah, how can you measure blah liters of water” puzzle. With beakers of size 2, 3, and 4, it seems like there should be 3\*4\*5 = 60 states. However, since every water-pouring move either completely fills or completely empties a beaker, there are 1\*2\*3 = 6 impossible states where every beaker is only partially full. (Or, to pessimists, only partially empty.) This makes for 54 reachable states.
+2. We can use the directedness/undirectedness of the graphs. In the Chess, Towers of Hanoi, and Sliding Blocks toys, any move can be reversed. Not so for the Water Beakers, Snake, and Tic-Tac-Toe toys.
+3. We can count the number of edges adjacent to the start state (red). For example, the chessboard pictured in the puzzle has 6 legal moves, so it should map to a vertex with 6 edges.
+
+The graph assignments are as follows:
+
+1. Sliding blocks
+2. Chess
+3. Towers of Hanoi
+4. Snake
+5. Tic-tac-toe
+6. Water beakers
+
+### Finding the blue states
+
+This is an open-ended problem with many possible approaches.
+I’ll say how I personally approached each toy while writing the puzzle.
+
+#### Water Beakers
+
+This toy’s graph is a dumpster fire.
+But the puzzle helpfully tells us that it’s rotationally symmetric.
+Even the red and blue states are placed symmetrically.
+So if we discover what the symmetry is, we can skip all the hard work.
+
+Each beaker contains some amount of water and some amount of air.
+Let’s treat water and air as equals: neither is the more important substance.
+Filling a beaker with water is the same as emptying it of air, and vice versa.
+Pouring water from beaker A into beaker B is equivalent to trading A’s water with B’s air until one supply runs out.
+This means it’s equivalent to “pouring air from beaker B into beaker A.”
+Therefore, the Water Beakers toy is symmetric with regards to swapping water and air.
+This immediately gives us the blue state.
+
+#### Snake
+
+This toy is the game “Snake,” except without the apples that make your snake grow longer.
+The red state belongs to two cycles: a length-10 cycle and a length-12 cycle.
+(See the left two cycles in the picture below.)
+Traveling around these cycles maps to the snake slithering around a length-10 and a length-12 loop in the grid.
+
+![]({% static 'solution_resources/toys-cafe/snake_sol.png' %})
+
+This lets us determine all the states in both cycles.
+We can similarly determine a 3rd cycle (the rightmost one in the picture).
+This lets us label the state that’s 2 after blue.
+There are only two ways for a snake to “rewind” from this state:
+one rewinds back around the cycle, and the other rewinds to the blue state.
+
+The blue state looks like an S, clueing that we should now plug `A*sA*` into nutrimatic.
+
+#### Tic-Tac-Toe
+
+![]({% static 'solution_resources/toys-cafe/ttt_sol1.png' %})
+
+For this toy, the red state is a finished tic-tac-toe game.
+Without even looking at the graph, we know that the final move of the game was X in the top-right corner – otherwise, X would have won earlier.
+The blue state comes 4 moves earlier, meaning that it’s a tic-tac-toe board with exactly 3 of the Xs and 2 of the Os from the red state.
+
+![]({% static 'solution_resources/toys-cafe/ttt_sol2.png' %})
+
+The graph tells us how else players could have won earlier:
+
+- None of the vertices immediately following blue are terminal states.
+  This means that, starting from the blue state, O can’t win on turn 1.
+- X can win on turn 2: there are terminal states in that layer.
+  But, O can prevent X from reaching a terminal state.
+  In other words, in the blue state, X is only threatening a single win.
+  (And that win must be the top-right square.)
+- O can win on turn 3.
+  Furthermore, there is a state – labeled “a” above – where O can win in two different ways.
+  In other words, O can threaten two different winning lines on turn 1.
+
+Remember that the blue state has 3 out of the 5 Xs from the final state.
+And it can’t include the top-right X, because that was the final move of the game.
+This leaves four cases for the remaining Xs:
+
+![]({% static 'solution_resources/toys-cafe/ttt_sol3.png' %})
+
+Is the first case possible?
+We know X is initially only threatening the win in the top-right corner.
+For that to be true, we’d need Os in the top-left and middle-left squares.
+But then O can win turn 1.
+Contradiction...
+
+The second and third cases are impossible because we know O can threaten two different winning lines on turn 1.
+There aren’t even two unblocked winning lines on those boards.
+
+This leaves the final case.
+It needs an O in the bottom-middle to ensure X is initially only threatening one win.
+For the other O, only the top-left corner lets O threaten two different winning lines on turn 1, without letting O win on turn 1.
+This is the blue state.
+
+#### Towers of Hanoi
+
+The internet has information about the structure of a Towers of Hanoi state graph.
+(See, for example, <https://en.wikipedia.org/wiki/Hanoi_graph>.)
+The corners of the graph map to the states where every disc is on the same pole.
+The classical shortest solution to the puzzle traces along an outer edge from one corner to another.
+Since both the red state and blue state are on outer edges, solvers can play out the shortest solution to find the blue state, using the red state to determine which pole is which.
+
+It’s also possible (and probably more elegant) to determine how the vertices of the graph map onto states of the Towers of Hanoi puzzle.
+
+#### Sliding Blocks
+
+The blue state is near the end of a long road of unique moves.
+By playing with the blocks enough, eventually the solver might find their way to that strange dead end.
+The blue state is pictured below; the dead end is the same state with the top-right block pushed to the left.
+
+Like in the Chess toy, the graph is symmetric:
+this time the symmetry is swapping the two differently-colored dominoes.
+We distinguish the blue state from its symmetric copy by picking the one that’s closer (in terms of # of moves) to the red state.
+
+![]({% static 'solution_resources/toys-cafe/sliding_sol.png' %})
+
+#### Chess
+
+Once again, we look at dead ends.
+The graph has two dead ends.
+Given that the knight and bishop are both stuck in place, there are only 2 ways to stuff the king and rooks onto the chessboard leaving only 1 legal move.
+Well, really, it’s just 1 way and its reflection over the main diagonal.
+(This reflection is the symmetry of the state graph.)
+
+![]({% static 'solution_resources/toys-cafe/chess_sol.png' %})
+
+### Extraction
+
+Put each toy in the blue state.
+
+![]({% static 'solution_resources/toys-cafe/final_sol.png' %})
+
+The answer **`SPLINT`** appears in blue.
+
+{% endblock %}

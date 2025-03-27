@@ -1,0 +1,101 @@
+- model: puzzles.Puzzle
+  pk: 726
+  fields:
+    name: Fetched
+    slug: fetched
+    body_template: fetched.html
+    answer: ASPEN
+    round: 17
+    unlock_global: -1
+    unlock_local: 7
+    order: 12
+    emoji: ":hourglass:"
+
+- model: puzzles.PuzzleMessage
+  pk: 469
+  fields:
+    puzzle: 726
+    guess: CREW SIZE
+    response: Keep going!
+- model: puzzles.PuzzleMessage
+  pk: 534
+  fields:
+    puzzle: 726
+    guess: USAASPEN
+    response: Almost there... double-check your data entry for official names.
+- model: puzzles.PuzzleMessage
+  pk: 468
+  fields:
+    puzzle: 726
+    guess: USE ASPEN
+    response: Great! Now, "use" what you've found and submit "ASPEN".
+
+- model: puzzles.CannedHint
+  pk: 1949
+  fields:
+    puzzle: 726
+    description: Solvers haven't noticed the Star Trek connection
+    order: 0.0
+    keywords: where to start,stuck
+    content: The various teams have rather distinctive appearances...have you figured
+      out where these crews are from?
+- model: puzzles.CannedHint
+  pk: 1950
+  fields:
+    puzzle: 726
+    description: Solvers noticed the Star Trek connection, but haven't figured out
+      any time travel shows yet
+    order: 20.0
+    keywords: star trek,stuck
+    content: It sounds like you've figured out that the Star Trek crews are lost in
+      timespace...where do you think they might be, based on the images paired with
+      the descriptions of the away teams' encounters?
+- model: puzzles.CannedHint
+  pk: 1951
+  fields:
+    puzzle: 726
+    description: Solvers matched a few time travel properties, but are missing a few
+    order: 25.0
+    keywords: time travel,movies,television,video games
+    content: "It sounds like you've correctly identified a few destinations the away\
+      \ teams found themselves in...do you have any ideas on the significance of the\
+      \ highlighted items within those properties?\n\nYou may also notice a pattern\
+      \ to those destinations that will help narrow things down."
+- model: puzzles.CannedHint
+  pk: 1952
+  fields:
+    puzzle: 726
+    description: Specific hints for individual franchises are requested
+    order: 50.0
+    keywords: locations,time travel
+    content: "1st (three ghosts): It sounds like you're trying to find something where\
+      \ three ghosts visit to trigger a space-time anomaly...especially if there's\
+      \ yet another ghost as harbinger\n2nd (alien symbol): That's a very specific\
+      \ type of glyph...have you seen anything like it before?\n3rd (radio): It\
+      \ sounds like you're hearing things through a radio, this time. Now what's that\
+      \ about a serial killer?\n4th (halo and wings): Oh, this one is black-and-white...that's\
+      \ interesting.\n5th (island): The descriptive text might be particularly helpful,\
+      \ here.\n6th (stone circle): While that is a stone circle, it doesn't quite\
+      \ look like Stonehenge...\n7th (dagger) - \"Poisoned robe\" is such an odd\
+      \ way to die.\n8th (briefcase) - Any time traveling groups who face off against\
+      \ Sparrows?"
+- model: puzzles.CannedHint
+  pk: 1953
+  fields:
+    puzzle: 726
+    description: Stuck on Extraction - Crews ID'd / Shows Found, but not sorted by
+      appearance order
+    order: 60.0
+    keywords: extraction
+    content: It sounds like the time travel properties were listed alphabetically...how
+      might you bring these crews back to their proper places?
+- model: puzzles.CannedHint
+  pk: 1954
+  fields:
+    puzzle: 726
+    description: Solvers have the shows sorted, but haven't figured out the indexing
+      method yet
+    order: 80.0
+    keywords: indexing,final step
+    content: Now that you've got everything sorted out properly, the descriptions
+      from each location should give you the final nudge you're looking for.

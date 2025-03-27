@@ -1,0 +1,122 @@
+{% load i18n %}
+{% load humanize %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    {% block page-title %}
+      <title>{{ hunt_title }}</title>
+    {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="MH24 Epilogue">
+    <meta property="og:description" content="{% blocktranslate with hunt=hunt_title%}Registration for the {{ hunt }} is now open!{% endblocktranslate %}">
+    {% comment %} <meta property="og:image" content="{{ domain|slice:'-1' }}FIXME"> {% endcomment %}
+    <meta property="twitter:card" content="summary_large_image">
+    <!-- 2.1.4 -->
+    <script src="{% static "js/toastr.min.js" %}"></script>
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/jquery.touchswipe.min.js" %}"></script>
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static "js/jquery.formset.js" %}"></script>
+    <script src="{% static "js/sorttable.js" %}"></script>
+    <script src="{% static "js/tray.js" %}"></script>
+    <script src="{% static "js/notify.js" %}"></script>
+    <script src="{% static "js/time.js" %}"></script>
+    <script src="{% static "puzzle_resources/exotic-fen/puzzle.js" %}" defer></script>
+    <script>
+      IMAGE_2_PATH = "{% static 'puzzle_resources/exotic-fen/image2.png' %}";
+      IMAGE_3_PATH = "{% static 'puzzle_resources/exotic-fen/image3.png' %}";
+    </script>
+    <link rel="icon" type="image/png" href="{% static "images/favicon-96x96.png" %}" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="{% static "images/favicon.svg" %}" />
+    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "images/apple-touch-icon.png" %}" />
+    <link rel="manifest" href="{% static "images/site.webmanifest" %}" />
+
+    <style>
+      @font-face {
+        font-family: "Atkinson Hyperlegible Next";
+        src: url({% static "fonts/AtkinsonHyperlegibleNext-VariableFont_wght.ttf" %}),
+            url({% static "fonts/AtkinsonHyperlegibleNext-Italic-VariableFont_wght.ttf" %});
+        font-weight: 200 800;
+        font-style: italic 0deg;
+      }
+
+      @font-face {
+          font-family: "Atkinson Hyperlegible Mono";
+          src: url({% static "fonts/AtkinsonHyperlegibleMono-VariableFont_wght.ttf" %}),
+          url({% static "fonts/AtkinsonHyperlegibleMono-Italic-VariableFont_wght.ttf" %});
+          font-weight: 200 800;
+          font-style: italic 0deg;
+      }
+
+      body {
+        font-family: var(--text-font);
+        font-variant-ligatures: none;
+
+        margin: 40px auto;
+        max-width: 900px;
+        line-height: 1.6;
+        font-size: 18px;
+        padding: 0 10px;
+        text-align: center;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+  </head>
+  <body class="hidden">
+    <div class="quantum" id="Level Selector">error</div>
+
+    <div id="Level One">
+    <div class="quantum" id="clue" style="font-size:20px;">error</div>
+    <p></p>
+    <input type="text" id="Ans1" onkeydown="if (event.keyCode==13){the('Button1').click()}">
+    <input type="button" id="Button1" value="Who am I?" onclick="guess1();">
+    <br/>
+    <div id="Response1" style="display: inline"></div>
+    </div>
+
+    <div id="Level Two">
+    <div class="quantum" id="clue2" style="font-size:20px;">error</div>
+    <p></p>
+    <input type="text" id="Ans2" onkeydown="if (event.keyCode==13){the('Button2').click()}">
+    <input type="button" id="Button2" value="Who am I?" onclick="guess2();">
+    <br/>
+    <div id="Response2" style="display: inline"></div>
+    </div>
+
+    <div id="Level Three">
+      <p><div class="quantum" id="C1" style="font-size:30px">error</div></p>
+      <p><div class="quantum" id="C2" style="font-size:30px">error</div></p>
+      <p><div class="quantum" id="C3" style="font-size:30px">error</div></p>
+      <p><div class="quantum" id="C4" style="font-size:30px">error</div></p>
+      <p><div class="quantum" id="C5" style="font-size:30px">error</div></p>
+      <p><div class="quantum" id="C6" style="font-size:30px">error</div></p>
+      <div id="level 3 checker"></div>
+    </div>
+
+    <div id="Level Four">
+      <p><div class="quantum" id="D1" style="font-size:30px">error</div></p>
+      <p style="height:1000px"><div class="quantum" id="D2" style="font-size:30px">error</div></p>
+      <p style="height:1000px"><div class="quantum" id="D3" style="font-size:30px">error</div></p>
+      <p style="height:1000px"><div class="quantum" id="D4" style="font-size:30px">error</div></p>
+      <p style="height:1000px"><div class="quantum" id="D5" style="font-size:30px">error</div></p>
+      <p style="height:1000px"><div class="quantum" id="D6" style="font-size:30px">error</div></p>
+      <div id="level 4 checker" style="height:100px"></div>
+    </div>
+  </body>
+</html>
+

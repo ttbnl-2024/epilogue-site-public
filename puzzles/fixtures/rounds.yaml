@@ -1,0 +1,12 @@
+- model: puzzles.Round
+  pk: 17
+  fields:
+    name: Hephaestus
+    slug: hephaestus
+    order: 1
+- model: puzzles.Round
+  pk: 100
+  fields:
+    name: Standalone
+    slug: standalone
+    order: 2

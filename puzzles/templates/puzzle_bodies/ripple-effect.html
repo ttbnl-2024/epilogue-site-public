@@ -1,0 +1,78 @@
+{% extends "puzzle.html" %}
+{% block puzzle-body-html %}
+
+  <style>
+    .link-container {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      justify-items: center;
+    }
+
+    .flavor-note {
+      font-style: italic;
+      padding-left: 2rem;
+    }
+  </style>
+
+  <div class="info-note">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" data-tooltip-id="" data-tooltip-content="info-tooltip" class="info-tooltip"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span>
+      This is the round-length standalone puzzle.
+      Its answer will not be used in the meta; and solving it will not unlock more puzzles.
+      Your solve time for this puzzle will be displayed separately on the leaderboard.
+    </span>
+  </div>
+
+  <h4 class="no-copy">Author's Preface (not part of the puzzle)</h4>
+  <p class="copy-only">Author's Preface (not part of the puzzle)</p>
+
+  <p>
+    This puzzle was designed specifically to be a “team swarm” puzzle.  Turns out, that’s *really* hard to resource to test solve the way it needs.  Two small test solving groups got through this - eventually - and their ratings were high enough that we feel you and your teams may enjoy it too.
+  </p>
+  <p>
+    It is presented to you as it was written - with an answer to one of the feeders of the 2024 MIT Mystery Hunt.  If I had to do it over again, I would present it as a full round with a round-suitable answer instead.
+  </p>
+  <p>
+    To that end - below is an abandoned frame story pitched at one point that MIGHT have justified the design and solving time for this as a full “Mount Olympus” round, and not just a feeder puzzle.  Please note that the answer you will get in solving this will NOT fulfill the below story - we just wanted to give you a peek under the hood at what could have been if both Chronos and Tyche had been kinder to the author.  Positing an amazing pun answer to this setup is left as an exercise to the reader. =)
+  </p>
+  <p class="flavor-note">
+    As your team enters the heart of Zeus’ command center, you collide with a crew of arm-flailing IT guys gibbering frantically. It doesn’t take long to put the story together – Arachne demanded a rematch, and, poised to be bested yet again, Athena’s mid-stitch temper tantrum caused her divine tapestry to take a life of its own. Bad enough under normal circumstances, it seems the sentient yarnwork came to think Olympus’ homegrown, cloud-based NetWeaver application was its mother (because of course it did) and has grown exponentially, weaving its tendrils throughout the database network and smothering everything within its tangled knots. And that’s no understatement – Gods, people, places, things, events, social constructs, language, ephemera, puzzles, flavortext, answers, Olympus’ mortal-world control center, and the entirety of existence are all bound together in an obfuscating, self-contained, roundish lump of tortuous, writhing strings.
+  </p>
+  <p class="flavor-note">
+    As your team picks at the threads of the complex snaggle, assessing the ripple effects of Athena’s unbridled snit, you ideate how best to free the data center from crashing, taking out with it life as we know it. Expecting Zeus to owe you big time, you turn to Olympus’ lead software engineer Arkhitekton and advise he needs... what?
+  </p>
+  <p>
+    One final note - substantial credit for the style of this puzzle is due, which will be explained in the Solution once it is posted.  I hope that you enjoy this puzzle as much as I enjoyed writing it.
+    Thank you for reading this far.  This is the end of the non-puzzly bit.
+  </p>
+
+  <hr/>
+
+  <p class="flavor">
+    Zeus grumbles, “Well WORD A (inner letters of GODDESS being admonished), GODDESS, I hope you WORD B (its reverse spans consecutively across the PUZZLE SERIES TITLE) WORD C about yourself. We didn’t spend ???? A (plural of a first letter change of WORD D) building this up just so you could WORD D (anagram of WORD C with its “G” removed) through it in a matter of ???? B (plural of a heteronym; word value = 101)!”
+  </p>
+
+  <div class="link-container">
+    <a href="{% url 'ripple-effect-sub' 'a' %}">Puzzle A</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'b' %}">Puzzle B</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'c' %}">Puzzle C</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'd' %}">Puzzle D</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'e' %}">Puzzle E</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'f' %}">Puzzle F</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'g' %}">Puzzle G</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'h' %}">Puzzle H</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'i' %}">Puzzle I</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'j' %}">Puzzle J</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'k' %}">Puzzle K</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'l' %}">Puzzle L</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'm' %}">Puzzle M</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'n' %}">Puzzle N</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'o' %}">Puzzle O</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'p' %}">Puzzle P</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'q' %}">Puzzle Q</a><br class="copy-only"/>
+    <a href="{% url 'ripple-effect-sub' 'r' %}">Puzzle R</a>
+  </div>
+
+  <button class="btn clipboard-button" data-skip-inline-styles="true"></button>
+
+{% endblock %}

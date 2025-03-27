@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load puzzle_tags %}
+
+{% block page-title %}
+  <title>{{ round.round.name }}</title>
+{% endblock %}
+
+{% block top-left-actions %}
+  <a href="{% url 'puzzles' %}" class="btn">{% translate "All puzzles" %}</a>
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    .canvas {
+      position: relative;
+      width: 100%;
+      text-align:
+    }
+
+    .canvas > img {
+      display: block;
+      margin: 0 auto;
+      width: 75%;
+      max-width: 100%;
+    }
+
+    @media screen and (max-width: 960px) {
+      .canvas > img {
+        width: 100%;
+      }
+    }
+  </style>
+
+  {% block round-title-override %}
+    <h1>{{ round.round.name }}</h1>
+  {% endblock %}
+
+  {% if hunt_is_prereleased %}
+    <h3 class="prerelease-msg">
+      {% translate "You are a pre-release testsolver, so you may be seeing puzzles that are locked for the general public. Please be careful!" %}
+    </h3>
+  {% endif %}
+
+  {% block round-body %}
+  {% endblock %}
+
+  <table class="puzzles-list">
+    {% include 'puzzles_list.html' with round=round %}
+  </table>
+
+{% endblock %}

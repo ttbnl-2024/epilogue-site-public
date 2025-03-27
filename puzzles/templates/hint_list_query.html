@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% load puzzle_tags %}
+
+{% block page-title %}
+  <title>{% translate "Hints" %}</title>
+{% endblock %}
+
+{% block top-left-actions %}
+  <a href="{% url 'hint-list' %}" class="btn">{% translate "Back to hint queue" %}</a>
+{% endblock %}
+
+{% block content %}
+  <h1>{{ query_description }}</h1>
+
+  <main>
+    <table class="hint-table">
+      {% for hint in hints %}
+        <tbody style="background-color: #{{ hint.hint_question|hash|slice:':6' }}20">
+          <tr>
+            <th>
+              <a href="{% url 'hint' hint.id %}">
+                {% if hint.is_followup %}<em>({% translate "followup" %}){% endif %}
+                {% format_time hint.submitted_datetime 'DATE_AT_TIME' %}
+                {% if hint.is_followup %}</em>{% endif %}
+              </a>
+            </th>
+            <td>
+              <a href="{% url 'team' hint.team.team_name %}">
+                {{ hint.team }}
+              </a>
+            </td>
+            <td>
+              <a href="{% url 'solution' hint.puzzle.slug %}">
+                {{ hint.puzzle }}
+              </a>
+            </td>
+            <td>
+              <a href="/admin/puzzles/hint/{{ hint.id }}/change/">
+                ({% translate "view in admin" %})
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {% if hint.answered_datetime %}
+                {% format_time_since hint.answered_datetime now as answered_since %}
+                {% blocktranslate with status=hint.get_status_display claimer=hint.claimed_by.display_name %}{{ status }} {{ answered_since }} ago by {{ claimer }}{% endblocktranslate %}
+              {% elif hint.claimed_datetime %}
+                {% format_time_since hint.claimed_datetime now as claimed_since %}
+                {% blocktranslate with claimer=hint.claimed_by.display_name %}Claimed {{ claimed_since }} ago by {{ claimer }}{% endblocktranslate %}
+              {% else %}
+                {% translate "Unclaimed" %}
+              {% endif %}
+            </td>
+            <td>
+              <a href="{% url 'hint-list' %}?team={{ hint.team_id }}">
+                ({% translate "all from same team" %})
+              </a>
+            </td>
+            <td>
+              <a href="{% url 'hint-list' %}?puzzle={{ hint.puzzle_id }}">
+                ({% translate "all from same puzzle" %})
+              </a>
+            </td>
+            <td>
+              <a href="{% url 'hint-list' %}?team={{ hint.team_id }}&puzzle={{ hint.puzzle_id }}">
+                ({% translate "both" %})
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+                  <pre class="submitted-text">{{ hint.hint_question }}</pre>
+              <hr>
+                  <pre class="submitted-text" id="h{{ hint.id }}">{{ hint.response }}</pre>
+            </td>
+          </tr>
+        </tbody>
+      {% endfor %}
+    </table>
+  </main>
+{% endblock %}

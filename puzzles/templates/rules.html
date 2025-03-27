@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load puzzle_tags %}
+
+{% block content %}
+
+  <h1>{% translate "Rules" %}</h1>
+
+  <main>
+    <div class="no-break">
+      <h4 id="format">{% translate "Format" %}</h4>
+      <ul>
+        {% format_time start_time "WEEKDATE_AT_TIME" as hunt_start %}
+        {% format_time end_time "WEEKDATE_AT_TIME" as hunt_end %}
+        <li>{% blocktranslate %}The puzzlehunt starts on <strong>{{ hunt_start }}</strong> and ends on <strong>{{ hunt_end }}</strong>, at which point puzzle solutions will be available. {% endblocktranslate %}
+        {% format_time close_time "WEEKDATE_AT_TIME" as hunt_close %}
+        {% blocktranslate %}However, if you have not finished and still want to experience the whole hunt, you’ll still be able to register new teams, submit answers on the website, and progress through the hunt until <strong>{{ hunt_close }}</strong>. The only difference is that you won't be able to use hints.{% endblocktranslate %}
+        </li>
+        <li>
+          {% blocktranslate trimmed %}
+            Teams do not have a maximum size.
+            Keep in mind that there are a smaller number of puzzles, but some of them are fairly tricky or long.
+            We recommend a team size of at most 6 puzzlers.
+            If you want to include additional puzzlers, go ahead!
+          {% endblocktranslate %}
+        </li>
+        <li>{% blocktranslate %}You may not create multiple accounts or be on multiple teams.{% endblocktranslate %}</li>
+        <li>
+          {% blocktranslate %}
+            There will be a few puzzles in the round available at the start, and new puzzles are unlocked by solving puzzles in the round.
+            There are no timed unlocks.
+            Some puzzles will be available at the start, and marked "standalone".
+            Solving standalone puzzles will not contribute to unlocking new puzzles, and will not be necessary to finish the hunt.
+          {% endblocktranslate %}
+        </li>
+        <li>
+          {% blocktranslate %}
+            Teams that complete the hunt will be ranked by the time at which they finish.
+            Teams that do not complete the hunt will be ranked by number of puzzles solved and tie-broken by earliest last solve time.
+          {% endblocktranslate%}
+        </li>
+      </ul>
+    </div>
+    <div class="no-break">
+      <h4 id="solving">{% translate "Solving" %}</h4>
+      <ul>
+        <li>{% blocktranslate %}Each answer is a string of letters A&ndash;Z; or digits 0-9. Lowercase letters will be changed into uppercase, and any other characters will be stripped before checking for correctness.{% endblocktranslate %}</li>
+        <li>{% blocktranslate with max_guesses=max_guesses_per_puzzle %}You have <strong>{{ max_guesses }} total guesses</strong> for each puzzle. If you legitimately run out of guesses and need more, feel free to contact us, though we won&rsquo;t grant your request if we see that you were, for example, guessing random thematic answers, or brute-forcing all 10-letter words.{% endblocktranslate %}</li>
+        <li>{% blocktranslate %}Some puzzles have intermediate answer checking. This means that you may get confirmation for subpuzzle answers or cluephrases. Not every step will necessarily be checkable. Puzzles with intermediate checking will be noted accordingly. Correct intermediate answer submissions will not be counted towards the guess limit.{% endblocktranslate %}</li>
+      </ul>
+    </div>
+    <div class="no-break">
+      <h4 id="hints">{% translate "Hints" %}</h4>
+      {% format_time hint_time "WEEKDATE_AT_TIME" as hint_start %}
+      {% format_time hint_changeover "WEEKDATE_AT_TIME" as hint_new %}
+      <ul>
+        <li>
+          {% blocktranslate %}
+            Starting on <strong>{{hint_start}}</strong>, teams will receive one hint every <strong>6 hours</strong>.
+            After 3 hints (beginning {{hint_new}}), teams will receive one hint every <strong>24 hours</strong>.
+          {% endblocktranslate %}</li>
+        <li>{% blocktranslate %}You can use a hint to get help on a puzzle. This can be something like a nudge in the right direction (i.e. you give us your progress on the puzzle and we&rsquo;ll try to get you unstuck) or an answer to a question (e.g. &ldquo;Which answers to these crossword clues are wrong?&rdquo;).{% endblocktranslate %}</li>
+        {% if one_hint_at_a_time %}
+          <li>{% blocktranslate %}You can request only one hint at a time.{% endblocktranslate %}</li>
+          <li>{% blocktranslate %}Due to timezones and regular life, we will be slower to respond to hint requests during US nighttime, and during the week.{% endblocktranslate %}</li>
+        {% endif %}
+      </ul>
+    </div>
+    <div class="no-break">
+      <h4 id="other">{% translate "Other" %}</h4>
+      <li>{% blocktranslate %}You may use any external sources for help, including other people, as long as they aren’t actively helping other teams or participating in the hunt.{% endblocktranslate %}</li>
+      <li>{% blocktranslate %}You may not publicly stream or post spoilers for the hunt in a place where other teams might see them while the hunt is live.{% endblocktranslate %}</li>
+      <li>{% blocktranslate %}It won’t be necessary to look at the HTML source/JavaScript/CSS on any webpages for any puzzle, but you’re welcome to look anyway. If it will spoil a puzzle, there will be a warning on the page.{% endblocktranslate %}</li>
+      <li>{% blocktranslate %}We reserve the right to disqualify any team for unsportsmanlike conduct.{% endblocktranslate %}</li>
+      <li>{% blocktranslate %}We reserve the right to change any of these rules. If there’s a big change, we’ll announce it to all teams.{% endblocktranslate %}</li>
+      <li>{% blocktranslate with contact=contact_email %}If you have any questions about the hunt, or if you want to contact us for any reason, email <a href="mailto:{{ contact }}">{{ contact }}</a>. We will get back to you as soon as we can.{% endblocktranslate %}</li>
+    </div>
+
+  </main>
+
+{% endblock %}

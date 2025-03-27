@@ -1,0 +1,1 @@
+{{ announcement.formatted_updates_txt|safe }}

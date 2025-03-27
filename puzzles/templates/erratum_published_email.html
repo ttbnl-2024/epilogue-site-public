@@ -1,0 +1,6 @@
+{% load i18n %}
+<p>Hi puzzlers,</p>
+
+<p>{% blocktranslate %}An erratum has been issued for the puzzle <strong><a href="{{ puzzle_link }}">{{ puzzle_title }}</a></strong>.{% endblocktranslate %}</p>
+
+<p><strong>Erratum</strong>: {{ erratum.formatted_updates_html|safe }}

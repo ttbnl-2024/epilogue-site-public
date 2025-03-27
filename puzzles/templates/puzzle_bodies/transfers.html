@@ -1,0 +1,199 @@
+{% extends "puzzle.html" %}
+{% load static %}
+{% block puzzle-body-html %}
+
+  <style>
+    .crossword {
+      margin: 0 auto;
+      text-align: center;
+    }
+    .crossword td {
+      border: 1px solid black;
+      padding: 1px;
+      height: min(25px, 5.333333333333333vw);
+      width: min(25px, 5.333333333333333vw);
+    }
+
+    .crossword td:not(.black) {
+      background-color: #fff;
+    }
+    .crossword td.black {
+      background-color: black;
+    }
+
+    .transfers-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .transfers-container ul {
+      margin: 2rem 0.5rem;
+    }
+  </style>
+
+  <p class="flavor" data-skip-inline-styles="true">You just have to match them all.</p>
+
+  <div class="info-note" data-skip-inline-styles="true">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" data-tooltip-id="" data-tooltip-content="info-tooltip" class="info-tooltip"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span>A <a href="https://docs.google.com/spreadsheets/d/1ZKH19wyPGCUuHy_AJcZl1hnLjC5iDdF1ID7fIvUpnFM/edit?usp=sharing">copyable spreadsheet</a> is available.</span>
+  </div>
+
+  <br class="copy-only"/>
+
+  <div class="transfers-container" data-skip-inline-styles="true">
+    <ul data-skip-inline-styles="true">
+      <li>BEG</li>
+      <li>BY</li>
+      <li>BYG</li>
+      <li>CABA</li>
+      <li>CAM</li>
+      <li>CASS</li>
+      <li>CHAN</li>
+      <li>COR</li>
+      <li>DANA</li>
+      <li>DEN</li>
+      <li>DEW</li>
+      <li>EDU</li>
+      <li>ENCE</li>
+      <li>EPOOL</li>
+      <li>ESC</li>
+      <li>FIES</li>
+      <li>GON</li>
+      <li>GOND</li>
+      <li>GRAN</li>
+      <li>GRO</li>
+      <li>GROU</li>
+      <li>GUI</li>
+      <li>ICLE</li>
+    </ul>
+    <ul data-skip-inline-styles="true">
+      <li>IN</li>
+      <li>ITIA</li>
+      <li>IUSES</li>
+      <li>IVE</li>
+      <li>KER</li>
+      <li>KIS</li>
+      <li>KLES</li>
+      <li>LACK</li>
+      <li>LEN</li>
+      <li>MAG</li>
+      <li>MAND</li>
+      <li>MAR</li>
+      <li>MART</li>
+      <li>MET</li>
+      <li>NACE</li>
+      <li>NISH</li>
+      <li>OKY</li>
+      <li>ONA</li>
+      <li>ONS</li>
+      <li>ORIAL</li>
+      <li>PILLAR</li>
+      <li>PIRE</li>
+      <li>PLA</li>
+    </ul>
+    <ul data-skip-inline-styles="true">
+      <li>PLUM</li>
+      <li>POLTER</li>
+      <li>RAC</li>
+      <li>REA</li>
+      <li>RGUN</li>
+      <li>ROUL</li>
+      <li>RUFF</li>
+      <li>SEC</li>
+      <li>SHEE</li>
+      <li>SHR</li>
+      <li>SOL</li>
+      <li>THR</li>
+      <li>TUS</li>
+      <li>TY</li>
+      <li>UPL</li>
+      <li>USE</li>
+      <li>VER</li>
+      <li>VES</li>
+      <li>VINE</li>
+      <li>VIVI</li>
+      <li>WAUL</li>
+      <li>ZEIT</li>
+    </ul>
+    <br class="copy-only"/>
+    <table class="crossword"><tbody><tr><td></td><td></td><td></td><td rowSpan="3"></td><td></td><td rowSpan="2"></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td rowSpan="2"></td><td></td><td></td><td></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td rowSpan="3"></td><td></td><td rowSpan="2"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td rowSpan="2"></td><td></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td></td><td></td><td></td><td rowSpan="2"></td><td rowSpan="3"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td></td><td></td><td rowSpan="2"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td rowSpan="2"></td><td rowSpan="3"></td><td></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td></td><td></td><td rowSpan="2"></td><td rowSpan="2"></td><td></td><td></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td></td><td rowSpan="2"></td><td rowSpan="3"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td rowSpan="2"></td><td></td><td></td><td></td><td></td><td rowSpan="2"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td rowSpan="2"></td><td rowSpan="3"></td><td></td><td rowSpan="2"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td rowSpan="2"></td><td></td><td></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td rowSpan="2"></td><td></td><td rowSpan="3"></td><td></td><td rowSpan="2"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td></td><td rowSpan="2"></td><td></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td rowSpan="3"></td><td></td><td rowSpan="2"></td><td></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td rowSpan="2"></td><td></td><td></td><td></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td></td><td></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr></tbody></table>
+  </div>
+
+  <hr/>
+
+  <div class="transfers-container" data-skip-inline-styles="true">
+    <ul data-skip-inline-styles="true">
+      <li>ACCO</li>
+      <li>APPLE</li>
+      <li>BAGP</li>
+      <li>BELL</li>
+      <li>BIS</li>
+      <li>BRON</li>
+      <li>CROS</li>
+      <li>CURT</li>
+      <li>CUS</li>
+      <li>DEO</li>
+      <li>DELI</li>
+      <li>DUNG</li>
+      <li>EMB</li>
+      <li>ENCO</li>
+      <li>ENTH</li>
+      <li>ERITY</li>
+      <li>FORE</li>
+      <li>FRES</li>
+      <li>GES</li>
+      <li>GNET</li>
+    </ul>
+    <ul data-skip-inline-styles="true">
+      <li>HEADH</li>
+      <li>HINE</li>
+      <li>HY</li>
+      <li>IAC</li>
+      <li>ITUDE</li>
+      <li>IZER</li>
+      <li>JUN</li>
+      <li>LOGEN</li>
+      <li>LOON</li>
+      <li>MAR</li>
+      <li>MSTER</li>
+      <li>NEL</li>
+      <li>ODYS</li>
+      <li>OKER</li>
+      <li>OLIA</li>
+      <li>ORNAM</li>
+      <li>OZE</li>
+      <li>PHAN</li>
+      <li>POST</li>
+      <li>PRIS</li>
+    </ul>
+    <ul data-skip-inline-styles="true">
+      <li>PROB</li>
+      <li>RAME</li>
+      <li>RCH</li>
+      <li>REY</li>
+      <li>SAL</li>
+      <li>SAWB</li>
+      <li>SIMPL</li>
+      <li>SKEL</li>
+      <li>SPEL</li>
+      <li>STIC</li>
+      <li>STRID</li>
+      <li>SURG</li>
+      <li>TERS</li>
+      <li>TIS</li>
+      <li>TUN</li>
+      <li>VERN</li>
+      <li>WARE</li>
+      <li>WEED</li>
+      <li>WOOD</li>
+      <li>YAL</li>
+    </ul>
+    <br class="copy-only"/>
+    <table class="crossword"><tbody><tr><td></td><td></td><td></td><td></td><td></td><td rowSpan="2"></td><td rowSpan="3"></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td></td><td rowSpan="2"></td><td rowSpan="2"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td rowSpan="2"></td><td rowSpan="3"></td><td rowSpan="2"></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td></td><td></td><td rowSpan="2"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td></td><td rowSpan="3"></td><td rowSpan="2"></td><td rowSpan="2"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td></td><td></td><td rowSpan="3"></td><td rowSpan="2"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td></td><td></td><td rowSpan="2"></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td rowSpan="3"></td><td rowSpan="2"></td><td></td><td></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td></td><td></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td></td><td></td><td rowSpan="2"></td><td rowSpan="2"></td><td rowSpan="3"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td></td><td></td><td></td><td rowSpan="2"></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td rowSpan="2"></td><td rowSpan="3"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td rowSpan="2"></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr><tr><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td></td><td></td><td></td><td></td><td></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td></tr></tbody></table>
+  </div>
+
+  <button class="btn clipboard-button"></button>
+
+{% endblock %}

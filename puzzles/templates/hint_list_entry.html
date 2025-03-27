@@ -1,0 +1,64 @@
+{% load puzzle_tags %}
+{% load i18n %}
+
+<tbody id="h{{ hint.id }}" style="background-color: #{{ hint.hint_question|hash|slice:':6' }}20">
+  <tr>
+    <th>
+      {% if hint.is_followup %}<em>({% translate "followup" %}){% endif %}
+      {% if hint.claimed_datetime %}
+        <a href="{% url 'hint' hint.id %}">
+          {% format_time_since hint.claimed_datetime now as claimed_since %}
+          {% blocktranslate with claimer=hint.claimed_by.display_name %}Claimed {{ claimed_since }} ago by {{ claimer }}{% endblocktranslate %}
+        </a>
+      {% else %}
+        <a href="{% url 'hint' hint.id %}?claim=true">
+          {% format_time_since hint.submitted_datetime now as submitted_since %}
+          {% blocktranslate %}CLAIM: Created {{ submitted_since }} ago{% endblocktranslate %}
+        </a>
+      {% endif %}
+      {% if hint.is_followup %}</em>{% endif %}
+    </th>
+    <th>
+      <a href="{% url 'team' hint.team.team_name %}">
+        {{ hint.team }}
+      </a>
+    </th>
+    <th>
+      <a href="{% url 'solution' hint.puzzle.slug %}">
+        {{ hint.puzzle }}
+      </a>
+    </th>
+    <th>
+      <a href="/admin/puzzles/answersubmission/?team__id__exact={{ hint.team_id }}&puzzle__id__exact={{ hint.puzzle_id }}">
+        ({% translate "guesses" %})
+      </a>
+    </th>
+  </tr>
+  {% if not hint.claimed_datetime %}
+    <tr>
+      <td>
+        <a href="{% url 'hint' hint.id %}">
+          ({% translate "view without claiming" %})
+        </a>
+      </td>
+      <td>
+        <a href="{% url 'hint-list' %}?team={{ hint.team_id }}">
+          ({% translate "all from same team" %})
+        </a>
+      </td>
+      <td>
+        <a href="{% url 'hint-list' %}?puzzle={{ hint.puzzle_id }}">
+          ({% translate "all from same puzzle" %})
+        </a>
+      </td>
+      <td>
+        <a href="{% url 'hint-list' %}?team={{ hint.team_id }}&puzzle={{ hint.puzzle_id }}">
+          ({% translate "both" %})
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4"><pre class="submitted-text">{{ hint.hint_question }}</pre></td>
+    </tr>
+  {% endif %}
+</tbody>

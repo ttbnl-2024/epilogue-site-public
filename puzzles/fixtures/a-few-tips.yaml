@@ -1,0 +1,53 @@
+- model: puzzles.Puzzle
+  pk: 436
+  fields:
+    name: A Few Tips
+    slug: a-few-tips
+    body_template: a-few-tips.html
+    answer: SONY PSP
+    round: 17
+    unlock_global: -1
+    unlock_local: 5
+    order: 10
+    emoji: ":point_up_2:"
+
+- model: puzzles.PuzzleMessage
+  pk: 436001
+  fields:
+    puzzle: 436
+    guess: SHOOT A STAR FILM
+    response:
+      Film a 1-3 minute video giving us tips on how to use a tool based on a made-up/fictional constellation,
+      and email it to <a href="mailto:starfilm@mitmh2024.com">starfilm@mitmh2024.com</a> (refresh the page if the address didn't appear).
+      Bonus points if you use a constellation from the
+      <a href="https://puzzles.mit.edu/2024/mythstoryhunt.world/rounds/the-hole-in-the-ceiling-of-hades">Hole in the Ceiling of Hades</a>
+      round in MITMH 2024!
+
+- model: puzzles.CannedHint
+  pk: 1916
+  fields:
+    puzzle: 436
+    description: Solvers ID'd a bunch of tools but don't know what they mean.
+    order: 20.0
+    keywords: tools
+    content: What does the puzzle mean by "looking up [...] in the dark"? It seems
+      your fate is written in the stars.
+- model: puzzles.CannedHint
+  pk: 1917
+  fields:
+    puzzle: 436
+    description: Solvers ID'd a bunch of constellations.
+    order: 50.0
+    keywords: constellation
+    content: Check out a few of these constellations, e.g. on Wikipedia, or somewhere
+      else that will tell you more about [I]nstruments [A]nd [U]tensils. Do you notice
+      anything familiar?
+- model: puzzles.CannedHint
+  pk: 1918
+  fields:
+    puzzle: 436
+    description: Solvers lined up images & are stuck on extraction.
+    order: 100.0
+    keywords: extraction
+    content: The second letter -- oops, I mean star -- in a constellation, is often
+      labeled "beta".

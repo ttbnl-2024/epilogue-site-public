@@ -1,0 +1,96 @@
+{% extends "puzzle.html" %}
+{% load static %}
+{% block puzzle-body-html %}
+
+  <style>
+    .reference-age {
+      margin: 0 auto;
+    }
+
+    .reference-age > :not([hidden]) ~ :not([hidden]) {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .arrow {
+      padding: 1rem;
+      background-color: #eee;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (min-width: 640px) {
+      img {
+        max-width: calc(min(100%, 63rem));
+      }
+    }
+  </style>
+
+  <p class="flavor">
+    You should never pass up on a golden opportunity like this.
+  </p>
+
+  <div class="info-note">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" data-tooltip-id="" data-tooltip-content="info-tooltip" class="info-tooltip"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span>All images available in this <a href="https://drive.google.com/drive/folders/1zHlAbXMda61Xu2keVDfzXUuCyfsJkYfR">Google Drive</a> folder.</span>
+  </div>
+
+  <div class="reference-age">
+
+    <img class="geoguessr" src="{% static 'puzzle_resources/reference-age/1.png' %}"/>
+    <img class="geoguessr" src="{% static 'puzzle_resources/reference-age/2.png' %}"/>
+    <img class="geoguessr" src="{% static 'puzzle_resources/reference-age/3.png' %}"/>
+    <img class="geoguessr" src="{% static 'puzzle_resources/reference-age/4.png' %}"/>
+    <img class="geoguessr" src="{% static 'puzzle_resources/reference-age/5.png' %}"/>
+    <img class="geoguessr" src="{% static 'puzzle_resources/reference-age/6.png' %}"/>
+    <img class="geoguessr" src="{% static 'puzzle_resources/reference-age/7.png' %}"/>
+    <img class="geoguessr" src="{% static 'puzzle_resources/reference-age/8.png' %}"/>
+    <img class="geoguessr" src="{% static 'puzzle_resources/reference-age/9.png' %}"/>
+    <img class="geoguessr" src="{% static 'puzzle_resources/reference-age/10.png' %}"/>
+    <img class="geoguessr" src="{% static 'puzzle_resources/reference-age/11.png' %}"/>
+    <img class="geoguessr" src="{% static 'puzzle_resources/reference-age/12.png' %}"/>
+    <img class="geoguessr" src="{% static 'puzzle_resources/reference-age/13.png' %}"/>
+
+    <hr/>
+
+    <img class="arrow" src="{% static 'puzzle_resources/reference-age/a.png' %}"/>
+    <img class="arrow" src="{% static 'puzzle_resources/reference-age/b.png' %}"/>
+    <img class="arrow" src="{% static 'puzzle_resources/reference-age/c.png' %}"/>
+    <img class="arrow" src="{% static 'puzzle_resources/reference-age/d.png' %}"/>
+    <img class="arrow" src="{% static 'puzzle_resources/reference-age/e.png' %}"/>
+    <img class="arrow" src="{% static 'puzzle_resources/reference-age/f.png' %}"/>
+    <img class="arrow" src="{% static 'puzzle_resources/reference-age/g.png' %}"/>
+    <img class="arrow" src="{% static 'puzzle_resources/reference-age/h.png' %}"/>
+    <img class="arrow" src="{% static 'puzzle_resources/reference-age/i.png' %}"/>
+    <img class="arrow" src="{% static 'puzzle_resources/reference-age/j.png' %}"/>
+    <img class="arrow" src="{% static 'puzzle_resources/reference-age/k.png' %}"/>
+    <img class="arrow" src="{% static 'puzzle_resources/reference-age/l.png' %}"/>
+    <img class="arrow" src="{% static 'puzzle_resources/reference-age/m.png' %}"/>
+  </div>
+
+  <hr/>
+
+  <p style="text-align: center;">
+    2</br>
+    9</br>
+    11</br>
+    2</br>
+    1</br>
+    4</br>
+    2</br>
+    5</br>
+    1</br>
+    8</br>
+    3</br>
+    3</br>
+    5</br>
+  </p>
+
+  <button class="btn clipboard-button" data-skip-inline-styles="true"></button>
+
+{% endblock %}

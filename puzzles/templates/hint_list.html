@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block page-title %}
+  <title>{% translate "Hints" %}</title>
+{% endblock %}
+
+{% block content %}
+  <style>
+    .image-cropper {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 1rem;
+    }
+
+    .hinter-row {
+      display: flex;
+      align-items: center;
+      padding: 2px 0;
+    }
+
+    .avatar {
+      width: 32px;
+    }
+  </style>
+
+  <h1>{% translate "Open Hints" %}</h1>
+
+  <div class="hint-controls">
+    <a class="btn" href="{% url 'hint_claimer' %}">
+      {% translate "Your name is" %} <b id="claimer">{{ current_claimer.display_name }}</b>.
+    </a>
+    <script src="{% static "js/hint.js" %}"></script>
+    <form action="/admin/puzzles/hint/" method="get">
+      <input placeholder="{% blocktranslate %}Search hints&hellip;{% endblocktranslate %}" name="q">
+    </form>
+  </div>
+
+
+  <main>
+    <table class="hint-table">
+      {% for hint in unanswered %}
+        {% include "hint_list_entry.html" with hint=hint %}
+      {% endfor %}
+      {% if not unanswered %}
+        <div class="note">
+          {% blocktranslate %}There's no hints in the queue right now!{% endblocktranslate %}
+        </div>
+      {% endif %}
+    </table>
+
+    <table class="hint-table">
+      <tr>
+        <td colspan="3">
+          <h4>{% translate "Requested by most teams" %}</h4>
+        </td>
+        <td colspan="2">
+          <h4>{% translate "Top hint answerers" %}</h4>
+        </td>
+      </tr>
+      {% for entry in stats %}
+        <tr>
+          {% if entry.0 %}
+            <td style="text-align: right">
+              <a href="{% url 'hint-list' %}?puzzle={{ entry.0.puzzle.id }}">
+                {{ entry.0.count }}
+              </a>
+            </td>
+            <td>
+              <a href="{% url 'puzzle' entry.0.puzzle.slug %}">
+                {{ entry.0.puzzle.name }}
+              </a>
+            </td>
+            <td>
+              <a href="{% url 'round' entry.0.puzzle.round.slug %}">
+                {{ entry.0.puzzle.round }}
+              </a>
+            </td>
+          {% else %}
+            <td colspan="3"></td>
+          {% endif %}
+          {% if entry.1 %}
+            <td>
+              <div class="hinter-row">
+                <div class="image-cropper">
+                  <img
+                    class="avatar"
+                    src="{{ entry.1.avatar_url }}?size=32"
+                    crossorigin="anonymous"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <span>{{ entry.1.display_name }}</span>
+              </div>
+            </td>
+            <td style="text-align: right">
+              {{ entry.1.count }}
+            </td>
+          {% else %}
+            <td colspan="2"></td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    </table>
+  </main>
+{% endblock %}

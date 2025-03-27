@@ -1,0 +1,1029 @@
+{% extends "solution.html" %}
+{% load static %}
+
+{% block puzzle-author %}
+  Paul Melamud, Jeremiahs Johnson
+{% endblock %}
+
+{% block solution-body-md %}
+
+<style>
+  .letter-list ol {
+    list-style-type: upper-alpha;
+  }
+
+  .answer-tables td, th {
+    padding: 0;
+    border: none;
+  }
+
+  .answer-tables th:not(:first-child),
+  .answer-tables td:not(:first-child) {
+    padding-left: 5px;
+  }
+
+  .answer-tables strong {
+    color: red;
+  }
+</style>
+
+The authors would like to recognize the first test solving team for their Herculean efforts in ensuring the clarity of the wording, tuning the clue cascades to all be solvable, calibrating the embedded solve path signposting for a good balance, and putting up with all referencing errors that inexorably sneak into a puzzle like this.  Thank you, Ciprian Tutu, Andrey Gorlin, Ethan Ordentlich, and Alina Khankin for your extraordinary work to make this puzzle better.
+
+This puzzle is an homage to an annual contest (nominal participation fee after the first one, cash prize) that is coincidentally as old as MIT Mystery Hunt - it was first launched in 1981 by Alan Levine (aka Alien Navel in the National Puzzlers League) and continues to this day.  If you enjoy this kind of puzzle, the authors warmly encourage you to request PuzzleUp contest details at <a href="mailto:puzzleup@hotmail.com">puzzleup@hotmail.com</a>.  Let Alan know that we led you there!
+
+As noted in the Author’s Preface, we wanted to create a true “team swarm” puzzle - something both seasoned and inexperienced solvers can chew on and contribute to both in parallel and individually.
+
+The flavortext helps us resolve the basic puzzle mechanics and some of the least intuitive terminology as a highly-contextualized example (somewhat simplified from that used in the full contest):
+
+- It should be easy enough to identify ATHENA has THEN inside of her, making contextual sense.
+- It is easily and contextually inferrable directly (and indirectly, looking for words in reverse across the puzzle title) that “FEEL” is the only possible answer that fits WORD A, whose reversal “spans” across the space in “RIPP**LE EF**FECT”.  This is how “span” is used in the rest of the puzzle.
+- The “unknown category” concept, given here with ???? - contextually, especially near the end of the sentence, it is easily inferred that ???? = TIME.
+- “Transposal” is essentially used where one might typically use “anagram”.  This puzzle employs the NPL vernacular, where “anagram” has apt meaning.
+- Clues cross-referencing to resolve ambiguity - it is easily inferrable that WORD B is a word like “GOOD” or “GREAT” and has to contain a “G” as noted later in the sentence.  “TEAR” for WORD C makes contextual sense, leaving “GREAT” for WORD B.  In turn, “TEAR” is further confirmed as a first-letter change from the singular of TIME A, which has to be YEARS
+- “Word value” is easily Googled if not immediately inferred - the sum of A = 1, B = 2, etc. for the letters in a word).  Below are 2 online calculators you may have found useful when solving.  Having inferred TIME is the category, TIME B is either “seconds” or “minutes”, and only “minutes” has a word value = 101.
+    - <https://dan.hersam.com/tools/word-value.php>
+    - <https://www.dcode.fr/word-value>
+
+
+These flavortext answers, along with other elements of the flavortext, should help us recognize retrospectively when they hit on one or both of the ahas as to where the puzzle is going.  The only other “terminology” we might need to infer is the use of parentheses, which imply a nested substitution into the sentence.
+
+Turning our attention to the puzzles - reading through them, we can find several places where a TARGET WORD is defined and a lot of references to its word value.  It is quickly apparent it has something to do with music, and indeed, the word is MUSICIAN, which has a word value of 89.  The puzzles indicate there is an ordering to them, but they are presented blanked out, so we will have to determine their order.  Most if not all puzzles have direct pointers to other puzzles (either by # or by relative location to the current puzzle) to identify most of the order as more and more the associations are solved.  Every puzzle has two features - an unknown category (enumerated with question marks) that is often oddly specific and two NUMBERs specified at the end (A & B).  And of course, there are a lot of interconnected clues linking all kinds of disparate concepts, and a few indicators that there’s something important about, at least, some of them.
+
+Billy Joel himself is clued, with an indication that he has an association (in addition to being a TARGET WORD) with the TARGET WORD’s word value of 89 - the first flash of inspiration is that each puzzle either/both lists outright or highlights a concept that is part of the Billy Joel song “We Didn’t Start the Fire”, which was released in 1989.  Several of the “weird commentary” clues should now make sense, e.g. Richard Nixon returning for a second time, but only if we solve the puzzle mentioning him (as associated with Watergate) in the puzzle directly after the one where he needs to be “back again”.  The puzzle is then to identify the song association for each of the other puzzles, which is enforced with the puzzle series order.  Each puzzle contains “n-1” references to a line from the song, and special attention must be paid to the missing references (as clued, “something’s missing”, a commonality for each of the puzzles).  NUMBER A applies as an index to them, and when read in puzzle (song lyric) order, they read: `UPDATE WITH UNKNOWNS`.
+
+“UNKNOWNS” ostensibly refers to the unknown categories, but what does “UPDATE” mean?  The second flash of inspiration is to realize that there is an updated (2023) version of the song that extends, in its way, the decades into modern day, and that it is by a band that also features in the puzzle, Fall Out Boy.  Teams may already have identified some of the unknown categories were lacking “very obvious” answers - e.g. Director/Producer Surnames Featuring a European River, naming the pretty common Steven S(oder)bergh and the more obscure Stephen (Somme)rs - but where’s Steven Spi(elbe)rg?  We clue a “Hair Pair” but only provide one answer, not two?  The authors did include these - each of the unknown categories has another answer lurking throughout the lines of Fall Out Boy’s version of the song (e.g. Spielberg is in line 8).  Once these additional answers have been collected and ordered in order of the Fall-Out Boy song lyrics, NUMBER B can be applied as an extraction index, revealing the final message, `ANSWER IS SHENZHEN IO`, for the final answer of **`SHENZHEN IO`** - a video game that simulates the construction of electrical circuits from components and their operative code, much like the giant circuit of words and associations that we've put together from components here.
+
+The table in the appendix summarizes the extractions, and the remainder of the appendix lists the answers to all 18 of the puzzles (approximately 820 in total).
+You can also view a representation of the puzzle as a Roam graph: <https://roamresearch.com/#/app/RippleEffect/graph>.
+
+{% endblock %}
+
+{% block author-notes-md %}
+The puzzle title was chosen both for how solving puzzle answers enables one to solve other puzzle answers, but as a nod to the song.  The flavortext, emphasizes what “We Didn’t” do, and your getting through it more quickly than we built it.  Perhaps, as Billy Joel might, you even sang your way through the decades as you solved this puzzle.  Perhaps you’re doing so now – it’s catchy, and you can tear through all those years in just a few minutes.
+{% endblock %}
+
+{% block appendix-title %}
+Appendix
+{% endblock %}
+
+{% block appendix-md %}
+
+### Puzzle Ordering
+
+<div class="letter-list" markdown="1">
+1. 6
+1. 9
+1. 18
+1. 16
+1. 3
+1. 10
+1. 11
+1. 15
+1. 5
+1. 4
+1. 17
+1. 2
+1. 1
+1. 8
+1. 14
+1. 12
+1. 7
+1. 13
+</div>
+
+### Extraction Tables
+
+| Puzzle                                 | Answers   | Line # | We Didn't Start the Fire - Billy Joel (1989)            | # A | Unclued                     | Ltr |
+|----------------------------------------|-----------|--------|---------------------------------------------------------|----|-----------------------------|-----|
+| [M]({% url 'ripple-effect-sub' 'm' %}) | [1](#1)   | 1      | Harry Truman, Doris Day, Red China, Johnnie Ray         | 8  | `HARRY TRUMAN`              | `U` |
+| [L]({% url 'ripple-effect-sub' 'l' %}) | [2](#2)   | 2      | South Pacific, Walter Winchell, Joe DiMaggio            | 6  | `SOUTH PACIFIC`             | `P` |
+| [E]({% url 'ripple-effect-sub' 'e' %}) | [3](#3)   | 6      | Brando, "The King and I", and "The Catcher in the Rye"  | 5  | `BRANDO`                    | `D` |
+| [J]({% url 'ripple-effect-sub' 'j' %}) | [4](#4)   | 9      | Joseph Stalin, Malenkov, Nasser and Prokofiev           | 2  | `MALENKOV`                  | `A` |
+| [I]({% url 'ripple-effect-sub' 'i' %}) | [5](#5)   | 13     | Einstein, James Dean, Brooklyn's got a winning team     | 5  | `EINSTEIN`                  | `T` |
+| [A]({% url 'ripple-effect-sub' 'a' %}) | [6](#6)   | 14     | Davy Crockett, Peter Pan, Elvis Presley, Disneyland     | 5  | `DISNEYLAND`                | `E` |
+| [Q]({% url 'ripple-effect-sub' 'q' %}) | [7](#7)   | 18     | Sputnik, Chou En-Lai, "Bridge on the River Kwai"        | 18 | `BRIDGE ON THE RIVER KWAI`  | `W` |
+| [N]({% url 'ripple-effect-sub' 'n' %}) | [8](#8)   | 20     | Starkweather homicide, children of thalidomide          | 15 | `CHILDREN OF THALIDOMIDE`   | `I` |
+| [B]({% url 'ripple-effect-sub' 'b' %}) | [9](#9)   | 22     | Hula hoops, Castro, Edsel is a no-go                    | 4  | `CASTRO`                    | `T` |
+| [F]({% url 'ripple-effect-sub' 'f' %}) | [10](#10) | 23     | U2, Syngman Rhee, Payola and Kennedy                    | 9  | `SYNGMAN RHEE`              | `H` |
+| [G]({% url 'ripple-effect-sub' 'g' %}) | [11](#11) | 24     | Chubby Checker, Psycho, Belgians in the Congo           | 3  | `CHUBBY CHECKER`            | `U` |
+| [P]({% url 'ripple-effect-sub' 'p' %}) | [12](#12) | 28     | Ole Miss, John Glenn, Liston beats Patterson            | 4  | `JOHN GLENN`                | `N` |
+| [R]({% url 'ripple-effect-sub' 'r' %}) | [13](#13) | 30     | JFK – blown away, what else do I have to say?           | 3  | `JFK`                       | `K` |
+| [O]({% url 'ripple-effect-sub' 'o' %}) | [14](#14) | 31     | Birth control, Ho Chi Minh, Richard Nixon back again    | 8  | `HO CHI MINH`               | `N` |
+| [H]({% url 'ripple-effect-sub' 'h' %}) | [15](#15) | 32     | Moonshot, Woodstock, Watergate, punk rock               | 7  | `MOONSHOT`                  | `O` |
+| [D]({% url 'ripple-effect-sub' 'd' %}) | [16](#16) | 35     | "Wheel of Fortune", Sally Ride, heavy metal suicide     | 1  | `WHEEL OF FORTUNE`          | `W` |
+| [K]({% url 'ripple-effect-sub' 'k' %}) | [17](#17) | 36     | Foreign debts, homeless vets, AIDS, crack, Bernie Goetz | 7  | `FOREIGN DEBTS`             | `N` |
+| [C]({% url 'ripple-effect-sub' 'c' %}) | [18](#18) | 37     | Hypodermics on the shore, China's under martial law     | 5  | `CHINA'S UNDER MARTIAL LAW` | `S` |
+
+| Puzzle                                 | Answers   | Line # | UPDATED SONG BY FALLOUT BOY (2023)                   | # B | Fits Unknown Category        | Ltr |
+|----------------------------------------|-----------|--------|------------------------------------------------------|-----|------------------------------|-----|
+| [C]({% url 'ripple-effect-sub' 'c' %}) | [18](#18) | 1      | Captain Planet, Arab Spring, L.A. riots, Rodney King | 10  | `CAPTAIN PLANET`             | `A` |
+| [E]({% url 'ripple-effect-sub' 'e' %}) | [3](#3)   | 3      | Oklahoma City bomb, Kurt Cobain, Pokémon             | 7   | `POKEMON`                    | `N` |
+| [Q]({% url 'ripple-effect-sub' 'q' %}) | [7](#7)   | 4      | Tiger Woods, MySpace, Monsanto, GMOs                 | 3   | `MYSPACE`                    | `S` |
+| [N]({% url 'ripple-effect-sub' 'n' %}) | [8](#8)   | 5      | Harry Potter, Twilight, Michael Jackson dies         | 2   | `TWILIGHT`                   | `W` |
+| [P]({% url 'ripple-effect-sub' 'p' %}) | [12](#12) | 7      | Crimean Peninsula, Cambridge Analytica               | 9   | `CRIMEAN PENINSULA`          | `E` |
+| [I]({% url 'ripple-effect-sub' 'i' %}) | [5](#5)   | 8      | Kim Jong Un, Robert Downey Jr., Iron Man             | 2   | `IRON MAN`                   | `R` |
+| [D]({% url 'ripple-effect-sub' 'd' %}) | [16](#16) | 9      | More war in Afghanistan, Cubs go all the way again   | 16  | `MORE WAR IN AFGHANISTAN`    | `I` |
+| [R]({% url 'ripple-effect-sub' 'r' %}) | [13](#13) | 10     | Obama, Spielberg, explosion, Lebanon                 | 1   | `SPIELBERG`                  | `S` |
+| [F]({% url 'ripple-effect-sub' 'f' %}) | [10](#10) | 11     | Unabomber, Bobbitt, John, bombing Boston Marathon    | 10  | `BOMBING BOSTON MARATHON`    | `S` |
+| [O]({% url 'ripple-effect-sub' 'o' %}) | [14](#14) | 13     | Trump gets impeached twice, Polar bears got no ice   | 16  | `TRUMP GETS IMPEACHED TWICE` | `H` |
+| [A]({% url 'ripple-effect-sub' 'a' %}) | [6](#6)   | 15     | Boris Johnson, Brexit, Kanye West and Taylor Swift   | 3   | `BREXIT`                     | `E` |
+| [H]({% url 'ripple-effect-sub' 'h' %}) | [15](#15) | 16     | Stranger Things, Tiger King, Ever Given, Suez        | 8   | `TIGER KING`                 | `N` |
+| [M]({% url 'ripple-effect-sub' 'm' %}) | [1](#1)   | 17     | ISIS, LeBron James, Shinzo Abe blown away            | 5   | `SHINZO ABE (BLOWN AWAY)`    | `Z` |
+| [L]({% url 'ripple-effect-sub' 'l' %}) | [2](#2)   | 18     | Meghan Markle, George Floyd, Burj Khalifa, Metroid   | 6   | `BURJ KHALIFA`               | `H` |
+| [G]({% url 'ripple-effect-sub' 'g' %}) | [11](#11) | 19     | Fermi paradox, Venus and Serena                      | 2   | `FERMI PARADOX`              | `E` |
+| [K]({% url 'ripple-effect-sub' 'k' %}) | [17](#17) | 21     | SpongeBob, Golden State Killer got caught            | 4   | `SPONGEBOB`                  | `N` |
+| [J]({% url 'ripple-effect-sub' 'j' %}) | [4](#4)   | 25     | Jeff Bezos, climate change, white rhino goes extinct | 18  | `WHITE RHINO GOES EXTINCT`   | `I` |
+| [B]({% url 'ripple-effect-sub' 'b' %}) | [9](#9)   | 27     | Mars rover, Avatar, self-driving electric cars       | 6   | `MARS ROVER`                 | `O` |
+
+
+### Answers
+
+<div class="answer-tables" markdown="1">
+
+#### Flavortext
+
+| Clue | Answer(s) |
+| - | - |
+| GODDESS | ATHENA |
+| WORD A, B, C, D | THEN, FEEL, GREAT, TEAR |
+| (???? = TIME) A, B | YEAR, MINUTES |
+
+#### 1 (M) { #1 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'm' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACTOR | HARRY HAMLIN |  |
+| ACTRESS | THELMA PELISH |  |
+| ALBUM | TASTY |  |
+| BASEBALL PLAYER | GEORGE HERMAN “BABE” RUTH |  |
+| CHARACTER A | MAE |  |
+| CHARACTER B | KATHERINE “BABE” WILLIAMS - extra cluing to **Doris Day** |  |
+| CHARACTER C | (TASHA) "TAYSTEE" JEFFERSON |  |
+| EDIBLE A, B | HAM, MILKSHAKE |  |
+| FOUNDER A | ROWLAND HUSSEY (R. H.) MACY |  |
+| FOUNDER B | MAO ZEDONG |  |
+| MOVIE A | THE PAJAMA GAME (1957) |  |
+| MOVIE B | HIDEAWAY (1995) |  |
+| MUSICAL | THE PAJAMA GAME |  |
+| (WORD = NICKNAME) A | BABE |  |
+| (WORD = NICKNAME) B | TAYSTEE |  |
+| (WORD = NICKNAME) C | THE PRINCE OF WAILS - aka **Johnnie Ray** |  |
+| (WORD = NICKNAME) D | HONEST ABE |  |
+| (WORD = NICKNAME) E | THE SULTAN OF SWAT |  |
+| POLITICAL REGION | **RED CHINA** |  |
+| SHAKESPEARE PLAY | HAMLET |  |
+| SINGER | KELIS |  |
+| SONG A | MILKSHAKE |  |
+| SONG B | HERNANDO’S HIDEAWAY |  |
+| SONG C | HER IS |  |
+| SONG D | CRY |  |
+| SYNONYM A, B | TASTY, DELISH |  |
+| SYNONYM C, D | CHERISH, RELISH |  |
+| SYNONYM E, F | HIDEAWAY, BOLTHOLE |  |
+| SYNONYM G, H | BOLT, DASH |  |
+| SYNONYM I, J, K | HINDRANCE, HITCH, SNAG |  |
+| TITLE A, B | THE PRINCE OF WALES, SULTAN |  |
+| TREE | MAPLE |  |
+| WORD | NICKNAME |  |
+| ???????????? ????? ??????? | ASSASSINATED WORLD LEADERS |  |
+| (UNKNOWN CATEGORY) A | ABRAHAM LINCOLN |  |
+| (UNKNOWN CATEGORY) B | SULTAN IBRAIMOVICH IBRAIMOV |  |
+| NUMBER A | EIGHT | Extract 1 |
+| NUMBER B | FIVE | Extract 2 |
+| FIRST SONG MISSING | HARRY TR**U**MAN | Extract 1 - Order 1 |
+| SECOND SONG CLUED | SHIN**Z**O ABE | Extract 2 - Order 13 |
+
+#### 2 (L) { #2 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'l' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACADEMIC PROGRAM | ART, CULTURE & TECHNOLOGY (ACT) |  |
+| ACTOR A, B | STEVE LONDON, JERRY PARIS |  |
+| ACTRESS | HELEN HUNT |  |
+| ATHLETE | **JOE DIMAGGIO** |  |
+| AUTHOR A, B | JACK LONDON, GEORGE ORWELL |  |
+| BAND | TRAFFIC |  |
+| CHARACTER A | JACK ROSSMAN |  |
+| CHARACTER B | NARRATOR |  |
+| CHARACTER C | ELIOT NESS |  |
+| CHARACTER D | MARTIN FLAHERTY |  |
+| CITY A, B | LONDON, PARIS |  |
+| MOUNTAIN | ARARAT |  |
+| MOVIE | PROJECT X (1987) |  |
+| MYTHOLOGICAL BEING | EOS |  |
+| NOVEL A | DOWN AND OUT IN PARIS AND LONDON |  |
+| NOVEL B | JOHN BARLEYCORN |  |
+| POET A, B | ROBERT FROST, HELEN HUNT JACKSON |  |
+| POEM | NORTH OF BOSTON |  |
+| PORTRAYER | **WALTER WINCHELL** |  |
+| PROVERB | CHILDREN SHOULD BE SEEN AND NOT HEARD |  |
+| SHORT STORY COLLECTION | CHILDREN OF THE FROST |  |
+| SONG | JOHN BARLEYCORN MUST DIE |  |
+| SPORTS TERM A, B, C, D | JACK, DOWN, OUT, SLUGGER |  |
+| TV SHOW | THE UNTOUCHABLES |  |
+| WORD | SILENT |  |
+| ???-???? ????-???? ?????????? ???????? | TWO-WORD HIGH-COST STRUCTURAL PROJECTS |  |
+| (UNKNOWN CATEGORY) A | BIG DIG |  |
+| (UNKNOWN CATEGORY) B | THE CHUNNEL |  |
+| NUMBER A | SIX |  |
+| NUMBER B | SIX |  |
+| FIRST SONG MISSING | SOUTH **P**ACIFIC | Extract 1 - Order 2 |
+| SECOND SONG CLUED | BURJ K**H**ALIFA | Extract 2 - Order 14 |
+
+#### 3 (E) { #3 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'e' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACTOR | SAL MINEO |  |
+| ACTRESS | STORM LEVER |  |
+| ANCIENT CITY | UR |  |
+| ANIMAL A, B, C | SALMON, TROUT, BULL |  |
+| BAND A, B | KORN, TWISTED SISTER |  |
+| BASEBALL PLAYER A | TIM SALMON |  |
+| BASEBALL PLAYER B | MIKE TROUT |  |
+| BASEBALL PLAYER C | BENGIE MOLINA |  |
+| BASEBALL TEAM | ANAHEIM ANGELS |  |
+| CHARACTER A | ANNA LEONOWENS |  |
+| CHARACTER B | ANNE BOLEYN |  |
+| CHARACTER C | PRINCE CHULALONGKORN |  |
+| CHARACTER D | ANNIE SAVOY |  |
+| DEVICE A, B | TRANSISTOR, AMPLIFIER |  |
+| FOOD BRAND | CHOLULA |  |
+| INGREDIENT A | SEMOLINA |  |
+| INGREDIENT B | DURUM WHEAT |  |
+| INGREDIENT C | RYE |  |
+| INGREDIENT D | CORN |  |
+| MOVIE | BULL DURHAM (1988) |  |
+| MUSICAL A | **THE KING AND I** |  |
+| MUSICAL B | SIX |  |
+| MUSICAL C | ANNIE |  |
+| NICKNAME | KING FISH |  |
+| NOVEL | **THE CATCHER IN THE RYE** |  |
+| NOVELIST | JD SALINGER |  |
+| RESTAURANT CHAIN | LONGHORN STEAKHOUSE |  |
+| SONG A | TWISTED TRANSISTOR |  |
+| SONG B | HEART OF STONE |  |
+| SONG C | DON’T LOSE UR HEAD |  |
+| SYNONYM A, B | COLLECT, GATHER |  |
+| WORD | COLLECTS |  |
+| ??????? ???? ????? | TRADING CARD GAMES |  |
+| (UNKNOWN CATEGORY) A | MAGIC: THE GATHERING |  |
+| (UNKNOWN CATEGORY) B | HEARTHSTONE |  |
+| NUMBER A | FIVE |  |
+| NUMBER B | SEVEN |  |
+| FIRST SONG MISSING | BRAN**D**O | Extract 1 - Order 3 |
+| SECOND SONG CLUED | POKEMO**N** | Extract 2 - Order 2 |
+
+#### 4 (J) { #4 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'j' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACTOR | DANIEL CRAIG |  |
+| ACTRESS | BETTY GRABLE |  |
+| ANIMAL | PIG |  |
+| BAND | THE BEATLES |  |
+| BASKETBALL PLAYER A | LOUIS “SWEET LOU” DUNBAR |  |
+| BASKETBALL PLAYER B | EARVIN “MAGIC” JOHNSON |  |
+| BASKETBALL PLAYER C | FREDERICK “CURLY” NEAL |  |
+| BASKETBALL TEAM A | HARLEM GLOBETROTTERS |  |
+| BASKETBALL TEAM B | ORLANDO MAGIC |  |
+| CHARACTER | JAMES BOND |  |
+| CITY A, B, C, D | VIENNA, BACOS, GORI, NASSAU |  |
+| COMPOSER A | SERGEI **PROKOFIEV** |  |
+| COMPOSER B | GUSTAV MAHLER |  |
+| COUNTRY A, B | AUSTRIA, GEORGIA |  |
+| DIRECTOR | LLOYD BACON |  |
+| EDIBLE A, B, C, D | VIENNA SAUSAGE, TROTTER, LIVER, BACK BACON |  |
+| EDIBLE E ,F, G, H | GAMMON, PORK LOIN, PIGTAILS, OLIVE LOAF |  |
+| FORMER LEADER A | **JOSEPH STALIN** |  |
+| FORMER LEADER B | GAMAL ABDEL **NASSER** |  |
+| FORMER NAME | SAVOY BIG FIVE |  |
+| GAME | BACKGAMMON |  |
+| LETTER A, B | GAMMA, LAMBDA |  |
+| MOVIE A | THE LION KING (1994) |  |
+| MOVIE B | SPECTRE (2015) |  |
+| MOVIE C | CALL ME MISTER (1951) |  |
+| MOVIE EXCLAMATION | “THEY CALL ME MISTER PIG!” |  |
+| OCCUPATION A, B | ARCHITECT, CLERIC |  |
+| POEM | THE SPECTRE PIG |  |
+| POET | OLIVER WENDELL HOLMES |  |
+| SONG A | SAVOY TRUFFLE |  |
+| SONG B | PIGGIES |  |
+| SPORTS TEAM | CHICAGO BEARS |  |
+| SYNONYM A, B | WORLD, GLOBE |  |
+| SYNONYM C, D | BETWEEN, AMONGST |  |
+| THEME SONG | SWEET GEORGIA BROWN |  |
+| WORD | SHUFFLE |  |
+| WRITER/GAME SHOW HOST | BEN STEIN |  |
+| ??????????? ????????? | TECHNICALLY INCORRECT |  |
+| (UNKNOWN CATEGORY) A | LUKE, I AM YOUR FATHER |  |
+| (UNKNOWN CATEGORY) B | THE BERENSTEIN BEARS |  |
+| (UNKNOWN CATEGORY) C | BETWEEN YOU AND I |  |
+| NUMBER A | TWO |  |
+| NUMBER B | EIGHTEEN |  |
+| FIRST SONG MISSING | M**A**LENKOV | Extract 1 - Order 4 |
+| SECOND SONG CLUED | WHITE RHINO GOES EXT**I**NCT | Extract 2 - Order 17 |
+
+#### 5 (I) { #5 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'i' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACTOR A | GARY OLDMAN |  |
+| ACTOR B | **JAMES DEAN** |  |
+| ACTOR C | TIM ROBBINS |  |
+| ANTONYM A, B | OLD, YOUNG |  |
+| BAND A, B, C | CRAZY HORSE, EAGLES, EAGLES OF DEATH METAL |  |
+| CHARACTER A | EBBY CALVIN “NUKE” LALOOSH |  |
+| CHARACTER B | (LAWRENCE COLUMBUS) “CRASH” DAVIS |  |
+| CHARACTER C | CAL TRASK |  |
+| CHARACTER D | JIM STARK |  |
+| CHARACTER E | PEEWEE HERMAN |  |
+| COMEDIAN/(TARGET WORD = MUSICIAN) | HENNY YOUNGMAN |  |
+| EDIBLE | CAKES |  |
+| FOOD BRAND A | OREO CAKESTERS |  |
+| FOOD BRAND B | COCOA KRISPIES |  |
+| FOOD BRAND C | REESE’S PEANUT BUTTER CUPS |  |
+| GENRE | DEATH METAL |  |
+| HISTORICAL EVENT | STOCK MARKET CRASH |  |
+| MOVIE A | UP (2009) |  |
+| MOVIE B | COCO (2017) |  |
+| MOVIE C | MYSTIC RIVER (2003) |  |
+| MOVIE D | PRICK UP YOUR EARS (1987) |  |
+| PRODUCTION COMPANY | PIXAR |  |
+| SINGER A | TOVE LO |  |
+| SINGER A FULL NAME | EBBA TOVE ELSA NILSSON |  |
+| SINGER B | VAN MORRISON |  |
+| SINGER C | NEIL YOUNG |  |
+| SONG A | INFLUENCE |  |
+| SONG B | TUPELO HONEY |  |
+| SONG C | INTO THE MYSTIC |  |
+| SONG D | OLD MAN |  |
+| SONG E | JAMES DEAN |  |
+| SPORTING VENUE | EBBETS FIELD - clued with Reese re: **Brooklyn team winning** |  |
+| SPORTS PLAYER A | COCO CRISP |  |
+| SPORTS PLAYER B | HAROLD PETER HENRY “PEEWEE” REESE |  |
+| WORD A, B | EBB, LISTEN |  |
+| WORK UNITS A, B | TIME, LABOR |  |
+| ????????? ??????? ????????? | BALTIMORE ORIOLES NICKNAMES |  |
+| (UNKNOWN CATEGORY) A | CRUSH (Chris Davis) |  |
+| (UNKNOWN CATEGORY) B | CRAZY HORSE (Mark Cuellar) |  |
+| (UNKNOWN CATEGORY) C | CAKES (Jim Palmer) |  |
+| NUMBER A | FIVE |  |
+| NUMBER B | TWO |  |
+| FIRST SONG MISSING | EINS**T**EIN | Extract 1 - Order 5 |
+| SECOND SONG CLUED | I**R**ON MAN (Cal Ripken, Jr.) | Extract 2 - Order 6 |
+
+#### 6 (A) { #6 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'a' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACTOR A | ROBERT STACK |  |
+| ACTOR B | JIM NABORS |  |
+| ACTRESS A | NATALIE PORTMAN |  |
+| ACTRESS B | SHELLEY WINTERS |  |
+| AIRLINE | FRONTIER |  |
+| ANIMAL | MILLIPEDE |  |
+| ANTONYM A, B | STERN, FRONT |  |
+| ANTONYM C, D | WINTERS, SUMMERS |  |
+| CHARACTER | GOMER PYLE |  |
+| DEFINITION | TOWARD STERN |  |
+| DIRECTION A, B | AFT, PORT |  |
+| DIRECTOR | GIULIO PARADISI |  |
+| EDIBLE | PEANUT BUTTER AND BANANA SANDWICH |  |
+| FOOD BRAND A, B | **PETER PAN**, JIF |  |
+| IDIOM | NEEDLE IN A HAYSTACK |  |
+| MOVIE A | YOUR HIGHNESS (2011) |  |
+| MOVIE B | THE VISITOR (1979) |  |
+| MOVIE C | 8½ (1963) |  |
+| NICKNAME A | THE KING OF ALL MEDIA |  |
+| NICKNAME B | THE KING - **Elvis Presley**, of course |  |
+| NICKNAME C | THE KING OF THE WILD FRONTIER - **Davy Crockett** |  |
+| NOVEL | 7½ CENTS |  |
+| PHRASE | HEIR APPARENT |  |
+| RADIO/TV BROADCASTER A | HOWARD STERN |  |
+| RADIO/TV BROADCASTER B | BOB COSTAS |  |
+| RADIO/TV BROADCASTER C | STEVE SOMERS |  |
+| SCHOOL RESEARCH CENTER A | HAYSTACK OBSERVATORY |  |
+| SCHOOL RESEARCH CENTER B | MIT MEDIA LAB |  |
+| SCREENWRITERS A, B | FEDERICO FELLINI, TULLIO PINELLI |  |
+| SONG | AFTER LOVING YOU |  |
+| SPOUSE | BENJAMIN MILLEPIED |  |
+| SYNONYM A, B | STACK, PILE |  |
+| SYNONYM C, D | PARADISE, SHANGRI-LA |  |
+| TV SHOW | NEIGHBOURS |  |
+| ???????????? | PORTMANTEAUX |  |
+| (UNKNOWN CATEGORY) A | LABRADOODLE |  |
+| (UNKNOWN CATEGORY) B | BASEKETBALL |  |
+| NUMBER A | FIVE |  |
+| NUMBER B | THREE |  |
+| FIRST SONG MISSING | DISN**E**YLAND | Extract 1 - Order 6 |
+| SECOND SONG CLUED | BR**E**XIT | Extract 2 - Order 11 |
+
+#### 7 (Q) { #7 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'q' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACTOR | ALFRED MOLINA |  |
+| ACTRESS | GATES MCFADDEN |  |
+| AUTHOR | CHARLES LAMB |  |
+| BAND A | SAVING ABEL |  |
+| BAND B | ALCATRAZZ |  |
+| BIBLICAL CHARACTER | CAIN |  |
+| CHARACTER A | BEVERLY CRUSHER |  |
+| CHARACTER B | CHARLIE FOX |  |
+| CITY | MALMO |  |
+| COUNTRY A, B | LEBANON, SWEDEN |  |
+| CURRENT LEADER | VLADIMIR PUTIN |  |
+| DANCE A, B | TANGO, FOXTROT |  |
+| DRINK BRAND A, B | DASANI, EVIAN |  |
+| FOOD BRAND | STARKIST |  |
+| FORMER LEADER A | ELIAS SARKIS |  |
+| FORMER LEADER B | MICHEL AOUN |  |
+| FORMER LEADER C | **CHOU EN-LAI** |  |
+| GAME | MONOPOLY |  |
+| KING | MIDAS |  |
+| MATERIAL | SHEARLING |  |
+| MOVIE A | WATER (1985) |  |
+| MOVIE B | WHISKEY TANGO FOXTROT (2016) |  |
+| MOVIE C | RANGO (2011) |  |
+| (TARGET WORD) = MUSICIAN) | YNGWIE MALMSTEEN |  |
+| PLAY | SPEED-THE-PLOW |  |
+| SONG A | CRY NO MORE |  |
+| SONG B | SHOT ACROSS THE BOW |  |
+| SONG C | CELL BLOCK TANGO |  |
+| **SOVIET SPACE LAUNCHES** A | ALMAZ |  |
+| SOVIET SPACE LAUNCHES B | MOLNIYA |  |
+| SOVIET SPACE LAUNCHES C | **SPUTNIK** (I or II, that was up to you, both were in the song year) |  |
+| SYNONYM A, B, C, D | NAIVE, LAMB, PLOW, TEAR |  |
+| WORD | CAN |  |
+| ???????? ?? ?????? ????? | MISHEARD AS ANIMAL GAITS |  |
+| (UNKNOWN CATEGORY) A | CHARLIE FOXTROT |  |
+| (UNKNOWN CATEGORY) B | BOARDWALK |  |
+| (UNKNOWN CATEGORY) C | RACK OF LAMB |  |
+| NUMBER A | EIGHTEEN |  |
+| NUMBER B | THREE |  |
+| FIRST SONG MISSING | BRIDGE ON THE RIVER K**W**AI | Extract 1 - Order 7 |
+| SECOND SONG CLUED | MY**S**PACE (mice pace) | Extract 2 - Order 3 |
+
+#### 8 (N) { #8 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'n' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACTOR A | NICOLAS CAGE |  |
+| ACTOR B | MICHAEL CAINE |  |
+| ACTOR C | RICHARD LINEBACK |  |
+| ACTOR D | JOSH PADDOCK |  |
+| ACTRESS | RACHEL NICHOLS |  |
+| ANIMAL A, B | CALVES. PONY |  |
+| BODY PART | CALVES |  |
+| CHARACTER A | DAVID SPRITZ |  |
+| CHARACTER B | VESPER FAIRCHILD |  |
+| DIRECTOR | GORE VERBINSKI |  |
+| JOEY WORD | RAGE |  |
+| KANGAROO WORD | RAMPAGE |  |
+| MOVIE A | THE WEATHER MAN (2005) |  |
+| MOVIE B | RAGE (2014) |  |
+| MOVIE C | RAMPAGE (2018) |  |
+| MOVIE D | NATURAL BORN KILLERS (1994) |  |
+| MOVIE E | GO (1999) |  |
+| NOVEL A | STORM WARNING |  |
+| NOVEL B | VESPERS RISING |  |
+| NOVEL C | THE VIPER’S NEST |  |
+| NOVELIST | NICHOLAS SPARKS |  |
+| OCCUPATION | LINEBACKER |  |
+| PERSON | JACK HAM |  |
+| POLITICIAN | AL GORE |  |
+| RAMPAGE KILLER A | STEPHEN PADDOCK |  |
+| **RAMPAGE KILLER** B | CHARLES **STARKWEATHER** |  |
+| SLANG PHRASE | GO HAM |  |
+| SYNONYM A, B | SPRITZ, RAIN |  |
+| SYNONYM C, D | TEAR, STORM |  |
+| SYNONYM E, F, G | CAGE, PADDOCK, PEN |  |
+| SYNONYM H, I | NATURAL BORN, NATIVE |  |
+| SYNONYM J | EARLIEST |  |
+| SYNONYM K | MEADOW |  |
+| TV SHOW A | GOTHAM |  |
+| TV SHOW B | BATWOMAN |  |
+| TV SHOW HOST | RACHEL MADDOW |  |
+| WORD A, B, C | REVERB, KILLER, RELATIVES |  |
+| ????? ?????????? ?? ?????? | WORDS COMPRISING MY LITTLE |  |
+| ???? ???? ?????? | PONY NAME HALVES |  |
+| (UNKNOWN CATEGORY) A | DASH |  |
+| (UNKNOWN CATEGORY) B | RAINBOW |  |
+| (UNKNOWN CATEGORY) C | SPARKLE |  |
+| (UNKNOWN CATEGORY) D | CLOUD |  |
+| (UNKNOWN CATEGORY) E | CHASER |  |
+| NUMBER A | FIFTEEN |  |
+| NUMBER B | TWO |  |
+| FIRST SONG MISSING | CHILDREN OF THAL**I**DOMIDE | Extract 1 - Order 8 |
+| SECOND SONG CLUED | T**W**ILIGHT | Extract 2 - Order 4 |
+
+#### 9 (B) { #9 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'b' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACTIVITY | CREDIT CHECK |  |
+| ACTRESS | JAMIE-LYNN SIGLER |  |
+| ADJECTIVE | **NO-GO** |  |
+| BAND A | JOURNEY |  |
+| BAND B | WHAM! |  |
+| BAND C | STYX |  |
+| BASKETBALL PLAYER | MEADOWLARK LEMON |  |
+| CAR MODEL | EL CAMINO |  |
+| CHARACTER A | MEADOW SOPRANO |  |
+| CHARACTER B | SHPRINTZE |  |
+| CHARACTER C | CARL BRUTANANADILEWSKI |  |
+| COMPANY A | WHAM-O |  |
+| COMPANY B | MASTERCARD |  |
+| DRINK | BREWSKI |  |
+| EDIBLE A | LEMON |  |
+| EDIBLE B | MELON |  |
+| EDIBLE C | BANANA |  |
+| FAMOUS LEMON | **FORD EDSEL** |  |
+| FORMER LEADER | GURBANGULY BERDIMUHAMEDOW |  |
+| ISLAND | BERMUDA |  |
+| LIVING THING | GRASS |  |
+| MATERIAL | NYLON |  |
+| MUSICAL | FIDDLER ON THE ROOF |  |
+| (TARGET WORD) = MUSICIAN | JOHN “J.C.” CURULEWSKI |  |
+| OCCUPATION | SOPRANO |  |
+| PRODUCT A | AQUA FORCE (clue notes “among others”, such as **hula hoops**) |  |
+| PRODUCT B | BOOGIE BOARD |  |
+| PRODUCT C | CREDIT CARD |  |
+| SONG A | DON’T STOP BELIEVING |  |
+| SONG B | WAKE ME UP BEFORE YOU GO-GO |  |
+| SONG C | MR. ROBOTO |  |
+| SOPRANO A | ROSA PONSELLE |  |
+| SOPRANO B | LEA MICHELE SARFATI |  |
+| SPEAKER OF THE HOUSE | NATHANIEL MACON |  |
+| SYNONYM A, B | MEADOW, LEA |  |
+| SYNONYM C, D | JOURNEY, SAFARI |  |
+| TV SHOW A | GLEE |  |
+| TV SHOW B | AQUA TEEN HUNGER FORCE |  |
+| WORD A | LINGER |  |
+| WORD B | URBAN |  |
+| ?????-???? ????? ??????????? | ROBOT-ONLY PLANET INHABITANTS |  |
+| (UNKNOWN CATEGORY) A | WALL-E |  |
+| (UNKNOWN CATEGORY) B | STARSCREAM |  |
+| (UNKNOWN CATEGORY) C | CYLON |  |
+| NUMBER A | FOUR |  |
+| NUMBER B | SIX |  |
+| FIRST SONG MISSING | CAS**T**RO | Extract 1 - Order 9 |
+| SECOND SONG CLUED | MARS R**O**VER | Extract 2 - Order 18 |
+
+#### 10 (F) { #10 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'f' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| BAND A | DEAD **KENNEDY**S |  |
+| BAND B | **U2** |  |
+| BAND C | PANIC! AT THE DISCO |  |
+| BAND D | DURAN DURAN |  |
+| BAND E | MANESKIN |  |
+| BAND MEMBER A | KLAUS FLOURIDE |  |
+| BAND MEMBER B | JELLO BIAFRA |  |
+| BAND MEMBER C | SIMON LE BON |  |
+| BAND MEMBER D | BRENDON URIE |  |
+| DRINK | DUAL IPA |  |
+| DRUG CLASS | STATIN |  |
+| EDIBLE A, B | NECTARINES, JELLO |  |
+| ELEMENTAL STUFF A, B, C, D | ASTATINE, FLUORIDE, CHEMICAL BOND, DIURANIUM |  |
+| ELEMENTAL STUFF E, F, G, H | NOBLE GAS, MARIE CURIE, AMERICIUM, ARSENIC |  |
+| ELEMENTAL STUFF I, J | GERMANIUM, NEON |  |
+| FLOWER | GERANIUM |  |
+| FOREIGN DIRECTOR | JACQUES TATI |  |
+| FORMER COUNTRY | BIAFRA |  |
+| LANGUAGE | GERMAN |  |
+| MEDICAL CONDITION | CLAUSTROPHOBIA |  |
+| MODEL/ACTOR | FABIO |  |
+| MOVIE A | MON ONCLE (1958) |  |
+| MOVIE B | BAMBI (1942) |  |
+| (TARGET WORD = MUSICIAN) | VICTORIA DE ANGELIS |  |
+| OBJECT A, B | CONTAINERS, CANISTER |  |
+| SINGER | DUA LIPA |  |
+| SLANG TERM | BARNEY |  |
+| SOMETHING WORN | MONOCLE |  |
+| SONG A | SKIN TRADE |  |
+| SONG B | NEON LIGHTS |  |
+| SONG C | **PAYOLA**! AT THE DISCO |  |
+| TITLE | CAPTAIN |  |
+| WORD A, B | PORT, EMULSION |  |
+| ??????? ?????? ??????? | GERMANE NEARBY MATTERS |  |
+| UNKNOWN CATEGORY A | BOSTON TEA PARTY |  |
+| UNKNOWN CATEGORY B | CURSE OF THE BAMBINO |  |
+| NUMBER A | NINE |  |
+| NUMBER B | TEN |  |
+| FIRST SONG MISSING | SYNGMAN R**H**EE | Extract 1 - Order 10 |
+| SECOND SONG CLUED | BOMBING BO**S**TON MARATHON | Extract 2 - Order 9 |
+
+#### 11 (G) { #11 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'g' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACTRESS | DANIELLE BROOKS |  |
+| ARTIST A, B | MARK ROTHKO, RENÉ MAGRITTE |  |
+| BODY PART A | SHIN |  |
+| BODY PART B | FINGER |  |
+| COMPOSER | VANGELIS |  |
+| CONSECUTIVE LETTERS | GHIJKLMNO |  |
+| COUNTRY A | NORTH KOREA |  |
+| COUNTRY B | COSTA RICA |  |
+| COUNTRY C | ZAIRE - aka **the Congo** |  |
+| DIRECTOR | BLITZ BAZAWULE |  |
+| EDIBLE A | MANGOSTEEN |  |
+| EDIBLE B | MANGO |  |
+| EDIBLE C | LANGOUSTINE |  |
+| EDIBLE D | BLINTZ |  |
+| EDIBLE E | GRAHAM CRACKER |  |
+| FAMOUS FELLOW NATIONAL A | JACQUES BREL - the nationals are **Belgians** and they were |  |
+| FAMOUS FELLOW NATIONAL B | RENÉ MAGRITTE - mixed “**in**” the transposal with Zaire, sooo… |  |
+| FORMER LEADER | KIM JONG-IL |  |
+| GAME SHOW | LINGO |  |
+| LANDMARK | TAJ MAHAL |  |
+| MOVIE A | DARK SHADOWS (2012) |  |
+| MOVIE B | THE SHINING (1980) |  |
+| MOVIE C | AMERICAN PSYCHO (2000) |  |
+| MUSICAL | THE COLOR PURPLE |  |
+| MYTHOLOGICAL BEING A | SHINIGAMI |  |
+| MYTHOLOGICAL BEING B | THE GRIM REAPER |  |
+| (TARGET WORD = MUSICIAN) | BILLY JOEL |  |
+| OCCUPATION A, B, C | TELEVANGELIST, PSYCHOPOMP, RINGMASTER |  |
+| PLAY | RED |  |
+| PRODUCER | GRAHAM KING |  |
+| SINGER | MAHALIA JACKSON |  |
+| SONG | **PSYCHO** KILLER |  |
+| SYNONYM A, B | GRIM, STERN |  |
+| SYNONYM C, D | OSTRACIZE, BLACKLIST |  |
+| TELEVANGELIST A | BILLY GRAHAM |  |
+| TELEVANGELIST B | JOEL OSTEEN |  |
+| TV PERSONALITY | RUPAUL |  |
+| TV SHOW A | ORANGE IS THE NEW BLACK |  |
+| TV SHOW B | LOST |  |
+| TV SHOW C | MASTER OF NONE |  |
+| TV SHOW D | THE BLACKLIST |  |
+| TV SHOW E | DRAGNIFICENT! |  |
+| WORD | MARRIAGE |  |
+| WORK | VIOLET, BLACK, ORANGE, YELLOW ON WHITE AND RED |  |
+| ?????? ? ??????? ???? ??? ???? ???? | SPORTS A SURNAME FROM THE HAIR PAIR |  |
+| UNKNOWN CATEGORY | DRAGNIFICENT! |  |
+| NUMBER A | THREE |  |
+| NUMBER B | TWO |  |
+| FIRST SONG MISSING | CH**U**BBY CHECKER | Extract 1 - Order 11 |
+| SECOND SONG CLUED | F**E**RMI PARADOX | Extract 2 - Order 15 |
+
+[Puzzle 18 (C)]({% url 'ripple-effect-sub' 'c' %}) notes that the MUSICIAN in this question has an association with the # 89 but doesn’t say what it is. This refers to 1989, We Didn’t Start the Fire, which is the basis for the 1st extraction.
+
+#### 12 (P) { #12 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'p' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACTRESS | SOFIA VERGARA |  |
+| ARTICLE OF CLOTHING | HAIRNET |  |
+| AUTHOR | REBECCA SOLNIT |  |
+| BOXER A | SONNY LISTON - **Liston beat Patterson** in both fights |  |
+| BOXER B | FLOYD PATTERSON |  |
+| CAPITAL CITY A, B, C | TIRANA, SOFIA, ACCRA |  |
+| COUNTRY A, B | ALBANIA, GHANA |  |
+| FAMOUS ROBBER | CHARLES ARTHUR “PRETTY BOY” FLOYD |  |
+| LANGUAGE | ITALIAN |  |
+| MOVIE A | SOUL PLANE (2004) |  |
+| MOVIE B | SOUL (2020) |  |
+| PAST-TENSE VERB A, B | FARTED, MANSPLAINED |  |
+| PART OF THE ANATOMY | TONSIL |  |
+| SYNONYM A, B | SIGNIFICANT OTHER, SPOUSE |  |
+| SYNONYM C, D | SEXISM, CHAUVINISM |  |
+| SYNONYM E, F | LISSOME, SUPPLE |  |
+| TV SHOW | SOUL TRAIN |  |
+| UNIVERSITY (BYNAME) | UNIVERSITY OF MISSISSIPPI (“**OLE MISS**”) |  |
+| WORD A, B | PUN, ANATOMY |  |
+| ????? ??????? ???????? ?? ??????? | WORDS HOSTING ANAGRAMS OF ITALIAN |  |
+| ???? ??? ???????? ?????? | ALPS AND MOUNTAIN RANGES |  |
+| UNKNOWN CATEGORY A | FAINTHEARTED (Rhaetian) |  |
+| UNKNOWN CATEGORY B | UNPOLITENESS (Lepontine) |  |
+| UNKNOWN CATEGORY C | SIGNIFICANT OTHER (Cottian) |  |
+| UNKNOWN CATEGORY D | IMMATERIAL (Maritime) |  |
+| NUMBER A | FOUR |  |
+| NUMBER B | NINE |  |
+| FIRST SONG MISSING | JOH**N** GLENN | Extract 1 - Order 12 |
+| SECOND SONG CLUED | CRIMEAN P**E**NINSULA (Apennines) | Extract 2 - Order 5 |
+
+#### 13 (R) { #13 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'r' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACADEMIC SUBJECT | MATH |  |
+| ADJECTIVE | CATCH-AS-CATCH-CAN |  |
+| BAND A | EUROPE |  |
+| BAND B | CHICAGO |  |
+| BAND C | THE GO-GO’S |  |
+| CITY | LELYDORP |  |
+| COUNTRY | SURINAME |  |
+| MATERIAL | WOOD |  |
+| MOVIE A | TRAFFIC (2000) |  |
+| MOVIE B | CATCH ME IF YOU CAN (1989) |  |
+| MOVIE C | DON’T LET GO (2019) |  |
+| MOVIE D | VAN HELSING (2004) |  |
+| MOVIE E | THE INFORMANT! (2009) |  |
+| (TARGET WORD = MUSICIAN) | JOHNNY MANDEL |  |
+| MUSICAL | COME FROM AWAY |  |
+| OCCUPATION | GO-GO DANCER |  |
+| PALINDROME | RACECAR |  |
+| PERSON | ALAN MATHISON TURING |  |
+| PHRASE | MANDELA EFFECT |  |
+| SINGER A | CARRIE UNDERWOOD |  |
+| SINGER B | JOHN MAYER |  |
+| SONG A | CARRIE |  |
+| SONG B | **BLOWN AWAY** |  |
+| SONG C | **WHAT ELSE** CAN **I SAY** (synonymous with “**have to**” say) |  |
+| SONG D | OUR LIPS ARE SEALED |  |
+| SONG E | **SOMETHING’S MISSING (what each puzzle has in common)** |  |
+| SYNONYM A, B | BLOWN AWAY, JOYFUL |  |
+| SYNONYM C, D | CARRY, DON’T LET GO |  |
+| WEB SERIES | COMMAND Z |  |
+| ????????/???????? ???????? | DIRECTOR/PRODUCER SURNAMES |  |
+| ???????? ? ???????? ????? | FEATURING A EUROPEAN RIVER |  |
+| (UNKNOWN CATEGORY) A | (STEVEN) SODERBERGH (Oder) |  |
+| (UNKNOWN CATEGORY) B | (STEPHEN) SOMMERS (Somme) |  |
+| NUMBER A | THREE |  |
+| NUMBER B | ONE |  |
+| FIRST SONG MISSING | JF**K** | Extract 1 - Order 13 |
+| SECOND SONG CLUED | **S**PIELBERG (Elbe) | Extract 2 - Order 8 |
+
+#### 14 (O) { #14 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'o' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACTOR/COMEDIAN | MARIO CANTONE |  |
+| ANIMATED CHARACTER | VANELLOPE VON SCHWEETZ |  |
+| ARTICLE OF CLOTHING | SANTA SUIT |  |
+| BAND | SPICE GIRLS |  |
+| CITY | BASEL |  |
+| DRUG BRAND NAME A | APRI |  |
+| DRUG BRAND NAME B | DEPO-PROVERA |  |
+| EDIBLE | NEUFCHATEL |  |
+| FAMOUS PERSON A | SAMUEL BYCK |  |
+| FAMOUS PERSON B | CHARLES GUITEAU |  |
+| FAMOUS PERSON C | **RICHARD NIXON** (**back again**, solve Puz #15 (H) first as directed) |  |
+| (WORD B = HERB) A | MARJORAM |  |
+| (WORD B = HERB) B | BURNET |  |
+| (WORD B = HERB) C | BASIL |  |
+| HYPOTHETICAL EXCLAMATION | “I AM A HUGE CLUSTER!” |  |
+| INSTRUMENT | GUITAR |  |
+| JOEY WORD | ACTUAL |  |
+| KANGAROO WORD | FACTUAL |  |
+| LOCATION | BROADWAY |  |
+| MONTH A, B, C, D, E | APRIL, AUGUST, MAY, JUNE, DECEMBER |  |
+| MOVIE A | WRECK-IT RALPH (2012) |  |
+| MOVIE B | MAY DECEMBER (2023) |  |
+| MUSICAL | ASSASSINS |  |
+| (TARGET WORD = MUSICIAN) A | CARLOS SANTANA |  |
+| (TARGET WORD = MUSICIAN) B | BRIAN MAY |  |
+| SINGER | FREDDIE MERCURY |  |
+| SONG | HELP! |  |
+| STATIONERY ITEM | ENVELOPE |  |
+| TITLE | MAJOR |  |
+| TOPONYM | NEUCHATEL |  |
+| WORD A, B, C | CANTON, HERBS, GINGER |  |
+| ?????? ?????? ?? ?????? ???? | ACTUAL THINGS OR EVENTS THAT |  |
+| ??????? ? ????????? ???????? | ENVELOP A FICTIONAL PRINCESS |  |
+| (UNKNOWN CATEGORY) A | OREGANO |  |
+| (UNKNOWN CATEGORY) B | THE PLEIADES |  |
+| (UNKNOWN CATEGORY) C | WANNABE |  |
+| NUMBER A | EIGHT |  |
+| NUMBER B | SIXTEEN |  |
+| FIRST SONG MISSING | HO CHI MI**N**H | Extract 1 - Order 14 |
+| SECOND SONG CLUED | TRUMP GETS IMPEAC**H**ED TWICE | Extract 2 - Order 10 |
+
+#### 15 (H) { #15 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'h' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACTOR | RICHARD DREYFUSS |  |
+| ACTRESS A | MARGOT ROBBIE |  |
+| ACTRESS B | ROSEANNE BARR |  |
+| ACTRESS C | CAROL BURNETT |  |
+| ACTRESS D | RHEA PERLMAN |  |
+| BAND A | MISFITS |  |
+| BAND B | THE RAMONES (genre clued = **Punk Rock**) |  |
+| CARTOON CHARACTER A | CHARLIE BROWN |  |
+| CARTOON CHARACTER B | **WOODSTOCK** |  |
+| CHARACTER | HONEY |  |
+| COUNTRY | NIGER |  |
+| DANCE | HORA |  |
+| EDIBLE | CHARCUTERIE |  |
+| FAMOUS PERSON A | RICHARD NIXON |  |
+| FAMOUS PERSON B | ELIZABETH HOLMES |  |
+| HEALTH CONDITION | STOCKHOLM SYNDROME |  |
+| HOMOPHONES A, B | BOARD, BORED |  |
+| ISLAND | SICILY |  |
+| MOVIE A | BARBIE (2023) |  |
+| MOVIE B | CANADIAN BACON (1995) |  |
+| MOVIE C | BOOGIE NIGHTS (1997) |  |
+| MOVIE D | THE AMERICAN PRESIDENT (1995) |  |
+| MUSICAL | HAIR |  |
+| (TARGET WORD = MUSICIAN) A | GEROME RAGNI |  |
+| (TARGET WORD = MUSICIAN) B | JAMES RADO |  |
+| MYTHOLOGICAL BEING A | HERA |  |
+| MYTHOLOGICAL BEING B | RHEA |  |
+| MYTHOLOGICAL BEING C | NIKE |  |
+| OCCUPATION A, B, C, D, E | LYRICIST, COMEDIANS, SQUIRE, KNIGHT, SENATOR |  |
+| PHRASE A | LICKETY-SPLIT |  |
+| PHRASE B | DOMESTIC GODDESS |  |
+| PHRASE C | BRING HOME THE BACON |  |
+| PHRASE D | SQUARE ROOT |  |
+| POLITICIAN A, B | BARRY GOLDWATER, DAN QUAYLE |  |
+| SONG A | BE-IN (HARE KRISHNA) |  |
+| SONG B | NIKE-A-GO-GO |  |
+| SPORTS TERM | SEVEN-TEN SPLIT |  |
+| SQUARE ROOT A, B | SEVEN, TEN |  |
+| SYNONYM A, B, C | GO, BOOGIE, SPLIT |  |
+| SYNONYM D, E | DROPOUT, MISFIT |  |
+| TV SHOW A | THE SOPRANOS |  |
+| TV SHOW B | THE DROPOUT |  |
+| WORD A, B | CIRCUIT, STOCK |  |
+| ???????? ?? ???? ????? ????????????? | SUBJECTS OF TRUE CRIME DOCUMENTARIES |  |
+| ?? ????? ???? ????? | OF EQUAL WORD VALUE |  |
+| (UNKNOWN CATEGORY) A | **WATERGATE** |  |
+| (UNKNOWN CATEGORY) B | THERANOS |  |
+| NUMBER A | SEVEN |  |
+| NUMBER B | EIGHT |  |
+| FIRST SONG MISSING | MOONSH**O**T | Extract 1 - Order 15 |
+| SECOND SONG CLUED | TIGER KI**N**G | Extract 2 - Order 12 |
+
+#### 16 (D) { #16 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'd' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ALBUM A | DIARY OF A MADMAN |  |
+| ALBUM B | BLIZZARD OF OZZ |  |
+| ALBUM C | JUDAS |  |
+| ALBUM D | STAINED CLASS |  |
+| ANIMAL A, B, C , D | HORSE, BRONCO, MUSTANG, SPANIELS |  |
+| AUTOMOBILE MODEL | FORD MUSTANG |  |
+| BAND A | FOZZY |  |
+| BAND B | JUDAS PRIEST |  |
+| BASEBALL PLAYER | OZZIE SMITH |  |
+| CHARACTER | MARGARET HOULIHAN |  |
+| CHURCH-ASSOCIATED THING A | STAINED GLASS |  |
+| CHURCH-ASSOCIATED THING B | PRIEST |  |
+| CITY A, B | LEESBURG, DENVER |  |
+| DRINK BRAND | JACK DANIEL’S |  |
+| FOOTBALL PLAYER | JOE FLACCO |  |
+| ICE CREAM FLAVOR | ROCKY ROAD |  |
+| LETTER A, B | PHI, BETA |  |
+| MODE OF TRANSPORTATION A, B, C | PLANE, TRAIN, AUTOMOBILE |  |
+| MOVIE | PLANES, TRAINS & AUTOMOBILES (1987) |  |
+| MUPPET | FOZZIE BEAR |  |
+| NICKNAME/NOVEL | THE WIZARD OF OZ |  |
+| OCCUPATION | UMP |  |
+| (TARGET WORD = MUSICIAN) A | OZZY OSBOURNE |  |
+| (TARGET WORD = MUSICIAN) B | RANDY RHOADS - genre for A & B = **heavy metal** |  |
+| (TARGET WORD = MUSICIAN) C | JOHN DENVER |  |
+| PHRASE | PLANE CRASH |  |
+| PHYSICIST | **SALLY RIDE** |  |
+| SOCIETY | PHI BETA KAPPA |  |
+| SONG A | OVER THE MOUNTAIN |  |
+| SONG B | ROCKY MOUNTAIN HIGH |  |
+| SONG C | TAKE ME HOME, COUNTRY ROADS |  |
+| SONG D | JUDAS |  |
+| SONG E | DEE |  |
+| SONG F | **SUICIDE** IS PAINLESS |  |
+| SONG G | CAPTAIN JACK |  |
+| SONG H | CRAZY TRAIN |  |
+| SONG I | MUSTANG SALLY |  |
+| SONG J | RIDE SALLY RIDE |  |
+| STATE A, B | FLORIDA, COLORADO |  |
+| TV SHOW A | M\*A\*S\*H |  |
+| TV SHOW B | THE SIMPSONS |  |
+| WRESTLER | CHRIS JERICHO |  |
+| ??? ? ??????????? ?????????? ??????? | HAS A CONSECUTIVE ALPHABETIC |  |
+| ??????? | TRIGRAM |  |
+| (UNKNOWN CATEGORY) A | FLYING HIGH AGAIN |  |
+| (UNKNOWN CATEGORY) B | MOS DEF |  |
+| (UNKNOWN CATEGORY) C | STUMP |  |
+| (UNKNOWN CATEGORY) D | HIJACK |  |
+| NUMBER A | ONE |  |
+| NUMBER B | SIXTEEN |  |
+| FIRST SONG MISSING | **W**HEEL OF FORTUNE | Extract 1 - Order 16 |
+| SECOND SONG CLUED | MORE WAR IN AFGHAN**I**STAN | Extract 2 - Order 7 |
+
+#### 17 (K) { #17 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'k' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| AMERICAN VIGILANTE A | BERNHARD GOETZ - aka **Bernie Goetz** |  |
+| AMERICAN VIGILANTE B | WYATT EARP |  |
+| BAND | ONE DIRECTION |  |
+| BAND MEMBER | HARRY STYLES |  |
+| CARTOON CHARACTER & SYNONYM | SNOOPY; PRYING |  |
+| CITY | BERN |  |
+| EDIBLE A, B | NUT, DOUGHNUT |  |
+| EXCLAMATION A, B, C | STAND DOWN, DROP IT, LET GO |  |
+| EXPRESSION A, B | CUT THE CHEESE, LET ONE GO |  |
+| FAMOUS GENERAL | MARC ANTONY |  |
+| FEDERAL CHARITY PROGRAM A | STAND DOWN - a program for **vet(eran)s**, often **homeless** |  |
+| FEDERAL CHARITY PROGRAM B | YELLOW RIBBON FUND - another veteran program |  |
+| HAIRCUT | BUZZ CUT |  |
+| HAIRSTYLE | BEEHIVE |  |
+| HEALTH CONDITION A, B | HIV, MENTAL BREAKDOWN - HIV additionally clued with **AIDS** |  |
+| IDIOM A & SYNONYM | GET HITCHED; WED |  |
+| IDIOM B | A TOUGH NUT TO CRACK |  |
+| IDIOM C | CRACKED A BOOK |  |
+| RAPPER A, B | MONEYBAGG YO, SNOOP DOGG |  |
+| SONG A | STAND DOWN |  |
+| SONG B | DROP IT LIKE IT’S HOT |  |
+| SONG C | LET’S GO STUDY |  |
+| SONG D | TIE A YELLOW RIBBON ROUND THE OLE OAK TREE |  |
+| SYNONYM A, B, C, D | **CRACK**, JIFFY, SPLIT SECOND, BREAK |  |
+| UNIT OF MEASURE A, B | WATT, YEAR |  |
+| WORD A, B, C, D, E | VIRUS, ACRONYM, STUDY, FUNDAMENTALLY, HAIRSTYLE |  |
+| ?????? ?????? ???? ??????? ???? ????? | YELLOW THINGS THAT CONTAIN MANY HOLES |  |
+| (UNKNOWN CATEGORY) A | HONEYCOMB |  |
+| (UNKNOWN CATEGORY) B | SWISS CHEESE |  |
+| NUMBER A | SEVEN |  |
+| NUMBER B | FOUR |  |
+| FIRST SONG MISSING | FOREIG**N** DEBTS | Extract 1 - Order 17 |
+| SECOND SONG CLUED | SPO**N**GEBOB | Extract 2 - Order 16 |
+
+#### 18 (C) { #18 }
+
+[Puzzle]({% url 'ripple-effect-sub' 'c' %})
+
+| Clue | Answer(s) |  |
+| - | - | - |
+| ACTOR | WES STUDI |  |
+| ALBUM A | AMERICAN BEAUTY / AMERICAN PSYCHO |  |
+| ALBUM B | BEAUTY AND THE BEAT |  |
+| BAND A | **FALL OUT BOY** |  |
+| BAND B | GARBAGE |  |
+| COUNTRY | TURKEY (or TURKIYE) |  |
+| ENVIRONMENTAL ISSUE | SYRINGE TIDE - this issue aka **hypodermics on the shore** |  |
+| MOVIE A | AMERICAN BEAUTY (1999) |  |
+| MOVIE B | AMERICAN PSYCHO (2000) |  |
+| MOVIE C | AVATAR (2009) |  |
+| MUSICAL | BEAUTY AND THE BEAST |  |
+| (TARGET WORD = MUSICIAN) A | PATRICK STUMP |  |
+| (TARGET WORD = MUSICIAN) B | ANDY HURLEY |  |
+| (TARGET WORD = MUSICIAN) C | JOE TROHMAN |  |
+| (TARGET WORD = MUSICIAN) D | PETE WENTZ |  |
+| OCCUPATION A, B | CITY DESIGNER, BASSIST |  |
+| RAPPER A | JUICE WRLD |  |
+| RAPPER B | LIL UZI VERT |  |
+| SLANG PHRASE | GARBAGE JUICE |  |
+| SONG A | I DON’T CARE |  |
+| SONG B | KNIGHT CRAWLER |  |
+| SONG C | WASTED |  |
+| SONG D | THE WORLD IS NOT ENOUGH |  |
+| SYNONYM A, B | SULLY, TARNISH |  |
+| UNIT OF MEASURE | DENSITY |  |
+| WORD A | MUTANT |  |
+| WORD B | TRICKS |  |
+| ???? ??? ????? ??????? | BLUE MAN GROUP MEMBERS |  |
+| (UNKNOWN CATEGORY) A | NIGHTCRAWLER |  |
+| (UNKNOWN CATEGORY) B | EYTUKAN |  |
+| (UNKNOWN CATEGORY) C | BEAST |  |
+| (UNKNOWN CATEGORY) D | JOKEY SMURF |  |
+| (UNKNOWN CATEGORY) E | JAKE SULLY |  |
+| (UNKNOWN CATEGORY) F | JAMES P. “SULLEY” SULLIVAN |  |
+| NUMBER A | SIX |  |
+| NUMBER B | TEN |  |
+| FIRST SONG MISSING | CHINA’**S** UNDER MARTIAL LAW | Extract 1 - Order 18 |
+| SECOND SONG CLUED | CAPTAIN PL**A**NET | Extract 2 - Order 1 |
+
+</div>
+
+{% endblock%}

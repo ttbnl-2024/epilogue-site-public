@@ -1,0 +1,238 @@
+{% load i18n %}
+{% load puzzle_tags %}
+{% load humanize %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    {% block page-title %}
+      <title>{{ hunt_title }}</title>
+    {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="MH24 Epilogue">
+    <meta property="og:description" content="{% blocktranslate with hunt=hunt_title%}Registration for the {{ hunt }} is now open!{% endblocktranslate %}">
+    {% comment %} <meta property="og:image" content="{{ domain|slice:'-1' }}FIXME"> {% endcomment %}
+    <meta property="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="{% static "css/normalize.min.css" %}">
+    <!-- 2.1.4 -->
+    <link rel="stylesheet" href="{% static "css/toastr.min.css" %}">
+    <script src="{% static "js/toastr.min.js" %}"></script>
+    <link rel="stylesheet" href="{% static "css/skeleton.css" %}">
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/jquery.touchswipe.min.js" %}"></script>
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static "js/jquery.formset.js" %}"></script>
+    <script src="{% static "js/sorttable.js" %}"></script>
+    <script src="{% static "js/tray.js" %}"></script>
+    <script src="{% static "js/notify.js" %}"></script>
+    <script src="{% static "js/time.js" %}"></script>
+    <link rel="icon" type="image/png" href="{% static "images/favicon-96x96.png" %}" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="{% static "images/favicon.svg" %}" />
+    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "images/apple-touch-icon.png" %}" />
+    <link rel="manifest" href="{% static "images/site.webmanifest" %}" />
+  </head>
+  <body>
+    <a class="skip-to-main">Press enter to skip to main content.</a>
+    <nav>
+      <span class="tray">
+        <div class="top-tabs">
+          <div class="site-nav">
+            <a{% if request.path == '/' %} class="selected-tab"{% endif %} href="{% url 'index' %}">
+              {% translate "Home" %}
+            </a>
+            <a{% if request.path == '/rules' %} class="selected-tab"{% endif %} href="{% url 'rules' %}">
+              {% translate "Rules" %}
+            </a>
+            {% if story_page_visible %}
+              <a{% if request.path == '/story' %} class="selected-tab"{% endif %} href="{% url 'story' %}">
+                {% translate "Story" %}
+              </a>
+            {% endif %}
+            {% if hunt_has_started or hunt_has_almost_started %}
+              <a{% if '/puzzle' in request.path or puzzle %} class="selected-tab"{% endif %} href="{% url 'puzzles' %}">
+                {% translate "Puzzles" %}
+              </a>
+            {% endif %}
+            <a{% if '/team' in request.path %} class="selected-tab"{% endif %} href="{% url 'teams' %}">
+              {% translate "Teams" %}
+            </a>
+            <a{% if request.path == '/faq' %} class="selected-tab"{% endif %} href="{% url 'faq' %}">
+              {% translate "FAQ" %}
+            </a>
+            {% if errata_page_visible %}
+              <a{% if request.path == '/errata' %} class="selected-tab"{% endif %} href="{% url 'errata' %}">
+                {% translate "Updates" %}
+              </a>
+            {% endif %}
+            {% if wrapup_page_visible %}
+              <a{% if '/wrapup' in request.path %} class="selected-tab"{% endif %} href="{% url 'wrapup' %}">
+                {% translate "Wrap-Up" %}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="top-more-actions">
+          {% block top-left-actions %}{% endblock %}
+        </div>
+      </span>
+      <div class="top-right-actions">
+        {% if request.user.is_authenticated %}
+          {% if team %}
+            <div id="nav-team-name">
+              <a class="team-name" href="{% url 'team' team.team_name %}">{{ request.user }}</a>
+            </div>
+          {% else %}
+            {{ request.user }}
+          {% endif %}
+          {% if request.user.is_impersonate %}
+            <span class="current-stat" title="{% translate 'Currently impersonating' %}">
+              ({{ request.impersonator }}
+              <a style="padding: 0" href="{% url 'impersonate-stop' %}">&#x1F6D1;</a>)
+            </span>
+          {% endif %}
+          {% if team and num_hints_remaining > 0 %}
+            <span class="current-stat" title="{% translate 'Available hints:' %} {{ num_hints_remaining }}">
+              {% include 'icon-hint.svg' %}
+              <span class="current-stat-label">{{ num_hints_remaining }}</span>
+            </span>
+          {% endif %}
+          {% if team and num_free_answers_remaining > 0 %}
+            <span class="current-stat" title="{% translate 'Free answers:' %} {{ num_free_answers_remaining }}">
+              {% include 'icon-answer.svg' %}
+              <span class="current-stat-label">{{ num_free_answers_remaining }}</span>
+            </span>
+          {% endif %}
+          {% if team and hunt_has_started %}
+            <span class="current-stat" title="Solves: {{ team.solves|length }}">
+              {% include 'icon-solve.svg' %}
+              <span class="current-stat-label">{{ team.solves|length }}</span>
+            </span>
+          {% endif %}
+
+          {% if is_superuser %}
+            <div class="shortcuts-container">
+              <button id="toggle-shortcuts" aria-expanded="false" aria-controls="shortcuts" title="{% translate 'Admin toolbox' %}">
+                {% if not hunt_is_prereleased %}&#x26A0;&#xFE0F;{% endif %}
+                {% translate "Shortcuts" %}
+                &#x25BC;
+              </button>
+              <div class="shortcuts" id="shortcuts">
+                <form method="post" action="{% url 'shortcuts' %}" target="dummy">
+                  {% csrf_token %}
+                  {% if not hunt_is_prereleased %}
+                    <p>
+                      {% translate "Even though you&rsquo;re an admin, you&rsquo;re not currently marked as a testsolver, so you won&rsquo;t be able to view puzzles." %}
+                    </p>
+                  {% endif %}
+                  {% for shortcut in shortcuts %}
+                    {% if 'action' in shortcut %}
+                      <button class="btn{% if shortcut.danger %} danger{% endif %}" type="submit" name="action" value="{{ shortcut.action }}" {% if shortcut.info %}title="{{ shortcut.info }}"{% endif %}>{{ shortcut.name }}</button>
+                    {% else %}
+                      <div>{{ shortcut.name }}</div>
+                    {% endif %}
+                  {% endfor %}
+                  {% if puzzle %}
+                    <div>{% translate "This puzzle&rsquo;s answer:" %}</div>
+                    <div class="spoiler">{{ puzzle.answer }}</div>
+                    <div>{{ puzzle.round.name }} #{{ puzzle.order }}</div>
+                    <a href="/admin/puzzles/puzzle/{{ puzzle.id }}/change/" class="btn">{% translate "Django admin" %}</a>
+                    <a href="{% url 'survey' puzzle.slug %}" class="btn">{% translate "Surveys" %}</a>
+                    <input name="puzzle" value="{{ puzzle.slug }}" type="hidden">
+                  {% endif %}
+                  {% if view_team %}
+                    <div>{% translate "This team" %}</div>
+                    <div style="font-size: 70%">
+                      testsolver: {{view_team.is_prerelease_testsolver}} | time from start: {{view_team.time_since_start}}
+                    </div>
+                    <a href="/admin/puzzles/team/{{ view_team.id }}/change/" class="btn">{% translate "Django admin" %}</a>
+                    <a href="{% url 'impersonate-start' view_team.user_id %}" class="btn danger">{% translate "Impersonate" %}</a>
+                    <div></div>
+                    <a href="/admin/puzzles/answersubmission/?team__id__exact={{ view_team.id }}" class="btn">{% translate "All guesses" %}</a>
+                    <a href="{% url 'hint-list' %}?team={{ view_team.id }}" class="btn">{% translate "All hints" %}</a>
+                  {% endif %}
+                  <div>{% translate "Download logs" %}</div>
+                  <a class="btn" href="{% url 'guess-csv' %}">{% translate "Guess" %}</a>
+                  <a class="btn" href="{% url 'hint-csv' %}">{% translate "Hint" %}</a>
+                  <a class="btn" href="{% url 'puzzle-log' %}">{% translate "Puzzle" %}</a>
+                  <iframe src="about:blank" name="dummy" style="display: none"></iframe>
+                </form>
+              </div>
+              <script>
+                const downArrow = "\u25BC";
+                const upArrow = "\u25B2";
+                const toggleButton = document.getElementById("toggle-shortcuts");
+                const buttonTextPrefix = toggleButton.innerText.substring(0, toggleButton.innerText.length-1);
+                const shortcutsPopup = document.getElementById("shortcuts");
+                toggleButton.addEventListener("click", () => {
+                  if (toggleButton.innerText.endsWith(downArrow)) {
+                    toggleButton.innerText = buttonTextPrefix + upArrow;
+                    toggleButton.ariaExpanded = true;
+                    shortcutsPopup.style.display = "block";
+                  } else {
+                    toggleButton.innerText = buttonTextPrefix + downArrow;
+                    toggleButton.ariaExpanded = false;
+                    shortcutsPopup.style.display = "none";
+                  }
+                })
+              </script>
+            </div>
+            {% if unclaimed_hints %}
+              <a class="current-stat" title="{% translate 'Hints that need answering:' %} {{ unclaimed_hints }}" href="{% url 'hint-list' %}" style="color: red">
+                {% include 'icon-hint.svg' %}
+                <span class="current-stat-label">{{ unclaimed_hints }}</span>
+              </a>
+            {% endif %}
+
+          {% endif %}
+          <form id="logout-form" method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn">{% translate "Log out" %}</button>
+          </form>
+        {% elif not hunt_is_closed %}
+          <a class="btn" href="{% url 'login' %}">{% translate "Login" %}</a>
+          <a class="btn" href="{% url 'register' %}">{% translate "Register" %}</a>
+        {% endif %}
+      </div>
+    </nav>
+    <script>
+      {% if messages %}
+        {% for message in messages %}
+          {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            toastr.error("{{ message|escapejs }}");
+          {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+            toastr.warning("{{ message|escapejs }}");
+          {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            toastr.success("{{ message|escapejs }}");
+          {% else %}
+            showNotify("{{ message|escapejs }}");
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </script>
+    {% block content_nowrap %}
+      <div class="content">
+        {% block content %}{% endblock %}
+      </div>
+    {% endblock %}
+    <script>
+      const skipToMainLink = document.querySelector("a.skip-to-main");
+      const mainContentElement = document.getElementsByTagName("main")?.item(0) || document.querySelector("div.content");
+      if (skipToMainLink && mainContentElement) {
+        const mainContentAnchor = document.createElement("a");
+        const anchorId = "main-content-anchor"
+        mainContentAnchor.className = anchorId;
+        mainContentAnchor.id = anchorId;
+        skipToMainLink.href = `#${anchorId}`;
+        mainContentElement.parentNode.insertBefore(mainContentAnchor, mainContentElement);
+      }
+    </script>
+    <footer>
+      {% translate 'Powered by <a href="https://github.com/galacticpuzzlehunt/gph-site">gph-site</a>' %}
+    </footer>
+  </body>
+</html>
