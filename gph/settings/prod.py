@@ -15,8 +15,9 @@ IS_TEST = False
 
 REDIS_URL = os.getenv("REDIS_URL", "")
 
-pool = ConnectionPool.from_url(REDIS_URL, ssl_cert_reqs=None, max_connections=20)
-HUEY = RedisHuey(connection_pool=pool)
+if REDIS_URL:
+    pool = ConnectionPool.from_url(REDIS_URL, ssl_cert_reqs=None, max_connections=20)
+    HUEY = RedisHuey(connection_pool=pool)
 
 DATABASE_URL = os.getenv("DATABASE_URL", "")
 DATABASES["default"] = dj_database_url.parse(  # type: ignore
@@ -26,13 +27,14 @@ DATABASES["default"] = dj_database_url.parse(  # type: ignore
 DISCORD_GUILD_ID = "1065160431028670534"
 DISCORD_HINT_CHANNEL_ID = "1343775110661935154"
 
-CACHES["default"] = {  # type: ignore
-    "BACKEND": "django.core.cache.backends.redis.RedisCache",
-    "LOCATION": REDIS_URL,
-    "OPTIONS": {
-        "ssl_cert_reqs": None,
-    },
-}
+if REDIS_URL:
+    CACHES["default"] = {  # type: ignore
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": REDIS_URL,
+        "OPTIONS": {
+            "ssl_cert_reqs": None,
+        },
+    }
 
 for handler in LOGGING["handlers"].values():
     if "filename" in handler:

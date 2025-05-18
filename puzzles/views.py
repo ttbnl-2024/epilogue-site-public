@@ -1,3 +1,4 @@
+import base64
 import builtins
 import csv
 import datetime
@@ -650,6 +651,15 @@ def puzzle(request):
         ),
     }
 
+    if request.context.hunt_is_over:
+        data["canned_hints"] = [
+            {
+                "keywords": canned.keywords,
+                "content": canned.content.replace("\\r", "").replace("\\n", "\n"),
+            }
+            for canned in CannedHint.objects.filter(puzzle=puzzle).order_by("order")
+        ]
+
     HEPHAESTUS_DATA = {
         "a-few-tips": "185.997",
         "a-safe-car": "103.403",
@@ -882,32 +892,23 @@ def post_hunt_solve(request):
     """Check an answer client-side for a puzzle after the hunt ends."""
 
     puzzle = request.context.puzzle
-    answer = request.GET.get("answer")
-    if answer:
-        semicleaned_guess = PuzzleMessage.semiclean_guess(answer)
-        normalized_answer = Puzzle.normalize_answer(answer)
-        is_correct = normalized_answer == puzzle.normalized_answer
-        puzzle_messages = [
-            message
-            for message in puzzle.puzzlemessage_set.all()
-            if semicleaned_guess == message.semicleaned_guess
+    data = {}
+
+    data["answerB64Encoded"] = base64.b64encode(
+        puzzle.normalized_answer.encode("utf-8")
+    ).decode("utf-8")
+    data["partialMessagesB64Encoded"] = [
+        [
+            base64.b64encode(message.semicleaned_guess.encode("utf-8")).decode("utf-8"),
+            base64.b64encode(
+                message.response.replace("\\n", "\n").encode("utf-8")
+            ).decode("utf-8"),
         ]
-        form = SubmitAnswerForm(request.GET)
-        if puzzle_messages:
-            for message in puzzle_messages:
-                form.add_error(None, mark_safe(message.response))
-            answer = None
-    else:
-        form = SubmitAnswerForm()
-    return render(
-        request,
-        "post_hunt_solve.html",
-        {
-            "is_correct": answer and is_correct,
-            "is_wrong": answer and not is_correct,
-            "form": form,
-        },
-    )
+        for message in puzzle.puzzlemessage_set.all()
+    ]
+    data["form"] = SubmitAnswerForm()
+
+    return render(request, "post_hunt_solve.html", data)
 
 
 @require_GET
@@ -1599,7 +1600,11 @@ def wrapup(request):
                     "solve_count": len(team_leaderboard[sub.team.team_name]),
                     "is_meta": sub.puzzle.is_meta,
                     "tooltip_label": puzzle_name,
-                    "datetime": timezone.localtime(sub.submitted_datetime, settings.PY_TIME_ZONE).isoformat(),
+                    "datetime": (
+                        timezone.localtime(
+                            sub.submitted_datetime, settings.PY_TIME_ZONE
+                        ).isoformat()
+                    ),
                 }
             )
 
@@ -2072,10 +2077,7 @@ def shortcuts(request):
 
 def robots(request):
     response = HttpResponse(content_type="text/plain")
-    if settings.DEBUG:
-        response.write("User-agent: *\nDisallow: /\n")
-    else:
-        response.write("User-agent: *\nDisallow: /solution/\n")
+    response.write("User-agent: *\nDisallow: /solution/\n")
     return response
 
 

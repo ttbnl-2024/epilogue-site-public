@@ -949,6 +949,9 @@ a.main-content-anchor {
 }
 
 @media screen {
+    .spoiler {
+        transition: all .2s ease-in-out;
+    }
     .spoiler.solved-title-answer {
         display: inline-block;
         min-width: 200px;
@@ -1088,4 +1091,18 @@ main .btn {
 
 .monospace {
     font-family: var(--answer-font);
+}
+
+.canned-container summary {
+    font-weight: bold;
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+.canned-container p:last-child {
+    margin: 0;
+}
+
+.canned-container td {
+    padding: 1rem;
 }

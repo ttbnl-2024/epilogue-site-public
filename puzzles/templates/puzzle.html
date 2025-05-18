@@ -37,6 +37,28 @@
   </h1>
 
   <main class="puzzle-main clipboard-container">
+    {% if canned_hints %}
+      <details class="canned-container">
+        <summary>Show canned hints</summary>
+        <p>Hints reveal on hover.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Keywords</th>
+              <th>Hint</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for hint in canned_hints %}
+              <tr>
+                <td class="spoiler">{{ hint.keywords }}</td>
+                <td class="spoiler">{{ hint.content|linebreaks }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </details>
+    {% endif %}
     {% for erratum in visible_errata %}
       {% if erratum.puzzle == puzzle and erratum.puzzle_text %}
         <div class="puzzle-erratum">
