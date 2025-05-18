@@ -1,0 +1,206 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    
+  <title>Check: Ripple Effect</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="MH24 Epilogue">
+    <meta property="og:description" content="Registration for the MITMH 2024 Epilogue is now open!">
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="/static/css/normalize.min.c95a4f90bfb5.css">
+    <!-- 2.1.4 -->
+    <link rel="stylesheet" href="/static/css/toastr.min.f284028c6780.css">
+    <script src="/static/js/toastr.min.57730883a8a7.js"></script>
+    <link rel="stylesheet" href="/static/css/skeleton.8e00b13e5771.css">
+    <link rel="stylesheet" href="/static/css/base.f9bd0360392c.css">
+    <script src="/static/js/jquery.min.220afd743d9e.js"></script>
+    <script src="/static/js/jquery.touchswipe.min.47a0b3f24d24.js"></script>
+    <script src="/jsi18n/"></script>
+    <script src="/static/js/jquery.formset.8584349c8b78.js"></script>
+    <script src="/static/js/sorttable.cc47c001d30b.js"></script>
+    <script src="/static/js/tray.e0fbe1fa0768.js"></script>
+    <script src="/static/js/notify.7898a6be1e40.js"></script>
+    <script src="/static/js/time.e16f93f2f0b2.js"></script>
+    <link rel="icon" type="image/png" href="/static/images/favicon-96x96.6b8a4b466b93.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/images/favicon.beb57208a370.svg" />
+    <link rel="shortcut icon" href="/static/images/favicon.efc7f5722bc0.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.a432556acd16.png" />
+    <link rel="manifest" href="/static/images/site.9090e674d41e.webmanifest" />
+  </head>
+  <body>
+    <a class="skip-to-main">Press enter to skip to main content.</a>
+    <nav>
+      <span class="tray">
+        <div class="top-tabs">
+          <div class="site-nav">
+            <a href="/">
+              Home
+            </a>
+            <a href="/rules">
+              Rules
+            </a>
+            
+              <a href="/story">
+                Story
+              </a>
+            
+            
+              <a class="selected-tab" href="/puzzles">
+                Puzzles
+              </a>
+            
+            <a href="/teams">
+              Teams
+            </a>
+            <a href="/faq">
+              FAQ
+            </a>
+            
+              <a href="/errata">
+                Updates
+              </a>
+            
+            
+              <a href="/wrapup">
+                Wrap-Up
+              </a>
+            
+          </div>
+        </div>
+        <div class="top-more-actions">
+          
+  <a href="/puzzle/ripple-effect" class="btn">Back to the puzzle</a>
+
+        </div>
+      </span>
+      <div class="top-right-actions">
+        
+      </div>
+    </nav>
+    <script>
+      
+    </script>
+    
+      <div class="content">
+        
+
+  <h1>
+    Check: Ripple Effect
+    
+  </h1>
+  
+  <style>
+    .solved-panel--correct b {
+      color: #4a2;
+    }
+  </style>
+
+  <main>
+    <form id="post-hunt-answer-panel">
+      
+        <div class="form-row">
+          <div class="form-desc">
+            <label for="id_answer">Enter your guess:</label>
+          </div>
+          <input type="text" name="answer" autofocus maxlength="500" required id="id_answer">
+          
+          <a class="delete-row" href="#">&#x2794;</a>
+        </div>
+      
+    </form>
+  </main>
+
+  <script>
+    $('.delete-row').click(function(e) {
+      e.preventDefault();
+      this.closest('form').requestSubmit();
+    });
+  </script>
+  <script id="answerB64Encoded" type="application/json">"U0hFTlpIRU5JTw=="</script>
+  <script id="partialMessagesB64Encoded" type="application/json">[["VVBEQVRFV0lUSFVOS05PV05T", "WW914oCZcmUgb24gZmlyZSEgIEtlZXAgZ29pbmch"], ["TVVTSUNJQU4=", "VmVyeSBnb29kLiAgWW91IGhhdmUgZGlzY292ZXJlZCB0aGUgVEFSR0VUIFdPUkQgZm9yIHRoaXMgcHV6emxlIHNlcmllcy4="]]</script>
+  <script>
+    
+
+    const answerB64Encoded = JSON.parse(document.getElementById("answerB64Encoded").textContent);
+    const partialMessagesB64Encoded = JSON.parse(document.getElementById("partialMessagesB64Encoded").textContent);
+
+    function normalize_answer(s) {
+      return s ? s.toUpperCase().replace(/[^A-Z]/g, '') : '';
+    }
+
+    function seminormalize_answer(s) {
+      return s ? s.toUpperCase().replace(/[^A-Z0-9]/g, '') : '';
+    }
+
+    $("#post-hunt-answer-panel").submit(function(e) {
+      if (document.contains(document.getElementById('solved-panel'))) {
+        document.getElementById("solved-panel").remove();
+      }
+
+
+      let guess = $("#id_answer")[0].value;
+      let guessB64Encoded = btoa(String.fromCharCode(...new TextEncoder().encode(normalize_answer(guess))));
+      const isCorrect = guessB64Encoded === answerB64Encoded;
+      
+      guessB64Encoded = btoa(String.fromCharCode(...new TextEncoder().encode(seminormalize_answer(guess))));
+      let response = isCorrect ? 'Correct!' : 'Incorrect';
+
+      if (partialMessagesB64Encoded) {
+        for (let [pgB64Encoded, prB64Encoded] of partialMessagesB64Encoded) {
+          if (guessB64Encoded === pgB64Encoded) {
+            response = atob(prB64Encoded);
+          }
+        }
+      }
+
+      let node = document.createElement("div");
+      node.setAttribute("id", "solved-panel");
+      node.classList.add("solved-panel");
+      if (isCorrect) {
+        node.innerHTML = "<p>Solved!</p>\n<p>The answer was <b>" + normalize_answer(guess) + "</b>.</p>";
+        node.classList.add("solved-panel--correct");
+      } else if (response != "Incorrect") {
+        node.innerHTML = "<p>" + response + "</p>"
+        node.classList.add("solved-panel--message");
+        
+      } else {
+        node.classList.add("solved-panel--incorrect");
+        node.innerHTML = "<p>Incorrect!</p>";
+      }
+
+      event.preventDefault();
+      let form = document.getElementById("post-hunt-answer-panel");
+      form.parentNode.insertBefore(node, form);
+      return false;
+    });
+  </script>
+
+
+      </div>
+    
+    <script>
+      const skipToMainLink = document.querySelector("a.skip-to-main");
+      const mainContentElement = document.getElementsByTagName("main")?.item(0) || document.querySelector("div.content");
+      if (skipToMainLink && mainContentElement) {
+        const mainContentAnchor = document.createElement("a");
+        const anchorId = "main-content-anchor"
+        mainContentAnchor.className = anchorId;
+        mainContentAnchor.id = anchorId;
+        skipToMainLink.href = `#${anchorId}`;
+        mainContentElement.parentNode.insertBefore(mainContentAnchor, mainContentElement);
+      }
+    </script>
+    <footer>
+      Powered by <a href="https://github.com/galacticpuzzlehunt/gph-site">gph-site</a>
+    </footer>
+  </body>
+</html>

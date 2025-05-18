@@ -1,0 +1,248 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    
+  <title>Big Graph</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="MH24 Epilogue">
+    <meta property="og:description" content="Registration for the MITMH 2024 Epilogue is now open!">
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="/static/css/normalize.min.c95a4f90bfb5.css">
+    <!-- 2.1.4 -->
+    <link rel="stylesheet" href="/static/css/toastr.min.f284028c6780.css">
+    <script src="/static/js/toastr.min.57730883a8a7.js"></script>
+    <link rel="stylesheet" href="/static/css/skeleton.8e00b13e5771.css">
+    <link rel="stylesheet" href="/static/css/base.f9bd0360392c.css">
+    <script src="/static/js/jquery.min.220afd743d9e.js"></script>
+    <script src="/static/js/jquery.touchswipe.min.47a0b3f24d24.js"></script>
+    <script src="/jsi18n/"></script>
+    <script src="/static/js/jquery.formset.8584349c8b78.js"></script>
+    <script src="/static/js/sorttable.cc47c001d30b.js"></script>
+    <script src="/static/js/tray.e0fbe1fa0768.js"></script>
+    <script src="/static/js/notify.7898a6be1e40.js"></script>
+    <script src="/static/js/time.e16f93f2f0b2.js"></script>
+    <link rel="icon" type="image/png" href="/static/images/favicon-96x96.6b8a4b466b93.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/images/favicon.beb57208a370.svg" />
+    <link rel="shortcut icon" href="/static/images/favicon.efc7f5722bc0.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.a432556acd16.png" />
+    <link rel="manifest" href="/static/images/site.9090e674d41e.webmanifest" />
+  </head>
+  <body>
+    <a class="skip-to-main">Press enter to skip to main content.</a>
+    <nav>
+      <span class="tray">
+        <div class="top-tabs">
+          <div class="site-nav">
+            <a href="/">
+              Home
+            </a>
+            <a href="/rules">
+              Rules
+            </a>
+            
+              <a href="/story">
+                Story
+              </a>
+            
+            
+              <a href="/puzzles">
+                Puzzles
+              </a>
+            
+            <a href="/teams">
+              Teams
+            </a>
+            <a href="/faq">
+              FAQ
+            </a>
+            
+              <a href="/errata">
+                Updates
+              </a>
+            
+            
+              <a href="/wrapup">
+                Wrap-Up
+              </a>
+            
+          </div>
+        </div>
+        <div class="top-more-actions">
+          
+  <a href="/stats" class="btn">Hunt Stats</a>
+  <a href="/finishers" class="btn">Finishers</a>
+
+        </div>
+      </span>
+      <div class="top-right-actions">
+        
+      </div>
+    </nav>
+    <script>
+      
+    </script>
+    
+      <div class="content">
+        
+  <style>
+    .tooltip-colored-circle {
+  /* echarts:util/format.ts */
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 4px;
+      height: 10px;
+      width: 10px;
+      border-radius: 10px;
+    }
+  </style>
+  <div id="biggraph" style="min-height: 400px;"></div>
+
+<!-- heavily inspired by CTFd (via paradox puzzlehunt) -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.1.1/dist/echarts.min.js" integrity="sha256-Yhe8c0oOs2dPYVQKLAi1aBB9uhr7yMmh67ukoWBqDuU=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    echarts.init(document.getElementById('biggraph')).setOption({
+      title: {
+        left: "center",
+        textStyle: { color: "white" },
+        text: "Top 10 Teams",
+      },
+      tooltip: {
+        trigger: "axis",
+        axisPointer: {
+          type: "cross"
+        }
+      },
+      legend: {
+        type: "scroll",
+        orient: "horizontal",
+        align: "left",
+        bottom: 35,
+        textStyle: { color: "white", overflow: "truncate", width: 70 },
+        pageTextStyle: { color: "white" },
+        data: [
+          
+            "௵ TAMIL MAP OF ODYSSEUS\u0027 JOURNEY",
+          
+            "The C@r@line Syzygy",
+          
+            "Chat",
+          
+            "(difficulty: impossible) Okay but you just did it",
+          
+            "mission: come up with a team name sooner than a day before hunt (difficulty: impossible)",
+          
+            "Vehemence",
+          
+            "Needlessly Eating Sequels",
+          
+            "Telephone Someone\u0027s Been Ignoring",
+          
+            "Extended Coda of /r/PictureGame",
+          
+            "Rampant Green To Be Spread Later",
+          
+        ],
+      },
+      toolbox: {
+        feature: {
+          dataZoom: {
+            yAxisIndex: "none"
+          },
+          saveAsImage: {}
+        }
+      },
+      grid: {
+        containLabel: true
+      },
+      xAxis: [
+        {
+          type: "time",
+          boundaryGap: false,
+          data: []
+        }
+      ],
+      yAxis: [
+        {
+          type: "value"
+        }
+      ],
+      dataZoom: [
+        {
+          id: "dataZoomX",
+          type: "slider",
+          xAxisIndex: [0],
+          filterMode: "filter",
+          height: 20,
+          top: 35,
+          fillerColor: "rgba(233, 236, 241, 0.4)"
+        }
+      ],
+      tooltip: {
+        formatter: function(params) {
+          var teamName = params.seriesName;
+
+          var date = params.data[0];
+          var score = params.data[1];
+          var info = params.data[2];
+
+      // team name and color;
+          var div1 = document.createElement('div');
+          var span = document.createElement('span');
+          span.className = 'tooltip-colored-circle';
+          span.style.backgroundColor = params.color;
+          div1.appendChild(span);
+          div1.appendChild(document.createTextNode(teamName));
+
+          var div2 = document.createElement('div');
+          var sl = document.createElement('small');
+          sl.textContent = 'Solved: '
+          div2.appendChild(sl);
+          div2.appendChild(document.createTextNode(info));
+          var ns = document.createElement('strong');
+          ns.textContent = ' → ' + score;
+          div2.appendChild(ns);
+
+          var div3 = document.createElement('div');
+          div3.textContent = date.toLocaleString();
+
+          var div = document.createElement('div');
+          div.appendChild(div1);
+          div.appendChild(div2);
+          div.appendChild(div3);
+          return div.outerHTML;
+        },
+      },
+      series: [
+        { name: "௵ TAMIL MAP OF ODYSSEUS\u0027 JOURNEY", type: "line", itemStyle: { normal: { color: "hsl(67, 92%, 59%)", } }, symbolSize: function(data) { return data[3] ? 10 : 4; }, data: [ [new Date(1741461006524.832), 1, 'Exotic Fen', 0], [new Date(1741463814164.023), 2, 'Transfers', 0], [new Date(1741466446095.939), 3, 'Toys\u0027 Cafe', 0], [new Date(1741468410698.534), 4, 'A Safe Car', 0], [new Date(1741468856319.163), 5, 'I Feel Ucky', 0], [new Date(1741470498364.9832), 6, 'Box Offer', 0], [new Date(1741472412919.453), 7, 'Ohh, My Fee!', 0], [new Date(1741474617315.8418), 8, 'Failsafe', 0], [new Date(1741475718394.9622), 9, 'Reference Age', 0], [new Date(1741479600287.9), 10, 'Hephaestus', 1], [new Date(1741481958165.3071), 11, 'A Few Tips', 0], [new Date(1741545614285.6309), 12, 'Fetched', 0], [new Date(1741626469947.368), 13, 'Ripple Effect', 0], [new Date(1741654015658.019), 14, 'Movie Effects', 0], [new Date(1742142223927.919), 15, 'Melody Medley', 0], ], }, { name: "The C@r@line Syzygy", type: "line", itemStyle: { normal: { color: "hsl(305, 93%, 45%)", } }, symbolSize: function(data) { return data[3] ? 10 : 4; }, data: [ [new Date(1741461754825.81), 1, 'A Safe Car', 0], [new Date(1741461937029.311), 2, 'Exotic Fen', 0], [new Date(1741466672937.5679), 3, 'Failsafe', 0], [new Date(1741467117175.416), 4, 'Transfers', 0], [new Date(1741469510773.559), 5, 'Toys\u0027 Cafe', 0], [new Date(1741473175424.365), 6, 'Movie Effects', 0], [new Date(1741476350449.395), 7, 'Ohh, My Fee!', 0], [new Date(1741477095187.271), 8, 'A Few Tips', 0], [new Date(1741478387443.938), 9, 'I Feel Ucky', 0], [new Date(1741481826401.754), 10, 'Hephaestus', 1], [new Date(1741693927618.9922), 11, 'Ripple Effect', 0], ], }, { name: "Chat", type: "line", itemStyle: { normal: { color: "hsl(264, 92%, 42%)", } }, symbolSize: function(data) { return data[3] ? 10 : 4; }, data: [ [new Date(1741465734878.277), 1, 'Exotic Fen', 0], [new Date(1741466892894.1729), 2, 'Transfers', 0], [new Date(1741468409355.4028), 3, 'A Safe Car', 0], [new Date(1741471303448.12), 4, 'Toys\u0027 Cafe', 0], [new Date(1741476517758.293), 5, 'Reference Age', 0], [new Date(1741477527473.195), 6, 'I Feel Ucky', 0], [new Date(1741480106159.544), 7, 'Failsafe', 0], [new Date(1741481551552.564), 8, 'Ohh, My Fee!', 0], [new Date(1741483434308.048), 9, 'Movie Effects', 0], [new Date(1741486337666.067), 10, 'Hephaestus', 1], ], }, { name: "(difficulty: impossible) Okay but you just did it", type: "line", itemStyle: { normal: { color: "hsl(1, 98%, 59%)", } }, symbolSize: function(data) { return data[3] ? 10 : 4; }, data: [ [new Date(1741462718966.374), 1, 'Exotic Fen', 0], [new Date(1741467471467.8508), 2, 'Failsafe', 0], [new Date(1741468586711.904), 3, 'A Safe Car', 0], [new Date(1741472911416.985), 4, 'Toys\u0027 Cafe', 0], [new Date(1741475929310.189), 5, 'Transfers', 0], [new Date(1741478801680.437), 6, 'I Feel Ucky', 0], [new Date(1741480418600.945), 7, 'A Few Tips', 0], [new Date(1741480848451.046), 8, 'Ohh, My Fee!', 0], [new Date(1741487824084.5288), 9, 'Fetched', 0], [new Date(1741490105942.936), 10, 'Movie Effects', 0], [new Date(1741491183751.823), 11, 'Hephaestus', 1], [new Date(1742270383159.938), 12, 'Ripple Effect', 0], ], }, { name: "mission: come up with a team name sooner than a day before hunt (difficulty: impossible)", type: "line", itemStyle: { normal: { color: "hsl(121, 96%, 59%)", } }, symbolSize: function(data) { return data[3] ? 10 : 4; }, data: [ [new Date(1741461595109.924), 1, 'Exotic Fen', 0], [new Date(1741463707981.155), 2, 'A Safe Car', 0], [new Date(1741465521809.4949), 3, 'Failsafe', 0], [new Date(1741465922524.178), 4, 'Toys\u0027 Cafe', 0], [new Date(1741471412931.468), 5, 'Reference Age', 0], [new Date(1741472951583.567), 6, 'Transfers', 0], [new Date(1741475468184.582), 7, 'Ohh, My Fee!', 0], [new Date(1741479872489.5352), 8, 'A Few Tips', 0], [new Date(1741489490310.3892), 9, 'Movie Effects', 0], [new Date(1741492883925.3489), 10, 'I Feel Ucky', 0], [new Date(1741495270611.49), 11, 'Hephaestus', 1], [new Date(1742270372325.9849), 12, 'Ripple Effect', 0], ], }, { name: "Vehemence", type: "line", itemStyle: { normal: { color: "hsl(236, 92%, 59%)", } }, symbolSize: function(data) { return data[3] ? 10 : 4; }, data: [ [new Date(1741461647341.011), 1, 'Exotic Fen', 0], [new Date(1741462851768.2341), 2, 'A Safe Car', 0], [new Date(1741468982424.1208), 3, 'Transfers', 0], [new Date(1741475421873.449), 4, 'Box Offer', 0], [new Date(1741476286457.02), 5, 'Failsafe', 0], [new Date(1741480139404.4648), 6, 'A Few Tips', 0], [new Date(1741484970574.842), 7, 'Movie Effects', 0], [new Date(1741485838964.643), 8, 'Ohh, My Fee!', 0], [new Date(1741488606582.013), 9, 'Fetched', 0], [new Date(1741501585988.812), 10, 'I Feel Ucky', 0], [new Date(1741504534021.2861), 11, 'Reference Age', 0], [new Date(1741505439961.616), 12, 'Hephaestus', 1], [new Date(1741567805281.556), 13, 'Toys\u0027 Cafe', 0], [new Date(1742031454972.258), 14, 'Ripple Effect', 0], ], }, { name: "Needlessly Eating Sequels", type: "line", itemStyle: { normal: { color: "hsl(332, 97%, 44%)", } }, symbolSize: function(data) { return data[3] ? 10 : 4; }, data: [ [new Date(1741461995863.96), 1, 'Exotic Fen', 0], [new Date(1741470240284.071), 2, 'I Feel Ucky', 0], [new Date(1741477318393.535), 3, 'Transfers', 0], [new Date(1741481865226.236), 4, 'Failsafe', 0], [new Date(1741484241271.423), 5, 'Toys\u0027 Cafe', 0], [new Date(1741494661825.881), 6, 'Reference Age', 0], [new Date(1741497324298.033), 7, 'Ohh, My Fee!', 0], [new Date(1741498472126.998), 8, 'A Few Tips', 0], [new Date(1741501686360.342), 9, 'Box Offer', 0], [new Date(1741504512894.32), 10, 'Fetched', 0], [new Date(1741505895957.384), 11, 'Hephaestus', 1], ], }, { name: "Telephone Someone\u0027s Been Ignoring", type: "line", itemStyle: { normal: { color: "hsl(53, 92%, 45%)", } }, symbolSize: function(data) { return data[3] ? 10 : 4; }, data: [ [new Date(1741466075204.134), 1, 'Exotic Fen', 0], [new Date(1741468921504.534), 2, 'A Safe Car', 0], [new Date(1741470183957.873), 3, 'Transfers', 0], [new Date(1741483188243.182), 4, 'I Feel Ucky', 0], [new Date(1741484900971.6858), 5, 'Failsafe', 0], [new Date(1741488390438.073), 6, 'Reference Age', 0], [new Date(1741489524221.73), 7, 'Box Offer', 0], [new Date(1741491730128.268), 8, 'Ohh, My Fee!', 0], [new Date(1741494764561.1328), 9, 'Fetched', 0], [new Date(1741504574337.009), 10, 'Toys\u0027 Cafe', 0], [new Date(1741508471080.432), 11, 'Hephaestus', 1], [new Date(1741512102432.512), 12, 'Movie Effects', 0], ], }, { name: "Extended Coda of /r/PictureGame", type: "line", itemStyle: { normal: { color: "hsl(181, 91%, 58%)", } }, symbolSize: function(data) { return data[3] ? 10 : 4; }, data: [ [new Date(1741461293175.301), 1, 'Exotic Fen', 0], [new Date(1741463754510.534), 2, 'A Safe Car', 0], [new Date(1741466272834.6108), 3, 'Transfers', 0], [new Date(1741469894427.273), 4, 'Failsafe', 0], [new Date(1741472040554.563), 5, 'Reference Age', 0], [new Date(1741481941163.107), 6, 'Toys\u0027 Cafe', 0], [new Date(1741491259344.099), 7, 'I Feel Ucky', 0], [new Date(1741498571469.624), 8, 'Ohh, My Fee!', 0], [new Date(1741499392623.758), 9, 'Box Offer', 0], [new Date(1741511536093.16), 10, 'Movie Effects', 0], [new Date(1741512415561.095), 11, 'Hephaestus', 1], [new Date(1741996084458.7), 12, 'Ripple Effect', 0], ], }, { name: "Rampant Green To Be Spread Later", type: "line", itemStyle: { normal: { color: "hsl(23, 80%, 56%)", } }, symbolSize: function(data) { return data[3] ? 10 : 4; }, data: [ [new Date(1741461511141.286), 1, 'A Safe Car', 0], [new Date(1741466683417.703), 2, 'I Feel Ucky', 0], [new Date(1741471104686.3389), 3, 'Transfers', 0], [new Date(1741473688957.533), 4, 'Failsafe', 0], [new Date(1741480210398.55), 5, 'Toys\u0027 Cafe', 0], [new Date(1741484830676.991), 6, 'Movie Effects', 0], [new Date(1741485837385.737), 7, 'Ohh, My Fee!', 0], [new Date(1741488092437.926), 8, 'Box Offer', 0], [new Date(1741489947061.607), 9, 'Fetched', 0], [new Date(1741494605230.604), 10, 'Exotic Fen', 0], [new Date(1741515024812.479), 11, 'Reference Age', 0], [new Date(1741515905670.291), 12, 'Hephaestus', 1], ], },
+      ],
+    });
+  </script>
+
+      </div>
+    
+    <script>
+      const skipToMainLink = document.querySelector("a.skip-to-main");
+      const mainContentElement = document.getElementsByTagName("main")?.item(0) || document.querySelector("div.content");
+      if (skipToMainLink && mainContentElement) {
+        const mainContentAnchor = document.createElement("a");
+        const anchorId = "main-content-anchor"
+        mainContentAnchor.className = anchorId;
+        mainContentAnchor.id = anchorId;
+        skipToMainLink.href = `#${anchorId}`;
+        mainContentElement.parentNode.insertBefore(mainContentAnchor, mainContentElement);
+      }
+    </script>
+    <footer>
+      Powered by <a href="https://github.com/galacticpuzzlehunt/gph-site">gph-site</a>
+    </footer>
+  </body>
+</html>

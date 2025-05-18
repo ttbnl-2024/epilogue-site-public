@@ -1,0 +1,122 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    
+      <title>MITMH 2024 Epilogue</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="MH24 Epilogue">
+    <meta property="og:description" content="Registration for the MITMH 2024 Epilogue is now open!">
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <!-- 2.1.4 -->
+    <script src="/static/js/toastr.min.57730883a8a7.js"></script>
+    <script src="/static/js/jquery.min.220afd743d9e.js"></script>
+    <script src="/static/js/jquery.touchswipe.min.47a0b3f24d24.js"></script>
+    <script src="/jsi18n/"></script>
+    <script src="/static/js/jquery.formset.8584349c8b78.js"></script>
+    <script src="/static/js/sorttable.cc47c001d30b.js"></script>
+    <script src="/static/js/tray.e0fbe1fa0768.js"></script>
+    <script src="/static/js/notify.7898a6be1e40.js"></script>
+    <script src="/static/js/time.e16f93f2f0b2.js"></script>
+    <script src="/static/puzzle_resources/exotic-fen/puzzle.8565f9359dd1.js" defer></script>
+    <script>
+      IMAGE_2_PATH = "/static/puzzle_resources/exotic-fen/image2.3e0dccdf0c89.png";
+      IMAGE_3_PATH = "/static/puzzle_resources/exotic-fen/image3.978877ecdaa3.png";
+    </script>
+    <link rel="icon" type="image/png" href="/static/images/favicon-96x96.6b8a4b466b93.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/images/favicon.beb57208a370.svg" />
+    <link rel="shortcut icon" href="/static/images/favicon.efc7f5722bc0.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.a432556acd16.png" />
+    <link rel="manifest" href="/static/images/site.9090e674d41e.webmanifest" />
+
+    <style>
+      @font-face {
+        font-family: "Atkinson Hyperlegible Next";
+        src: url(/static/fonts/AtkinsonHyperlegibleNext-VariableFont_wght.d723933aa225.ttf),
+            url(/static/fonts/AtkinsonHyperlegibleNext-Italic-VariableFont_wght.7a82f3620f19.ttf);
+        font-weight: 200 800;
+        font-style: italic 0deg;
+      }
+
+      @font-face {
+          font-family: "Atkinson Hyperlegible Mono";
+          src: url(/static/fonts/AtkinsonHyperlegibleMono-VariableFont_wght.398279c07e19.ttf),
+          url(/static/fonts/AtkinsonHyperlegibleMono-Italic-VariableFont_wght.d5847dd3a7d9.ttf);
+          font-weight: 200 800;
+          font-style: italic 0deg;
+      }
+
+      body {
+        font-family: var(--text-font);
+        font-variant-ligatures: none;
+
+        margin: 40px auto;
+        max-width: 900px;
+        line-height: 1.6;
+        font-size: 18px;
+        padding: 0 10px;
+        text-align: center;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+  </head>
+  <body class="hidden">
+    <div class="quantum" id="Level Selector">error</div>
+
+    <div id="Level One">
+    <div class="quantum" id="clue" style="font-size:20px;">error</div>
+    <p></p>
+    <input type="text" id="Ans1" onkeydown="if (event.keyCode==13){the('Button1').click()}">
+    <input type="button" id="Button1" value="Who am I?" onclick="guess1();">
+    <br/>
+    <div id="Response1" style="display: inline"></div>
+    </div>
+
+    <div id="Level Two">
+    <div class="quantum" id="clue2" style="font-size:20px;">error</div>
+    <p></p>
+    <input type="text" id="Ans2" onkeydown="if (event.keyCode==13){the('Button2').click()}">
+    <input type="button" id="Button2" value="Who am I?" onclick="guess2();">
+    <br/>
+    <div id="Response2" style="display: inline"></div>
+    </div>
+
+    <div id="Level Three">
+      <p><div class="quantum" id="C1" style="font-size:30px">error</div></p>
+      <p><div class="quantum" id="C2" style="font-size:30px">error</div></p>
+      <p><div class="quantum" id="C3" style="font-size:30px">error</div></p>
+      <p><div class="quantum" id="C4" style="font-size:30px">error</div></p>
+      <p><div class="quantum" id="C5" style="font-size:30px">error</div></p>
+      <p><div class="quantum" id="C6" style="font-size:30px">error</div></p>
+      <div id="level 3 checker"></div>
+    </div>
+
+    <div id="Level Four">
+      <p><div class="quantum" id="D1" style="font-size:30px">error</div></p>
+      <p style="height:1000px"><div class="quantum" id="D2" style="font-size:30px">error</div></p>
+      <p style="height:1000px"><div class="quantum" id="D3" style="font-size:30px">error</div></p>
+      <p style="height:1000px"><div class="quantum" id="D4" style="font-size:30px">error</div></p>
+      <p style="height:1000px"><div class="quantum" id="D5" style="font-size:30px">error</div></p>
+      <p style="height:1000px"><div class="quantum" id="D6" style="font-size:30px">error</div></p>
+      <div id="level 4 checker" style="height:100px"></div>
+    </div>
+  </body>
+</html>
+
