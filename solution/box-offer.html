@@ -1,0 +1,505 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    
+  <title>Solution: Box Offer</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="MH24 Epilogue">
+    <meta property="og:description" content="Registration for the MITMH 2024 Epilogue is now open!">
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="/static/css/normalize.min.c95a4f90bfb5.css">
+    <!-- 2.1.4 -->
+    <link rel="stylesheet" href="/static/css/toastr.min.f284028c6780.css">
+    <script src="/static/js/toastr.min.57730883a8a7.js"></script>
+    <link rel="stylesheet" href="/static/css/skeleton.8e00b13e5771.css">
+    <link rel="stylesheet" href="/static/css/base.f9bd0360392c.css">
+    <script src="/static/js/jquery.min.220afd743d9e.js"></script>
+    <script src="/static/js/jquery.touchswipe.min.47a0b3f24d24.js"></script>
+    <script src="/jsi18n/"></script>
+    <script src="/static/js/jquery.formset.8584349c8b78.js"></script>
+    <script src="/static/js/sorttable.cc47c001d30b.js"></script>
+    <script src="/static/js/tray.e0fbe1fa0768.js"></script>
+    <script src="/static/js/notify.7898a6be1e40.js"></script>
+    <script src="/static/js/time.e16f93f2f0b2.js"></script>
+    <link rel="icon" type="image/png" href="/static/images/favicon-96x96.6b8a4b466b93.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/images/favicon.beb57208a370.svg" />
+    <link rel="shortcut icon" href="/static/images/favicon.efc7f5722bc0.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.a432556acd16.png" />
+    <link rel="manifest" href="/static/images/site.9090e674d41e.webmanifest" />
+  </head>
+  <body>
+    <a class="skip-to-main">Press enter to skip to main content.</a>
+    <nav>
+      <span class="tray">
+        <div class="top-tabs">
+          <div class="site-nav">
+            <a href="/">
+              Home
+            </a>
+            <a href="/rules">
+              Rules
+            </a>
+            
+              <a href="/story">
+                Story
+              </a>
+            
+            
+              <a class="selected-tab" href="/puzzles">
+                Puzzles
+              </a>
+            
+            <a href="/teams">
+              Teams
+            </a>
+            <a href="/faq">
+              FAQ
+            </a>
+            
+              <a href="/errata">
+                Updates
+              </a>
+            
+            
+              <a href="/wrapup">
+                Wrap-Up
+              </a>
+            
+          </div>
+        </div>
+        <div class="top-more-actions">
+          
+  <a href="/puzzle/box-offer" class="btn">Back to the puzzle</a>
+
+        </div>
+      </span>
+      <div class="top-right-actions">
+        
+      </div>
+    </nav>
+    <script>
+      
+    </script>
+    
+      <div class="content">
+        
+
+  <style>
+    h2 {
+      font-size: 2.5rem;
+      font-weight: normal;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    h4 {
+      font-size: 2rem;
+      font-weight: normal;
+      margin: 2rem 0;
+    }
+  </style>
+
+  <h1>
+    Solution: Box Offer
+    <div class="solved-title-marker">Answer: <span class="solved-title-answer spoiler">DAMPNESS</span></div>
+  </h1>
+
+  <main class="puzzle-main">
+    <h2 style="margin-top: 0" class="credit-line">
+      Written by
+      
+  Barney Rafter, Charles Steinhardt, Daniel Kramarsky
+
+    </h2>
+
+    
+    <p>Before we can begin solving the puzzle, it is important to understand the mythology surrounding the Greek goddess Pandora, as well as the significance of Pandora’s box.
+Before the existence of Pandora, the people of the world only knew of good things.
+It is said that when Pandora opened the box, all of the evils that now exist were released into the world.
+The only thing that remained behind inside the box was hope.
+Some people even say that hope might be the greatest evil of all.</p>
+<p>Pandora is also a brand of jewellery that produces and distributes charms like those used in the puzzle.
+The premise is that Pandora has been gifted items akin to friendship bracelets by a few of her closest ‘wicked’ friends.</p>
+<p>When opening the puzzle, we are presented with a transcript of Pandora showing her latest unboxing video on social media.
+Thematically, this video is being filmed in Hollywood.
+Initially, Pandora struggles to open any of the boxes, but then eventually is able to figure out a way to open them, and also see the contents inside (the friendship bracelets).
+This is where we finally get to the puzzle itself, figuring out how to open the boxes and what is in them.
+As has already been alluded to, this puzzle is actually about famous villains in Hollywood films.
+Solvers are provided with 8 bracelets, an associated box with a return address, and an array of stars that look similar to those on the Hollywood Walk of Fame.</p>
+<p>Each sequence of charms clues a specific film by describing the film's plot, and we have the following checksums:</p>
+<ul>
+<li>The items are in alphabetical order by films.</li>
+<li>The stars at the end clue the main villain in each film.</li>
+<li>The last two numbers in each star are the year the film was released.</li>
+<li>The number of charms in each box matches the length of the villain's name.</li>
+<li>The stars are in alphabetical order by villain.</li>
+</ul>
+<p>We can pair stars with films, and reorder by the street number on the item label.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Best Clues</th>
+<th>Movie</th>
+<th>Star</th>
+<th>Villain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Sharks, lasers</td>
+<td>Austin Powers: International Man of Mystery</td>
+<td>@1PHD_97</td>
+<td>Dr. Evil</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Infinity stones</td>
+<td>Avengers: Infinity War</td>
+<td>@MORAL_TITAN_18</td>
+<td>Thanos</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Safe, robber, lovers</td>
+<td>Bonnie and Clyde</td>
+<td>@MISSUS_ROBBER_67</td>
+<td>Bonnie Parker</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Christmas, skyscraper, helicopter</td>
+<td>Die Hard</td>
+<td>@FALLING_TERRORIST_88</td>
+<td>Hans Gruber</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Everything bagel</td>
+<td>Everything Everywhere All at Once</td>
+<td>@JUMPER_22</td>
+<td>Jobu Tupaki</td>
+</tr>
+<tr>
+<td>6</td>
+<td>mask, cape, turbine</td>
+<td>(The) Incredibles</td>
+<td>@MEGAFANBOY_LUSTY_FOR_GLORY_04</td>
+<td>Syndrome</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Cobra, crane, karate</td>
+<td>(The) Karate Kid</td>
+<td>@TWO-WIN_MEANIE_84</td>
+<td>Johnny Lawrence</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Starfleet, ceti eel larva</td>
+<td>Star Trek II: The Wrath of Khan</td>
+<td>@ANGRIEST_82</td>
+<td>Khan</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Street #</th>
+<th>Film</th>
+<th>Villain</th>
+<th>Sender Clue</th>
+<th>Sender</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Everything Everywhere All at Once</td>
+<td>Jobu Tupaki</td>
+<td>My Relationship to the Protagonist</td>
+<td><code>DAUGHTER</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>The Karate Kid</td>
+<td>Johnny Lawrence</td>
+<td>My Mentor and Teacher</td>
+<td><code>JOHN KREESE</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Austin Powers: International Man of Mystery</td>
+<td>Dr. Evil</td>
+<td>My Cute Little Helper</td>
+<td><code>MINI ME</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Bonnie and Clyde</td>
+<td>Bonnie Parker</td>
+<td>The Leading Lady</td>
+<td><code>FAYE DUNAWAY</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Die Hard</td>
+<td>Hans Gruber</td>
+<td>The Chief Criminal Mastermind</td>
+<td><code>HANS GRUBER</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Avengers: Infinity War</td>
+<td>Thanos</td>
+<td>My Preferred Name</td>
+<td><code>THANOS</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>The Incredibles</td>
+<td>Syndrome</td>
+<td>My VFX / Animation Studio</td>
+<td><code>PIXAR</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Star Trek II: The Wrath of Khan</td>
+<td>Khan</td>
+<td>My Rival’s Home Planet</td>
+<td><code>EARTH</code></td>
+</tr>
+</tbody>
+</table>
+<p>Those with a keen eye would have also spotted that one of the charms on each bracelet is an authentic “real deal” Pandora brand charm, while the others are generic charms (the authentic ones are labelled with the Pandora logo).
+Extracting the letter of the entity corresponding to the position of this charm in the bracelet gives the following:</p>
+<table>
+<thead>
+<tr>
+<th>Sender</th>
+<th>Pandora Charm Index</th>
+<th>Extract</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DAUGHTER</code></td>
+<td>2</td>
+<td><code>A</code></td>
+</tr>
+<tr>
+<td><code>JOHN KREESE</code></td>
+<td>4</td>
+<td><code>N</code></td>
+</tr>
+<tr>
+<td><code>MINI ME</code></td>
+<td>6</td>
+<td><code>E</code></td>
+</tr>
+<tr>
+<td><code>FAYE DUNAWAY</code></td>
+<td>9</td>
+<td><code>W</code></td>
+</tr>
+<tr>
+<td><code>HANS GRUBER</code></td>
+<td>1</td>
+<td><code>H</code></td>
+</tr>
+<tr>
+<td><code>THANOS</code></td>
+<td>5</td>
+<td><code>O</code></td>
+</tr>
+<tr>
+<td><code>PIXAR</code></td>
+<td>1</td>
+<td><code>P</code></td>
+</tr>
+<tr>
+<td><code>EARTH</code></td>
+<td>1</td>
+<td><code>E</code></td>
+</tr>
+</tbody>
+</table>
+<p>The first answer, what Pandora found in the box, is <code>A NEW HOPE</code>. The puzzle isn't over yet, though!</p>
+<p>The parcel sender’s identity described in terms of their relationship to the villain from earlier can now be reinterpreted a second time (hence the "return to" label) based on the film Star Wars Episode IV: A New Hope, and its primary antagonist Darth Vader.
+This time, the enumeration of the villain name tags from the Hollywood Walk of Fame stars gives the enumeration of the unknown entity.</p>
+<table>
+<thead>
+<tr>
+<th>Sender Clue</th>
+<th>New Sender</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>My Relationship to the Protagonist</td>
+<td>FATHER</td>
+</tr>
+<tr>
+<td>My Mentor and Teacher</td>
+<td>OBI-WAN KENOBI</td>
+</tr>
+<tr>
+<td>My Cute Little Helper</td>
+<td>R2D2</td>
+</tr>
+<tr>
+<td>The Leading Lady</td>
+<td>CARRIE FISHER</td>
+</tr>
+<tr>
+<td>The Chief Criminal Mastermind</td>
+<td>EMPEROR PALPATINE</td>
+</tr>
+<tr>
+<td>My Preferred Name</td>
+<td>DARTH VADER</td>
+</tr>
+<tr>
+<td>My VFX / Animation Studio</td>
+<td>INDUSTRIAL LIGHT AND MAGIC</td>
+</tr>
+<tr>
+<td>My Rival’s Home Planet</td>
+<td>TATOOINE</td>
+</tr>
+</tbody>
+</table>
+<p>Reading the first letters of the new senders gives the answer <code>FORCED IT</code>.</p>
+<p>For those who are not Star Wars nerds, this is a pun on an aspect of the Star Wars universe where characters use a thing called "The Force" to manipulate objects.
+But don’t be fooled, yes, we still have one last thing to uncover, and that is what would have made opening the boxes easier.</p>
+<p>After submitting the above, we receive a shipping manifest which outlines the items in the boxes, as well as the total mass of all the bracelets.
+To solve the remaining piece of the puzzle, we must calculate the equivalent weight of all these boxes (in Newtons, clued by the picture of Wayne Newton) based on the acceleration due to gravity (9.81 m/s^2) and round it to the nearest whole Newton: 6824209.276 kg * 9.81 m/s^2 is around 66945493 N.</p>
+<p>The asterisks give the enumeration of the actor who played each villain, in a new order:</p>
+<table>
+<thead>
+<tr>
+<th>Bracelet</th>
+<th>Villain</th>
+<th>Actor</th>
+<th>Index (N)</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Star Trek</td>
+<td>Khan</td>
+<td><code>RICARDO MONTALBÁN</code></td>
+<td>6</td>
+<td><code>D</code></td>
+</tr>
+<tr>
+<td>Karate Kid</td>
+<td>Johnny Lawrence</td>
+<td><code>WILLIAM ZABKA</code></td>
+<td>6</td>
+<td><code>A</code></td>
+</tr>
+<tr>
+<td>Die Hard</td>
+<td>Hans Gruber</td>
+<td><code>ALAN RICKMAN</code></td>
+<td>9</td>
+<td><code>M</code></td>
+</tr>
+<tr>
+<td>EEAAO</td>
+<td>Jobu Tupaki</td>
+<td><code>STEPHANIE HSU</code></td>
+<td>4</td>
+<td><code>P</code></td>
+</tr>
+<tr>
+<td>Incredibles</td>
+<td>Syndrome</td>
+<td><code>JASON LEE</code></td>
+<td>5</td>
+<td><code>N</code></td>
+</tr>
+<tr>
+<td>Bonnie and Clyde</td>
+<td>Bonnie Parker</td>
+<td><code>FAYE DUNAWAY</code></td>
+<td>4</td>
+<td><code>E</code></td>
+</tr>
+<tr>
+<td>Austin Powers</td>
+<td>Dr. Evil</td>
+<td><code>MIKE MYERS</code></td>
+<td>9</td>
+<td><code>S</code></td>
+</tr>
+<tr>
+<td>Infinity War</td>
+<td>Thanos</td>
+<td><code>JOSH BROLIN</code></td>
+<td>3</td>
+<td><code>S</code></td>
+</tr>
+</tbody>
+</table>
+<p>Alas, this time ordering by the Starstruck LLC Shipping Manifest list, we now know what would have made opening these (presumably cardboard) boxes easier: <strong><code>DAMPNESS</code></strong>.</p>
+<p>Anyway, this is the final solution to the 3-Part puzzle. Wow, look at that.
+The puzzle has three parts, just like the original Star Wars trilogy. We hope you had fun!</p>
+
+    
+    
+      <h2 id="authors-notes">Author&rsquo;s Notes</h2>
+      <p>This puzzle was originally destined to be a shell meta puzzle in the 2024 MIT Mystery Hunt, with the round set in Los Angeles and the state of California.
+Solvers would emerge from Hades to find themselves on Caltech Campus to begin their road trip.
+Unfortunately, it was cut from the hunt early on due to facing multiple issues in test solving and financial budget constraints, despite having potential.
+Originally this would have been a physical puzzle with solvers able to collect the bracelets from HQ, with each of the round puzzle solutions providing the information that the address labels now contain.
+It would have been easy to identify the genuine Pandora charms as the others would have been made from 3D printed plastic.
+But alas, this did not happen.
+Instead, it was left in the drafting phase for several months.
+Finally, when we started having talks of an epilogue round, I thought it would be a perfect opportunity to showcase this puzzle, by rewriting it to have a new answer (essentially adding a third act to what was only a 2 part series).
+Yes, it did lose some elegance, but I really wanted it to be seen.</p>
+<p>At first glance, this puzzles final extraction might seem to diverge dramatically from the previous puzzle content, however, to assist with this final aha, which is clued by the intermediate phrase <code>FORCED IT</code>, solvers are also provided with a photograph of actor and singer Wayne Newton on the shipping manifest.
+An interesting bit of trivia is that Wayne Newton was the first person to receive a star on the Las Vegas Walk of Stars which is Sin City’s rival of Hollywood’s own Walk of Fame.
+Furthermore, Wayne Newton was the ‘star’ who succeeded Bob Hope in the USO Celebrity Circle.
+I guess in the context of this puzzle, Star Wars takes on a slightly different meaning.</p>
+<p>Also, I would like to note the Hollywood Walk of Fame stars for the Star Wars actors Mark Hamill, Carrie Fischer and Harrison Ford, all are conveniently located at the 6800 block on Hollywood Boulevard.
+What else can one find at this location? Yep, you guessed it, a very classy Pandora jewellery store!</p>
+    
+
+    
+    
+  </main>
+
+
+      </div>
+    
+    <script>
+      const skipToMainLink = document.querySelector("a.skip-to-main");
+      const mainContentElement = document.getElementsByTagName("main")?.item(0) || document.querySelector("div.content");
+      if (skipToMainLink && mainContentElement) {
+        const mainContentAnchor = document.createElement("a");
+        const anchorId = "main-content-anchor"
+        mainContentAnchor.className = anchorId;
+        mainContentAnchor.id = anchorId;
+        skipToMainLink.href = `#${anchorId}`;
+        mainContentElement.parentNode.insertBefore(mainContentAnchor, mainContentElement);
+      }
+    </script>
+    <footer>
+      Powered by <a href="https://github.com/galacticpuzzlehunt/gph-site">gph-site</a>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,530 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    
+  <title>Solution: Mark of the Demon</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="MH24 Epilogue">
+    <meta property="og:description" content="Registration for the MITMH 2024 Epilogue is now open!">
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="/static/css/normalize.min.c95a4f90bfb5.css">
+    <!-- 2.1.4 -->
+    <link rel="stylesheet" href="/static/css/toastr.min.f284028c6780.css">
+    <script src="/static/js/toastr.min.57730883a8a7.js"></script>
+    <link rel="stylesheet" href="/static/css/skeleton.8e00b13e5771.css">
+    <link rel="stylesheet" href="/static/css/base.f9bd0360392c.css">
+    <script src="/static/js/jquery.min.220afd743d9e.js"></script>
+    <script src="/static/js/jquery.touchswipe.min.47a0b3f24d24.js"></script>
+    <script src="/jsi18n/"></script>
+    <script src="/static/js/jquery.formset.8584349c8b78.js"></script>
+    <script src="/static/js/sorttable.cc47c001d30b.js"></script>
+    <script src="/static/js/tray.e0fbe1fa0768.js"></script>
+    <script src="/static/js/notify.7898a6be1e40.js"></script>
+    <script src="/static/js/time.e16f93f2f0b2.js"></script>
+    <link rel="icon" type="image/png" href="/static/images/favicon-96x96.6b8a4b466b93.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/images/favicon.beb57208a370.svg" />
+    <link rel="shortcut icon" href="/static/images/favicon.efc7f5722bc0.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.a432556acd16.png" />
+    <link rel="manifest" href="/static/images/site.9090e674d41e.webmanifest" />
+  </head>
+  <body>
+    <a class="skip-to-main">Press enter to skip to main content.</a>
+    <nav>
+      <span class="tray">
+        <div class="top-tabs">
+          <div class="site-nav">
+            <a href="/">
+              Home
+            </a>
+            <a href="/rules">
+              Rules
+            </a>
+            
+              <a href="/story">
+                Story
+              </a>
+            
+            
+              <a class="selected-tab" href="/puzzles">
+                Puzzles
+              </a>
+            
+            <a href="/teams">
+              Teams
+            </a>
+            <a href="/faq">
+              FAQ
+            </a>
+            
+              <a href="/errata">
+                Updates
+              </a>
+            
+            
+              <a href="/wrapup">
+                Wrap-Up
+              </a>
+            
+          </div>
+        </div>
+        <div class="top-more-actions">
+          
+  <a href="/puzzle/mark-of-the-demon" class="btn">Back to the puzzle</a>
+
+        </div>
+      </span>
+      <div class="top-right-actions">
+        
+      </div>
+    </nav>
+    <script>
+      
+    </script>
+    
+      <div class="content">
+        
+
+  <style>
+    h2 {
+      font-size: 2.5rem;
+      font-weight: normal;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    h4 {
+      font-size: 2rem;
+      font-weight: normal;
+      margin: 2rem 0;
+    }
+  </style>
+
+  <h1>
+    Solution: Mark of the Demon
+    <div class="solved-title-marker">Answer: <span class="solved-title-answer spoiler">I SEE DEAD PEOPLE</span></div>
+  </h1>
+
+  <main class="puzzle-main">
+    <h2 style="margin-top: 0" class="credit-line">
+      Written by
+      
+  Bella (Songshan) Guo, Haley Moore, Summer Barron, Jayden Yamada, Brent Barron, Michael Andersen
+
+    </h2>
+
+    
+    <style>
+  td > code {
+    white-space: initial;
+    padding: 0;
+    margin: 0;
+  }
+
+  .part-1-extract td:first-child {
+    background-color: Silver;
+    padding: 0;
+  }
+
+  .part-1-extract td:first-child img {
+    max-width: 30px;
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+<p>A close up of the game board in one shot shows a series of messages written in Theban alphabet.  Each message surrounds a hand-drawn sigil.</p>
+<p>Each of the sigils on the board corresponds to a role that the characters in the video may take on in the game, noted by giving the character a card with that sigil.</p>
+<p>The roles change throughout the game, but a message from the end of the game, “your roles and fates are sealed”, tells us that we should answer the questions based on who held that role at the end of the game.  Based on that and using other events in the videos, we can follow the instructions in the board message to generate a number for each sigil.</p>
+<p>Our numbers don’t translate cleanly into letters though; we need to index them into something else.</p>
+<p>In the video, it’s established that each role has a distinct name, which is given as a nickname to a player.  The character Ian gives us hints towards each role/nicknames being shared with a nickname given to players in a real-life VHS board game.</p>
+<p>The enumerations of the VHS games are given in a <code>txt</code> file, in order by release year.</p>
+<table>
+<thead>
+<tr>
+<th>TXT File Listing</th>
+<th>Game Name (as listed on Board Game Geek)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*********</code></td>
+<td>Nightmare (1991)</td>
+</tr>
+<tr>
+<td><code>********* ***</code></td>
+<td>Nightmare III (1992)</td>
+</tr>
+<tr>
+<td><code>****** ***** *** ***** ****</code></td>
+<td>Wayne’s World VCR Board Game (1992)</td>
+</tr>
+<tr>
+<td><code>********* **</code></td>
+<td>Nightmare IV (1993)</td>
+</tr>
+<tr>
+<td><code>**** **** *** **** ********** *********** *** ***** **** * ******* *********</code></td>
+<td>Star Trek the Next Generation Interactive VCR Board Game A Klingon Challenge (1993)</td>
+</tr>
+<tr>
+<td><code>***** **** * **** **</code></td>
+<td>Video Grin N Bear It (1993)</td>
+</tr>
+<tr>
+<td><code>**** **** *** *********** ***** ***** ****</code></td>
+<td>Star Wars The Interactive Video Board Game (1996)</td>
+</tr>
+<tr>
+<td><code>********* ***** *** *****</code></td>
+<td>Atmosfear Khufu the Mummy (2006)</td>
+</tr>
+</tbody>
+</table>
+<p>Five of the Role names are said aloud in the video, but others are only hinted at.
+Looking online, we can find other VHS games that use the named roles.
+Many of these games have BoardGameGeek listings that include transcripts.
+Full rips of the VHS videos and copies of the manual text are also available.</p>
+<p>Next, we’ll look for other games that might match these clues we got about the unnamed roles from the videos:</p>
+<ol type="a">
+<li>From a game with a casino (Lucky)</li>
+<li>To do with eyes and schoolchildren (Pupil)</li>
+<li>Sounds like “shovel”, is not in English, and is from an established IP. (Suvwl’)</li>
+</ol>
+<div class="part-1-extract">
+<table>
+<thead>
+<tr>
+<th>Board Sigil</th>
+<th>Board Message</th>
+<th>Answer</th>
+<th>Number</th>
+<th>Role Name</th>
+<th>Original Game</th>
+<th>Extract</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="/static/solution_resources/mark-of-the-demon/1.e016a1924411.png" /></td>
+<td>Take the fifth what this one pulled out as a number</td>
+<td>HEAR[T]</td>
+<td>20</td>
+<td>Lucky</td>
+<td>Atmosfear: Khufu the Mummy</td>
+<td><code>M</code></td>
+</tr>
+<tr>
+<td><img alt="" src="/static/solution_resources/mark-of-the-demon/2.fcfff780c431.png" /></td>
+<td>take the first of the source of this ones small sacrifice as a nu(mber)</td>
+<td>[F]OOT</td>
+<td>6</td>
+<td>Pupil</td>
+<td>Star Wars: The Interactive Video Board Game</td>
+<td><code>A</code></td>
+</tr>
+<tr>
+<td><img alt="" src="/static/solution_resources/mark-of-the-demon/3.932a096c289d.png" /></td>
+<td>The number of roles this one played at the end</td>
+<td>3</td>
+<td>3</td>
+<td>Toad</td>
+<td>Nightmare III: Witch</td>
+<td><code>G</code></td>
+</tr>
+<tr>
+<td><img alt="" src="/static/solution_resources/mark-of-the-demon/4.7dd59407b7a3.png" /></td>
+<td>Take the second of this ones small sacrifice as a number</td>
+<td>H[A]IR</td>
+<td>1</td>
+<td>The Filthy One</td>
+<td>Nightmare IV: Vampire</td>
+<td><code>N</code></td>
+</tr>
+<tr>
+<td><img alt="" src="/static/solution_resources/mark-of-the-demon/5.7ca33b0d945e.png" /></td>
+<td>Add two to the roles this one played in the game</td>
+<td>5</td>
+<td>7</td>
+<td>Young One</td>
+<td>Nightmare</td>
+<td><code>A</code></td>
+</tr>
+<tr>
+<td><img alt="" src="/static/solution_resources/mark-of-the-demon/6.53f4cc3df81d.png" /></td>
+<td>Take the second of this ones small sacrifice as a number</td>
+<td>B[L]OOD</td>
+<td>12</td>
+<td>Schwing</td>
+<td>Waynes World VCR Board Game</td>
+<td><code>V</code></td>
+</tr>
+<tr>
+<td><img alt="" src="/static/solution_resources/mark-of-the-demon/7.d757f7fbaa6f.png" /></td>
+<td>Take the second of this ones great sacrifice as a number</td>
+<td>H[E]AD</td>
+<td>5</td>
+<td>Judge</td>
+<td>Video Grin N' Bear It</td>
+<td><code>O</code></td>
+</tr>
+<tr>
+<td><img alt="" src="/static/solution_resources/mark-of-the-demon/8.70add4a867de.png" /></td>
+<td>Take the fifth of this ones name as a number</td>
+<td>ROBI[N]</td>
+<td>14</td>
+<td>SuvwI'</td>
+<td>Star Trek: The Next Generation – Interactive VCR Board Game – A Klingon Challenge</td>
+<td><code>X</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>By submitting this answer, we have released the demon Magnavox, who we now have to contain!
+We unlock a message "from TTBNL headquarters":</p>
+<blockquote>
+<p>Hi, this is TTBNL HQ - something weird just happened in our headquarters. As soon as you submitted that last guess, the lights in the room dimmed, and all of our devices started smoking. Once the fog cleared, this video was playing on loop across all the devices.</p>
+<p>If I didn’t know any better, I’d suspect you summoned a foul demon or something. But clearly you wouldn’t do something so foolish, dooming us all to eternal torment. Anyway, here's the video: <a href="https://youtu.be/ipmQjPUxGZ0">https://youtu.be/ipmQjPUxGZ0</a></p>
+</blockquote>
+<p>This new video shows the original video clips cut together in chronological order, only now, clips of Magnavox are interspersed, taunting us for unleashing him upon the world. A series of “glitched” messages have also been interspersed into the video, spelling out the final step of the puzzle.</p>
+<p>Each of these glitches is a mini puzzle with 2 parts - the video glitch itself, which solves to a cluephrase, and the cluephrase, which has a single letter answer. If we listen to Magnavox’s taunts, we can tell that they are clues to the solve method for each mini-puzzle.</p>
+<div class="overflow-container">
+<table>
+<thead>
+<tr>
+<th>Glitch (in order of appearance)</th>
+<th>Language Hinting at Encryption</th>
+<th>Cluephrase</th>
+<th>Letter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text Overlay</td>
+<td>“...search as much as you’d like”</td>
+<td>TNG SHIP SUFFIX</td>
+<td><code>D</code></td>
+</tr>
+<tr>
+<td>Reversed Audio</td>
+<td>“...some grand reversal”</td>
+<td>DONUT SHAPE</td>
+<td><code>O</code></td>
+</tr>
+<tr>
+<td>Maze</td>
+<td>“...like rats in a maze”</td>
+<td>(traced out letter “N”)</td>
+<td><code>N</code></td>
+</tr>
+<tr>
+<td>Morse Code</td>
+<td>“...have you any re-morse”</td>
+<td>DIMPLED BALL GOES HERE</td>
+<td><code>T</code></td>
+</tr>
+<tr>
+<td>Stuttering Video</td>
+<td>n/a</td>
+<td>(Our / “R” repeated)</td>
+<td><code>R</code></td>
+</tr>
+<tr>
+<td>Broadcast Test Pattern Semaphore</td>
+<td>“...wave the white flags”</td>
+<td>MDMA</td>
+<td><code>E</code></td>
+</tr>
+<tr>
+<td>Desaturation</td>
+<td>“...drain you until you’re a colorless husk”</td>
+<td>TWO VS KISSING</td>
+<td><code>W</code></td>
+</tr>
+<tr>
+<td>SSTV</td>
+<td>“...this slow a scan”</td>
+<td>(picture of eye)</td>
+<td><code>I</code></td>
+</tr>
+<tr>
+<td>Animal Crossing Bug Sounds</td>
+<td>“You’re only animals…don’t cross me”</td>
+<td>FOURTEEN</td>
+<td><code>N</code></td>
+</tr>
+<tr>
+<td>Zalgo Text</td>
+<td>“...Masonic pigs from the pens”</td>
+<td>LOOK AT ME IM SANDRA</td>
+<td><code>D</code></td>
+</tr>
+<tr>
+<td>Frozen Image Glitch with Single Frame</td>
+<td>“...blink, and you’ll miss it”</td>
+<td>DIAL FOR MURDER</td>
+<td><code>M</code></td>
+</tr>
+<tr>
+<td>Trope Encryption (ascii to base64 to hex to text)</td>
+<td>“As key…based…hex”</td>
+<td>ROTTHIRTEENR</td>
+<td><code>E</code></td>
+</tr>
+<tr>
+<td>Horror QR Code</td>
+<td>“...a truly Quick Response”</td>
+<td>MOVIE BUT EVERY TIME THEY SAY</td>
+<td><code>B</code></td>
+</tr>
+<tr>
+<td>Closed Captioning Text</td>
+<td>“...won’t just be able to hear my words, you’ll be able to see them”</td>
+<td>OHM MEASURE</td>
+<td><code>R</code></td>
+</tr>
+<tr>
+<td>QWERTY Keyboard Shift Cipher</td>
+<td>“...just a small shift”</td>
+<td>COMMON BLOOD</td>
+<td><code>O</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The Animal Crossing Bugs puzzle is the most involved step from the second half, and leads to the following extract (with <code>FOURTEEN</code> translating to N in A1Z26 cipher).</p>
+<table>
+<thead>
+<tr>
+<th>Animal Crossing Bugs</th>
+<th>Chirps</th>
+<th>Extract</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FLY</code></td>
+<td>1</td>
+<td><code>F</code></td>
+</tr>
+<tr>
+<td><code>GRASSHOPPER</code></td>
+<td>7</td>
+<td><code>O</code></td>
+</tr>
+<tr>
+<td><code>ROBUST CICADA</code></td>
+<td>4</td>
+<td><code>U</code></td>
+</tr>
+<tr>
+<td><code>MOLE CRICKET</code></td>
+<td>6</td>
+<td><code>R</code></td>
+</tr>
+<tr>
+<td><code>LONG LOCUST</code></td>
+<td>10</td>
+<td><code>T</code></td>
+</tr>
+<tr>
+<td><code>BEE</code></td>
+<td>2</td>
+<td><code>E</code></td>
+</tr>
+<tr>
+<td><code>WALKER CICADA</code></td>
+<td>5</td>
+<td><code>E</code></td>
+</tr>
+<tr>
+<td><code>SCORPION</code></td>
+<td>8</td>
+<td><code>N</code></td>
+</tr>
+</tbody>
+</table>
+<p>This gives us the phrase <code>DONT REWIND ME BRO</code>.
+Submitting this marks the end of Stage 2.</p>
+<p>We get the following as a response:</p>
+<blockquote>
+<p>We read your guess aloud, and all of the magic smoke that had escaped
+went right back into the computers! Everything is working smoothly, and
+it smells even cleaner than when we got here!</p>
+<p>This email opened itself up (weird) and it had this file already attached.
+We haven't watched it... it seems like it's for you.</p>
+<p>- TTBNL HQ</p>
+</blockquote>
+<p>Unfortunately, the finale video has been lost since the original authoring of the puzzle.
+The end of the video would have shown the answer <strong><code>I SEE DEAD PEOPLE</code></strong>.</p>
+
+    
+    
+      <h2 id="authors-notes">Author&rsquo;s Notes</h2>
+      <p>This is an ambitious video puzzle headed by myself, Michael Andersen, Summer Barron and Bella Guo, which was inspired by the 2020 puzzle The Wizard's Escape, LoadingReadyRun's VCR board game streams and YouTube horror in general.
+We wanted to tell a little self-contained story with the puzzle, since me and Michael are ARG people and we like a good spooky story.
+Originally it was something like a Duck Konundrum, where you'd compare these clips to a 60 minute video of the Mark of the Demon VHS to figure out the full events of the game.
+Luckily they talked me out of that one, and we went with shorter videos that hit the jokes and story beats we wanted while (mostly) hanging together as a solvable puzzle.
+This diabolical production was ultimately cursed with COVID, so in the end we only ever filmed a table read.
+Nevertheless we hope you enjoy it!</p>
+<p>-Haley Moore</p>
+    
+
+    
+    
+      <h2 id="appendix">
+Film Credits
+</h2>
+      <ul>
+<li>Aiden: Lisa Podznyakova</li>
+<li>Brent: Haley Moore</li>
+<li>Robin: Polina Lozhnevska</li>
+<li>Alex: Matt Hollenbeck</li>
+<li>Paul (Voice): Dani Hollenbeck</li>
+<li>The Demon: Erica Bilodeau</li>
+<li>Magnavox (Voice): Michael Andersen</li>
+</ul>
+<p><br/></p>
+<ul>
+<li>Stage Manager: Dani Hollenbeck</li>
+<li>Shoot Organizer: Matt Hollenbeck</li>
+<li>Props: Haley Moore, Lisa Pozdnyakova, Polina Lozhnevska, Dani Hollenbeck, Matt Hollenbeck, Sergio Cois, Gil da Vittoria</li>
+<li>Editor: Brent Barron</li>
+</ul>
+<p><br/></p>
+<ul>
+<li>TV Static via <a href="https://www.youtube.com/watch?v=qELSSAspRDI">Strange Footage</a>, Creative Commons 4.0 via DEED</li>
+<li>TV Static audio via <a href="https://www.youtube.com/watch?v=NIbPruPFhjo">YouTube Audio Library</a></li>
+</ul>
+<p>Filmed at Maker Nexus in Sunnyvale, CA</p>
+    
+  </main>
+
+
+      </div>
+    
+    <script>
+      const skipToMainLink = document.querySelector("a.skip-to-main");
+      const mainContentElement = document.getElementsByTagName("main")?.item(0) || document.querySelector("div.content");
+      if (skipToMainLink && mainContentElement) {
+        const mainContentAnchor = document.createElement("a");
+        const anchorId = "main-content-anchor"
+        mainContentAnchor.className = anchorId;
+        mainContentAnchor.id = anchorId;
+        skipToMainLink.href = `#${anchorId}`;
+        mainContentElement.parentNode.insertBefore(mainContentAnchor, mainContentElement);
+      }
+    </script>
+    <footer>
+      Powered by <a href="https://github.com/galacticpuzzlehunt/gph-site">gph-site</a>
+    </footer>
+  </body>
+</html>

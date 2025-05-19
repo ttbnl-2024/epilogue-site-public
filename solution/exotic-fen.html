@@ -1,0 +1,165 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    
+  <title>Solution: Exotic Fen</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="MH24 Epilogue">
+    <meta property="og:description" content="Registration for the MITMH 2024 Epilogue is now open!">
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="/static/css/normalize.min.c95a4f90bfb5.css">
+    <!-- 2.1.4 -->
+    <link rel="stylesheet" href="/static/css/toastr.min.f284028c6780.css">
+    <script src="/static/js/toastr.min.57730883a8a7.js"></script>
+    <link rel="stylesheet" href="/static/css/skeleton.8e00b13e5771.css">
+    <link rel="stylesheet" href="/static/css/base.f9bd0360392c.css">
+    <script src="/static/js/jquery.min.220afd743d9e.js"></script>
+    <script src="/static/js/jquery.touchswipe.min.47a0b3f24d24.js"></script>
+    <script src="/jsi18n/"></script>
+    <script src="/static/js/jquery.formset.8584349c8b78.js"></script>
+    <script src="/static/js/sorttable.cc47c001d30b.js"></script>
+    <script src="/static/js/tray.e0fbe1fa0768.js"></script>
+    <script src="/static/js/notify.7898a6be1e40.js"></script>
+    <script src="/static/js/time.e16f93f2f0b2.js"></script>
+    <link rel="icon" type="image/png" href="/static/images/favicon-96x96.6b8a4b466b93.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/images/favicon.beb57208a370.svg" />
+    <link rel="shortcut icon" href="/static/images/favicon.efc7f5722bc0.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.a432556acd16.png" />
+    <link rel="manifest" href="/static/images/site.9090e674d41e.webmanifest" />
+  </head>
+  <body>
+    <a class="skip-to-main">Press enter to skip to main content.</a>
+    <nav>
+      <span class="tray">
+        <div class="top-tabs">
+          <div class="site-nav">
+            <a href="/">
+              Home
+            </a>
+            <a href="/rules">
+              Rules
+            </a>
+            
+              <a href="/story">
+                Story
+              </a>
+            
+            
+              <a class="selected-tab" href="/puzzles">
+                Puzzles
+              </a>
+            
+            <a href="/teams">
+              Teams
+            </a>
+            <a href="/faq">
+              FAQ
+            </a>
+            
+              <a href="/errata">
+                Updates
+              </a>
+            
+            
+              <a href="/wrapup">
+                Wrap-Up
+              </a>
+            
+          </div>
+        </div>
+        <div class="top-more-actions">
+          
+  <a href="/puzzle/exotic-fen" class="btn">Back to the puzzle</a>
+
+        </div>
+      </span>
+      <div class="top-right-actions">
+        
+      </div>
+    </nav>
+    <script>
+      
+    </script>
+    
+      <div class="content">
+        
+
+  <style>
+    h2 {
+      font-size: 2.5rem;
+      font-weight: normal;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    h4 {
+      font-size: 2rem;
+      font-weight: normal;
+      margin: 2rem 0;
+    }
+  </style>
+
+  <h1>
+    Solution: Exotic Fen
+    <div class="solved-title-marker">Answer: <span class="solved-title-answer spoiler">SPHINGES</span></div>
+  </h1>
+
+  <main class="puzzle-main">
+    <h2 style="margin-top: 0" class="credit-line">
+      Written by
+      
+  Linus Hamilton
+
+    </h2>
+
+    
+    <p>As clued by the image, the things in this puzzle change when we don't look at them (i.e. we switch its window to a different tab, or we minimize the window). The four levels use this effect in various ways.</p>
+<p>The first puzzle shows one of several clues, and asks for a "name". The clues are "start with R", "four letters", "not solid", "travels vertically", "not man-made", "ruins plans", and "frequently predicted". Individually they are not enough to uniquely determine a word; together they clue <code>RAIN</code>. On entering this answer, the page indicates there's a level 2, but doesn't let us access it from that screen.</p>
+<p>As such, the second puzzle looks inaccessible, because there's only one button. However, we can do the same thing (tab back and forth) to the starting level selection screen to switch the button between four levels. The second puzzle clues the word <code>BOW</code> similarly, with four separate definitions ("follows a performance", "can be used to play music", "weapon", "type of knot"). It then asks us to make it ("RAINBOW") appear in levels 3 and 4. We also see a hint image of someone looking through a telescope.</p>
+<p>The third level is six colored fruits (apple, tangerine, lemon, avocado, blueberry, and eggplant); these change to other fruits when not observed. The goal of setting the fruits to rainbow order seems absurd, since there's only a 1/6^6 chance we get it on any given observation. The aha comes from the hint image in level 2: we can partially observe a page by moving some elements out of the viewing window.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> Successfully doing this provides another image showing multiple observers.</p>
+<p>The fourth level is also six colored fruits, but they're spaced so far apart that it's impossible to observe them all at once. And this is impossible... in one window, that is. If we open a second window in our instance and pan it to the same level as the first window, it will show the exact same set of fruits, and the fruits don't change in either window unless we tab out of both; we are observing the same set of fruits (the easiest way to spot this is level 3, which incidentally is also where the hint for this mechanic is). Using this in conjunction with part 3's mechanic, we can use six separate windows to lock each individual fruit. Setting them to rainbow order provides the answer, <strong><code>SPHINGES</code></strong>.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>I achieved this by zooming in and out, because my Mac has a window height minimum that just happens to be six squares tall. :V&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+    
+    
+
+    
+    
+  </main>
+
+
+      </div>
+    
+    <script>
+      const skipToMainLink = document.querySelector("a.skip-to-main");
+      const mainContentElement = document.getElementsByTagName("main")?.item(0) || document.querySelector("div.content");
+      if (skipToMainLink && mainContentElement) {
+        const mainContentAnchor = document.createElement("a");
+        const anchorId = "main-content-anchor"
+        mainContentAnchor.className = anchorId;
+        mainContentAnchor.id = anchorId;
+        skipToMainLink.href = `#${anchorId}`;
+        mainContentElement.parentNode.insertBefore(mainContentAnchor, mainContentElement);
+      }
+    </script>
+    <footer>
+      Powered by <a href="https://github.com/galacticpuzzlehunt/gph-site">gph-site</a>
+    </footer>
+  </body>
+</html>

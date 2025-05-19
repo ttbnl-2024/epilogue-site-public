@@ -1,0 +1,280 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    
+  <title>Solution: Toys&#x27; Cafe</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="MH24 Epilogue">
+    <meta property="og:description" content="Registration for the MITMH 2024 Epilogue is now open!">
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="/static/css/normalize.min.c95a4f90bfb5.css">
+    <!-- 2.1.4 -->
+    <link rel="stylesheet" href="/static/css/toastr.min.f284028c6780.css">
+    <script src="/static/js/toastr.min.57730883a8a7.js"></script>
+    <link rel="stylesheet" href="/static/css/skeleton.8e00b13e5771.css">
+    <link rel="stylesheet" href="/static/css/base.f9bd0360392c.css">
+    <script src="/static/js/jquery.min.220afd743d9e.js"></script>
+    <script src="/static/js/jquery.touchswipe.min.47a0b3f24d24.js"></script>
+    <script src="/jsi18n/"></script>
+    <script src="/static/js/jquery.formset.8584349c8b78.js"></script>
+    <script src="/static/js/sorttable.cc47c001d30b.js"></script>
+    <script src="/static/js/tray.e0fbe1fa0768.js"></script>
+    <script src="/static/js/notify.7898a6be1e40.js"></script>
+    <script src="/static/js/time.e16f93f2f0b2.js"></script>
+    <link rel="icon" type="image/png" href="/static/images/favicon-96x96.6b8a4b466b93.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/images/favicon.beb57208a370.svg" />
+    <link rel="shortcut icon" href="/static/images/favicon.efc7f5722bc0.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.a432556acd16.png" />
+    <link rel="manifest" href="/static/images/site.9090e674d41e.webmanifest" />
+  </head>
+  <body>
+    <a class="skip-to-main">Press enter to skip to main content.</a>
+    <nav>
+      <span class="tray">
+        <div class="top-tabs">
+          <div class="site-nav">
+            <a href="/">
+              Home
+            </a>
+            <a href="/rules">
+              Rules
+            </a>
+            
+              <a href="/story">
+                Story
+              </a>
+            
+            
+              <a class="selected-tab" href="/puzzles">
+                Puzzles
+              </a>
+            
+            <a href="/teams">
+              Teams
+            </a>
+            <a href="/faq">
+              FAQ
+            </a>
+            
+              <a href="/errata">
+                Updates
+              </a>
+            
+            
+              <a href="/wrapup">
+                Wrap-Up
+              </a>
+            
+          </div>
+        </div>
+        <div class="top-more-actions">
+          
+  <a href="/puzzle/toys-cafe" class="btn">Back to the puzzle</a>
+
+        </div>
+      </span>
+      <div class="top-right-actions">
+        
+      </div>
+    </nav>
+    <script>
+      
+    </script>
+    
+      <div class="content">
+        
+
+  <style>
+    h2 {
+      font-size: 2.5rem;
+      font-weight: normal;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    h4 {
+      font-size: 2rem;
+      font-weight: normal;
+      margin: 2rem 0;
+    }
+  </style>
+
+  <h1>
+    Solution: Toys&#x27; Cafe
+    <div class="solved-title-marker">Answer: <span class="solved-title-answer spoiler">SPLINT</span></div>
+  </h1>
+
+  <main class="puzzle-main">
+    <h2 style="margin-top: 0" class="credit-line">
+      Written by
+      
+  Linus Hamilton
+
+    </h2>
+
+    
+    <style>
+  img {
+    display: block;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 640px) {
+    img {
+      max-width: calc(min(100%, 63rem));
+    }
+  }
+</style>
+
+<h3>What's going on?</h3>
+<p>It’s natural to guess that each graph represents some mathematical structure of one of the toys. In fact, they are the toys’ state transition graphs.
+One can confirm this by observing that
+the Towers of Hanoi toy has 3^5 = 243 possible states,
+and this equals the number of vertices in the Sierpinski triangle-looking graph.
+Searching up the state graph of a Towers of Hanoi puzzle confirms this.
+In this graph, two states are connected by an edge iff they are one move apart.</p>
+<p>We can match the toys to the graphs in a variety of ways. For example:</p>
+<ol type="1">
+<li>With some math, we can calculate the total number of states of some toys.<ol type="a">
+<li>As mentioned, the Towers of Hanoi toy has 3^5 = 243 possible states.</li>
+<li>In the Chess toy, the knight and bishop are stuck, and the king &amp; 3 rooks can occupy the remaining 7 squares in any combination. This makes for a total of (7 choose 3)*4 = 140 states.</li>
+<li>The Water Beakers toy is the classic “Given water beakers of size blah blah blah, how can you measure blah liters of water” puzzle. With beakers of size 2, 3, and 4, it seems like there should be 3*4*5 = 60 states. However, since every water-pouring move either completely fills or completely empties a beaker, there are 1*2*3 = 6 impossible states where every beaker is only partially full. (Or, to pessimists, only partially empty.) This makes for 54 reachable states.</li>
+</ol>
+</li>
+<li>We can use the directedness/undirectedness of the graphs. In the Chess, Towers of Hanoi, and Sliding Blocks toys, any move can be reversed. Not so for the Water Beakers, Snake, and Tic-Tac-Toe toys.</li>
+<li>We can count the number of edges adjacent to the start state (red). For example, the chessboard pictured in the puzzle has 6 legal moves, so it should map to a vertex with 6 edges.</li>
+</ol>
+<p>The graph assignments are as follows:</p>
+<ol type="1">
+<li>Sliding blocks</li>
+<li>Chess</li>
+<li>Towers of Hanoi</li>
+<li>Snake</li>
+<li>Tic-tac-toe</li>
+<li>Water beakers</li>
+</ol>
+<h3>Finding the blue states</h3>
+<p>This is an open-ended problem with many possible approaches.
+I’ll say how I personally approached each toy while writing the puzzle.</p>
+<h4>Water Beakers</h4>
+<p>This toy’s graph is a dumpster fire.
+But the puzzle helpfully tells us that it’s rotationally symmetric.
+Even the red and blue states are placed symmetrically.
+So if we discover what the symmetry is, we can skip all the hard work.</p>
+<p>Each beaker contains some amount of water and some amount of air.
+Let’s treat water and air as equals: neither is the more important substance.
+Filling a beaker with water is the same as emptying it of air, and vice versa.
+Pouring water from beaker A into beaker B is equivalent to trading A’s water with B’s air until one supply runs out.
+This means it’s equivalent to “pouring air from beaker B into beaker A.”
+Therefore, the Water Beakers toy is symmetric with regards to swapping water and air.
+This immediately gives us the blue state.</p>
+<h4>Snake</h4>
+<p>This toy is the game “Snake,” except without the apples that make your snake grow longer.
+The red state belongs to two cycles: a length-10 cycle and a length-12 cycle.
+(See the left two cycles in the picture below.)
+Traveling around these cycles maps to the snake slithering around a length-10 and a length-12 loop in the grid.</p>
+<p><img alt="" src="/static/solution_resources/toys-cafe/snake_sol.780ccc618500.png" /></p>
+<p>This lets us determine all the states in both cycles.
+We can similarly determine a 3rd cycle (the rightmost one in the picture).
+This lets us label the state that’s 2 after blue.
+There are only two ways for a snake to “rewind” from this state:
+one rewinds back around the cycle, and the other rewinds to the blue state.</p>
+<p>The blue state looks like an S, clueing that we should now plug <code>A*sA*</code> into nutrimatic.</p>
+<h4>Tic-Tac-Toe</h4>
+<p><img alt="" src="/static/solution_resources/toys-cafe/ttt_sol1.5c6fd09c4f84.png" /></p>
+<p>For this toy, the red state is a finished tic-tac-toe game.
+Without even looking at the graph, we know that the final move of the game was X in the top-right corner – otherwise, X would have won earlier.
+The blue state comes 4 moves earlier, meaning that it’s a tic-tac-toe board with exactly 3 of the Xs and 2 of the Os from the red state.</p>
+<p><img alt="" src="/static/solution_resources/toys-cafe/ttt_sol2.11ef4c63e82a.png" /></p>
+<p>The graph tells us how else players could have won earlier:</p>
+<ul>
+<li>None of the vertices immediately following blue are terminal states.
+  This means that, starting from the blue state, O can’t win on turn 1.</li>
+<li>X can win on turn 2: there are terminal states in that layer.
+  But, O can prevent X from reaching a terminal state.
+  In other words, in the blue state, X is only threatening a single win.
+  (And that win must be the top-right square.)</li>
+<li>O can win on turn 3.
+  Furthermore, there is a state – labeled “a” above – where O can win in two different ways.
+  In other words, O can threaten two different winning lines on turn 1.</li>
+</ul>
+<p>Remember that the blue state has 3 out of the 5 Xs from the final state.
+And it can’t include the top-right X, because that was the final move of the game.
+This leaves four cases for the remaining Xs:</p>
+<p><img alt="" src="/static/solution_resources/toys-cafe/ttt_sol3.d694459a6f11.png" /></p>
+<p>Is the first case possible?
+We know X is initially only threatening the win in the top-right corner.
+For that to be true, we’d need Os in the top-left and middle-left squares.
+But then O can win turn 1.
+Contradiction...</p>
+<p>The second and third cases are impossible because we know O can threaten two different winning lines on turn 1.
+There aren’t even two unblocked winning lines on those boards.</p>
+<p>This leaves the final case.
+It needs an O in the bottom-middle to ensure X is initially only threatening one win.
+For the other O, only the top-left corner lets O threaten two different winning lines on turn 1, without letting O win on turn 1.
+This is the blue state.</p>
+<h4>Towers of Hanoi</h4>
+<p>The internet has information about the structure of a Towers of Hanoi state graph.
+(See, for example, <a href="https://en.wikipedia.org/wiki/Hanoi_graph">https://en.wikipedia.org/wiki/Hanoi_graph</a>.)
+The corners of the graph map to the states where every disc is on the same pole.
+The classical shortest solution to the puzzle traces along an outer edge from one corner to another.
+Since both the red state and blue state are on outer edges, solvers can play out the shortest solution to find the blue state, using the red state to determine which pole is which.</p>
+<p>It’s also possible (and probably more elegant) to determine how the vertices of the graph map onto states of the Towers of Hanoi puzzle.</p>
+<h4>Sliding Blocks</h4>
+<p>The blue state is near the end of a long road of unique moves.
+By playing with the blocks enough, eventually the solver might find their way to that strange dead end.
+The blue state is pictured below; the dead end is the same state with the top-right block pushed to the left.</p>
+<p>Like in the Chess toy, the graph is symmetric:
+this time the symmetry is swapping the two differently-colored dominoes.
+We distinguish the blue state from its symmetric copy by picking the one that’s closer (in terms of # of moves) to the red state.</p>
+<p><img alt="" src="/static/solution_resources/toys-cafe/sliding_sol.72ec11f279da.png" /></p>
+<h4>Chess</h4>
+<p>Once again, we look at dead ends.
+The graph has two dead ends.
+Given that the knight and bishop are both stuck in place, there are only 2 ways to stuff the king and rooks onto the chessboard leaving only 1 legal move.
+Well, really, it’s just 1 way and its reflection over the main diagonal.
+(This reflection is the symmetry of the state graph.)</p>
+<p><img alt="" src="/static/solution_resources/toys-cafe/chess_sol.4d5dd6eadd67.png" /></p>
+<h3>Extraction</h3>
+<p>Put each toy in the blue state.</p>
+<p><img alt="" src="/static/solution_resources/toys-cafe/final_sol.29fbbf1210d9.png" /></p>
+<p>The answer <strong><code>SPLINT</code></strong> appears in blue.</p>
+
+    
+    
+
+    
+    
+  </main>
+
+
+      </div>
+    
+    <script>
+      const skipToMainLink = document.querySelector("a.skip-to-main");
+      const mainContentElement = document.getElementsByTagName("main")?.item(0) || document.querySelector("div.content");
+      if (skipToMainLink && mainContentElement) {
+        const mainContentAnchor = document.createElement("a");
+        const anchorId = "main-content-anchor"
+        mainContentAnchor.className = anchorId;
+        mainContentAnchor.id = anchorId;
+        skipToMainLink.href = `#${anchorId}`;
+        mainContentElement.parentNode.insertBefore(mainContentAnchor, mainContentElement);
+      }
+    </script>
+    <footer>
+      Powered by <a href="https://github.com/galacticpuzzlehunt/gph-site">gph-site</a>
+    </footer>
+  </body>
+</html>
